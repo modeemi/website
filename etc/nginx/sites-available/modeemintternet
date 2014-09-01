@@ -1,0 +1,36 @@
+# Modeemi Intternet Projekt server nginx config
+# You should run the server as a normal user who is named modeemintternet
+# The user has git repo pulled and built into $HOME/modeemintternet
+
+# The upstream component nginx needs to connect to; we're using uwsgi sockets
+# Make sure the socket is also write / readable by the nginx instance
+# It needs to be owned by the modeemintternet user, you could make modeemintternet group
+# which the nginx / www / www-data user, whichever it is on the target distro, is part of
+upstream django {
+    server unix:///tmp/modeemintternet.sock;
+}
+
+# configuration of the server
+server {
+    listen      80;                 # you can also listen to some other port and proxy Apache into it
+    server_name beta.modeemi.fi;    # in production change to www.modeemi.fi etc.
+    charset     utf-8;
+
+    client_max_body_size 75M;   # max upload size, adjust to taste
+
+    # Django media file directory; all uploads go here
+    location /media {
+        alias /home/modeemintternet/modeemintternet/media/;
+    }
+
+    # Django static files; site static content is collected here
+    location /static {
+        alias /home/modeemintternet/modeemintternet/static/;
+    }
+
+    # Page root; requests to root address go to the uWSGI server
+    location / {
+        uwsgi_pass  django;
+        include     /home/modeemintternet/modeemintternet/etc/uwsgi/uwsgi_params;
+    }
+}

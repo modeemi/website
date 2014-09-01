@@ -1,7 +1,12 @@
-.navbar {
+body {
+    background-color: #CCCCCC;
+}
+
+nav.navbar {
     border-radius: 0px;
 }
 
+/* The main header for the whole page with image background */
 div.header {
     overflow-x: hidden;
     overflow-y: hidden;
@@ -24,8 +29,6 @@ div.header a:hover {
     }
 }
 
-body {
-    background-color: #CCCCCC;
-}
+
 
 

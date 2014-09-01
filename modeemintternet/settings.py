@@ -23,17 +23,21 @@ SECRET_KEY = '(wze5mz$b(l8aev@fzm++qn+cup4mu@z=^)0wea6_r(f53!+1%'
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = []
-INTERNAL_IPS = ['127.0.0.1', 'localhost', 'localhost:8000']
+INTERNAL_IPS = ['127.0.0.1', 'localhost']
 
 # Application definition
 
 INSTALLED_APPS = (
+    # Built-ins
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Custom additions
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (

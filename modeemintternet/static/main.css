@@ -18,6 +18,12 @@ div.header a:hover {
     text-decoration: none;
 }
 
+@media(min-width: 768px) {
+    body > div.container-fluid {
+        margin: 1em;
+    }
+}
+
 body {
     background-color: #CCCCCC;
 }

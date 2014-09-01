@@ -1,0 +1,25 @@
+.navbar {
+    border-radius: 0px;
+}
+
+div.header {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-image: url('/static/header.png');
+}
+
+div.header h1 {
+    color: #cccccc;
+    font-size: 4em;
+    margin: 0.5em;
+}
+
+div.header a:hover {
+    text-decoration: none;
+}
+
+body {
+    background-color: #CCCCCC;
+}
+
+

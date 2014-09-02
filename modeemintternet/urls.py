@@ -25,6 +25,5 @@ urlpatterns = patterns('',
     url(r'^palvelut/digipk/$', views.digipk),
     url(r'^palvelut/password/$', views.password),
     url(r'^laitteisto/halutaan/$', views.halutaan),
-    url(r'^jaseneksi/hakemus/$', views.hakemus),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

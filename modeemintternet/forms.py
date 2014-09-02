@@ -17,7 +17,7 @@ class ApplicationForm(ModelForm):
         self.helper = FormHelper(self)
         self.helper.form_id = 'application-form'
         self.helper.form_method = 'POST'
-        self.helper.form_action = '/jaseneksi/hakemus/'
+        self.helper.form_action = '/jaseneksi/'
         self.helper.add_input(Submit('submit', 'Lähetä hakemus'))
 
         self.fields['email'].label = 'Sähköpostini on (ensisijaisesti tut.fi)'

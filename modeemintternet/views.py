@@ -26,9 +26,6 @@ def yhdistys(request):
 def palvelut(request):
     return render_with_context(request, 'palvelut.html')
 
-def jaseneksi(request):
-    return render_with_context(request, 'jaseneksi.html')
-
 def laitteisto(request):
     return render_with_context(request, 'laitteisto.html')
 
@@ -56,18 +53,18 @@ def password(request):
 def halutaan(request):
     return render_with_context(request, 'halutaan.html')
 
-def hakemus(request):
+def jaseneksi(request):
     application_form = ApplicationForm()
 
     if not request.POST:
-        return render_with_context(request, 'hakemus.html',
+        return render_with_context(request, 'jaseneksi.html',
                 {'form': application_form})
 
     else:
         application_form = ApplicationForm(request.POST)
 
         if not application_form.is_valid():
-            return render_with_context(request, 'hakemus.html',
+            return render_with_context(request, 'jaseneksi.html',
                 {'form': application_form})
 
     response = HttpResponse(content_type='application/pdf')

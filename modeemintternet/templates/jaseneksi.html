@@ -6,8 +6,18 @@
 
 <p>Jäsenillä on mahdollisuus hankkia käyttäjätunnus Modeemin koneille. Laaja laitteistovalikoima sijaitsee huippunopeiden verkkoyhteyksien päässä ja mahdollistaa tutustumisen moniin eri järjestelmiin. Sähköpostin ja muiden palveluiden luotettava toiminta on Modeemille kunnia-asia. Meillä sähköposteja ei tuhota ylläpidon toimesta!</p>
 
-<h3>Liittyminen käytännössä</h3>
+<h3>Liittyminen jäseneksi</h3>
 
-<p>Tule käymään kerhohuoneella ja täytä <a href="{% url 'views.hakemus' %}">jäsenhakemuslomake</a>. Saat viitenumeron kuluvan vuoden jäsenmaksun maksamiseen. Voit täyttää lomakkeen myös <a href="{% url 'views.hakemus' %}">verkossa</a> ja toimittaa täytetyt paperit kerhohuoneelle. Jäseneksi hyväksymisestä päätetään seuraavassa hallituksen kokouksessa.</p>
+<p>Täytä alla oleva <strong>jäsenhakemuslomake</strong> tehdäksesi jäsenhakemuksen.</p>
+<p>Saat <strong>8 euron suuruisen jäsenyysmaksun</strong> sisältävän <strong>laskun</strong> sekä <strong>viitenumeron</strong> kuluvan vuoden jäsenmaksun maksamiseen.</p>
+<p>Kun olet maksanut jäsenmaksun, jäsenhakemuksesi käsitellään hallituksen kokouksessa ja saat sähköpostissa tiedon jäsenhakemuksesi hyväksymisestä, mahdollisista tunnuksista sekä virtuaaliavaimesta kerhohuoneelle.</p>
+
+<p>Jäsenhakemuksen tehdessäsi hyväksyt samalla <a href="http://www.csc.fi/hallinto/funet/esittely/etiikka/index_html">FUNET-tietoverkon käyttösäännöt</a>.</p>
+
+<hr />
+
+{% load crispy_forms_tags %}
+{% crispy form %}
+
 
 {% endblock %}

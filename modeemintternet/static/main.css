@@ -10,7 +10,7 @@ nav.navbar {
 div.header {
     overflow-x: hidden;
     overflow-y: hidden;
-    background-image: url('/static/header.png');
+    background-image: url('/static/image/header.png');
 }
 
 div.header h1 {

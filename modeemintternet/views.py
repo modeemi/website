@@ -8,7 +8,9 @@ from django.shortcuts import render_to_response
 from django.utils.timezone import now
 from django.template import RequestContext
 
+from svglib.svglib import svg2rlg
 from reportlab.pdfgen import canvas
+from reportlab.graphics import renderSVG
 
 from .models import Application
 from .forms import ApplicationForm
@@ -77,16 +79,16 @@ def jaseneksi(request):
     p = canvas.Canvas(response)
 
     # Logo on top of the page
-    # file, x, y
-    logoPath = os.path.join(settings.PROJECT_DIR, 'static', 'modeemi-logo-bow.png')
-    p.drawImage(logoPath, 50, 650, height=150, preserveAspectRatio=True, anchor='nw')
+    textPath = os.path.join(settings.PROJECT_DIR, 'static', 'logo', 'text.eps')
+    wizardPath = os.path.join(settings.PROJECT_DIR, 'static', 'logo', 'wizard.eps')
+    p.drawImage(textPath, 50, 710, height=100, preserveAspectRatio=True, anchor='nw')
+    p.drawImage(wizardPath, 310, 500, height=350, preserveAspectRatio=True, anchor='nw')
 
-    # Text below the logo
-    # x, y, text
-    p.drawString(50, 600, 'Modeemi ry, jäsenhakemus')
+    p.drawString(70, 720, 'Modeemi ry c/o TTY')
+    p.drawString(70, 700, 'PL 553')
+    p.drawString(70, 680, 'FIN-33101 Tampere')
 
     # Box containing the user information
-    # x, y, width, height
     p.drawString(50, 560, 'Sähköposti')
     p.drawString(310, 560, application.email)
     p.rect(40, 550, 500, 30)
@@ -107,15 +109,49 @@ def jaseneksi(request):
     p.rect(40, 400, 500, 30)
 
     # Line delimiting the pre-filled and user-filled parts
-    # x1, y1, x2, y2
     p.line(300, 400, 300, 580)
 
-    # Usage terms and signing line
-    p.drawString(50, 360, 'Allekirjoitus: ')
-    p.line(120, 358, 540, 358)
-    p.drawString(50, 330, 'Modeemi ryn jäsenenä sitoudun FUNET:n käyttösääntöihin.')
-    p.drawString(50, 300, 'Maksa jäsenmaksu, 8 euroa, tilille 224318-5739.')
-    p.drawString(50, 270, 'Maksuviitteesi on ' + application.bank_reference + '.')
+    # Draw the bank information grid
+    # Horizontal lines
+    p.line(0, 40, 600, 40)
+    p.line(0, 70, 600, 70)
+    p.line(300, 100, 600, 100)
+    p.line(0, 200, 300, 200)
+    p.line(0, 250, 600, 250)
+    p.line(0, 300, 600, 300)
+
+    # Vertical lines
+    p.line(300, 40, 300, 300)
+    p.line(350, 40, 350, 100)
+    p.line(450, 40, 450, 70)
+    p.line(70, 200, 70, 300)
+
+    # Texts
+    p.drawString(90, 270, 'FI10 2243 1800 0057 39')
+    p.drawString(320, 270, 'NDEAFIHH')
+    p.drawString(90, 220, 'Modeemi ry')
+    p.drawString(370, 80, application.bank_reference)
+    p.drawString(550, 50, '8,00')
+
+    p.setFontSize(7)
+    p.drawString(40, 290, 'Tilinro')
+    p.drawString(80, 290, 'IBAN')
+    p.drawString(310, 290, 'BIC')
+    p.drawString(40, 240, 'Saaja')
+    p.drawString(310, 90, 'Viitenro')
+    p.drawString(310, 60, 'Eräpäivä')
+    p.drawString(460, 60, 'Euro')
+
+    p.drawString(30, 180, 'Maksajan')
+    p.drawString(39, 170, 'nimi ja')
+    p.drawString(41, 160, 'osoite')
+
+    p.drawString(45, 95, 'Alle-')
+    p.drawString(33, 85, 'kirjoitus')
+
+    p.line(70, 80, 300, 80)
+
+    p.drawString(30, 60, 'Tililtä nro')
 
     # Close the PDF object cleanly, and we're done.
     p.showPage()

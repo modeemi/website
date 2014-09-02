@@ -27,6 +27,6 @@ class ApplicationForm(ModelForm):
         self.fields['primary_nick'].label = 'Ensisijaisesti haluamani käyttäjätunnus on'
         self.fields['secondary_nick'].label = 'Vaihtoehto, jos ensisijainen on jo käytössä'
         self.fields['shell'].label = 'Haluamani komentokehoite kerhon *nix -koneilla'
-        self.fields['funet_rules_accepted'].label = 'Hyväksyn FUNET:n käyttösäännöt'
+        self.fields['funet_rules_accepted'].label = 'Hyväksyn <a href="http://www.csc.fi/hallinto/funet/esittely/etiikka/index_html">FUNET-verkon käyttösäännöt</a>'
         self.fields['funet_rules_accepted'].required = True
 

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Backup</h2>
+
+<h3>Palvelun sisältö</h3>
+
+<p>Modeemi ry tarjoaa jäsenilleen palvelua, jossa jäsen saa käyttöönsä Modeemin konehuoneessa tarkoitukseen omistetulla palvelimella sijaitsevaa levytilaa, joka on tarkoitettu varmuuskopiointitarkoituksiin. Levytila ei siis näy esimerkiksi web-palvelimen takaa, vaan on ainoastaan käyttäjänsä saatavilla alempana kerrotuilla tavoilla. Levytilan vikasietoisuus on toteutettu RAID-6 -järjestelmällä.</p>
+
+<p>Backup-levytilaa ei varmuuskopioida toisaalle. Vikatilanteissa Modeemi pyrkii palauttamaan palvelun toiminnan mahdollisimman pian, valitettavasti emme voi taata vasteaikoja. Palvelun tuotoilla on tarkoitus mm. kerätä varalaitteistoa, jotta laitteisto-ongelmista johtuvat katkot jäisivät mahdollisimman lyhyiksi.</p>
+
+<h3>Palvelun hinnoittelu</h3>
+
+<p>Levytilaa myydään 100Gt lohkoissa. Palvelusta laskutetaan vuosittain 12€/100Gt/v (hinnoittelu 22.12.2010). Esimerkiksi jos käyttäjä haluaa 200Gt levytilaa kahdeksi vuodeksi, maksaa tämä 48€ (2v * 2*100Gt * 12€/100Gt/v). Palvelu maksetaan aina etukäteen eräpäivän ollessa kaksi viikkoa ennen palvelun aloituspäivää.</p>
+
+<p>Käyttäjän dataa säilytetään 3 kk maksetun ajanjakson päätyttyä. Tänä aikana käyttäjällä on mahdollisuus maksaa rästimaksunsa, jolloin pääsy dataan palautuu. Samassa yhteydessä on mahdollisuus jatkaa palvelua. Laskutuskausi on yksi vuosi, käyttäjä voi halutessaan ostaa useamman vuoden kerralla (enintään kaksi (2) vuotta). Palvelun käyttöönotto suoritetaan aina kuun vaihteessa, ei kesken kuukautta.</p>
+
+<p>Käyttäjälle varattua levytilaa voidaan kasvattaa (tai pienentää) kesken laskutuskauden. Kuukausittain käyttäjän "saldosta" vähennettävää summaa korjataan soveltuvasti.</p>
+
+<p>Modeemi ry pidättää oikeuden yksipuolisiin hinnanmuutoksiin jos palvelun ylläpitokustannukset sitä vaativat. Mahdolliset korotukset astuvat voimaan sen hetkisille käyttäjille aikaisintaan kolmen (3) kuukauden päästä tiedotuksesta. Tällöin käyttäjän maksaman ajanjakson päättymishetki lasketaan uudelleen uuden hinnan mukaisesti. Uusien käyttäjien hinnoittelua Modeemi voi muokata ilman erillistä ilmoitusta.</p>
+
+<h3>Palvelun tilaaminen ja käyttöönotto</h3>
+
+<p>Palvelu tilataan sähköpostitse ilmoittamalla haluttu tilantarve ja ajanjakso. Rahastonhoitaja lähettää tilaajalle laskun ja kun lasku on maksettu, laitteistovastaava opastaa palvelun käyttöönotossa. Käyttöönotto-ohjeet (ja muitakin ohjeita) saatetaan kirjoitella myös tälle sivulle.</p>
+
+<h3>Palvelun maksaminen</h3>
+
+<p>Modeemi ry:n rahastonhoitaja muistaa sinua laskulla otettuasi yhteyttä ja tilattuasi palvelun tai viimeistään kuukautta ennen maksamasi palvelujakson päättymistä.</p>
+
+<h3>FAQ</h3>
+
+<p>Q: Keneltä voin kysyä lisää?<br>
+A: backup AT modeemi.fi</p>
+
+<p>Q: Minkälaisia varmuuskopiointitapoja on tarjolla?<br>
+A: Ainakin Crashplan ja rsync</p>
+{% endblock %}

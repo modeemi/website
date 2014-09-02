@@ -32,6 +32,27 @@ def jaseneksi(request):
 def laitteisto(request):
     return render_with_context(request, 'laitteisto.html')
 
+def jasenmaksu(request):
+    return render_with_context(request, 'jasenmaksu.html')
+
+def saannot(request):
+    return render_with_context(request, 'saannot.html')
+
+def hallitus(request):
+    return render_with_context(request, 'hallitus.html')
+
+def yhteystiedot(request):
+    return render_with_context(request, 'yhteystiedot.html')
+
+def backup(request):
+    return render_with_context(request, 'backup.html')
+
+def digipk(request):
+    return render_with_context(request, 'digipk.html')
+
+def password(request):
+    return render_with_context(request, 'password.html')
+
 def halutaan(request):
     return render_with_context(request, 'halutaan.html')
 

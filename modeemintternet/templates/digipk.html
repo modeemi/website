@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Digitaalitekniikan perusteet</h2>
+
+<p>Digitaalitekniikan Perusteet -kirja on saatavilla Modeemi ry:n kautta. </p>
+
+{% load staticfiles %}
+<p><img src="{% static 'digipk.jpg' %}" alt="Digitaalitekniikan perusteet"></p>
+
+<p>Kirja on Panu-Kristian Poiksalon kirjoittama ja se on käytössä ainakin TTY:n Digitaalitekniikan perusteet kurssilla. </p>
+
+<p>Hinta:</p>
+
+<ul>
+<li>Yksittäiskappaleet 28€/kpl</li>
+<li>10kpl erissä 25€/kpl</li>
+</ul>
+
+<p>Tilaukset osoitteeseen kirjamyynti@modeemi.fi. Otsikoksi "Digitaalitekniikan perusteet tilaus". 
+Yli 10kpl tilauksissa, kysy tarjousta! </p>
+
+<p>(Hinta sisältää ALV 8%, hintaan lisätään mahdolliset toimituskulut)</p>
+{% endblock %}

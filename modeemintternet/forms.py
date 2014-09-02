@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from .models import Application
+from django.core.urlresolvers import reverse
 from django.forms import ModelForm
 from django import forms
 from crispy_forms.helper import FormHelper
@@ -16,7 +17,7 @@ class ApplicationForm(ModelForm):
         self.helper = FormHelper(self)
         self.helper.form_id = 'application-form'
         self.helper.form_method = 'POST'
-        self.helper.form_action = '/hakemus/'
+        self.helper.form_action = '/jaseneksi/hakemus/'
         self.helper.add_input(Submit('submit', 'Lähetä hakemus'))
 
         self.fields['email'].label = 'Sähköposti (ensisijaisesti tut.fi)'

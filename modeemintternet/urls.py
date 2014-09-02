@@ -17,7 +17,14 @@ urlpatterns = patterns('',
     url(r'^laitteisto/$', views.laitteisto),
 
     # Sub level views
-    url(r'^halutaan/$', views.halutaan),
-    url(r'^hakemus/$', views.hakemus),
+    url(r'^ry/jasenmaksu/$', views.jasenmaksu),
+    url(r'^ry/saannot/$', views.saannot),
+    url(r'^ry/hallitus/$', views.hallitus),
+    url(r'^ry/yhteystiedot/$', views.yhteystiedot),
+    url(r'^palvelut/backup/$', views.backup),
+    url(r'^palvelut/digipk/$', views.digipk),
+    url(r'^palvelut/password/$', views.password),
+    url(r'^laitteisto/halutaan/$', views.halutaan),
+    url(r'^jaseneksi/hakemus/$', views.hakemus),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

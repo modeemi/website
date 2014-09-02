@@ -22,11 +22,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="{% active request '^/$' %}"><a href="/">Etusivu</a></li>
-                <li class="{% active request '^/ry/$' %}"><a href="/ry/">Yhdistys</a></li>
-                <li class="{% active request '^/palvelut/$' %}"><a href="/palvelut/">Palvelut</a></li>
-                <li class="{% active request '^/jaseneksi/$' %}"><a href="/jaseneksi/">Jäseneksi</a></li>
-                <li class="{% active request '^/laitteisto/$' %}"><a href="/laitteisto/">Laitteisto</a></li>
+                <li class="{% active request '^/$' %}"><a href="{% url 'views.etusivu' %}">Etusivu</a></li>
+                <li class="{% active request '^/ry/' %}"><a href="{% url 'views.yhdistys' %}">Yhdistys</a></li>
+                <li class="{% active request '^/palvelut/' %}"><a href="{% url 'views.palvelut' %}">Palvelut</a></li>
+                <li class="{% active request '^/jaseneksi/' %}"><a href="{% url 'views.jaseneksi' %}">Jäseneksi</a></li>
+                <li class="{% active request '^/laitteisto/' %}"><a href="{% url 'views.laitteisto' %}">Laitteisto</a></li>
             </ul>
         </div> <!-- /.navbar-collapse -->
     </div> <!-- /.container-fluid -->

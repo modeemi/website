@@ -17,14 +17,16 @@
             <a class="navbar-brand" href="/">Modeemi</a>
         </div>
 
+        {% load active %}
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/">Etusivu</a></li>
-                <li><a href="/ry/">Yhdistys</a></li>
-                <li><a href="/palvelut/">Palvelut</a></li>
-                <li><a href="/jaseneksi/">Jäseneksi</a></li>
-                <li><a href="/laitteisto/">Laitteisto</a></li>
+                <li class="{% active request '^/$' %}"><a href="/">Etusivu</a></li>
+                <li class="{% active request '^/ry/$' %}"><a href="/ry/">Yhdistys</a></li>
+                <li class="{% active request '^/palvelut/$' %}"><a href="/palvelut/">Palvelut</a></li>
+                <li class="{% active request '^/jaseneksi/$' %}"><a href="/jaseneksi/">Jäseneksi</a></li>
+                <li class="{% active request '^/laitteisto/$' %}"><a href="/laitteisto/">Laitteisto</a></li>
             </ul>
         </div> <!-- /.navbar-collapse -->
     </div> <!-- /.container-fluid -->

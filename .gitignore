@@ -2,3 +2,5 @@ vendor
 virtualenv
 *.pyc
 .idea
+ldap.txt
+db.sqlite3

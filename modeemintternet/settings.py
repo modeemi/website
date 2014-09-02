@@ -38,11 +38,15 @@ INSTALLED_APPS = (
 
     # Custom additions
     'debug_toolbar',
+    'crispy_forms',
+
+    # Own modules
+    'modeemintternet'
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -57,6 +61,17 @@ TEMPLATE_CONTEXT_PREPROCESSORS = (
     'django.core.context_processors.static',
     'django.core.context_processors.csrf',
     'django.contrib.messages.context_processors.messages',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
 )
 
 ROOT_URLCONF = 'modeemintternet.urls'
@@ -95,3 +110,40 @@ STATICFILES_DIRS = (
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/modeemintternet/static'
+
+try:
+    import ldap
+    from django_auth_ldap.config import LDAPSearch, PosixGroupType
+
+    with open(os.path.join(BASE_DIR, 'ldap.txt'), 'r') as f:
+        AUTH_LDAP_BIND_PASSWORD = f.read().strip()
+
+    # LDAP configuration, refer to: http://pythonhosted.org/django-auth-ldap/
+    AUTH_LDAP_SERVER_URI = "ldap://foo.bar.fi"
+    AUTH_LDAP_BIND_DN = "cn=web,dc=tite,dc=lan"
+    AUTH_LDAP_USER_DN_TEMPLATE = "uid=%(user)s,ou=People,dc=tite,dc=lan"
+    AUTH_LDAP_GROUP_TYPE = PosixGroupType()
+    AUTH_LDAP_REQUIRE_GROUP = "cn=jasenet,ou=Group,dc=tite,dc=lan"
+
+    AUTH_LDAP_GROUP_SEARCH = LDAPSearch("ou=Group,dc=tite,dc=lan",
+        ldap.SCOPE_SUBTREE, "(objectClass=posixAccount)")
+
+    AUTH_LDAP_USER_FLAGS_BY_GROUP = {
+        "is_active": "cn=jasenet,ou=Group,dc=tite,dc=lan",
+        "is_staff": "cn=hallitus,ou=Group,dc=tite,dc=lan",
+        "is_superuser": "cn=admin,ou=Group,dc=tite,dc=lan"
+    }
+
+    AUTH_LDAP_PROFILE_FLAGS_BY_GROUP = {
+        "is_member": "cn=jasenet,ou=Group,dc=tite,dc=lan",
+        "is_hati": "cn=hati,ou=Group,dc=tite,dc=lan",
+        "is_counselor": "cn=counselor,ou=Group,dc=tite,dc=lan"
+    }
+
+    AUTH_LDAP_CACHE_GROUPS = True
+    AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
+
+except Exception as e:
+    print e
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

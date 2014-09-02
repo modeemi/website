@@ -120,8 +120,6 @@ def hakemus(request):
     p.drawString(50, 300, 'Maksa jäsenmaksu, 8 euroa, tilille 224318-5739.')
     p.drawString(50, 270, 'Maksuviitteesi on ' + application.bank_reference + '.')
 
-    p.drawRect
-
     # Close the PDF object cleanly, and we're done.
     p.showPage()
     p.save()

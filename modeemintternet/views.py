@@ -129,8 +129,7 @@ def jaseneksi(request):
     p.drawString(90, 270, 'FI10 2243 1800 0057 39')
     p.drawString(320, 270, 'NDEAFIHH')
     p.drawString(90, 220, 'Modeemi ry')
-    p.drawString(370, 80, application.bank_reference[0:3] +
-            ' ' + application.bank_reference[3:-1])
+    p.drawString(370, 80, application.bank_reference)
     p.drawString(550, 50, '8,00')
 
     p.setFontSize(7)

@@ -8,7 +8,6 @@ from django.shortcuts import render_to_response
 from django.utils.timezone import now
 from django.template import RequestContext
 
-from svglib.svglib import svg2rlg
 from reportlab.pdfgen import canvas
 from reportlab.graphics import renderSVG
 

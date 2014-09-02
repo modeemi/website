@@ -22,7 +22,7 @@ class Application(models.Model):
     applied = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now_add=True, auto_now=True)
 
-    bank_reference = models.CharField(max_length=16, editable=False)
+    bank_reference = models.CharField(max_length=6, editable=False)
 
     email = models.EmailField()
 
@@ -39,21 +39,19 @@ class Application(models.Model):
     funet_rules_accepted = models.BooleanField(blank=False)
 
 
-def create_bank_reference(sender, instance, created, **kwargs):
-    def checksum(raw):
-        """ Get check number for given reference number """
+    def update_bank_reference(self):
+        """
+        Update the user's bank payment reference number.
+        This method has to be called AFTER the object has been saved.
+        """
 
+        padded = str(self.id).zfill(6)
         multiplicators = (7, 3, 1)
-        string_raw = str(raw).zfill(16)
-        inverse = map(int, string_raw[::-1])
+        inverse = map(int, padded[::-1])
         result = sum(multiplicators[i % 3] * x for i, x in enumerate(inverse))
-        return (10 - (result % 10)) % 10
+        checksum = str((10 - (result % 10)) % 10)
 
-    def reference(pk):
-        padded = str(pk).zfill(16)
-        return padded[0:15] + str(checksum(pk))
+        self.bank_reference = padded[0:-1] + checksum
+        self.save()
 
-    instance.bank_reference = reference(instance.id)
-    print instance.bank_reference
-
-post_save.connect(create_bank_reference, Application)
+        return self.bank_reference

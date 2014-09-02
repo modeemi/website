@@ -74,6 +74,7 @@ def hakemus(request):
     response['Content-Disposition'] = 'attachment; filename="modeemi-jasenhakemus.pdf"'
 
     application = application_form.save()
+    application.update_bank_reference()
 
     # Create the PDF object, using the response object as its 'file.'
     p = canvas.Canvas(response)
@@ -117,6 +118,9 @@ def hakemus(request):
     p.line(120, 358, 540, 358)
     p.drawString(50, 330, 'Modeemi ryn jäsenenä sitoudun FUNET:n käyttösääntöihin.')
     p.drawString(50, 300, 'Maksa jäsenmaksu, 8 euroa, tilille 224318-5739.')
+    p.drawString(50, 270, 'Maksuviitteesi on ' + application.bank_reference + '.')
+
+    p.drawRect
 
     # Close the PDF object cleanly, and we're done.
     p.showPage()

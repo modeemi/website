@@ -20,13 +20,13 @@ class ApplicationForm(ModelForm):
         self.helper.form_action = '/jaseneksi/hakemus/'
         self.helper.add_input(Submit('submit', 'Lähetä hakemus'))
 
-        self.fields['email'].label = 'Sähköposti (ensisijaisesti tut.fi)'
-        self.fields['first_name'].label = 'Etunimi'
-        self.fields['last_name'].label = 'Sukunimi'
-        self.fields['reason'].label = 'Peruste jäsenyyden hakemiselle'
-        self.fields['primary_nick'].label = 'Haluamani käyttäjätunnus'
-        self.fields['secondary_nick'].label = 'Jos on jo käytössä'
-        self.fields['shell'].label = 'Haluamani komentokehoite'
+        self.fields['email'].label = 'Sähköpostini on (ensisijaisesti tut.fi)'
+        self.fields['first_name'].label = 'Etunimeni on'
+        self.fields['last_name'].label = 'Sukunimeni on'
+        self.fields['reason'].label = 'Peruste jäsenyyden hakemiselle, jos en ole opiskelija'
+        self.fields['primary_nick'].label = 'Ensisijaisesti haluamani käyttäjätunnus on'
+        self.fields['secondary_nick'].label = 'Vaihtoehto, jos ensisijainen on jo käytössä'
+        self.fields['shell'].label = 'Haluamani komentokehoite kerhon *nix -koneilla'
         self.fields['funet_rules_accepted'].label = 'Hyväksyn FUNET:n käyttösäännöt'
         self.fields['funet_rules_accepted'].required = True
 

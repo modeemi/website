@@ -13,3 +13,4 @@ wsgiref==0.1.2
 django-auth-ldap==1.2.1
 python-ldap==2.4.15
 django-crispy-forms==1.4.0
+reportlab==3.1.8

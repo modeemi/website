@@ -2,7 +2,7 @@ from django.http import Http404
 from django.shortcuts import render_to_response
 
 def etusivu(request):
-    return render_to_response('index.html')
+    return render_to_response('etusivu.html')
 
 def yhdistys(request):
     return render_to_response('yhdistys.html')

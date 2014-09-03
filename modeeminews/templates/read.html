@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Uutiset
+{% if request.user.is_superuser %}
+<a class="btn btn-primary pull-right" href="{% url 'modeeminews.views.create' %}">Lisää uutinen</a>
+{% endif %}
+</h2>
+
+{% if not news %}
+<h3>Hakemaasi uutista ei löytynyt</h3>
+{% endif %}
+
+{% for n in news %}
+<hr />
+<p>
+<span class="news-header"><a href="{% url 'modeeminews.views.read' pk=n.id %}">{{ n.title }}</a></span>
+<span class="news-timestamp pull-right">
+    <small>{{ n.posted }} ({{ n.poster.username }})</small>
+</span>
+</p>
+
+<p>{{ n.text }}</p>
+
+{% if request.user.is_superuser %}
+<a class="btn btn-sm btn-primary" href="{% url 'modeeminews.views.update' pk=n.id %}">Muokkaa</a>
+{% endif %}
+
+{% endfor %}
+{% endblock %}

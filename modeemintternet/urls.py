@@ -16,6 +16,8 @@ urlpatterns = patterns('',
     url(r'^jaseneksi/$', views.jaseneksi),
     url(r'^laitteisto/$', views.laitteisto),
 
+    url(r'^uutiset/', include('modeeminews.urls')),
+
     # Sub level views
     url(r'^ry/jasenmaksu/$', views.jasenmaksu),
     url(r'^ry/saannot/$', views.saannot),

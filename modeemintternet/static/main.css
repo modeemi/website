@@ -1,3 +1,7 @@
+/**
+ * Main app
+ */
+
 body {
     background-color: #DDDDDD;
 }
@@ -29,6 +33,14 @@ div.header a:hover {
     }
 }
 
+/**
+ * News
+ */
 
+.news-header {
+    font-size: 2em;
+}
 
+.news-timestamp {
+}
 

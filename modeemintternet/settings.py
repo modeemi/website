@@ -41,7 +41,8 @@ INSTALLED_APPS = (
     'crispy_forms',
 
     # Own modules
-    'modeemintternet'
+    'modeemintternet',
+    'modeeminews'
 )
 
 MIDDLEWARE_CLASSES = (

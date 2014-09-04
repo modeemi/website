@@ -42,7 +42,6 @@ INSTALLED_APPS = (
 
     # Own modules
     'modeemintternet',
-    'modeeminews'
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .models import Application
+from modeemintternet.models import Application, News
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm
 from django import forms
@@ -30,3 +30,38 @@ class ApplicationForm(ModelForm):
         self.fields['funet_rules_accepted'].label = 'Hyväksyn <a href="http://www.csc.fi/hallinto/funet/esittely/etiikka/index_html">FUNET-verkon käyttösäännöt</a>'
         self.fields['funet_rules_accepted'].required = True
 
+
+class NewsForm(ModelForm):
+    class Meta:
+        model = News
+
+    def __init__(self, *args, **kwargs):
+        super(NewsForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper(self)
+        self.helper.form_id = 'news-form'
+        self.helper.form_method = 'POST'
+        self.helper.form_action = '/uutiset/uusi/'
+        self.helper.add_input(Submit('submit', 'Julkaise'))
+
+        self.fields['title'].label = 'Otsikko'
+        self.fields['text'].label = 'Uutisteksti'
+
+
+class NewsUpdateForm(ModelForm):
+    class Meta:
+        model = News
+
+    def __init__(self, *args, **kwargs):
+        super(NewsUpdateForm, self).__init__(*args, **kwargs)
+
+        instance = kwargs.get('instance')
+
+        self.helper = FormHelper(self)
+        self.helper.form_id = 'news-form'
+        self.helper.form_method = 'POST'
+        self.helper.form_action = '/uutiset/' + str(instance.id) + '/muokkaa/'
+        self.helper.add_input(Submit('submit', 'Päivitä'))
+
+        self.fields['title'].label = 'Uusi otsikko'
+        self.fields['text'].label = 'Uusi uutisteksti'

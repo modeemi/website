@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="{% active request '^/$' %}"><a href="{% url 'views.etusivu' %}">Etusivu</a></li>
-                <li class="{% active request '^/uutiset/' %}"><a href="{% url 'modeeminews.views.read' %}">Uutiset</a></li>
+                <li class="{% active request '^/uutiset/' %}"><a href="{% url 'views.lue_uutisia' %}">Uutiset</a></li>
                 <li class="{% active request '^/ry/' %}"><a href="{% url 'views.yhdistys' %}">Yhdistys</a></li>
                 <li class="{% active request '^/palvelut/' %}"><a href="{% url 'views.palvelut' %}">Palvelut</a></li>
                 <li class="{% active request '^/jaseneksi/' %}"><a href="{% url 'views.jaseneksi' %}">Jäseneksi</a></li>

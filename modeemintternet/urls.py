@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 admin.autodiscover()
 
-from . import settings, views
+from modeemintternet import settings, views
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
@@ -16,7 +16,11 @@ urlpatterns = patterns('',
     url(r'^jaseneksi/$', views.jaseneksi),
     url(r'^laitteisto/$', views.laitteisto),
 
-    url(r'^uutiset/', include('modeeminews.urls')),
+    url(r'^uutiset/$', views.lue_uutisia),
+    url(r'^uutiset/(?P<pk>\d+)/$', views.lue_uutisia),
+    url(r'^uutiset/uusi/$', views.luo_uutinen),
+    url(r'^uutiset/(?P<pk>\d+)/muokkaa/$', views.paivita_uutinen),
+
 
     # Sub level views
     url(r'^ry/jasenmaksu/$', views.jasenmaksu),

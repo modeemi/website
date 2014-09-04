@@ -3,6 +3,7 @@
 from time import sleep
 from django.db import models
 from django.db.models.signals import post_save
+from django.contrib.auth.models import User
 
 class Application(models.Model):
     BASH = '/bin/bash'
@@ -29,7 +30,7 @@ class Application(models.Model):
     first_name = models.CharField(max_length=32, blank=False)
     last_name = models.CharField(max_length=32)
 
-    reason = models.CharField(max_length=32)
+    reason = models.CharField(max_length=32, blank=True)
 
     primary_nick = models.CharField(max_length=32)
     secondary_nick = models.CharField(max_length=32)
@@ -55,3 +56,23 @@ class Application(models.Model):
         self.save()
 
         return self.bank_reference
+
+
+class News(models.Model):
+    title = models.CharField(max_length=128)
+    text = models.TextField()
+
+    posted = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now_add=True, auto_now=True)
+
+    poster = models.ForeignKey(User, editable=False, null=True)
+
+    def set_poster(self, request):
+        if request.user.is_authenticated:
+            self.poster = request.user
+            self.save()
+
+    def set_modifier(self, request):
+        if request.user.is_authenticated:
+            self.modifier = request.user
+            self.save()

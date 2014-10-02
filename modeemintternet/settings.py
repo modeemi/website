@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Custom additions
-    'debug_toolbar',
+    # 'debug_toolbar',
     'crispy_forms',
 
     # Own modules

@@ -2,10 +2,26 @@
  * Main app
  */
 
-body {
-    background-color: #DDDDDD;
+/* Sticky footer */
+html {
+    position: relative;
+    min-height: 100%;
 }
 
+body {
+    background-color: #DDDDDD;
+    margin: 0 0 140px; /* bottom = footer height */
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 140px;
+    width: 100%;
+}
+
+/* Navigation */
 nav.navbar {
     border-radius: 0px;
 }

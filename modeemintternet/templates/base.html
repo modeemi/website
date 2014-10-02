@@ -1,14 +1,44 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>Modeemi ry</title>
-        {% include "head.html" %}
+        <!-- support mobile device viewports but disable page zooming; feels more like a native app that way -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta charset="utf-8">
+        <link type="image/x-icon" rel="icon" href="{% static "favicon.ico" %}"/>
+        <link type="text/css" rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.min.css" %}" />
+        <link type="text/css" rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap-theme.min.css" %}" />
+        <link type="text/css" rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}" />
+        <link type="text/css" rel="stylesheet" href="{% static "main.css" %}" />
     </head>
 
     <body>
-    {% include "nav.html" %}
-    <div class="container-fluid">
-        {% block content %}{% endblock %}
-    </div>
+        {% include "nav.html" %}
+        <div class="container-fluid">
+            {% block content %}{% endblock %}
+        </div>
+
+        <footer>
+            <div class="col-xs-12 text-center">
+                <hr />
+                <p><a href="mailto:hallitus@modeemi.fi">Modeemi &hearts; Palaute</a> &middot; Kofeiinilla valmistettu</p>
+                <a href="http://www.djangoproject.com/"><img src="{% static "logo/django.gif" %}" border="0" width="116" height="50" alt="Powered by Django." title="Powered by Django." /></a>
+                <a href="http://www.postgresql.org/"><img src="{% static "logo/postgresql.gif" %}" border="0" width="89" height="50" alt="Powered by PostgreSQL." title="Powered by PostgreSQL." /></a>
+            </div>
+        </footer>
+
+        <script type="text/javascript" src="{% static "jquery/dist/jquery.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "bootstrap/dist/js/bootstrap.min.js" %}"></script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-55379078-2', 'auto');
+            ga('send', 'pageview');
+        </script>
     </body>
 </html>

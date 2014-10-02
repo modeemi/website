@@ -7,9 +7,15 @@
 
 <p>Mikäli haluat tukea yhdistyksen toimintaa, <a href="{% url 'views.halutaan' %}">lahjoita rautaa, paranna palvelua!</a></p>
 
-<h3>Jäsenten käytössä</h3>
-
 <table class="table table-responsive">
+    <thead>
+        <tr>
+            <th colspan="7" class="equipment-header">
+                <h3>Jäsenten käytössä</h3>
+            </th>
+        </tr>
+    </thead>
+
     <thead>
         <tr>
             <th>Hostname</th>
@@ -21,312 +27,285 @@
             <th>funktio</th>
         </tr>
     </thead>
+
     <tbody>
-    <tr>
-        <td>battery</td>
-        <td>DL580G2</td>
-        <td>4 x 3.0Ghz XEON</td>
-        <td>24G</td>
-        <td>72G RAID1</td>
-        <td>CentOS 5.6</td>
-        <td>shellikone</td>
-    </tr>
-    <tr>
-        <td>coffee</td>
-        <td>HP p-Class blade</td>
-        <td>2 x 3.20Ghz Xeon 64bit</td>
-        <td>8G</td>
-        <td>72G RAID1</td>
-        <td>Ubuntu Maverick (10.10)</td>
-        <td>shellikone</td>
-    </tr>
-    <tr>
-        <td>beer</td>
-        <td>DL380G4</td>
-        <td>2 x 3.4Ghz XEON 64bit</td>
-        <td>3G</td>
-        <td>72G RAID1</td>
-        <td>FreeBSD 8.1</td>
-        <td>Shellikone</td>
-    </tr>
-    <tr>
-        <td>pepper</td>
-        <td>Sun Fire V240</td>
-        <td>2 x UltraSPARC-IIIi 1280 MHz</td>
-        <td>4G</td>
-        <td>72G RAID1</td>
-        <td>Solaris 10</td>
-        <td>Shellikone</td>
-    </tr>
-    <tr>
-        <td>fanta</td>
-        <td>Digital Personal Workstation 600AU</td>
-        <td>Alpha 21164 600Mhz</td>
-        <td>256M</td>
-        <td>8 + 11G</td>
-        <td>HP Tru64 UNIX V5.1B (Rev. 2650)</td>
-        <td>legacy</td>
-    </tr>
-    <tr>
-        <td>gin</td>
-        <td>Musta räkkikone</td>
-        <td>Pentium D 3.2Ghz</td>
-        <td>4G</td>
-        <td>80G raid1, 5 x 2T RAID6</td>
-        <td>Debian Squeeze</td>
-        <td>Backup-palvelin jäsenille</td>
-    </tr>
-    <tr>
-        <td>ipa</td>
-        <td>HP Integrity RX2620</td>
-        <td>2 x 1.6GHz Itanium 2</td>
-        <td>16G</td>
-        <td>300G RAID1</td>
-        <td>HP-UX</td>
-        <td>kts. edellinen sarake</td>
-    </tr>
+        <tr>
+            <td>battery</td>
+            <td>DL580G2</td>
+            <td>4 x 3.0Ghz XEON</td>
+            <td>24G</td>
+            <td>72G RAID1</td>
+            <td>CentOS 5.6</td>
+            <td>shellikone</td>
+        </tr>
+        <tr>
+            <td>coffee</td>
+            <td>HP p-Class blade</td>
+            <td>2 x 3.20Ghz Xeon 64bit</td>
+            <td>8G</td>
+            <td>72G RAID1</td>
+            <td>Ubuntu Maverick (10.10)</td>
+            <td>shellikone</td>
+        </tr>
+        <tr>
+            <td>beer</td>
+            <td>DL380G4</td>
+            <td>2 x 3.4Ghz XEON 64bit</td>
+            <td>3G</td>
+            <td>72G RAID1</td>
+            <td>FreeBSD 8.1</td>
+            <td>Shellikone</td>
+        </tr>
+        <tr>
+            <td>pepper</td>
+            <td>Sun Fire V240</td>
+            <td>2 x UltraSPARC-IIIi 1280 MHz</td>
+            <td>4G</td>
+            <td>72G RAID1</td>
+            <td>Solaris 10</td>
+            <td>Shellikone</td>
+        </tr>
+        <tr>
+            <td>fanta</td>
+            <td>Digital Personal Workstation 600AU</td>
+            <td>Alpha 21164 600Mhz</td>
+            <td>256M</td>
+            <td>8 + 11G</td>
+            <td>HP Tru64 UNIX V5.1B (Rev. 2650)</td>
+            <td>legacy</td>
+        </tr>
+        <tr>
+            <td>gin</td>
+            <td>Musta räkkikone</td>
+            <td>Pentium D 3.2Ghz</td>
+            <td>4G</td>
+            <td>80G raid1, 5 x 2T RAID6</td>
+            <td>Debian Squeeze</td>
+            <td>Backup-palvelin jäsenille</td>
+        </tr>
+        <tr>
+            <td>ipa</td>
+            <td>HP Integrity RX2620</td>
+            <td>2 x 1.6GHz Itanium 2</td>
+            <td>16G</td>
+            <td>300G RAID1</td>
+            <td>HP-UX</td>
+            <td>kts. edellinen sarake</td>
+        </tr>
     </tbody>
-</table>
 
-<h3>Klubihuoneen ATK</h3>
-
-<table class="table table-responsive">
     <thead>
         <tr>
-            <th>Hostname</th>
-            <th>Kone</th>
-            <th>Prosessori</th>
-            <th>Muisti</th>
-            <th>Kovalevy</th>
-            <th>OS</th>
-            <th>funktio</th>
+            <th colspan="7" class="equipment-header">
+                <h3>Klubihuoneen ATK</h3>
+            </th>
         </tr>
     </thead>
+
     <tbody>
-    <tr>
-        <td>toxic</td>
-        <td>DL145G2</td>
-        <td>AMD 265 DC 1.8Ghz</td>
-        <td>4G</td>
-        <td>250 + 640G</td>
-        <td>Ubuntu 10.10</td>
-        <td>Linux-työasema</td>
-    </tr>
-    <tr>
-        <td>cider</td>
-        <td>Apple Mini</td>
-        <td>G4</td>
-        <td>512M</td>
-        <td>??</td>
-        <td>OS X 10.4.? Leopard</td>
-        <td>OS X -työasema</td>
-    </tr>
+        <tr>
+            <td>toxic</td>
+            <td>DL145G2</td>
+            <td>AMD 265 DC 1.8Ghz</td>
+            <td>4G</td>
+            <td>250 + 640G</td>
+            <td>Ubuntu 10.10</td>
+            <td>Linux-työasema</td>
+        </tr>
+        <tr>
+            <td>cider</td>
+            <td>Apple Mini</td>
+            <td>G4</td>
+            <td>512M</td>
+            <td>??</td>
+            <td>OS X 10.4.? Leopard</td>
+            <td>OS X -työasema</td>
+        </tr>
     </tbody>
-</table>
 
-<h3>Erinäisten palveluiden pyörittäjiä</h3>
-
-<table class="table table-responsive">
     <thead>
         <tr>
-            <th>Hostname</th>
-            <th>Kone</th>
-            <th>Prosessori</th>
-            <th>Muisti</th>
-            <th>Kovalevy</th>
-            <th>OS</th>
-            <th>funktio</th>
+            <th colspan="7" class="equipment-header">
+                <h3>Erinäisten palveluiden pyörittäjiä</h3>
+            </th>
         </tr>
     </thead>
+
     <tbody>
-    <tr>
-        <td>gw</td>
-        <td>DL380G3</td>
-        <td>2 x 3.06Ghz XEON 32bit</td>
-        <td>3G</td>
-        <td>33.6G RAID1</td>
-        <td>Lenny, custom kernel</td>
-        <td>Gateway</td>
-    </tr>
-    <tr>
-        <td>modeemi</td>
-        <td>Sun Fire V440</td>
-        <td>4 x UltraSPARC-IIIi 1281 MHz</td>
-        <td>8GB</td>
-        <td>72G RAID1 + 14x72G RAIDZ2</td>
-        <td>Solaris 10</td>
-        <td>Levyjaot, DNS, Email</td>
-    </tr>
-    <tr>
-        <td>fizz</td>
-        <td>DL380G3</td>
-        <td>2 x 3.06Ghz XEON 32bit</td>
-        <td>3G</td>
-        <td>36G RAID1, 300G RAID1+0</td>
-        <td>Debian Squeeze</td>
-        <td>ISCSI-jako</td>
-    </tr>
-    <tr>
-        <td>pepsi</td>
-        <td>DL145G2</td>
-        <td>2 x Opteron 254 2.8GHz 64bit</td>
-        <td>8G</td>
-        <td>36G RAID1</td>
-        <td>Xencenter 5.6</td>
-        <td>Virtuaalialusta, node1</td>
-    </tr>
-    <tr>
-        <td>rum</td>
-        <td>DL145G2</td>
-        <td>2 x Opteron 254 2.8Ghz 64bit</td>
-        <td>8G</td>
-        <td>36G RAID1</td>
-        <td>Xencenter 5.6</td>
-        <td>Virtuaalialusta, node2</td>
-    </tr>
-    <tr>
-        <td>sihi</td>
-        <td>Atom</td>
-        <td></td>
-        <td>2G</td>
-        <td>500G</td>
-        <td>Opensolaris</td>
-        <td>Modeemin sisäinen backup</td>
-    </tr>
-    <tr>
-        <td>jolt</td>
-        <td>kloonipc</td>
-        <td>1.8Ghz AMD</td>
-        <td>512M</td>
-        <td>20 + 120 + 160G</td>
-        <td>Ubuntu</td>
-        <td>Ovi</td>
-    </tr>
-    <tr>
-        <td>cherry</td>
-        <td>Xen, pepsillä</td>
-        <td>1 core</td>
-        <td>512MB</td>
-        <td>10G</td>
-        <td>Debian SID</td>
-        <td>webpalvelin</td>
-    </tr>
-    <tr>
-        <td>omppu</td>
-        <td>Xen, pepsillä</td>
-        <td>1 core</td>
-        <td>3G</td>
-        <td>10G</td>
-        <td>Ubuntu 10.4.1</td>
-        <td>valvontapalvelin</td>
-    </tr>
-    <tr>
-        <td>imperial</td>
-        <td>Xen, pepsillä</td>
-        <td>1 core</td>
-        <td>512MB</td>
-        <td>10G</td>
-        <td>Ubuntu 10.4.1</td>
-        <td>MUD-serveri</td>
-    </tr>
+        <tr>
+            <td>gw</td>
+            <td>DL380G3</td>
+            <td>2 x 3.06Ghz XEON 32bit</td>
+            <td>3G</td>
+            <td>33.6G RAID1</td>
+            <td>Lenny, custom kernel</td>
+            <td>Gateway</td>
+        </tr>
+        <tr>
+            <td>modeemi</td>
+            <td>Sun Fire V440</td>
+            <td>4 x UltraSPARC-IIIi 1281 MHz</td>
+            <td>8GB</td>
+            <td>72G RAID1 + 14x72G RAIDZ2</td>
+            <td>Solaris 10</td>
+            <td>Levyjaot, DNS, Email</td>
+        </tr>
+        <tr>
+            <td>fizz</td>
+            <td>DL380G3</td>
+            <td>2 x 3.06Ghz XEON 32bit</td>
+            <td>3G</td>
+            <td>36G RAID1, 300G RAID1+0</td>
+            <td>Debian Squeeze</td>
+            <td>ISCSI-jako</td>
+        </tr>
+        <tr>
+            <td>pepsi</td>
+            <td>DL145G2</td>
+            <td>2 x Opteron 254 2.8GHz 64bit</td>
+            <td>8G</td>
+            <td>36G RAID1</td>
+            <td>Xencenter 5.6</td>
+            <td>Virtuaalialusta, node1</td>
+        </tr>
+        <tr>
+            <td>rum</td>
+            <td>DL145G2</td>
+            <td>2 x Opteron 254 2.8Ghz 64bit</td>
+            <td>8G</td>
+            <td>36G RAID1</td>
+            <td>Xencenter 5.6</td>
+            <td>Virtuaalialusta, node2</td>
+        </tr>
+        <tr>
+            <td>sihi</td>
+            <td>Atom</td>
+            <td></td>
+            <td>2G</td>
+            <td>500G</td>
+            <td>Opensolaris</td>
+            <td>Modeemin sisäinen backup</td>
+        </tr>
+        <tr>
+            <td>jolt</td>
+            <td>kloonipc</td>
+            <td>1.8Ghz AMD</td>
+            <td>512M</td>
+            <td>20 + 120 + 160G</td>
+            <td>Ubuntu</td>
+            <td>Ovi</td>
+        </tr>
+        <tr>
+            <td>cherry</td>
+            <td>Xen, pepsillä</td>
+            <td>1 core</td>
+            <td>512MB</td>
+            <td>10G</td>
+            <td>Debian SID</td>
+            <td>webpalvelin</td>
+        </tr>
+        <tr>
+            <td>omppu</td>
+            <td>Xen, pepsillä</td>
+            <td>1 core</td>
+            <td>3G</td>
+            <td>10G</td>
+            <td>Ubuntu 10.4.1</td>
+            <td>valvontapalvelin</td>
+        </tr>
+        <tr>
+            <td>imperial</td>
+            <td>Xen, pepsillä</td>
+            <td>1 core</td>
+            <td>512MB</td>
+            <td>10G</td>
+            <td>Ubuntu 10.4.1</td>
+            <td>MUD-serveri</td>
+        </tr>
     </tbody>
-</table>
 
-<h3>Varalla / pimeänä</h3>
-
-<table class="table table-responsive">
     <thead>
         <tr>
-            <th>Hostname</th>
-            <th>Kone</th>
-            <th>Prosessori</th>
-            <th>Muisti</th>
-            <th>Kovalevy</th>
-            <th>OS</th>
-            <th>funktio</th>
+            <th colspan="7" class="equipment-header">
+                <h3>Varalla / pimeänä</h3>
+            </th>
         </tr>
     </thead>
 
     <tbody><tr>
-        <td>--</td>
-        <td>DL580G2</td>
-        <td>4 x 2.8Ghz 32bit XEON</td>
-        <td>24G</td>
-        <td>2 x 72G</td>
-        <td>--</td>
-        <td>--</td>
-    </tr>
-    <tr>
-        <td>--</td>
-        <td>DL140G2</td>
-        <td>1 x 3.4Ghz 64bit XEON</td>
-        <td>8G</td>
-        <td>1 x 80G</td>
-        <td>--</td>
-        <td>SATA x 2</td>
-    </tr>
-    <tr>
-        <td>--</td>
-        <td>3 x DL145G2</td>
-        <td>2 x Opteron</td>
-        <td>4G</td>
-        <td>2 x 80G</td>
-        <td>--</td>
-        <td>--</td>
-    </tr>
-    <tr>
-        <td>--</td>
-        <td>HP ES45</td>
-        <td>Alpha</td>
-        <td>??</td>
-        <td>??</td>
-        <td>--</td>
-        <td>--</td>
-    </tr>
-</tbody></table>
+            <td>--</td>
+            <td>DL580G2</td>
+            <td>4 x 2.8Ghz 32bit XEON</td>
+            <td>24G</td>
+            <td>2 x 72G</td>
+            <td>--</td>
+            <td>--</td>
+        </tr>
+        <tr>
+            <td>--</td>
+            <td>DL140G2</td>
+            <td>1 x 3.4Ghz 64bit XEON</td>
+            <td>8G</td>
+            <td>1 x 80G</td>
+            <td>--</td>
+            <td>SATA x 2</td>
+        </tr>
+        <tr>
+            <td>--</td>
+            <td>3 x DL145G2</td>
+            <td>2 x Opteron</td>
+            <td>4G</td>
+            <td>2 x 80G</td>
+            <td>--</td>
+            <td>--</td>
+        </tr>
+        <tr>
+            <td>--</td>
+            <td>HP ES45</td>
+            <td>Alpha</td>
+            <td>??</td>
+            <td>??</td>
+            <td>--</td>
+            <td>--</td>
+        </tr>
+    </tbody>
 
-<h3>Muuta</h3>
-
-<table class="table table-responsive">
     <thead>
         <tr>
-            <th>Hostname</th>
-            <th>Kone</th>
-            <th>Prosessori</th>
-            <th>Muisti</th>
-            <th>Kovalevy</th>
-            <th>OS</th>
-            <th>funktio</th>
+            <th colspan="7" class="equipment-header">
+                <h3>Muuta</h3>
+            </th>
         </tr>
     </thead>
+
     <tbody>
-    <tr>
-        <td>hessu</td>
-        <td>Axis M1054</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>Kerhon webcam</td>
-    </tr>
-    <tr>
-        <td>kovocam</td>
-        <td>Axis 2100</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>Konehuoneen webcam</td>
-    </tr>
-    <tr>
-        <td>qw</td>
-        <td>Apple Airport Express</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>Käyttöön vaaditaan .wlanaccess tiedosto Maceilla kotihakemiston juuressa</td>
-    </tr>
+        <tr>
+            <td>hessu</td>
+            <td>Axis M1054</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Kerhon webcam</td>
+        </tr>
+        <tr>
+            <td>kovocam</td>
+            <td>Axis 2100</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Konehuoneen webcam</td>
+        </tr>
+        <tr>
+            <td>qw</td>
+            <td>Apple Airport Express</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Käyttöön vaaditaan .wlanaccess tiedosto Maceilla kotihakemiston juuressa</td>
+        </tr>
     </tbody>
 </table>
 {% endblock %}

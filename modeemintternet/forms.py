@@ -10,6 +10,7 @@ from crispy_forms.layout import Submit
 class ApplicationForm(ModelForm):
     class Meta:
         model = Application
+        exclude = ()
 
     def __init__(self, *args, **kwargs):
         super(ApplicationForm, self).__init__(*args, **kwargs)
@@ -34,6 +35,7 @@ class ApplicationForm(ModelForm):
 class NewsForm(ModelForm):
     class Meta:
         model = News
+        exclude = ()
 
     def __init__(self, *args, **kwargs):
         super(NewsForm, self).__init__(*args, **kwargs)
@@ -51,6 +53,7 @@ class NewsForm(ModelForm):
 class NewsUpdateForm(ModelForm):
     class Meta:
         model = News
+        exclude = ()
 
     def __init__(self, *args, **kwargs):
         super(NewsUpdateForm, self).__init__(*args, **kwargs)

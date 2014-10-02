@@ -97,7 +97,7 @@ USE_L10N = True
 USE_TZ = True
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, 'templates')
+    os.path.join(PROJECT_DIR, 'templates'),
 )
 
 STATICFILES_DIRS = (

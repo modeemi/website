@@ -4,14 +4,73 @@
 <html>
     <head>
         <title>Modeemi ry</title>
-        <!-- support mobile device viewports but disable page zooming; feels more like a native app that way -->
+        <!-- Support mobile device viewports but disable page zooming; feels more like a native app that way -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta charset="utf-8">
         <link type="image/x-icon" rel="icon" href="{% static "favicon.ico" %}"/>
         <link type="text/css" rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.min.css" %}" />
         <link type="text/css" rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap-theme.min.css" %}" />
         <link type="text/css" rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}" />
-        <link type="text/css" rel="stylesheet" href="{% static "main.css" %}" />
+
+        <!-- Minimal page styling rules -->
+        <style>
+            /* General page styles, including sticky footer */
+            html {
+                position: relative;
+                min-height: 100%;
+            }
+            body {
+                background-color: #DDDDDD;
+                margin: 0 0 140px;
+            }
+            footer {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 140px;
+                width: 100%;
+            }
+
+            /* Navigation */
+            nav.navbar {
+                border-radius: 0px;
+            }
+            .navbar-brand.active {
+                color: #ffffff;
+            }
+
+            /* The main header for the whole page with image background */
+            div.header {
+                overflow-x: hidden;
+                overflow-y: hidden;
+                background-image: url('{% static "image/header.png" %}');
+            }
+            div.header h1 {
+                color: #cccccc;
+                font-size: 4em;
+                margin: 0.5em;
+            }
+            div.header a:hover {
+                text-decoration: none;
+            }
+            @media(min-width: 768px) {
+                body > div.container-fluid {
+                    margin: 1em;
+                }
+            }
+
+            /* News */
+            .news-header {
+                font-size: 2em;
+            }
+            .news-timestamp {
+            }
+
+            /* Equipment */
+            th.equipment-header {
+                padding-left: 0 !important;
+            }
+        </style>
     </head>
 
     <body>

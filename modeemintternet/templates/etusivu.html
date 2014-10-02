@@ -9,7 +9,7 @@
 
 <ul>
     {% for n in news %}
-    <li><a href="/uutiset/{{ n.id }}">{{ n.title }}</a> ({{ n.posted }})</li>
+    <li><a href="/uutiset/{{ n.id }}">{{ n.title }}</a> ({{ n.posted|date:'d-m-Y' }})</li>
     {% endfor %}
 </ul>
 {% endblock %}

@@ -10,6 +10,10 @@ nav.navbar {
     border-radius: 0px;
 }
 
+.navbar-brand.active {
+    color: #ffffff;
+}
+
 /* The main header for the whole page with image background */
 div.header {
     overflow-x: hidden;
@@ -44,3 +48,10 @@ div.header a:hover {
 .news-timestamp {
 }
 
+/**
+ * Equipment
+ */
+
+th.equipment-header {
+    padding-left: 0 !important;
+}

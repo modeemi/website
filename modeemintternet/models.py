@@ -37,7 +37,7 @@ class Application(models.Model):
 
     shell = models.CharField(max_length=32, choices=SHELL_OPTIONS, default=BASH)
 
-    funet_rules_accepted = models.BooleanField(blank=False)
+    funet_rules_accepted = models.BooleanField(blank=False, default=False)
 
 
     def update_bank_reference(self):
@@ -59,8 +59,8 @@ class Application(models.Model):
 
 
 class News(models.Model):
-    title = models.CharField(max_length=128)
-    text = models.TextField()
+    title = models.TextField(blank=False)
+    text = models.TextField(blank=True)
 
     posted = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now_add=True, auto_now=True)

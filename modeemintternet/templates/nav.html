@@ -1,3 +1,5 @@
+{% load active %}
+
 <!-- Picture, hidden with phones and other very small displays -->
 <div class="header hidden-xs">
     <a href="/"><h1>Modeemi</h1></a>
@@ -14,15 +16,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Modeemi</a>
+            <a class="navbar-brand {% active request '^/$' %}" href="/">Modeemi</a>
         </div>
-
-        {% load active %}
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="{% active request '^/$' %}"><a href="{% url 'views.etusivu' %}">Etusivu</a></li>
                 <li class="{% active request '^/uutiset/' %}"><a href="{% url 'views.lue_uutisia' %}">Uutiset</a></li>
                 <li class="{% active request '^/ry/' %}"><a href="{% url 'views.yhdistys' %}">Yhdistys</a></li>
                 <li class="{% active request '^/palvelut/' %}"><a href="{% url 'views.palvelut' %}">Palvelut</a></li>

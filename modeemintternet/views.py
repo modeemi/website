@@ -21,7 +21,8 @@ def render_with_context(request, template, params={}):
                 context_instance=RequestContext(request))
 
 def etusivu(request):
-    return render_with_context(request, 'etusivu.html')
+    news = News.objects.order_by('-posted')[:10]
+    return render_with_context(request, 'etusivu.html', {'news': news})
 
 def yhdistys(request):
     return render_with_context(request, 'yhdistys.html')

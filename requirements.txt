@@ -1,5 +1,5 @@
 argparse==1.2.1
-Django==1.6.6
+Django==1.7
 django-debug-toolbar==1.2.1
 django-guardian==1.2.4
 djangorestframework==2.4.1

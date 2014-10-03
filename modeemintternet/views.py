@@ -13,8 +13,9 @@ from reportlab.pdfgen import canvas
 from reportlab.graphics import renderSVG
 
 from modeemintternet import helpers
-from modeemintternet.models import Application, News
-from modeemintternet.forms import ApplicationForm, NewsForm, NewsUpdateForm
+from modeemintternet.models import Application, News, Feedback
+from modeemintternet.forms import (ApplicationForm, NewsForm,
+        NewsUpdateForm, FeedbackForm)
 
 def render_with_context(request, template, params={}):
     return render_to_response(template, params,
@@ -28,10 +29,28 @@ def yhdistys(request):
     return render_with_context(request, 'yhdistys.html')
 
 def palvelut(request):
-    return render_with_context(request, 'palvelut.html')
+        return render_with_context(request, 'palvelut.html')
 
 def laitteisto(request):
     return render_with_context(request, 'laitteisto.html')
+
+def palaute(request):
+    feedback_form = FeedbackForm()
+
+    if not request.POST:
+        return render_with_context(request, 'palaute.html',
+                {'form': feedback_form})
+
+    else:
+        feedback_form = FeedbackForm(request.POST)
+
+        if not feedback_form.is_valid():
+            return render_with_context(request, 'palaute.html',
+                {'form': feedback_form})
+
+    feedback = feedback_form.save()
+    return render_with_context(request, 'palaute.html',
+            {'form': feedback_form, 'success': True})
 
 def jasenmaksu(request):
     return render_with_context(request, 'jasenmaksu.html')

@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^palvelut/$', views.palvelut),
     url(r'^jaseneksi/$', views.jaseneksi),
     url(r'^laitteisto/$', views.laitteisto),
+    url(r'^palaute/$', views.palaute),
 
     url(r'^uutiset/$', views.lue_uutisia),
     url(r'^uutiset/(?P<pk>\d+)/$', views.lue_uutisia),

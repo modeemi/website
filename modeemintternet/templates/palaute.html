@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Palaute</h2>
+
+<p>Haluaisitko lisää limpparia klubille? Onko ATK rikki? Vaikuta toimintaa, lähetä risuja tai ruusuja hallitukselle alla olevalla lomakkeella!</p>
+<p>Varsinaiset yhteydenottopyynnöt pyydämme tekemään <a href="/ry/yhteystiedot/">sähköpostilla</a>.</p>
+
+<hr />
+
+{% if success %}
+<div class="alert alert-info" role="alert">
+    <p>Kiitos palautteestasi.</p>
+</div>
+{% else %}
+{% load crispy_forms_tags %}
+{% crispy form %}
+{% endif %}
+
+{% endblock %}

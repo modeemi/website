@@ -76,3 +76,8 @@ class News(models.Model):
         if request.user.is_authenticated:
             self.modifier = request.user
             self.save()
+
+class Feedback(models.Model):
+    sender = models.CharField(blank=True, max_length=64)
+    message = models.TextField(blank=False)
+    sent = models.DateTimeField(auto_now_add=True)

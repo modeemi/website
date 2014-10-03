@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from modeemintternet.models import Application, News
+from modeemintternet.models import Application, News, Feedback
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm
 from django import forms
@@ -68,3 +68,22 @@ class NewsUpdateForm(ModelForm):
 
         self.fields['title'].label = 'Uusi otsikko'
         self.fields['text'].label = 'Uusi uutisteksti'
+
+
+class FeedbackForm(ModelForm):
+    class Meta:
+        model = Feedback
+        exclude = ()
+
+    def __init__(self, *args, **kwargs):
+        super(FeedbackForm, self).__init__(*args, **kwargs)
+
+        instance = kwargs.get('instance')
+
+        self.helper = FormHelper(self)
+        self.helper.form_id = 'feedback-form'
+        self.helper.form_method = 'POST'
+        self.helper.add_input(Submit('submit', 'Lähetä'))
+
+        self.fields['sender'].label = 'Lähettäjä (vapaaehtoinen)'
+        self.fields['message'].label = 'Palaute'

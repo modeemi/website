@@ -77,7 +77,9 @@ class News(models.Model):
             self.modifier = request.user
             self.save()
 
+
 class Feedback(models.Model):
     sender = models.CharField(blank=True, max_length=64)
+    email = models.EmailField(blank=True)
     message = models.TextField(blank=False)
     sent = models.DateTimeField(auto_now_add=True)

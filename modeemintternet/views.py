@@ -52,9 +52,6 @@ def palaute(request):
     return render_with_context(request, 'palaute.html',
             {'form': feedback_form, 'success': True})
 
-def jasenmaksu(request):
-    return render_with_context(request, 'jasenmaksu.html')
-
 def saannot(request):
     return render_with_context(request, 'saannot.html')
 
@@ -66,9 +63,6 @@ def yhteystiedot(request):
 
 def backup(request):
     return render_with_context(request, 'backup.html')
-
-def digipk(request):
-    return render_with_context(request, 'digipk.html')
 
 def password(request):
     return render_with_context(request, 'password.html')
@@ -105,7 +99,6 @@ def jaseneksi(request):
     p.save()
 
     return response
-
 
 def lue_uutisia(request, pk=None):
     if pk:

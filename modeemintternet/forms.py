@@ -8,6 +8,9 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
 class ApplicationForm(ModelForm):
+    password = forms.CharField(max_length=128, label='Haluamani salasana on')
+    password_check = forms.CharField(max_length=128, label='Salasana uudelleen (tarkiste)')
+
     class Meta:
         model = Application
         exclude = ()
@@ -86,4 +89,5 @@ class FeedbackForm(ModelForm):
         self.helper.add_input(Submit('submit', 'Lähetä'))
 
         self.fields['sender'].label = 'Lähettäjä (vapaaehtoinen)'
+        self.fields['email'].label = 'Email (vapaaehtoinen)'
         self.fields['message'].label = 'Palaute'

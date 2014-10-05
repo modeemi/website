@@ -22,14 +22,11 @@ urlpatterns = patterns('',
     url(r'^uutiset/uusi/$', views.luo_uutinen),
     url(r'^uutiset/(?P<pk>\d+)/muokkaa/$', views.paivita_uutinen),
 
-
     # Sub level views
-    url(r'^ry/jasenmaksu/$', views.jasenmaksu),
     url(r'^ry/saannot/$', views.saannot),
     url(r'^ry/hallitus/$', views.hallitus),
     url(r'^ry/yhteystiedot/$', views.yhteystiedot),
     url(r'^palvelut/backup/$', views.backup),
-    url(r'^palvelut/digipk/$', views.digipk),
     url(r'^palvelut/password/$', views.password),
     url(r'^laitteisto/halutaan/$', views.halutaan),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

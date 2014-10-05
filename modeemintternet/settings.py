@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
+SETTINGS_DIR = '/etc/modeemintternet'
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_DIR = os.path.join(BASE_DIR, 'modeemintternet')
 
@@ -17,7 +19,13 @@ PROJECT_DIR = os.path.join(BASE_DIR, 'modeemintternet')
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '(wze5mz$b(l8aev@fzm++qn+cup4mu@z=^)0wea6_r(f53!+1%'
+SECRET_KEY = 'my_bestest_secret_key_look_below_for_filesystem_loaders'
+
+try:
+    with open(os.path.join(SETTINGS_DIR, 'secret.key'), 'r') as f:
+        SECRET_KEY = f.read().strip()
+except Exception as e:
+    print 'No overriding secret key file found, using default dummy development key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -96,6 +104,9 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# Templates and static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.7/howto/static-files/
+
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )
@@ -105,43 +116,47 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, "static"),
 )
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/modeemintternet/static'
+
+# LDAP configuration
+# This requires that you have the python-ldap module installed
 
 try:
     import ldap
     from django_auth_ldap.config import LDAPSearch, PosixGroupType
 
-    with open(os.path.join(BASE_DIR, 'ldap.txt'), 'r') as f:
+    with open(os.path.join(SETTINGS_DIR, 'ldap.key'), 'r') as f:
         AUTH_LDAP_BIND_PASSWORD = f.read().strip()
 
-    # LDAP configuration, refer to: http://pythonhosted.org/django-auth-ldap/
-    AUTH_LDAP_SERVER_URI = "ldap://foo.bar.fi"
-    AUTH_LDAP_BIND_DN = "cn=web,dc=tite,dc=lan"
-    AUTH_LDAP_USER_DN_TEMPLATE = "uid=%(user)s,ou=People,dc=tite,dc=lan"
-    AUTH_LDAP_GROUP_TYPE = PosixGroupType()
-    AUTH_LDAP_REQUIRE_GROUP = "cn=jasenet,ou=Group,dc=tite,dc=lan"
+    # Some example settings, you will probably have to revise these
+    CN_BIND = 'web'
+    CN_MEMBER = 'jasenet'
+    CN_STAFF = 'guru'
+    CN_ADMIN = 'hallitus'
 
-    AUTH_LDAP_GROUP_SEARCH = LDAPSearch("ou=Group,dc=tite,dc=lan",
-        ldap.SCOPE_SUBTREE, "(objectClass=posixAccount)")
+    # the primary is the user group, the second marks activity, revise for LDAP DC settings
+    DC_PRIMARY = 'modeemi'
+    DC_SECONDARY = 'active'
+
+    # LDAP configuration, refer to: http://pythonhosted.org/django-auth-ldap/
+    AUTH_LDAP_SERVER_URI = "ldap://ldappest.modeemi.fi"  # please revise for production
+    AUTH_LDAP_BIND_DN = "cn={0},dc={1},dc={2}".format(CN_BIND, DC_PRIMARY, DC_SECONDARY)
+    AUTH_LDAP_USER_DN_TEMPLATE = "uid=%(user)s,ou=People,dc={0},dc={1}".format(DC_PRIMARY, DC_SECONDARY)
+    AUTH_LDAP_GROUP_TYPE = PosixGroupType()
+    AUTH_LDAP_REQUIRE_GROUP = "cn={0},ou=Group,dc={1},dc={2}".format(CN_STAFF, DC_PRIMARY, DC_SECONDARY)
+
+    AUTH_LDAP_GROUP_SEARCH = LDAPSearch("ou=Group,dc={0},dc={1}".format(DC_PRIMARY, DC_SECONDARY),
+                                        ldap.SCOPE_SUBTREE, "(objectClass=posixAccount)")
 
     AUTH_LDAP_USER_FLAGS_BY_GROUP = {
-        "is_active": "cn=jasenet,ou=Group,dc=tite,dc=lan",
-        "is_staff": "cn=hallitus,ou=Group,dc=tite,dc=lan",
-        "is_superuser": "cn=admin,ou=Group,dc=tite,dc=lan"
-    }
-
-    AUTH_LDAP_PROFILE_FLAGS_BY_GROUP = {
-        "is_member": "cn=jasenet,ou=Group,dc=tite,dc=lan",
-        "is_hati": "cn=hati,ou=Group,dc=tite,dc=lan",
-        "is_counselor": "cn=counselor,ou=Group,dc=tite,dc=lan"
+        "is_active":    "cn={0},ou=Group,dc={1},dc={2}".format(CN_MEMBER, DC_PRIMARY, DC_SECONDARY),
+        "is_staff":     "cn={0},ou=Group,dc={1},dc={2}".format(CN_STAFF,  DC_PRIMARY, DC_SECONDARY),
+        "is_superuser": "cn={0},ou=Group,dc={1},dc={2}".format(CN_ADMIN,  DC_PRIMARY, DC_SECONDARY)
     }
 
     AUTH_LDAP_CACHE_GROUPS = True
-    AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
+    AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600  # or one hour
 
 except Exception as e:
     print e

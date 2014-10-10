@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Uutiset</h2>
+
+{% if not news %}
+<h3>Hakemaasi uutista ei löytynyt</h3>
+{% endif %}
+
+{% for n in news %}
+<hr />
+<p>
+<span class="news-header"><a href="{% url 'views.uutiset' pk=n.id %}">{{ n.title }}</a></span>
+<span class="news-timestamp pull-right">
+    <small>{{ n.posted }} ({{ n.poster.username }})</small>
+</span>
+</p>
+
+<p>{{ n.text }}</p>
+
+{% endfor %}
+{% endblock %}

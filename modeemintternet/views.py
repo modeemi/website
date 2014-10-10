@@ -1,21 +1,14 @@
 # -*- coding: utf-8 -*-
 
-import os
-import settings
-
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
-from django.utils.timezone import now
 from django.template import RequestContext
-from django.contrib.auth.decorators import permission_required
 
 from reportlab.pdfgen import canvas
-from reportlab.graphics import renderSVG
 
 from modeemintternet import helpers
-from modeemintternet.models import Application, News, Feedback
-from modeemintternet.forms import (ApplicationForm, NewsForm,
-        NewsUpdateForm, FeedbackForm)
+from modeemintternet.models import News
+from modeemintternet.forms import (ApplicationForm, FeedbackForm)
 
 def render_with_context(request, template, params={}):
     return render_to_response(template, params,
@@ -29,7 +22,7 @@ def yhdistys(request):
     return render_with_context(request, 'yhdistys.html')
 
 def palvelut(request):
-        return render_with_context(request, 'palvelut.html')
+    return render_with_context(request, 'palvelut.html')
 
 def laitteisto(request):
     return render_with_context(request, 'laitteisto.html')
@@ -79,15 +72,18 @@ def jaseneksi(request):
 
     else:
         application_form = ApplicationForm(request.POST)
+        password_matches = request.POST.get('password') == request.POST.get('password_check')
 
-        if not application_form.is_valid():
+        if not (password_matches and application_form.is_valid()):
             return render_with_context(request, 'jaseneksi.html',
-                {'form': application_form})
+                                       {'form': application_form})
 
-    response = HttpResponse(content_type='application/pdf')
+    response = render_with_context(request, 'jaseneksi.html',
+                                   {'form': ApplicationForm(), 'success': True})
     response['Content-Disposition'] = 'attachment; filename="modeemi-jasenhakemus.pdf"'
 
     application = application_form.save()
+    application.generate_password_hashes(request.POST.get('password'))
     application.update_bank_reference()
 
     # Create the PDF object, using the response object as its 'file.'
@@ -100,37 +96,9 @@ def jaseneksi(request):
 
     return response
 
-def lue_uutisia(request, pk=None):
+def uutiset(request, pk=None):
     if pk:
-        return render_with_context(request, 'lue_uutisia.html',
+        return render_with_context(request, 'uutiset.html',
                 {'news': News.objects.filter(id=pk)})
-    return render_with_context(request, 'lue_uutisia.html',
+    return render_with_context(request, 'uutiset.html',
             {'news': News.objects.order_by('-id')[:20]})
-
-@permission_required('news.can_create', login_url='/login/')
-def luo_uutinen(request):
-    news_form = NewsForm()
-
-    if request.POST:
-        news_form = NewsForm(request.POST)
-
-        if news_form.is_valid():
-            news = news_form.save()
-            news.set_poster(request)
-
-    return render_with_context(request, 'luo_uutinen.html',
-            {'form': news_form})
-
-@permission_required('news.can_modify', login_url='/login/')
-def paivita_uutinen(request, pk):
-    news_form = NewsUpdateForm(instance=News.objects.get(id=pk))
-
-    if request.POST:
-        news_form = NewsUpdateForm(request.POST, instance=News.objects.get(id=pk))
-
-        if news_form.is_valid():
-            news = news_form.save()
-            news.set_modifier(request)
-
-    return render_with_context(request, 'paivita_uutinen.html',
-            {'form': news_form})

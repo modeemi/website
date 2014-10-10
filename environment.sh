@@ -9,4 +9,4 @@ fi
 source virtualenv/bin/activate &&
     pip install -r requirements.txt &&
     bower install &&
-    python manage.py syncdb --noinput
+    python manage.py migrate

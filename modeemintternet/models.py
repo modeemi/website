@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from time import sleep
+from passlib.hash import sha512_crypt
 from django.db import models
-from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 
 class Application(models.Model):
     BASH = '/bin/bash'
@@ -13,32 +13,46 @@ class Application(models.Model):
     FALSE = '/bin/false'
 
     SHELL_OPTIONS = (
-      (SH, SH),
-      (BASH, BASH),
-      (ZSH, ZSH),
-      (TCSH, TCSH),
-      (FALSE, FALSE)
+        (SH, SH),
+        (BASH, BASH),
+        (ZSH, ZSH),
+        (TCSH, TCSH),
+        (FALSE, FALSE)
     )
 
+    # Actual application options
+    first_name = models.CharField(max_length=32, blank=False)
+    last_name = models.CharField(max_length=32)
+    email = models.EmailField()
+    reason = models.CharField(max_length=256, blank=True)
+    primary_nick = models.CharField(max_length=32)
+    secondary_nick = models.CharField(max_length=32)
+    shell = models.CharField(max_length=32, choices=SHELL_OPTIONS, default=BASH)
+    funet_rules_accepted = models.BooleanField(blank=False, default=False)
+
+    # Timestamps
     applied = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now_add=True, auto_now=True)
 
+    # Bank reference for paying the membership fee
     bank_reference = models.CharField(max_length=6, editable=False)
 
-    email = models.EmailField()
+    # Password hashes
+    sha512 = models.CharField(max_length=128)
+    pbkdf2_sha256 = models.CharField(max_length=128)
 
-    first_name = models.CharField(max_length=32, blank=False)
-    last_name = models.CharField(max_length=32)
+    def __unicode__(self):
+        return u'{0} {1} ({2})'.format(self.first_name, self.last_name, self.applied)
 
-    reason = models.CharField(max_length=32, blank=True)
+    def generate_password_hashes(self, password):
+        """
+        Generate password hashes with SHA1, SHA-256
+        """
 
-    primary_nick = models.CharField(max_length=32)
-    secondary_nick = models.CharField(max_length=32)
+        self.sha512 = sha512_crypt.encrypt(password)
+        self.pbkdf2_sha256 = make_password(password, hasher='pbkdf2_sha256')
 
-    shell = models.CharField(max_length=32, choices=SHELL_OPTIONS, default=BASH)
-
-    funet_rules_accepted = models.BooleanField(blank=False, default=False)
-
+        self.save()
 
     def update_bank_reference(self):
         """
@@ -57,25 +71,24 @@ class Application(models.Model):
 
         return self.bank_reference
 
+    class Meta:
+        verbose_name = "Hakemus"
+        verbose_name_plural = "Hakemukset"
+
 
 class News(models.Model):
     title = models.TextField(blank=False)
     text = models.TextField(blank=True)
-
     posted = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now_add=True, auto_now=True)
-
     poster = models.ForeignKey(User, editable=False, null=True)
 
-    def set_poster(self, request):
-        if request.user.is_authenticated:
-            self.poster = request.user
-            self.save()
+    def __unicode__(self):
+        return u'{0} ({1})'.format(self.title, self.posted)
 
-    def set_modifier(self, request):
-        if request.user.is_authenticated:
-            self.modifier = request.user
-            self.save()
+    class Meta:
+        verbose_name = "Uutine"
+        verbose_name_plural = "Uutineet"
 
 
 class Feedback(models.Model):
@@ -83,3 +96,10 @@ class Feedback(models.Model):
     email = models.EmailField(blank=True)
     message = models.TextField(blank=False)
     sent = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return u'{0} ({1})'.format(self.message[:25], self.sent)
+
+    class Meta:
+        verbose_name = "Palaute"
+        verbose_name_plural = "Palautteet"

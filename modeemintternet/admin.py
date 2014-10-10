@@ -1,5 +1,5 @@
 from django.contrib import admin
-from modeemintternet.models import Application, News
+from modeemintternet.models import News, Application, Feedback
 
 
 class NewsAdmin(admin.ModelAdmin):
@@ -12,5 +12,7 @@ class NewsAdmin(admin.ModelAdmin):
         news.poster = request.user
         news.save()
 
-admin.site.register(Application)
+
 admin.site.register(News, NewsAdmin)
+admin.site.register(Feedback)
+admin.site.register(Application)

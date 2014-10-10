@@ -4,7 +4,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 admin.autodiscover()
 
-from modeemintternet import settings, views
+from rest_framework import routers
+from modeemintternet import settings, views, apiviews
+
+router = routers.DefaultRouter()
+router.register(r'news', apiviews.NewsViewSet)
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
@@ -17,10 +21,8 @@ urlpatterns = patterns('',
     url(r'^laitteisto/$', views.laitteisto),
     url(r'^palaute/$', views.palaute),
 
-    url(r'^uutiset/$', views.lue_uutisia),
-    url(r'^uutiset/(?P<pk>\d+)/$', views.lue_uutisia),
-    url(r'^uutiset/uusi/$', views.luo_uutinen),
-    url(r'^uutiset/(?P<pk>\d+)/muokkaa/$', views.paivita_uutinen),
+    url(r'^uutiset/$', views.uutiset),
+    url(r'^uutiset/(?P<pk>\d+)/$', views.uutiset),
 
     # Sub level views
     url(r'^ry/saannot/$', views.saannot),
@@ -29,5 +31,9 @@ urlpatterns = patterns('',
     url(r'^palvelut/backup/$', views.backup),
     url(r'^palvelut/password/$', views.password),
     url(r'^laitteisto/halutaan/$', views.halutaan),
-) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+    url(r'^api/', include(router.urls)),
+)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

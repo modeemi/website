@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     # Custom additions
     # 'debug_toolbar',
     'crispy_forms',
+    'rest_framework',
 
     # Own modules
     'modeemintternet',

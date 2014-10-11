@@ -12,7 +12,7 @@ upstream django {
 
 # configuration of the server
 server {
-    listen      80;                 # you can also listen to some other port and proxy Apache into it
+    listen      8080;                 # you can also listen to some other port and proxy Apache into it
     server_name beta.modeemi.fi;    # in production change to www.modeemi.fi etc.
     charset     utf-8;
 
@@ -20,17 +20,17 @@ server {
 
     # Django media file directory; all uploads go here
     location /media {
-        alias /home/modeemintternet/modeemintternet/media/;
+        alias /opt/intternet/modeemintternet/media/;
     }
 
     # Django static files; site static content is collected here
     location /static {
-        alias /home/modeemintternet/modeemintternet/static/;
+        alias /opt/intternet/modeemintternet/static/;
     }
 
     # Page root; requests to root address go to the uWSGI server
     location / {
         uwsgi_pass  django;
-        include     /home/modeemintternet/modeemintternet/etc/uwsgi/uwsgi_params;
+        include     /opt/intternet/modeemintternet/etc/uwsgi/uwsgi_params;
     }
 }

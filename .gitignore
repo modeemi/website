@@ -5,4 +5,6 @@ virtualenv
 ldap.txt
 db.sqlite3
 build
-barcode.py
+barcode.png
+static
+media

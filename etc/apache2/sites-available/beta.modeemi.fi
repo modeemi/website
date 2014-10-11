@@ -1,0 +1,8 @@
+NameVirtualHost 130.230.72.136:80
+NameVirtualHost [2001:708:310:3430:8057:e2ff:fe1d:fcdf]:80
+
+<VirtualHost 130.230.72.136:80 [2001:708:310:3430:8057:e2ff:fe1d:fcdf]:80>
+  ServerName beta.modeemi.fi
+  ProxyPass / http://127.0.0.1:8080/
+  ProxyPassReverse / http://127.0.0.1:8080/
+</VirtualHost>

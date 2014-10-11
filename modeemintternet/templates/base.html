@@ -60,10 +60,18 @@
                 text-decoration: none;
             }
             div.header img#ribbon {
+                opacity: 0.666;
                 position: absolute;
                 top: 0;
                 right: 0;
                 border: 0;
+
+                transition: opacity 250ms linear;
+                -moz-transition: opacity 250ms linear;
+                -webkit-transition: opacity 250ms linear;
+            }
+            div.header img#ribbon:hover {
+                opacity: 1.000;
             }
             @media(min-width: 768px) {
                 body > div.container-fluid {

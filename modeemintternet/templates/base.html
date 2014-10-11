@@ -38,6 +38,12 @@
             .navbar-brand.active {
                 color: #ffffff;
             }
+            .navbar-brand,
+            .navbar-item {
+                transition: color 250ms linear;
+                -moz-transition: color 250ms linear;
+                -webkit-transition: color 250ms linear;
+            }
 
             /* The main header for the whole page with image background */
             div.header {
@@ -64,6 +70,9 @@
                     margin: 1em;
                 }
             }
+            .btn {
+                width: 100%;
+            }
 
             /* News */
             .news-header {
@@ -76,6 +85,19 @@
             th.equipment-header {
                 padding-left: 0 !important;
             }
+
+            /* Footer */
+            img.poweredbybadge {
+                opacity: 0.666;
+
+                transition: opacity 250ms linear;
+                -moz-transition: opacity 250ms linear;
+                -webkit-transition: opacity 250ms linear;
+            }
+            img.poweredbybadge:hover {
+                opacity: 1.000;
+            }
+
         </style>
     </head>
 
@@ -88,9 +110,10 @@
         <footer>
             <div class="col-xs-12 text-center">
                 <hr />
-                <p>&copy; deus &middot; versio 2.0.0-alpha &middot; <a href="https://github.com/aleksih/modeemintternet">GitHub</a></p>
-                <a href="http://www.djangoproject.com/"><img src="{% static "logo/django.gif" %}" border="0" width="116" height="50" alt="Powered by Django." title="Powered by Django." /></a>
-                <a href="http://www.postgresql.org/"><img src="{% static "logo/postgresql.gif" %}" border="0" width="89" height="50" alt="Powered by PostgreSQL." title="Powered by PostgreSQL." /></a>
+                <p>&copy; deus &middot; versio 2.0.1-alpha &middot; <a href="https://github.com/aleksih/modeemintternet">GitHub</a></p>
+                <a href="http://www.djangoproject.com/"><img class="poweredbybadge" src="{% static "logo/django.gif" %}" border="0" width="116" height="50" alt="Powered by Django." title="Powered by Django." /></a>
+                <a href="http://www.postgresql.org/"><img class="poweredbybadge" src="{% static "logo/postgresql.gif" %}" border="0" width="89" height="50" alt="Powered by PostgreSQL." title="Powered by PostgreSQL." /></a>
+                <a href="http://www.openldap.org/"><img class="poweredbybadge" src="{% static "logo/openldap.gif" %}" border="0" width="89" height="50" alt="Powered by OpenLDAP." title="Powered by OpenLDAP." /></a>
             </div>
         </footer>
 

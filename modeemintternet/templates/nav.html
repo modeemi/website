@@ -24,16 +24,16 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="{% active request '^/uutiset/' %}"><a href="{% url 'views.uutiset' %}">Uutiset</a></li>
-                <li class="{% active request '^/ry/' %}"><a href="{% url 'views.yhdistys' %}">Yhdistys</a></li>
-                <li class="{% active request '^/palvelut/' %}"><a href="{% url 'views.palvelut' %}">Palvelut</a></li>
-                <li class="{% active request '^/jaseneksi/' %}"><a href="{% url 'views.jaseneksi' %}">Jäseneksi</a></li>
-                <li class="{% active request '^/laitteisto/' %}"><a href="{% url 'views.laitteisto' %}">Laitteisto</a></li>
-                <li class="{% active request '^/palaute/' %}"><a href="{% url 'views.palaute' %}">Palaute</a></li>
+                <li class="{% active request '^/uutiset/' %}"><a class="navbar-item" href="{% url 'views.uutiset' %}">Uutiset</a></li>
+                <li class="{% active request '^/ry/' %}"><a class="navbar-item" href="{% url 'views.yhdistys' %}">Yhdistys</a></li>
+                <li class="{% active request '^/jaseneksi/' %}"><a class="navbar-item" href="{% url 'views.jaseneksi' %}">Jäseneksi</a></li>
+                <li class="{% active request '^/palvelut/' %}"><a class="navbar-item" href="{% url 'views.palvelut' %}">Palvelut</a></li>
+                <li class="{% active request '^/laitteisto/' %}"><a class="navbar-item" href="{% url 'views.laitteisto' %}">Laitteisto</a></li>
+                <li class="{% active request '^/palaute/' %}"><a class="navbar-item" href="{% url 'views.palaute' %}">Palaute</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Kirjaudu</a></li>
+                <li><a href="/admin/">Kirjaudu</a></li>
             </ul>
         </div> <!-- /.navbar-collapse -->
     </div> <!-- /.container-fluid -->

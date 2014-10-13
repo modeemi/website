@@ -7,8 +7,8 @@ from django.template import RequestContext
 from reportlab.pdfgen import canvas
 
 from modeemintternet import helpers
-from modeemintternet.models import News
-from modeemintternet.forms import (ApplicationForm, FeedbackForm)
+from modeemintternet.models import Soda, News
+from modeemintternet.forms import ApplicationForm, FeedbackForm
 
 def render_with_context(request, template, params={}):
     return render_to_response(template, params,
@@ -22,7 +22,8 @@ def yhdistys(request):
     return render_with_context(request, 'yhdistys.html')
 
 def palvelut(request):
-    return render_with_context(request, 'palvelut.html')
+    sodas = Soda.objects.filter(active=True).order_by('price', 'name')
+    return render_with_context(request, 'palvelut.html', {'sodas': sodas})
 
 def laitteisto(request):
     return render_with_context(request, 'laitteisto.html')

@@ -1,103 +1,193 @@
 [
 {
   "fields": {
-    "text": "Kevätsauna ja vuosikokous 2014-04-04 klo 18:00 @ Teekkarisauna",
-    "posted": "2014-04-04T00:00:00.000Z",
-    "modified": "2014-04-04T00:00:00.000Z",
-    "poster": 1,
-    "title": "Kevätsauna ja vuosikokous 2014"
-  },
-  "model": "modeemintternet.news",
-  "pk": 10
-}, {
-  "fields": {
-    "text": "Uusi hallitus valittu vuodelle 2014, onnea Nina-Mari Kuisma (pj), jäsenet Jussi Peltola, Aleksi Häkli, Ossi Hakkarainen ja varajäsen Tuukka Lahti",
-    "posted": "2013-11-08T00:00:00.000Z",
-    "modified": "2013-11-08T00:00:00.000Z",
-    "poster": 1,
-    "title": "Hallitus 2014 valittu"
-  },
-  "model": "modeemintternet.news",
-  "pk": 9
-}, {
-  "fields": {
-    "text": "Syyssauna 2013-11-08 klo 17:00 @ YTHS!",
-    "posted": "2013-11-08T00:00:00.000Z",
-    "modified": "2013-11-08T00:00:00.000Z",
-    "poster": 1,
-    "title": "Syyssauna 2014"
-  },
-  "model": "modeemintternet.news",
-  "pk": 8
-}, {
-  "fields": {
-    "text": "Klubitilojen siivousta lauantaina 2013-04-27 klo 09:00+!",
-    "posted": "2013-04-27T00:00:00.000Z",
-    "modified": "2013-04-27T00:00:00.000Z",
-    "poster": 1,
-    "title": "Klubin siivous 2014"
-  },
-  "model": "modeemintternet.news",
-  "pk": 7
-}, {
-  "fields": {
-    "text": "Kevätsauna ja -kokous 2013-04-12 Majarannassa.",
-    "posted": "2013-04-12T00:00:00.000Z",
-    "modified": "2013-04-12T00:00:00.000Z",
-    "poster": 1,
-    "title": "Kevätsauna 2013"
-  },
-  "model": "modeemintternet.news",
-  "pk": 6
-}, {
-  "fields": {
-    "text": "Uusi hallitus valittu, onnea Nina-Mari Kuisma (pj), jäsenet Ville Törhönen, Jussi Peltola, Joonas Järveläinen ja varajäsen Niko Kurtti",
-    "posted": "2012-10-12T00:00:00.000Z",
-    "modified": "2012-10-12T00:00:00.000Z",
-    "poster": 1,
-    "title": "Hallitus 2013 valittu"
-  },
-  "model": "modeemintternet.news",
-  "pk": 5
-}, {
-  "fields": {
-    "text": "Uusi hallitus valittu, onnea Niko Kurtti (pj), jäsenet Tapio Vuorinen, Suvi Rovio, Joonas Järveläinen, Tuure Vartiainen, Nina-Mari Kuisma, Veli-Matti Leppänen ja varajäsen Ari Alanko.",
-    "posted": "2011-10-14T00:00:00.000Z",
-    "modified": "2011-10-14T00:00:00.000Z",
-    "poster": 1,
-    "title": "Hallitus 2012 valittu"
-  },
-  "model": "modeemintternet.news",
-  "pk": 4
-}, {
-  "fields": {
-    "text": "Backup-palvelun quotat tuplattu ja samalla muutettu minimitilaus 100Gt:hen. Hinnoittelu siis sama, levytila tuplattu",
-    "posted": "2011-10-14T00:00:00.000Z",
-    "modified": "2011-10-14T00:00:00.000Z",
-    "poster": 1,
-    "title": "Backupin quotaa kasvatettu"
-  },
-  "model": "modeemintternet.news",
-  "pk": 3
-}, {
-  "fields": {
-    "text": "Uusi shellpalvelin otettu käyttöön, battery.modeemi.fi (CentOS5.6)",
-    "posted": "2011-04-17T00:00:00.000Z",
-    "modified": "2011-04-17T00:00:00.000Z",
-    "poster": 1,
-    "title": "Uusi shellipalvelin"
-  },
-  "model": "modeemintternet.news",
-  "pk": 2
-}, {
-  "fields": {
-    "text": "Uusi webipalvelin otettu käyttöön",
-    "posted": "2011-01-11T00:00:00.000Z",
-    "modified": "2011-01-11T00:00:00.000Z",
+    "text": "Uusi webipalvelin otettu k\u00e4ytt\u00f6\u00f6n",
+    "posted": "2011-01-11T00:00:00Z",
+    "modified": "2011-01-11T00:00:00Z",
     "poster": 1,
     "title": "Uusi webipalvelin"
   },
   "model": "modeemintternet.news",
   "pk": 1
+},
+{
+  "fields": {
+    "text": "Uusi shellpalvelin otettu k\u00e4ytt\u00f6\u00f6n, battery.modeemi.fi (CentOS5.6)",
+    "posted": "2011-04-17T00:00:00Z",
+    "modified": "2011-04-17T00:00:00Z",
+    "poster": 1,
+    "title": "Uusi shellipalvelin"
+  },
+  "model": "modeemintternet.news",
+  "pk": 2
+},
+{
+  "fields": {
+    "text": "Backup-palvelun quotat tuplattu ja samalla muutettu minimitilaus 100Gt:hen. Hinnoittelu siis sama, levytila tuplattu",
+    "posted": "2011-10-14T00:00:00Z",
+    "modified": "2011-10-14T00:00:00Z",
+    "poster": 1,
+    "title": "Backupin quotaa kasvatettu"
+  },
+  "model": "modeemintternet.news",
+  "pk": 3
+},
+{
+  "fields": {
+    "text": "Uusi hallitus valittu, onnea Niko Kurtti (pj), j\u00e4senet Tapio Vuorinen, Suvi Rovio, Joonas J\u00e4rvel\u00e4inen, Tuure Vartiainen, Nina-Mari Kuisma, Veli-Matti Lepp\u00e4nen ja varaj\u00e4sen Ari Alanko.",
+    "posted": "2011-10-14T00:00:00Z",
+    "modified": "2011-10-14T00:00:00Z",
+    "poster": 1,
+    "title": "Hallitus 2012 valittu"
+  },
+  "model": "modeemintternet.news",
+  "pk": 4
+},
+{
+  "fields": {
+    "text": "Uusi hallitus valittu, onnea Nina-Mari Kuisma (pj), j\u00e4senet Ville T\u00f6rh\u00f6nen, Jussi Peltola, Joonas J\u00e4rvel\u00e4inen ja varaj\u00e4sen Niko Kurtti",
+    "posted": "2012-10-12T00:00:00Z",
+    "modified": "2012-10-12T00:00:00Z",
+    "poster": 1,
+    "title": "Hallitus 2013 valittu"
+  },
+  "model": "modeemintternet.news",
+  "pk": 5
+},
+{
+  "fields": {
+    "text": "Kev\u00e4tsauna ja -kokous 2013-04-12 Majarannassa.",
+    "posted": "2013-04-12T00:00:00Z",
+    "modified": "2013-04-12T00:00:00Z",
+    "poster": 1,
+    "title": "Kev\u00e4tsauna 2013"
+  },
+  "model": "modeemintternet.news",
+  "pk": 6
+},
+{
+  "fields": {
+    "text": "Klubitilojen siivousta lauantaina 2013-04-27 klo 09:00+!",
+    "posted": "2013-04-27T00:00:00Z",
+    "modified": "2013-04-27T00:00:00Z",
+    "poster": 1,
+    "title": "Klubin siivous 2014"
+  },
+  "model": "modeemintternet.news",
+  "pk": 7
+},
+{
+  "fields": {
+    "text": "Syyssauna 2013-11-08 klo 17:00 @ YTHS!",
+    "posted": "2013-11-08T00:00:00Z",
+    "modified": "2013-11-08T00:00:00Z",
+    "poster": 1,
+    "title": "Syyssauna 2014"
+  },
+  "model": "modeemintternet.news",
+  "pk": 8
+},
+{
+  "fields": {
+    "text": "Uusi hallitus valittu vuodelle 2014, onnea Nina-Mari Kuisma (pj), j\u00e4senet Jussi Peltola, Aleksi H\u00e4kli, Ossi Hakkarainen ja varaj\u00e4sen Tuukka Lahti",
+    "posted": "2013-11-08T00:00:00Z",
+    "modified": "2013-11-08T00:00:00Z",
+    "poster": 1,
+    "title": "Hallitus 2014 valittu"
+  },
+  "model": "modeemintternet.news",
+  "pk": 9
+},
+{
+  "fields": {
+    "text": "Kev\u00e4tsauna ja vuosikokous 2014-04-04 klo 18:00 @ Teekkarisauna",
+    "posted": "2014-04-04T00:00:00Z",
+    "modified": "2014-04-04T00:00:00Z",
+    "poster": 1,
+    "title": "Kev\u00e4tsauna ja vuosikokous 2014"
+  },
+  "model": "modeemintternet.news",
+  "pk": 10
+},
+{
+  "fields": {
+    "active": true,
+    "price": "1.5",
+    "name": "A&W"
+  },
+  "model": "modeemintternet.soda",
+  "pk": 1
+},
+{
+  "fields": {
+    "active": true,
+    "price": "1.5",
+    "name": "Doctor Pepper Original"
+  },
+  "model": "modeemintternet.soda",
+  "pk": 2
+},
+{
+  "fields": {
+    "active": true,
+    "price": "1.5",
+    "name": "Doctor Pepper Cherry"
+  },
+  "model": "modeemintternet.soda",
+  "pk": 3
+},
+{
+  "fields": {
+    "active": true,
+    "price": "1.5",
+    "name": "Vanilla Coca-Cola"
+  },
+  "model": "modeemintternet.soda",
+  "pk": 4
+},
+{
+  "fields": {
+    "active": true,
+    "price": "1.5",
+    "name": "Cherry Coca-Cola"
+  },
+  "model": "modeemintternet.soda",
+  "pk": 5
+},
+{
+  "fields": {
+    "active": true,
+    "price": "2",
+    "name": "SPAM Energy Drink"
+  },
+  "model": "modeemintternet.soda",
+  "pk": 6
+},
+{
+  "fields": {
+    "active": true,
+    "price": "2",
+    "name": "Volt Power Cola"
+  },
+  "model": "modeemintternet.soda",
+  "pk": 7
+},
+{
+  "fields": {
+    "active": true,
+    "price": "1.5",
+    "name": "Welch's Grape"
+  },
+  "model": "modeemintternet.soda",
+  "pk": 8
+},
+{
+  "fields": {
+    "active": true,
+    "price": "2",
+    "name": "Club Mate"
+  },
+  "model": "modeemintternet.soda",
+  "pk": 9
 }
 ]

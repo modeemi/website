@@ -3,20 +3,20 @@
 
 <h2>Palvelut</h2>
 
-<p>Modeemi ry järjestää jäsenilleen limumyyntiä, ATK:ta sekä luettavia lehtiä. Kerhohuoneelta löytyy jäsenistön käyttöön telkkari ChromeCastilla, kaiuttimet, vahvistin sekä rauhallinen työskentelytila. Myös kahvinkeitin sekä grillauvälineitä löytyy.</p>
+<p>Modeemi ry järjestää jäsenilleen limumyyntiä, ATK:ta sekä luettavia lehtiä. Kerhohuoneelta löytyy jäsenistön käyttöön telkkari ChromeCastilla, kaiuttimet, vahvistin sekä rauhallinen työskentelytila. Myös kahvinkeitin sekä grillauvälineitä löytyy. Lehtinä klubille tulee tällä hetkellä Aku-Ankka sekä Skrolli.</p>
 
 <h3>Limumyynti</h3>
 
 <p>Kolottaako hammasta, maistuuko kylmä Dr. Pepper tai A&amp;W? Nouda kerhohuoneelta omasi, tarjolla juomia edulliseen hintaan.</p>
 
-<p>Tällä hetkellä tarjoamme jäsenistön pyynnöstä seuraavia limuja 2e ja 1.5e hintaan.</p>
+<p>Tällä hetkellä tarjoamme jäsenistön pyynnöstä seuraavia limuja (varastotilanne voi vaihdella).</p>
 
 <ul>
-    <li>Power Volt Cola</li>
-    <li>Dr. Pepper</li>
-    <li>A&amp;W</li>
-    <li>7 Up Cherry</li>
-    <li>Vanilla Coca-Cola</li>
+    {% for soda in sodas %}
+    {% if soda.active %}
+    <li>{{ soda.name }} ({{soda.price }}e)</li>
+    {% endif %}
+    {% endfor %}
 </ul>
 
 <h3>ATK-palvelut</h3>

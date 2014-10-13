@@ -5,6 +5,35 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 
+
+class News(models.Model):
+    title = models.TextField(blank=False)
+    text = models.TextField(blank=True)
+    posted = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now_add=True, auto_now=True)
+    poster = models.ForeignKey(User, editable=False, null=True)
+
+    def __unicode__(self):
+        return u'{0} ({1})'.format(self.title, self.posted)
+
+    class Meta:
+        verbose_name = 'Uutine'
+        verbose_name_plural = 'Uutineet'
+
+
+class Soda(models.Model):
+    name = models.CharField(max_length=128)
+    price = models.DecimalField(max_digits=3, decimal_places=2)
+    active = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return u'{0}'.format(self.name)
+
+    class Meta:
+        verbose_name = 'Limu'
+        verbose_name_plural = 'Limut'
+
+
 class Application(models.Model):
     BASH = '/bin/bash'
     SH = '/bin/sh'
@@ -72,23 +101,8 @@ class Application(models.Model):
         return self.bank_reference
 
     class Meta:
-        verbose_name = "Hakemus"
-        verbose_name_plural = "Hakemukset"
-
-
-class News(models.Model):
-    title = models.TextField(blank=False)
-    text = models.TextField(blank=True)
-    posted = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now_add=True, auto_now=True)
-    poster = models.ForeignKey(User, editable=False, null=True)
-
-    def __unicode__(self):
-        return u'{0} ({1})'.format(self.title, self.posted)
-
-    class Meta:
-        verbose_name = "Uutine"
-        verbose_name_plural = "Uutineet"
+        verbose_name = u'Hakemus'
+        verbose_name_plural = u'Hakemukset'
 
 
 class Feedback(models.Model):
@@ -101,5 +115,5 @@ class Feedback(models.Model):
         return u'{0} ({1})'.format(self.message[:25], self.sent)
 
     class Meta:
-        verbose_name = "Palaute"
-        verbose_name_plural = "Palautteet"
+        verbose_name = u'Palaute'
+        verbose_name_plural = u'Palautteet'

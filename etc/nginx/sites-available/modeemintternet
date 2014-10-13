@@ -7,16 +7,16 @@
 # It needs to be owned by the modeemintternet user, you could make modeemintternet group
 # which the nginx / www / www-data user, whichever it is on the target distro, is part of
 upstream django {
-    server unix:///tmp/modeemintternet.sock;
+    server unix://127.0.0.1:8666
 }
 
 # configuration of the server
 server {
     listen      8080;                 # you can also listen to some other port and proxy Apache into it
-    server_name beta.modeemi.fi;    # in production change to www.modeemi.fi etc.
+    server_name modeemi.fi;    	      # in production change to www.modeemi.fi etc.
     charset     utf-8;
 
-    client_max_body_size 75M;   # max upload size, adjust to taste
+    client_max_body_size 75M;         # max upload size, adjust to taste
 
     # Django media file directory; all uploads go here
     location /media {

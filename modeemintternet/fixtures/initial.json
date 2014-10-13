@@ -111,9 +111,20 @@
 },
 {
   "fields": {
+    "text": "S\u00e4\u00e4nt\u00f6m\u00e4\u00e4r\u00e4inen vaalikokous j\u00e4rjestet\u00e4\u00e4n Artturin saunalla (http://www.saunaonline.fi/saunatilat/artturin-sauna) 27.11.2014 klo 18:00.",
+    "posted": "2014-10-13T22:19:04.918Z",
+    "modified": "2014-10-13T22:19:04.918Z",
+    "poster": 1,
+    "title": "Syyssauna & Vaalikokous 27.11.2014 18:00-00:00 @ Artturin sauna"
+  },
+  "model": "modeemintternet.news",
+  "pk": 11
+},
+{
+  "fields": {
     "active": true,
     "price": "1.5",
-    "name": "A&W"
+    "name": "A&W Root Beer"
   },
   "model": "modeemintternet.soda",
   "pk": 1
@@ -122,7 +133,7 @@
   "fields": {
     "active": true,
     "price": "1.5",
-    "name": "Doctor Pepper Original"
+    "name": "Dr Pepper (tavallinen)"
   },
   "model": "modeemintternet.soda",
   "pk": 2
@@ -131,7 +142,7 @@
   "fields": {
     "active": true,
     "price": "1.5",
-    "name": "Doctor Pepper Cherry"
+    "name": "Dr Pepper Cherry"
   },
   "model": "modeemintternet.soda",
   "pk": 3
@@ -140,7 +151,7 @@
   "fields": {
     "active": true,
     "price": "1.5",
-    "name": "Vanilla Coca-Cola"
+    "name": "Coca-Cola Vanilla"
   },
   "model": "modeemintternet.soda",
   "pk": 4
@@ -149,7 +160,7 @@
   "fields": {
     "active": true,
     "price": "1.5",
-    "name": "Cherry Coca-Cola"
+    "name": "Coca-Cola Cherry"
   },
   "model": "modeemintternet.soda",
   "pk": 5
@@ -167,7 +178,7 @@
   "fields": {
     "active": true,
     "price": "2",
-    "name": "Volt Power Cola"
+    "name": "VOLT Power Cola"
   },
   "model": "modeemintternet.soda",
   "pk": 7
@@ -185,9 +196,18 @@
   "fields": {
     "active": true,
     "price": "2",
-    "name": "Club Mate"
+    "name": "Club-Mate"
   },
   "model": "modeemintternet.soda",
   "pk": 9
+},
+{
+  "fields": {
+    "active": true,
+    "price": "1.5",
+    "name": "Canada Dry"
+  },
+  "model": "modeemintternet.soda",
+  "pk": 10
 }
 ]

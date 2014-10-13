@@ -28,9 +28,9 @@ except Exception as e:
     print 'No overriding secret key file found, using default dummy development key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'modeemi.fi', 'www.modeemi.fi']
 INTERNAL_IPS = ['127.0.0.1', 'localhost']
 
 # Application definition

@@ -70,6 +70,11 @@ class Application(models.Model):
     sha512 = models.CharField(max_length=128)
     pbkdf2_sha256 = models.CharField(max_length=128)
 
+    # Processing status
+    application_accepted = models.BooleanField(default=False)
+    application_rejected = models.BooleanField(default=False)
+    application_processed = models.BooleanField(default=False)
+
     def __unicode__(self):
         return u'{0} {1} ({2})'.format(self.first_name, self.last_name, self.applied)
 

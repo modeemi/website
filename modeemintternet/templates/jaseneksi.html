@@ -19,7 +19,13 @@
 
 <hr />
 
+{% if success %}
+<div class="alert alert-info" role="alert">
+    <p>Kiitos jäsenhakemuksestasi! Sinulle on lähetetty jäsenmaksutiedot sähköpostilla.</p>
+</div>
+{% else %}
 {% load crispy_forms_tags %}
 {% crispy form %}
+{% endif %}
 
 {% endblock %}

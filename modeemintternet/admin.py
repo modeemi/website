@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib import admin
+from django.contrib.auth.models import User
 from modeemintternet.models import News, Soda, Application, Feedback
+from modeemintternet import mailer
 
 
 class NewsAdmin(admin.ModelAdmin):
@@ -45,7 +47,51 @@ class SodaAdmin(admin.ModelAdmin):
     actions = (activate, deactivate)
 
 
+class ApplicationAdmin(admin.ModelAdmin):
+    """
+    Custom admin for approving a membership application.
+
+    Approving an application creates a user from the application.
+    """
+
+    def name_column(self, obj):
+        return u'{0} {1} ({2})'.format(obj.first_name,
+                obj.last_name, obj.primary_nick)
+    name_column.short_description = u'Hakijan nimi (nick)'
+
+    def applied_column(self, obj):
+        return obj.applied
+    applied_column.short_description = u'Hakemus tehty'
+
+    def processed_column(self, obj):
+        return obj.application_processed
+    processed_column.boolean = True
+    processed_column.short_description = u'Hakemus käsitelty'
+
+    def accept(self, request, queryset):
+        queryset.update(application_accepted=True,
+                        application_rejected=False,
+                        application_processed=True)
+
+        for application in queryset:
+            pass  # TODO: create users, send mail
+
+    accept.short_description = u'Hyväksy valitut hakemukset'
+
+    def reject(self, request, queryset):
+        queryset.update(application_rejected=True,
+                        application_accepted=False,
+                        application_processed=True)
+
+        for application in queryset:
+            mailer.application_rejected(application)
+
+    reject.short_description = u'Hylkää valitut hakemukset'
+
+    list_display = ('name_column', 'applied_column', 'processed_column')
+    actions = ('accept', 'reject')
+
 admin.site.register(News, NewsAdmin)
 admin.site.register(Soda, SodaAdmin)
+admin.site.register(Application, ApplicationAdmin)
 admin.site.register(Feedback)
-admin.site.register(Application)

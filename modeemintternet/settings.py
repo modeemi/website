@@ -36,6 +36,9 @@ INTERNAL_IPS = ['127.0.0.1', 'localhost']
 # Application definition
 
 INSTALLED_APPS = (
+    # Custom admin panel
+    'suit',
+
     # Built-ins
     'django.contrib.admin',
     'django.contrib.auth',
@@ -164,3 +167,8 @@ except Exception as e:
     print e
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+# Django suit configuration for a customized admin panel
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'sysctl.modeemintternet',
+}

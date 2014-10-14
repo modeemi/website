@@ -6,7 +6,7 @@ from django.template import RequestContext
 
 from reportlab.pdfgen import canvas
 
-from modeemintternet import helpers
+from modeemintternet import mailer, helpers
 from modeemintternet.models import Soda, News
 from modeemintternet.forms import ApplicationForm, FeedbackForm
 
@@ -73,29 +73,31 @@ def jaseneksi(request):
 
     else:
         application_form = ApplicationForm(request.POST)
-        password_matches = request.POST.get('password') == request.POST.get('password_check')
+        password_matches = \
+            request.POST.get('password') == request.POST.get('password_check')
 
         if not (password_matches and application_form.is_valid()):
             return render_with_context(request, 'jaseneksi.html',
                                        {'form': application_form})
 
-    response = render_with_context(request, 'jaseneksi.html',
-                                   {'form': ApplicationForm(), 'success': True})
-    response['Content-Disposition'] = 'attachment; filename="modeemi-jasenhakemus.pdf"'
 
     application = application_form.save()
     application.generate_password_hashes(request.POST.get('password'))
     application.update_bank_reference()
 
-    # Create the PDF object, using the response object as its 'file.'
-    c = canvas.Canvas(response)
+    # Create the PDF object, using the response object as the file-like object.
+    c = canvas.Canvas()
     p = helpers.jasenlasy(c, application)
 
     # Close the PDF object cleanly, and we're done.
     p.showPage()
     p.save()
 
-    return response
+    # Send mail about the new application
+    mailer.application_created(application, p)
+
+    # Return info page for the application
+    return render_with_context(request, 'jaseneksi.html', {'success': True})
 
 def uutiset(request, pk=None):
     if pk:

@@ -127,7 +127,7 @@ def jasenlasy(canvas, application):
 
     generator = barcode.get_barcode_class('code128')
     img = generator(code128(application),
-            writer=ImageWriter()).save('barcode')
+            writer=ImageWriter()).save('/tmp/barcode')
     p.drawImage(img, 150, 5, height=30, width=300, anchor='nw')
 
     return p

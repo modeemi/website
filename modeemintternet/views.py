@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from reportlab.pdfgen import canvas
+from StringIO import StringIO
 
 from modeemintternet import mailer, helpers
 from modeemintternet.models import Soda, News
@@ -86,15 +87,19 @@ def jaseneksi(request):
     application.update_bank_reference()
 
     # Create the PDF object, using the response object as the file-like object.
-    c = canvas.Canvas()
+    pdfBuffer = StringIO()
+    c = canvas.Canvas(pdfBuffer)
     p = helpers.jasenlasy(c, application)
 
     # Close the PDF object cleanly, and we're done.
     p.showPage()
     p.save()
 
+    pdf = pdfBuffer.getvalue()
+    pdfBuffer.close()
+
     # Send mail about the new application
-    mailer.application_created(application, p)
+    mailer.application_created(application, pdf)
 
     # Return info page for the application
     return render_with_context(request, 'jaseneksi.html', {'success': True})

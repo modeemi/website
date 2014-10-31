@@ -4,7 +4,9 @@
 Unit tests for modeemintternet app.
 """
 
-from django.test import TestCase
+from django.test import Client, TestCase
+from django.core import mail
+from modeemintternet.forms import ApplicationForm
 
 
 class ApplicationMailerTest(TestCase):
@@ -13,8 +15,28 @@ class ApplicationMailerTest(TestCase):
     Note that you still need valid mail server in addition to this.
     """
 
+    def setUp(self):
+        self.application = {
+            'email': 'teemu@teekkari.fi',
+            'first_name': 'Teemu',
+            'last_name': 'Testaaja',
+            'reason': 'Koska voi',
+            'primary_nick': 'teemut',
+            'secondary_nick': 'testaajat',
+            'shell': '/bin/zsh',
+            'funet_rules_accepted': True,
+            'password': 'testi',
+            'password_check':'testi'
+        }
+
     def test_application_made(self):
         """
         Test that mail is sent when an application is made.
         """
-        self.assertEqual(True, True)
+
+        c = Client()
+        response = c.post('/jaseneksi/', self.application)
+
+        self.assertEqual(len(mail.outbox), 2)
+        self.assertEqual(mail.outbox[0].subject, u'Modeemi ry - Uusi jäsenhakemus jätetty')
+        self.assertEqual(mail.outbox[1].subject, u'Modeemi ry - Jäsenhakemuksesi lisätiedot')

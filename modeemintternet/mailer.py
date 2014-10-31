@@ -36,7 +36,8 @@ def application_created(application, invoice_pdf):
     Ystävällisin terveisin,
     Modeemi ryn hallitusautomaatiobotti
     """.format(application.first_name, application.last_name,
-               application.primary_nick, application.applied)
+               application.primary_nick, application.applied,
+               application.id)
 
     EmailMessage(topic, msg, SENDER, [SENDER]).send()
 
@@ -68,11 +69,11 @@ def application_created(application, invoice_pdf):
                application.email, application.shell, application.first_name,
                application.last_name, application.applied)
 
-    invoice_name = 'modeemi_jasenmaksu.pdf'
+    invoice_name = 'modeemi_jasenhakemus_{0}.pdf'.format(application.id)
     invoice_mime = 'application/pdf'
 
     EmailMessage(topic, msg, ORGANIZATION, [ORGANIZATION],
-            attachments=[(invoice_name, invoice_pdf, invoice_mine)]).send()
+            attachments=[(invoice_name, invoice_pdf, invoice_mime)]).send()
 
 
 def application_accepted(user):

@@ -58,15 +58,13 @@ voit olla hallitukseen yhteydessä sähköpostitse.
 
 Ohessa hakemuksesi tiedot:
 
-    Etunimi:                      {0}
-    Sukunimi:                     {1}
-    Sähköpostiosoite:             {2}
-
-    Ensisijainen tunnustoive:     {3}
-    Toissijainen tunnustoive:     {4}
-    Ensisijainen komentokehoite:  {5}
-
-    Hakemus jätetty:              {6}
+    Etunimi: {0}
+    Sukunimi: {1}
+    Sähköpostiosoite: {2}
+    Ensisijainen tunnustoive: {3}
+    Toissijainen tunnustoive: {4}
+    Ensisijainen komentokehoite: {5}
+    Hakemus jätetty: {6}
 """.format(application.first_name, application.last_name,  application.email,
            application.primary_nick, application.secondary_nick,
            application.shell, application.applied.strftime('%d.%m.%Y'))

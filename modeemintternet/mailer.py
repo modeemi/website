@@ -78,7 +78,7 @@ Ohessa hakemuksesi tiedot:
             attachments=[(invoice_name, invoice_pdf, invoice_mime)]).send()
 
 
-def application_accepted(user):
+def application_accepted(application):
     """
     Sends an email to an user notifying that his/her
     application has been processed and accepted.
@@ -93,12 +93,13 @@ Hei,
 
 {0}n hallitus on käsitellyt ja hyväksynyt jäsenhakemuksesi.
 
-Sinulle on luotu tunnus "{1}" toivomallasi salasanalla,
-ja pääset nyt kirjautumaan kerhon shellikoneille.
+Sinulle luodaan tunnus "{1}"/"{2}" ja saat lisätiedot sähköpostissa.
 
 Ystävällisin terveisin,
 Modeemi ryn hallitus
-""".format(ORGANIZATION, user.username)
+""".format(ORGANIZATION,
+           application.primary_nick,
+           application.secondary_nick)
 
     EmailMessage(topic, msg, ORGANIZATION, [application.email]).send()
 
@@ -126,6 +127,6 @@ sähköpostitse osoitteesta {1}.
 
 Ystävällisin terveisin,
 {0}n hallitus
-""".format(ORGANIZATION, SENDER)
+""".format(ORGANIZATION, ORGANIZATION_EMAIL)
 
     EmailMessage(topic, msg, ORGANIZATION, [application.email]).send()

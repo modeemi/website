@@ -74,7 +74,8 @@ class ApplicationAdmin(admin.ModelAdmin):
                         application_processed=True)
 
         for application in queryset:
-            pass  # TODO: create users, send mail
+            # TODO: create actual users, send mail with credentials
+            mailer.application_accepted(application)
 
     accept.short_description = u'Hyväksy valitut hakemukset'
 

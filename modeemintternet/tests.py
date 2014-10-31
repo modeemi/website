@@ -6,7 +6,10 @@ Unit tests for modeemintternet app.
 
 from django.test import Client, TestCase
 from django.core import mail
+
+from modeemintternet.models import Application
 from modeemintternet.forms import ApplicationForm
+from modeemintternet.mailer import application_accepted, application_rejected
 
 
 class ApplicationMailerTest(TestCase):
@@ -40,3 +43,32 @@ class ApplicationMailerTest(TestCase):
         self.assertEqual(len(mail.outbox), 2)
         self.assertEqual(mail.outbox[0].subject, u'Modeemi ry - Uusi jäsenhakemus jätetty')
         self.assertEqual(mail.outbox[1].subject, u'Modeemi ry - Jäsenhakemuksesi lisätiedot')
+
+    def test_application_accepted(self):
+        del self.application['password']
+        del self.application['password_check']
+
+        a = Application(**self.application)
+        a.save()
+        a.generate_password_hashes('testi')
+        a.update_bank_reference()
+        a.save()
+
+        application_accepted(a)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject, u'Modeemi ry - Jäsenhakemuksesi on käsitelty')
+
+    def test_application_rejected(self):
+        del self.application['password']
+        del self.application['password_check']
+
+        a = Application(**self.application)
+        a.save()
+        a.generate_password_hashes('testi')
+        a.update_bank_reference()
+        a.save()
+
+        application_rejected(a)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject, u'Modeemi ry - Jäsenhakemuksesi on käsitelty')
+

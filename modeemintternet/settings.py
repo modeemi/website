@@ -28,7 +28,7 @@ except Exception as e:
     print 'No overriding secret key file found, using default dummy development key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', False)
 TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'modeemi.fi', 'www.modeemi.fi']
 INTERNAL_IPS = ['127.0.0.1', 'localhost']
@@ -65,16 +65,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-TEMPLATE_CONTEXT_PREPROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.csrf',
-    'django.contrib.messages.context_processors.messages',
-)
-
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
@@ -90,12 +80,15 @@ ROOT_URLCONF = 'modeemintternet.urls'
 WSGI_APPLICATION = 'modeemintternet.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
+# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'modeemintternet',
+        'USER': 'modeemintternet',
+        'PASSWORD': 'modeemintternet',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -170,5 +163,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Django suit configuration for a customized admin panel
 SUIT_CONFIG = {
-    'ADMIN_NAME': 'sysctl.modeemintternet',
+    'ADMIN_NAME': 'modeemintternet admin',
 }

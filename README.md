@@ -1,25 +1,28 @@
-LRN2Django
-==========
+modeemintternet - Modeemi ry website
+====================================
 
-Python packages
+## Developing
 
-    apt-get install python python-pip python-virtualenv nodejs
+Install apt packages
 
-LDAP packages
+    apt-get install python python-dev python-pip python-virtualenv \
+        nodejs nodejs-legacy libpq-dev libldap2-dev libsasl2-dev libssl-dev
 
-    apt-get install python-dev libldap2-dev libsasl2-dev libssl-dev
-
-pip packages
+Install pip packages
 
     source virtualenv/bin/activate
     pip install -r requirements.txt
 
-bower packages
+Install bower packages
 
     bower install
 
-Sync and migrate DB, collect static files
+Sync and migrate DB, if you're using PostgreSQL check `settings.py`.
 
     python manage.py syncdb
-    python manage.py migrate --auto
+    python manage.py migrate
+
+For production, remember to collect static files and install fixtures:
+
     python manage.py collectstatic
+    python manage.py loaddata modeemintternet/fixtures/initial.json

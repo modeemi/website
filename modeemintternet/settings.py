@@ -35,8 +35,10 @@ TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'modeemi.fi', 'www.modeemi.fi']
 INTERNAL_IPS = ['127.0.0.1', 'localhost']
 
-# Application definition
+# Mailer settings
+EMAIL_HOST = 'mail.modeemi.fi'
 
+# Application definition
 INSTALLED_APPS = (
     # Custom admin panel
     'suit',
@@ -96,7 +98,6 @@ DATABASES = {
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
-
 LANGUAGE_CODE = 'fi'
 TIME_ZONE = 'Europe/Helsinki'
 USE_I18N = True
@@ -105,7 +106,6 @@ USE_TZ = True
 
 # Templates and static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Django settings for modeemintternet project.
 
@@ -163,5 +165,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Django suit configuration for a customized admin panel
 SUIT_CONFIG = {
-    'ADMIN_NAME': 'modeemintternet admin',
+    'ADMIN_NAME': 'modeemintternet - ylläpito',
 }

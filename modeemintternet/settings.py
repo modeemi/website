@@ -118,8 +118,8 @@ STATICFILES_DIRS = (
 )
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/opt/intternet/modeemintternet/static'
-MEDIA_ROOT = '/opt/intternet/modeemintternet/media'
+STATIC_ROOT = '/var/www//modeemintternet/static'
+MEDIA_ROOT = '/var/www/modeemintternet/media'
 
 # LDAP configuration
 # This requires that you have the python-ldap module installed

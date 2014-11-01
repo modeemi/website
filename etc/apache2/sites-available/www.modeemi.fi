@@ -48,7 +48,7 @@ NameVirtualHost [2001:708:310:3430:8057:e2ff:fe1d:fcdf]:443
         SetHandler uwsgi-handler
     </LocationMatch>
 
-    Alias /static /opt/intternet/modeemintternet/static/
-    Alias /media /opt/intternet/modeemintternet/media/
+    Alias /static /var/www/modeemintternet/static/
+    Alias /media /var/www/modeemintternet/media/
 </VirtualHost>
 </IfModule>

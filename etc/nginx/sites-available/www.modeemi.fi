@@ -60,10 +60,10 @@ server {
     # Handle static and media paths with aliases
     # Otherwise the django handler will catch them
     location /static  {
-        alias /opt/intternet/modeemintternet/static;
+        alias /var/www//modeemintternet/static;
     }
     location /media   {
-        alias /opt/intternet/modeemintternet/media;
+        alias /var/www//modeemintternet/media;
     }
 
     # Other /resources requests go to the uWSGI server

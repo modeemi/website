@@ -28,16 +28,16 @@ def application_created(application, invoice_pdf):
 u"""
 Hei,
 
-Henkilö {0} {1} ({2}) on jättänyt uuden jäsenhakemuksen {3}.
+henkilö {0} {1} ({2}) on jättänyt uuden jäsenhakemuksen {3}.
 Voit tarkastella jäsenhakemusta osoitteesta
 
     https://www.modeemi.fi/admin/modeemintternet/application/{4}/
 
 Ystävällisin terveisin,
-Modeemi ryn hallitusautomaatiobotti
+{5}n hallitusautomaatiobotti
 """.format(application.first_name, application.last_name,
            application.primary_nick, application.applied.strftime('%d.%m.%Y'),
-           application.id)
+           application.id, ORGANIZATION)
 
     EmailMessage(topic, msg, ORGANIZATION, [ORGANIZATION_EMAIL]).send()
 
@@ -47,9 +47,9 @@ Modeemi ryn hallitusautomaatiobotti
 u"""
 Hei {0},
 
-Kiitos jäsenhakemuksestasi.
+ja kiitos jäsenhakemuksestasi.
 
-Ohessa on kuitti jäsenmaksun suorittamiseen.
+Ohessa on 8 euron suuruinen lasku jäsenmaksua varten.
 
 Jäsenmaksun suorittamisen jälkeen hallitus käsittelee
 hakemuksen seuraavassa hallituksen kokouksessa.
@@ -65,9 +65,12 @@ Ohessa hakemuksesi tiedot:
     Toissijainen tunnustoive: {4}
     Ensisijainen komentokehoite: {5}
     Hakemus jätetty: {6}
+
+Ystävällisin terveisin,
+{7}n hallitus
 """.format(application.first_name, application.last_name,  application.email,
-           application.primary_nick, application.secondary_nick,
-           application.shell, application.applied.strftime('%d.%m.%Y'))
+           application.primary_nick, application.secondary_nick, application.shell,
+           application.applied.strftime('%d.%m.%Y'), ORGANIZATION)
 
     invoice_name = 'modeemi_jasenhakemus_{0}.pdf'.format(application.id)
     invoice_mime = 'application/pdf'
@@ -94,7 +97,7 @@ Hei,
 Sinulle luodaan tunnus "{1}"/"{2}" ja saat lisätiedot sähköpostissa.
 
 Ystävällisin terveisin,
-Modeemi ryn hallitus
+{0}n hallitus
 """.format(ORGANIZATION,
            application.primary_nick,
            application.secondary_nick)

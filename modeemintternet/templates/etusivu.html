@@ -9,7 +9,7 @@
 
 <ul itemscope itemtype="http://schema.org/Article">
     {% for n in news %}
-    <li><a href="/uutiset/{{ n.id }}" itemprop="headline">{{ n.title }}</a> (<time datetime="{{ n.posted|date:'d-m-Y' }}">{{ n.posted|date:'d-m-Y' }}</time>)</li>
+    <li><a href="/uutiset/{{ n.id }}" itemprop="headline">{{ n.title }}</a> (<time datetime="{{ n.posted|date:'Y-m-d' }}">{{ n.posted|date:'d-m-Y' }}</time>)</li>
     {% endfor %}
 </ul>
 {% endblock %}

@@ -7,7 +7,7 @@ from django.template import RequestContext
 from reportlab.pdfgen import canvas
 from StringIO import StringIO
 
-from modeemintternet import mailer, helpers
+from modeemintternet import mailer, helpers, settings
 from modeemintternet.models import Soda, News
 from modeemintternet.forms import ApplicationForm, FeedbackForm
 

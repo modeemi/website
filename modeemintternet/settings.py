@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import json
 
 SETTINGS_DIR = '/etc/modeemintternet'
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -28,6 +29,10 @@ try:
         SECRET_KEY = f.read().strip()
 except Exception as e:
     print 'No overriding Django secret key file found, using default dummy development key'
+
+# Version number is mandatory and imported from bower.json
+with open('bower.json') as f:
+    VERSION_NUMBER = json.loads(f.read()).get('version')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)

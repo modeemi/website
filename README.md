@@ -4,7 +4,7 @@
 
 This guide assumes you have some experience in web development and doesn't have 100% coverage.
 
-Install apt packages
+Install apt and npm packages
 
     apt-get install python python-dev python-pip python-virtualenv \
         nodejs nodejs-legacy npm libpq-dev libldap2-dev libsasl2-dev libssl-dev

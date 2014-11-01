@@ -1,0 +1,74 @@
+# Modeemi Intternet Projekt server nginx config
+#
+#   NOTE: SSL setup requires a concatenated cert where your own and
+#         chain certificate files are concatenated into one .crt file
+
+# The upstream component nginx needs to connect to; we're using an unix socket
+upstream django {
+    server 127.0.0.1:8666;
+}
+
+# Modeemi web server HTTP config, just redirects to an HTTPS url
+server {
+    listen 80;
+    server_name "modeemi.fi" "www.modeemi.fi" "www.modeemi.cs.tut.fi" "modeemi.cs.tut.fi";
+    charset     utf-8;
+    rewrite ^(.*) https://$host$1 permanent;
+}
+
+# Modeemi web server HTTPS config, actually serves the site
+server {
+    listen      443 ssl;
+    server_name "modeemi.fi" "www.modeemi.fi" "www.modeemi.cs.tut.fi" "modeemi.cs.tut.fi";
+    charset     utf-8;
+
+    # Max upload size, adjust to taste
+    client_max_body_size 75M;
+
+    # Enable gzip compression
+    gzip_comp_level  2;
+    gzip_min_length  1000;
+    gzip_proxied     expired no-cache no-store private auth;
+    gzip_types       text/plain text/css application/javascript application/x-javascript application/json text/xml application/xml;
+
+    # Enable timeouts with sane defaults
+    client_body_timeout 12;
+    client_header_timeout 12;
+    send_timeout 10;
+
+    # NOTE: Check that the chain cert is concatenated correctly into the .crt
+    ssl_certificate /etc/ssl/certs/www.modeemi.fi.crt;
+    ssl_certificate_key /etc/ssl/private/www.modeemi.fi.key;
+
+    # Additional security hardening
+    # Add HSTS headers and set up a sane cipher suite
+    add_header Strict-Transport-Security "max-age=31536000; includeSubdomains";
+    ssl_prefer_server_ciphers On;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
+
+    # Deny any hidden files in server root
+    location ~ /\. {
+        deny  all;
+    }
+
+    # Cache static files for a sane duration
+    location ~* .(jpg|jpeg|png|gif|ico|css|js|json|map|woff|woff2|tff|svg|eot)$ {
+        expires 14d;
+    }
+
+    # Handle static and media paths with aliases
+    # Otherwise the django handler will catch them
+    location /static  {
+        alias /opt/intternet/modeemintternet/static;
+    }
+    location /media   {
+        alias /opt/intternet/modeemintternet/media;
+    }
+
+    # Other /resources requests go to the uWSGI server
+    location / {
+        uwsgi_pass  django;
+        include     /etc/uwsgi/params/www.modeemi.fi.params;
+    }
+}

@@ -1,0 +1,54 @@
+# Modeemi Intternet Projekt server Apache config
+#
+#   NOTE: SSL setup requires a concatenated cert where your own and
+#         chain certificate files are concatenated into one .crt file
+
+NameVirtualHost 130.230.72.136:80
+NameVirtualHost [2001:708:310:3430:8057:e2ff:fe1d:fcdf]:80
+
+<VirtualHost 130.230.72.136:80 [2001:708:310:3430:8057:e2ff:fe1d:fcdf]:80>
+    ServerName www.modeemi.fi
+    ServerAlias modeemi.fi
+    ServerAlias www.modeemi.cs.tut.fi
+    ServerAlias modeemi.cs.tut.fi
+    ServerAdmin webmaster@modeemi.fi
+
+    RewriteEngine On
+    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+</VirtualHost>
+
+<IfModule mod_ssl.c>
+Listen 130.230.72.136:443
+Listen [2001:708:310:3430:8057:e2ff:fe1d:fcdf]:443
+NameVirtualHost 130.230.72.136:443
+NameVirtualHost [2001:708:310:3430:8057:e2ff:fe1d:fcdf]:443
+
+<VirtualHost 130.230.72.136:443 [2001:708:310:3430:8057:e2ff:fe1d:fcdf]:443>
+    ServerName www.modeemi.fi
+    ServerAlias www.modeemi.cs.tut.fi
+    ServerAlias modeemi.fi
+    ServerAlias modeemi.cs.tut.fi
+    ServerAdmin webmaster@modeemi.fi
+
+    ErrorLog ${APACHE_LOG_DIR}/www.modeemi.fi.error.log
+    TransferLog ${APACHE_LOG_DIR}/www.modeemi.fi.access.log
+
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/www.modeemi.fi.crt
+    SSLCertificateKeyFile /etc/ssl/certs/www.modeemi.fi.key
+    SSLVerifyClient None
+
+    BrowserMatch ".*MSIE.*" \
+        nokeepalive ssl-unclean-shutdown \
+        downgrade-1.0 force-response-1.0
+
+    <LocationMatch "^(?!/static/)(?!/media/)/.*">
+        uWSGIforceScriptName "/"
+        uWSGISocket 127.0.0.1:8666
+        SetHandler uwsgi-handler
+    </LocationMatch>
+
+    Alias /static /opt/intternet/modeemintternet/static/
+    Alias /media /opt/intternet/modeemintternet/media/
+</VirtualHost>
+</IfModule>

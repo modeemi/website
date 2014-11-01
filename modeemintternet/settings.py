@@ -21,13 +21,13 @@ PROJECT_DIR = os.path.join(BASE_DIR, 'modeemintternet')
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'my_bestest_secret_key_look_below_for_filesystem_loaders'
+SECRET_KEY = 'DummyDevelopmentDjangoSecret'
 
 try:
-    with open(os.path.join(SETTINGS_DIR, 'secret.key'), 'r') as f:
+    with open('/etc/modeemintternet/secret.txt', 'r') as f:
         SECRET_KEY = f.read().strip()
 except Exception as e:
-    print 'No overriding secret key file found, using default dummy development key'
+    print 'No overriding Django secret key file found, using default dummy development key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
@@ -52,13 +52,15 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Custom additions
-    # 'debug_toolbar',
     'crispy_forms',
     'rest_framework',
 
     # Own modules
     'modeemintternet',
 )
+
+if DEBUG:
+    INSTALLED_APPS += ('debug_toolbar', )
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -126,7 +128,7 @@ try:
     import ldap
     from django_auth_ldap.config import LDAPSearch, PosixGroupType
 
-    with open(os.path.join(SETTINGS_DIR, 'ldap.key'), 'r') as f:
+    with open('/etc/modeemintternet/ldap.txt', 'r') as f:
         AUTH_LDAP_BIND_PASSWORD = f.read().strip()
 
     # Some example settings, you will probably have to revise these
@@ -159,6 +161,7 @@ try:
     AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600  # or one hour
 
 except Exception as e:
+    print 'No overriding LDAP secret could be loaded, using default dummy development key'
     print e
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

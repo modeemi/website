@@ -36,14 +36,15 @@
             nav.navbar {
                 border-radius: 0px;
             }
-            .navbar-brand.active {
-                color: #ffffff;
-            }
             .navbar-brand,
             .navbar-item {
                 transition: color 250ms linear;
                 -moz-transition: color 250ms linear;
                 -webkit-transition: color 250ms linear;
+            }
+            a.disabled {
+               pointer-events: none;
+               cursor: default;
             }
 
             /* The main header for the whole page with image background */

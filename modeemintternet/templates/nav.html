@@ -4,7 +4,7 @@
 <!-- Picture, hidden with phones and other very small displays -->
 <div class="header hidden-xs">
     <a href="https://github.com/aleksih/modeemintternet"><img id="ribbon" src="{% static 'image/ribbon.png' %}" alt="Fork me on GitHub" title="Fork me on GitHub" width="149" height="149"></a>
-    <a href="/"><h1>Modeemi</h1></a>
+    <h1>Modeemi</h1>
 </div>
 
 <!-- Responsive navigation -->
@@ -18,12 +18,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand {% active request '^/$' %}" href="/">Modeemi</a>
+            <a class="navbar-brand disabled">Modeemi</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse disabled" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li class="{% active request '^/$' %}"><a class="navbar-item" href="{% url 'views.etusivu' %}">Etusivu</a></li>
                 <li class="{% active request '^/uutiset/' %}"><a class="navbar-item" href="{% url 'views.uutiset' %}">Uutiset</a></li>
                 <li class="{% active request '^/ry/' %}"><a class="navbar-item" href="{% url 'views.yhdistys' %}">Yhdistys</a></li>
                 <li class="{% active request '^/jaseneksi/' %}"><a class="navbar-item" href="{% url 'views.jaseneksi' %}">Jäseneksi</a></li>

@@ -7,9 +7,9 @@
 
 <h2>Uusimmat uutiset</h2>
 
-<ul>
+<ul itemscope itemtype="http://schema.org/Article">
     {% for n in news %}
-    <li><a href="/uutiset/{{ n.id }}">{{ n.title }}</a> ({{ n.posted|date:'d-m-Y' }})</li>
+    <li><a href="/uutiset/{{ n.id }}" itemprop="headline">{{ n.title }}</a> (<time datetime="{{ n.posted|date:'d-m-Y' }}">{{ n.posted|date:'d-m-Y' }}</time>)</li>
     {% endfor %}
 </ul>
 {% endblock %}

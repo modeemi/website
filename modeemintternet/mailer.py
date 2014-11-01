@@ -117,7 +117,7 @@ def application_rejected(application):
 u"""
 Hei,
 
-Ikävä kyllä {0}n hallitus on hylännyt jäsenhakemuksesi.
+{0}n hallitus on käsitellyt ja ikävä kyllä hylännyt jäsenhakemuksesi.
 
 Tämä voi johtua riittämättömistä perusteluista tunnuksille
 (et ole TTY:n opiskelijajäsen), tai sinulle ei ole voitu

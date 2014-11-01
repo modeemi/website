@@ -69,6 +69,6 @@ server {
     # Other /resources requests go to the uWSGI server
     location / {
         uwsgi_pass  django;
-        include     /etc/uwsgi/params/www.modeemi.fi.params;
+        include     /etc/uwsgi/www.modeemi.fi.params;
     }
 }

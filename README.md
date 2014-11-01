@@ -1,4 +1,12 @@
-# Modeemi ry website
+# [Modeemi ry website](https://www.modeemi.fi)
+
+### Prelude
+
+An in-development site for a Finnish IT club based on Tampere, Finland.
+
+Eventually will support creating users from applications for UNIX machines and other services, automating manual labour of processing membership tasks by utilizing a neat and secure HTML5 app built on top of FOSS techs.
+
+_tl;dr: Intternet 2.0_
 
 ### Developing
 

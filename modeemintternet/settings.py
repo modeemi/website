@@ -31,7 +31,7 @@ except Exception as e:
     print 'No overriding Django secret key file found, using default dummy development key'
 
 # Version number is mandatory and imported from bower.json
-with open('bower.json') as f:
+with open(os.path.abspath(os.path.join(__file__, '..', '..', 'bower.json'))) as f:
     VERSION_NUMBER = json.loads(f.read()).get('version')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -103,8 +103,14 @@ DATABASES = {
     }
 }
 
+try:
+    with open('/etc/modeemintternet/psql.txt', 'r') as f:
+        DATABASES['default']['PASSWORD'] = f.read().strip()
+except Exception as e:
+    print 'No overriding PostgreSQL password file found, using default password'
+
 # Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
+# https://docs.djangoproject.com/en/1.7/topics/i18n/
 LANGUAGE_CODE = 'fi'
 TIME_ZONE = 'Europe/Helsinki'
 USE_I18N = True

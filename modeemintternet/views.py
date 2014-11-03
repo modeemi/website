@@ -70,17 +70,22 @@ def jaseneksi(request):
 
     if not request.POST:
         return render_with_context(request, 'jaseneksi.html',
-                {'form': application_form})
+                                   {'form': application_form})
 
     else:
         application_form = ApplicationForm(request.POST)
+
+        # Password is not saved in the form, so we check it manually
+        # and notify of errors in context the data, if there are any.
         password_matches = \
             request.POST.get('password') == request.POST.get('password_check')
 
         if not (password_matches and application_form.is_valid()):
+            error_msg = 'Salasana ja tarkiste eivät täsmää.'
+            application_form.add_error('password', '')
+            application_form.add_error('password_check', error_msg)
             return render_with_context(request, 'jaseneksi.html',
                                        {'form': application_form})
-
 
     application = application_form.save()
     application.generate_password_hashes(request.POST.get('password'))

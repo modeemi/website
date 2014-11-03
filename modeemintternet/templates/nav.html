@@ -26,6 +26,7 @@
             <ul class="nav navbar-nav">
                 <li class="{% active request '^/$' %}"><a class="navbar-item" href="{% url 'views.etusivu' %}">Etusivu</a></li>
                 <li class="{% active request '^/uutiset/' %}"><a class="navbar-item" href="{% url 'views.uutiset' %}">Uutiset</a></li>
+                <li><a class="navbar-item" href="http://blog.modeemi.fi">Blogi&nbsp;&nbsp;<i class="fa fa-external-link-square"></i></a></li>
                 <li class="{% active request '^/ry/' %}"><a class="navbar-item" href="{% url 'views.yhdistys' %}">Yhdistys</a></li>
                 <li class="{% active request '^/jaseneksi/' %}"><a class="navbar-item" href="{% url 'views.jaseneksi' %}">Jäseneksi</a></li>
                 <li class="{% active request '^/palvelut/' %}"><a class="navbar-item" href="{% url 'views.palvelut' %}">Palvelut</a></li>

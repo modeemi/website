@@ -33,9 +33,9 @@ def code128(application):
     return joined
 
 
-def jasenlasy(canvas, application):
+def invoice(canvas, application):
     """
-    Draw a membership application from canvas and application objects.
+    Draw a membership invoice from to a canvas from an application objects.
 
     @param application {Application} modeemintternet.models.Application object
     @param canvas {Canvas} reportlab.pdfgen.canvas.Canvas object

@@ -80,10 +80,17 @@ def jaseneksi(request):
         password_matches = \
             request.POST.get('password') == request.POST.get('password_check')
 
-        if not (password_matches and application_form.is_valid()):
+        if not application_form.is_valid():
+            return render_with_context(request, 'jaseneksi.html',
+                                       {'form': application_form})
+
+        # If the form is else valid but the password doesn't match or is empty,
+        # mark the form as invalid and display a custom password error message.
+        elif not password_matches:
             error_msg = 'Salasana ja tarkiste eivät täsmää.'
             application_form.add_error('password', '')
             application_form.add_error('password_check', error_msg)
+
             return render_with_context(request, 'jaseneksi.html',
                                        {'form': application_form})
 
@@ -91,22 +98,23 @@ def jaseneksi(request):
     application.generate_password_hashes(request.POST.get('password'))
     application.update_bank_reference()
 
-    # Create the PDF object, using the response object as the file-like object.
+    # Create a PDF buffer and make an emailable invoice PDF.
     pdfBuffer = StringIO()
     c = canvas.Canvas(pdfBuffer)
-    p = helpers.jasenlasy(c, application)
+    p = helpers.invoice(c, application)
 
     # Close the PDF object cleanly, and we're done.
     p.showPage()
     p.save()
 
+    # Get the actual PDF for mailing and close the buffer cleanly.
     pdf = pdfBuffer.getvalue()
     pdfBuffer.close()
 
-    # Send mail about the new application
+    # Send mail about the new application.
     mailer.application_created(application, pdf)
 
-    # Return info page for the application
+    # Return info page for the application.
     return render_with_context(request, 'jaseneksi.html', {'success': True})
 
 def uutiset(request, pk=None):

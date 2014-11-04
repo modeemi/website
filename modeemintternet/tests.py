@@ -12,6 +12,22 @@ from modeemintternet.forms import ApplicationForm
 from modeemintternet.mailer import application_accepted, application_rejected
 
 
+class MembershipApplicationTest(TestCase):
+    """
+    Test making a new application via the form.
+    """
+
+    pass
+
+
+class FeedbackTest(TestCase):
+    """
+    Test leaving feedback via the form.
+    """
+
+    pass
+
+
 class ApplicationMailerTest(TestCase):
     """
     Check that mail is sent to users when creating an application.

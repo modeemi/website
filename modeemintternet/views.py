@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
 from reportlab.pdfgen import canvas
@@ -123,3 +123,10 @@ def uutiset(request, pk=None):
                 {'news': News.objects.filter(id=pk)})
     return render_with_context(request, 'uutiset.html',
             {'news': News.objects.order_by('-id')[:20]})
+
+def viitenumero(request, username):
+    application = get_object_or_404(ApplicationForm, primary_nick=username)
+    if not application.bank_reference:
+        application.update_bank_reference()
+    return HttpResponse('Viitteenne on {}.'.format(application.bank_reference),
+                        content_type='text/plain')

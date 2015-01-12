@@ -33,6 +33,7 @@ urlpatterns = patterns('',
     url(r'^laitteisto/halutaan/$', views.halutaan),
 
     url(r'^api/', include(router.urls)),
+    url(r'^viitenumero/(?P<username>.+)/$', views.viitenumero),
 )
 
 if settings.DEBUG:

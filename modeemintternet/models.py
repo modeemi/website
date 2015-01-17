@@ -92,15 +92,19 @@ class Application(models.Model):
         """
         Update the user's bank payment reference number.
         This method has to be called AFTER the object has been saved.
+
+        Reference to:
+
+            https://www.fkl.fi/en/material/publications/Publications/The_reference_number_and_the_check_digit.pdf
         """
 
-        padded = str(self.id).zfill(6)
+        padded = str(self.id).zfill(4)
         multiplicators = (7, 3, 1)
         inverse = map(int, padded[::-1])
         result = sum(multiplicators[i % 3] * x for i, x in enumerate(inverse))
         checksum = str((10 - (result % 10)) % 10)
 
-        self.bank_reference = padded[0:-1] + checksum
+        self.bank_reference = padded + checksum
         self.save()
 
         return self.bank_reference

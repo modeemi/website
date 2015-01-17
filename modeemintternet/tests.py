@@ -88,3 +88,49 @@ class ApplicationMailerTest(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, u'Modeemi ry - Jäsenhakemuksesi on käsitelty')
 
+
+class ApplicationBankReferenceNumberTest(TestCase):
+    """
+    Test the generation of an user bank reference number.
+    """
+
+    def setUp(self):
+        self.application = Application(
+                first_name='Pekka',
+                last_name='Sauron',
+                email='pekka.sauron@mordor.com',
+                reason='Koska voi',
+                primary_nick='pekkas',
+                secondary_nick='sauronp',
+                shell=Application.BASH,
+                funet_rules_accepted=True)
+
+        self.application.save()
+        self.application.generate_password_hashes(password='pekkaonparas:D')
+        self.application.update_bank_reference()
+
+    def test_reference_number_genration(self):
+        """
+        Test that an application's reference number is calculated correctly.
+
+        Preceding zeros don't actually matter,
+        we're just padding the numbers for consistency.
+        """
+
+        comparisons = [
+                (1, '00013'),
+                (2, '00026'),
+                (3, '00039'),
+                (42, '00424'),
+                (420, '04200'),
+                (666, '06664'),
+                (9001, '90010')
+        ]
+
+        for (id, bank_reference) in comparisons:
+            self.application.id = id
+            self.application.save()
+            self.application.update_bank_reference()
+            self.application.save()
+
+            self.assertEqual(self.application.bank_reference, bank_reference)

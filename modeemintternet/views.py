@@ -8,7 +8,7 @@ from reportlab.pdfgen import canvas
 from StringIO import StringIO
 
 from modeemintternet import mailer, helpers, settings
-from modeemintternet.models import Soda, News
+from modeemintternet.models import Soda, News, Application
 from modeemintternet.forms import ApplicationForm, FeedbackForm
 
 def render_with_context(request, template, params={}):
@@ -125,7 +125,7 @@ def uutiset(request, pk=None):
             {'news': News.objects.order_by('-id')[:20]})
 
 def viitenumero(request, username):
-    application = get_object_or_404(ApplicationForm, primary_nick=username)
+    application = get_object_or_404(Application, primary_nick=username)
     if not application.bank_reference:
         application.update_bank_reference()
     return HttpResponse('Viitteenne on {}.'.format(application.bank_reference),

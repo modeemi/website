@@ -1,5 +1,7 @@
 # [Modeemi ry website](https://www.modeemi.fi)
 
+[![Requirements Status](https://requires.io/github/aleksih/modeemintternet/requirements.svg?branch=master)](https://requires.io/github/aleksih/modeemintternet/requirements/?branch=master)
+
 ### Prelude
 
 An in-development site for a Finnish IT club based on Tampere, Finland.

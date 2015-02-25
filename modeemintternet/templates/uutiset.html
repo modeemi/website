@@ -15,7 +15,7 @@
 </span>
 </p>
 
-<p class="news" itemprop="articleBody">{{ n.text|linebreaks }}</p>
+<p class="news" itemprop="articleBody">{{ n.text|urlize|linebreaks }}</p>
 
 {% endfor %}
 {% endblock %}

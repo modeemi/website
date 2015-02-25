@@ -97,7 +97,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'modeemintternet',
         'USER': 'modeemintternet',
-        'PASSWORD': 'modeemintternet',
+        'PASSWORD': 'modeemintternetonparraim',
         'HOST': 'localhost',
         'PORT': '',
     }

@@ -1,6 +1,6 @@
 {
   "name": "modeemintternet",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "authors": [
     "Aleksi Häkli <aleksi.hakli@gmail.com>"
   ],
@@ -34,7 +34,6 @@
   "dependencies": {
     "bootstrap": "~3.2.0",
     "jquery": "~2.1.1",
-    "font-awesome": "~4.2.0",
-    "jQuery-linkify": "~1.1.7"
+    "font-awesome": "~4.2.0"
   }
 }

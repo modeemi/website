@@ -16,7 +16,7 @@ import json
 
 SETTINGS_DIR = '/etc/modeemintternet'
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-PROJECT_DIR = os.path.join(BASE_DIR, 'modeemintternet')
+PROJECT_DIR = os.path.abspath(os.path.join(BASE_DIR, 'modeemintternet'))
 
 # Quick-start settings, check for deployment
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/

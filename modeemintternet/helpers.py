@@ -44,10 +44,8 @@ def invoice(canvas, application):
     p = canvas
 
     # Logo on top of the page
-    textPath = os.path.join(settings.PROJECT_DIR, 'static', 'logo', 'text.eps')
-    wizardPath = os.path.join(settings.PROJECT_DIR, 'static', 'logo', 'wizard.eps')
+    textPath = os.path.abspath(os.path.join(settings.PROJECT_DIR, 'static', 'logo', 'text.eps'))
     p.drawImage(textPath, 50, 710, height=100, preserveAspectRatio=True, anchor='nw')
-    p.drawImage(wizardPath, 310, 500, height=350, preserveAspectRatio=True, anchor='nw')
 
     p.drawString(70, 720, 'Modeemi ry c/o TTY')
     p.drawString(70, 700, 'PL 553')

@@ -26,7 +26,6 @@ class ApplicationForm(ModelForm):
         self.fields['email'].label = 'Sähköpostini on (ensisijaisesti tut.fi)'
         self.fields['first_name'].label = 'Etunimeni on'
         self.fields['last_name'].label = 'Sukunimeni on'
-        self.fields['reason'].label = 'Peruste jäsenyyden hakemiselle, jos en ole opiskelija'
         self.fields['primary_nick'].label = 'Ensisijaisesti haluamani käyttäjätunnus on'
         self.fields['secondary_nick'].label = 'Vaihtoehto, jos ensisijainen on jo käytössä'
         self.fields['shell'].label = 'Haluamani komentokehoite kerhon *nix -koneilla'

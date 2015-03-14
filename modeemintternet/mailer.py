@@ -119,10 +119,6 @@ Hei,
 
 {0}n hallitus on käsitellyt ja ikävä kyllä hylännyt jäsenhakemuksesi.
 
-Tämä voi johtua riittämättömistä perusteluista tunnuksille
-(et ole TTY:n opiskelijajäsen), tai sinulle ei ole voitu
-myöntää jäsenyyttä ja tätä myöten tunnusta muusta syystä.
-
 Lisätietoja voit tulla tiedustelemaan kerhohuoneelta tai
 sähköpostitse osoitteesta {1}.
 

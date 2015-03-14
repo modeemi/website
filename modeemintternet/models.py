@@ -53,7 +53,6 @@ class Application(models.Model):
     first_name = models.CharField(max_length=32, blank=False)
     last_name = models.CharField(max_length=32)
     email = models.EmailField()
-    reason = models.CharField(max_length=256, blank=True)
     primary_nick = models.CharField(max_length=32)
     secondary_nick = models.CharField(max_length=32)
     shell = models.CharField(max_length=32, choices=SHELL_OPTIONS, default=BASH)

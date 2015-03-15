@@ -23,7 +23,7 @@ class ApplicationForm(ModelForm):
         self.helper.form_action = '/jaseneksi/'
         self.helper.add_input(Submit('submit', 'Lähetä hakemus'))
 
-        self.fields['email'].label = 'Sähköpostini on (ensisijaisesti tut.fi)'
+        self.fields['email'].label = 'Sähköpostini on'
         self.fields['first_name'].label = 'Etunimeni on'
         self.fields['last_name'].label = 'Sukunimeni on'
         self.fields['primary_nick'].label = 'Ensisijaisesti haluamani käyttäjätunnus on'

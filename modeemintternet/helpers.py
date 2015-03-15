@@ -72,7 +72,7 @@ def invoice(canvas, application):
     p.rect(40, 400, 500, 30)
 
     # Line delimiting the pre-filled and user-filled parts
-    p.line(300, 370, 300, 580)
+    p.line(300, 400, 300, 580)
 
     # Draw the bank information grid
     # Horizontal lines

@@ -19,10 +19,13 @@
         </span>
     </p>
 
-    <p>Alkaa: {{ e.starts|date:"Y-m-d" }} {{ e.starts|time:"G:i" }}</p>
-    {% if e.ends %}
-    <p>Loppuu: {{ e.ends|date:"Y-m-d" }} {{ e.ends|time:"G:i" }}</p>
-    {% endif %}
+    <p>
+        <small><b>Alkaa</b>: {{ e.starts|date:"Y-m-d" }} {{ e.starts|time:"G:i" }}</small>
+        {% if e.ends %}
+        <br />
+        <small><b>Loppuu</b>: {{ e.ends|date:"Y-m-d" }} {{ e.ends|time:"G:i" }}</small>
+        {% endif %}
+    </p>
 
     <p class="event" itemprop="description">{{ e.description|urlize|linebreaks }}</p>
 </div>

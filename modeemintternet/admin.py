@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 from django.contrib.auth.models import User
-from modeemintternet.models import News, Soda, Application, Feedback
+from modeemintternet.models import News, Event, Soda, Application, Feedback
 from modeemintternet import mailer
 
 
@@ -93,6 +93,7 @@ class ApplicationAdmin(admin.ModelAdmin):
     actions = ('accept', 'reject')
 
 admin.site.register(News, NewsAdmin)
+admin.site.register(Event)
 admin.site.register(Soda, SodaAdmin)
 admin.site.register(Application, ApplicationAdmin)
 admin.site.register(Feedback)

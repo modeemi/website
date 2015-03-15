@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Tapahtumat</h2>
+<p>
+    <a class="event-feed-link" href="/feed/tapahtumat.ics"><span class="fa fa-calendar"></span>&nbsp;&nbsp;lataa .ics</a>
+</p>
+
+{% if not events %}
+<h3>Tapahtumia ei löytynyt :(</h3>
+{% endif %}
+
+{% for e in events %}
+<div itemscope itemtype="http://schema.org/Event">
+    <hr />
+    <p>
+        <span class="event-header" itemprop="name"><a href="{% url 'views.tapahtumat' pk=e.id %}">{{ e.title }}</a></span>
+        <span class="event-timestamp pull-right">
+            <small itemprop="author"><time itemprop="datePublished" datetime="{{ e.posted|date:"Y-m-d"}}">{{ e.posted }}</time> {% if e.poster %} ({{ e.poster.username }}){% endif %}</small>
+        </span>
+    </p>
+
+    <p>Alkaa: {{ e.starts|date:"Y-m-d" }} {{ e.starts|time:"G:i" }} UTC</p>
+    {% if e.ends %}
+    <p>Loppuu: {{ e.ends|date:"Y-m-d" }} {{ e.ends|time:"G:i" }} UTC</p>
+    {% endif %}
+
+    <p class="event" itemprop="description">{{ n.description|urlize|linebreaks }}</p>
+</div>
+
+{% endfor %}
+{% endblock %}

@@ -8,7 +8,7 @@ from reportlab.pdfgen import canvas
 from StringIO import StringIO
 
 from modeemintternet import mailer, helpers, settings
-from modeemintternet.models import Soda, News, Application
+from modeemintternet.models import News, Event, Soda, Application
 from modeemintternet.forms import ApplicationForm, FeedbackForm
 
 def render_with_context(request, template, params={}):
@@ -122,7 +122,14 @@ def uutiset(request, pk=None):
         return render_with_context(request, 'uutiset.html',
                 {'news': News.objects.filter(id=pk)})
     return render_with_context(request, 'uutiset.html',
-            {'news': News.objects.order_by('-id')[:20]})
+            {'news': News.objects.order_by('-id')})
+
+def tapahtumat(request, pk=None):
+    if pk:
+        return render_with_context(request, 'tapahtumat.html',
+                {'events': Event.objects.filter(id=pk)})
+    return render_with_context(request, 'tapahtumat.html',
+            {'events': Event.objects.order_by('-starts')})
 
 def viitenumero(request, username):
     application = get_object_or_404(Application, primary_nick=username)

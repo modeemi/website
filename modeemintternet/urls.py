@@ -6,6 +6,7 @@ admin.autodiscover()
 
 from rest_framework import routers
 from modeemintternet import settings, views, apiviews
+from modeemintternet.feeds import EventFeed
 
 router = routers.DefaultRouter()
 router.register(r'news', apiviews.NewsViewSet)
@@ -24,6 +25,9 @@ urlpatterns = patterns('',
     url(r'^uutiset/$', views.uutiset),
     url(r'^uutiset/(?P<pk>\d+)/$', views.uutiset),
 
+    url(r'^tapahtumat/$', views.tapahtumat),
+    url(r'^tapahtumat/(?P<pk>\d+)/$', views.tapahtumat),
+
     # Sub level views
     url(r'^ry/saannot/$', views.saannot),
     url(r'^ry/hallitus/$', views.hallitus),
@@ -31,6 +35,8 @@ urlpatterns = patterns('',
     url(r'^palvelut/backup/$', views.backup),
     url(r'^palvelut/password/$', views.password),
     url(r'^laitteisto/halutaan/$', views.halutaan),
+
+    url(r'^feed/tapahtumat.ics$', EventFeed()),
 
     url(r'^api/', include(router.urls)),
     url(r'^viitenumero/(?P<username>.+)/$', views.viitenumero),

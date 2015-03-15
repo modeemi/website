@@ -4,6 +4,7 @@ from passlib.hash import sha512_crypt
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+from django.core.urlresolvers import reverse
 
 
 class News(models.Model):
@@ -14,11 +15,34 @@ class News(models.Model):
     poster = models.ForeignKey(User, editable=False, null=True)
 
     def __unicode__(self):
-        return u'{0} ({1})'.format(self.title, self.posted)
+        return u'{0} (luotu {1} UTC)'.format(self.title, self.posted)
 
     class Meta:
         verbose_name = 'Uutine'
         verbose_name_plural = 'Uutineet'
+
+
+class Event(models.Model):
+    title = models.TextField(blank=False)
+    description = models.TextField(blank=True)
+    location = models.TextField(blank=True)
+    lat = models.FloatField(default=61.44999)
+    lon = models.FloatField(default=23.85680)
+    starts = models.DateTimeField()
+    ends = models.DateTimeField(blank=True)
+    posted = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now_add=True, auto_now=True)
+    poster = models.ForeignKey(User, editable=False, null=True)
+
+    def __unicode__(self):
+        return u'{0} (alkaa {1} UTC)'.format(self.title, self.starts)
+
+    def get_absolute_url(self):
+        return reverse('modeemintternet.views.tapahtumat', args=[unicode(self.id)])
+
+    class Meta:
+        verbose_name = 'Tapahtuma'
+        verbose_name_plural = 'Tapahtumat'
 
 
 class Soda(models.Model):

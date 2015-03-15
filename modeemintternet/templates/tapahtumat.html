@@ -33,7 +33,7 @@
         {% endif %}
         {% if e.location %}
         <br />
-        <small><b>Paikka</b>: {{ e.location}}</small>
+        <small><b>Paikka</b>: <a href="https://www.google.com/maps/search/{% if e.location %}{{ e.location.split|join:'+' }}{% endif %}{% if e.lat and e.lon %}/@{{ e.lat|safe }},{{ e.lon|safe }}{% endif %}">{{ e.location }}</a></small>
         {% endif %}
     </p>
 

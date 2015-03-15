@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Tapahtumat</h2>
-<p>
-    <a class="event-feed-link" href="/feed/tapahtumat.ics"><span class="fa fa-calendar"></span>&nbsp;&nbsp;lataa .ics</a>
+<p class="event-header-link">
+    <a href="/feed/tapahtumat.ics"><span class="fa fa-calendar"></span>&nbsp;&nbsp;Lataa .ics feed</a>
+    <br />
+    {% if past %}
+    <a href="{% url 'views.tapahtumat' %}"><span class="fa fa-link"></span>&nbsp;&nbsp;Tulevat tapahtumat</a>
+    {% else %}
+    <a href="{% url 'views.menneet' %}"><span class="fa fa-link"></span>&nbsp;&nbsp;Menneet tapahtumat</a>
+    {% endif %}
 </p>
 
 {% if not events %}
-<h3>Tapahtumia ei löytynyt :(</h3>
+<h3>Tapahtumia ei löytynyt :( Kannattaa tarkistaa URL.</h3>
 {% endif %}
 
 {% for e in events %}

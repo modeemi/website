@@ -27,6 +27,7 @@ urlpatterns = patterns('',
 
     url(r'^tapahtumat/$', views.tapahtumat),
     url(r'^tapahtumat/(?P<pk>\d+)/$', views.tapahtumat),
+    url(r'^tapahtumat/menneet/$', views.menneet),
 
     # Sub level views
     url(r'^ry/saannot/$', views.saannot),

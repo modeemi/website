@@ -3,6 +3,7 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
+from django.utils import timezone
 
 from reportlab.pdfgen import canvas
 from StringIO import StringIO
@@ -129,7 +130,12 @@ def tapahtumat(request, pk=None):
         return render_with_context(request, 'tapahtumat.html',
                 {'events': Event.objects.filter(id=pk)})
     return render_with_context(request, 'tapahtumat.html',
-            {'events': Event.objects.order_by('-starts')})
+            {'events': Event.objects.filter(starts__gte=timezone.now()).order_by('starts')})
+
+def menneet(request):
+    return render_with_context(request, 'tapahtumat.html',
+            {'events': Event.objects.filter(starts__lt=timezone.now()).order_by('-starts'),
+             'past': True})
 
 def viitenumero(request, username):
     application = get_object_or_404(Application, primary_nick=username)

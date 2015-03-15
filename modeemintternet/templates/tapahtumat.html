@@ -24,7 +24,7 @@
     <p>Loppuu: {{ e.ends|date:"Y-m-d" }} {{ e.ends|time:"G:i" }} UTC</p>
     {% endif %}
 
-    <p class="event" itemprop="description">{{ n.description|urlize|linebreaks }}</p>
+    <p class="event" itemprop="description">{{ e.description|urlize|linebreaks }}</p>
 </div>
 
 {% endfor %}

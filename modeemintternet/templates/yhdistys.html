@@ -7,16 +7,15 @@
 <h3>Yhteystietoja</h3>
 
 <ul>
-    <li><a href="{% url 'views.saannot' %}">Säännöt</a></li>
-    <li><a href="{% url 'views.yhteystiedot' %}">Yhteystiedot</a></li>
     <li><a href="{% url 'views.hallitus' %}">Hallitus</a></li>
+    <li><a href="{% url 'views.yhteystiedot' %}">Yhteystiedot</a></li>
+    <li><a href="{% url 'views.saannot' %}">Säännöt</a></li>
+    <li><a href="{% url 'views.rekisteriseloste' %}">Rekisteriseloste</a></li>
 </ul>
 
 <h3>Jäsenille tai jäseneksi haluaville</h3>
 <ul>
     <li><a href="{% url 'views.jaseneksi' %}">Jäsenhakemus</a></li>
-    {# <li><a href="/ainaisjasen/">Ainaisjäsenmaksun viitenumero</a></li> #}
-    {# <li><a href="/hooka/">HOOKA</a></li> #}
     {# <li><a href="/kulukorvausanomus/">Kulukorvausanomus hallituksen hyväksymille kuluille</a></li> #}
 </ul>
 {% endblock %}

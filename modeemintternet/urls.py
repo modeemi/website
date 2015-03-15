@@ -31,6 +31,7 @@ urlpatterns = patterns('',
 
     # Sub level views
     url(r'^ry/saannot/$', views.saannot),
+    url(r'^ry/rekisteriseloste/$', views.rekisteriseloste),
     url(r'^ry/hallitus/$', views.hallitus),
     url(r'^ry/yhteystiedot/$', views.yhteystiedot),
     url(r'^palvelut/backup/$', views.backup),

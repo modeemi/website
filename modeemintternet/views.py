@@ -51,6 +51,9 @@ def palaute(request):
 def saannot(request):
     return render_with_context(request, 'saannot.html')
 
+def rekisteriseloste(request):
+    return render_with_context(request, 'rekisteriseloste.html')
+
 def hallitus(request):
     return render_with_context(request, 'hallitus.html')
 

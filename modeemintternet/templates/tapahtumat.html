@@ -25,6 +25,10 @@
         <br />
         <small><b>Loppuu</b>: {{ e.ends|date:"Y-m-d" }} {{ e.ends|time:"G:i" }}</small>
         {% endif %}
+        {% if e.location %}
+        <br />
+        <small><b>Paikka</b>: {{ e.location}}</small>
+        {% endif %}
     </p>
 
     <p class="event" itemprop="description">{{ e.description|urlize|linebreaks }}</p>

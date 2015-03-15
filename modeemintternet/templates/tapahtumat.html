@@ -19,9 +19,9 @@
         </span>
     </p>
 
-    <p>Alkaa: {{ e.starts|date:"Y-m-d" }} {{ e.starts|time:"G:i" }} UTC</p>
+    <p>Alkaa: {{ e.starts|date:"Y-m-d" }} {{ e.starts|time:"G:i" }}</p>
     {% if e.ends %}
-    <p>Loppuu: {{ e.ends|date:"Y-m-d" }} {{ e.ends|time:"G:i" }} UTC</p>
+    <p>Loppuu: {{ e.ends|date:"Y-m-d" }} {{ e.ends|time:"G:i" }}</p>
     {% endif %}
 
     <p class="event" itemprop="description">{{ e.description|urlize|linebreaks }}</p>

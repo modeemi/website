@@ -17,6 +17,9 @@ class News(models.Model):
     def __unicode__(self):
         return u'{0} (luotu {1} UTC)'.format(self.title, self.posted)
 
+    def get_absolute_url(self):
+        return reverse('modeemintternet.views.uutiset', args=[unicode(self.id)])
+
     class Meta:
         verbose_name = 'Uutine'
         verbose_name_plural = 'Uutineet'

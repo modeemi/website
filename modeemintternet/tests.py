@@ -6,11 +6,27 @@ Unit tests for modeemintternet app.
 
 from django.test import Client, TestCase
 from django.core import mail
+from django.core.urlresolvers import reverse
 
 from modeemintternet.models import Application
 from modeemintternet.forms import ApplicationForm
 from modeemintternet.mailer import application_accepted, application_rejected
 
+class FeedTest(TestCase):
+    def test_news_rss_feed_response_codes(self):
+        c = Client()
+        response = c.get('/feed/uutiset.rss')
+        self.assertEqual(response.status_code, 200)
+
+    def test_event_rss_feed_response_codes(self):
+        c = Client()
+        response = c.get('/feed/tapahtumat.rss')
+        self.assertEqual(response.status_code, 200)
+
+    def test_event_ical_feed_response_codes(self):
+        c = Client()
+        response = c.get('/feed/tapahtumat.ics')
+        self.assertEqual(response.status_code, 200)
 
 class MembershipApplicationTest(TestCase):
     """

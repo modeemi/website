@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Uutiset</h2>
+<p class="news-header-link">
+    <a href="/feed/uutiset.rss"><span class="fa fa-list-alt"></span>&nbsp;&nbsp;Lataa .rss feed</a>
+</p>
 
 {% if not news %}
 <h3>Uutisia ei löytynyt :( Kannattaa tarkistaa URL.</h3>

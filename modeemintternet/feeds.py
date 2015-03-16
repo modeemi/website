@@ -1,8 +1,37 @@
+from django.contrib.syndication.views import Feed
+from django.core.urlresolvers import reverse
 from django_ical.views import ICalFeed
-from modeemintternet.models import Event
+from modeemintternet.models import News, Event
 
 
-class EventFeed(ICalFeed):
+class NewsRSSFeed(Feed):
+    title = "Modeemi ry uutiset"
+    link = "/uutiset/"
+
+    def items(self):
+        return News.objects.order_by('-posted')
+
+    def item_title(self, news):
+        return news.title
+
+    def item_description(self, news):
+        return news.text
+
+class EventRSSFeed(Feed):
+    title = "Modeemi ry tapahtumat"
+    link = "/tapahtumat/"
+
+    def items(self):
+        return Event.objects.order_by('-starts')
+
+    def item_title(self, event):
+        return event.title
+
+    def item_description(self, event):
+        return event.description
+
+
+class EventICalFeed(ICalFeed):
     """
     Modeemi event iCal feed.
     """

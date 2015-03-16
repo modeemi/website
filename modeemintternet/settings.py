@@ -25,7 +25,7 @@ PROJECT_DIR = os.path.abspath(os.path.join(BASE_DIR, 'modeemintternet'))
 SECRET_KEY = 'DummyDevelopmentDjangoSecret'
 
 try:
-    with open('/etc/modeemintternet/secret.txt', 'r') as f:
+    with open(os.path.join(SETTINGS_DIR, 'secret.txt'), 'r') as f:
         SECRET_KEY = f.read().strip()
 except Exception as e:
     print 'No overriding Django secret key file found, using default dummy development key'
@@ -104,7 +104,7 @@ DATABASES = {
 }
 
 try:
-    with open('/etc/modeemintternet/psql.txt', 'r') as f:
+    with open(os.path.join(SETTINGS_DIR, 'psql.txt'), 'r') as f:
         DATABASES['default']['PASSWORD'] = f.read().strip()
 except Exception as e:
     print 'No overriding PostgreSQL password file found, using default password'
@@ -139,8 +139,11 @@ try:
     import ldap
     from django_auth_ldap.config import LDAPSearch, PosixGroupType
 
-    with open('/etc/modeemintternet/ldap.txt', 'r') as f:
-        AUTH_LDAP_BIND_PASSWORD = f.read().strip()
+    try:
+        with open(os.path.join(SETTINGS_DIR, 'ldap.txt'), 'r') as f:
+            AUTH_LDAP_BIND_PASSWORD = f.read().strip()
+    except Exception as e:
+        print 'No overriding LDAP secret could be loaded, using default dummy development key'
 
     # Some example settings, you will probably have to revise these
     CN_BIND = 'web'
@@ -172,7 +175,6 @@ try:
     AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600  # or one hour
 
 except Exception as e:
-    print 'No overriding LDAP secret could be loaded, using default dummy development key'
     print e
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

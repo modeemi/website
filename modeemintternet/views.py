@@ -133,11 +133,11 @@ def tapahtumat(request, pk=None):
         return render_with_context(request, 'tapahtumat.html',
                 {'events': Event.objects.filter(id=pk)})
     return render_with_context(request, 'tapahtumat.html',
-            {'events': Event.objects.filter(starts__gte=timezone.now()).order_by('starts')})
+            {'events': Event.objects.filter(ends__gte=timezone.now()).order_by('starts')})
 
 def menneet(request):
     return render_with_context(request, 'tapahtumat.html',
-            {'events': Event.objects.filter(starts__lt=timezone.now()).order_by('-starts'),
+            {'events': Event.objects.filter(ends__lt=timezone.now()).order_by('-starts'),
              'past': True})
 
 def viitenumero(request, username):

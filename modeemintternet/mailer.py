@@ -136,7 +136,7 @@ def feedback_received(feedback):
     :param feedback: modeemintternet Feedback object.
     """
 
-    topic = '{0} - Palaute verkkosivujen kautta'.format(ORGANISATION)
+    topic = '{0} - Palaute verkkosivujen kautta'.format(ORGANIZATION)
     msg = \
 u"""
 Hei,
@@ -147,7 +147,7 @@ verkkosivujen välityksellä:
 {1}
 
 Voit tarkastella palautetta myös osoitteessa
-    https://www.modeemi.fi/admin/modeemintternet/feedback/{3}/
+    https://www.modeemi.fi/admin/modeemintternet/feedback/{2}/
 
 Ystävällisin terveisin,
 {3}n hallitusautomaatiobotti

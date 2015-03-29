@@ -48,6 +48,7 @@ def palaute(request):
                 {'form': feedback_form})
 
     feedback = feedback_form.save()
+    mailer.feedback_received(feedback)
     return render_with_context(request, 'palaute.html',
             {'form': feedback_form, 'success': True})
 

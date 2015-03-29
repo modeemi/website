@@ -4,6 +4,7 @@
 Custom mailer for the awesome modeemintternet super portal.
 """
 
+import textwrap
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from reportlab.pdfgen import canvas
@@ -127,3 +128,32 @@ Ystävällisin terveisin,
 """.format(ORGANIZATION, ORGANIZATION_EMAIL)
 
     EmailMessage(topic, msg, ORGANIZATION, [application.email]).send()
+
+def feedback_received(feedback):
+    """
+    Sends an email to the board notifying about new feedback.
+
+    :param feedback: modeemintternet Feedback object.
+    """
+
+    topic = '{0} - Palaute verkkosivujen kautta'.format(ORGANISATION)
+    msg = \
+u"""
+Hei,
+
+Henkilö {0} on jättänyt seuraavan palautteen hallitukselle
+verkkosivujen välityksellä:
+
+{1}
+
+Voit tarkastella palautetta myös osoitteessa
+    https://www.modeemi.fi/admin/modeemintternet/feedback/{3}/
+
+Ystävällisin terveisin,
+{3}n hallitusautomaatiobotti
+""".format(feedback.sender,
+        textwrap.fill(feedback.message),
+        feedback.id,
+        ORGANIZATION)
+
+    EmailMessage(topic, msg, ORGANIZATION, [ORGANIZATION_EMAIL]).send()

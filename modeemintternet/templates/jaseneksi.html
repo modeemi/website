@@ -25,7 +25,15 @@
 
 {% if success %}
 <div class="alert alert-info" role="alert">
-    <p>Kiitos jäsenhakemuksestasi! Sinulle on lähetetty jäsenmaksutiedot sähköpostilla.</p>
+    <p>
+    Kiitos jäsenhakemuksestasi!
+    {% if mailingSuccess %}
+    Sinulle on lähetetty jäsenmaksutiedot sähköpostilla.
+    {% else %}
+    Ikävä kyllä emme pystyneet jostain syystä lähettämään sinulle sähköpostilaskua; maksathan jäsenmaksun <a href="{% url 'views.yhteystiedot' %}">yhteystiedot-sivun</a> pankkitilille viestillä "Jäsenmaksu $vuosi $nimi".
+    {% endif %}
+    Hallitus käsittelee jäsenhakemuksesi seuraavassa kokouksessa ja on sinuun yhteydessä kokouksen jälkeen.
+    </p>
 </div>
 {% else %}
 {% load crispy_forms_tags %}

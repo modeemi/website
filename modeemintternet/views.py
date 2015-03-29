@@ -5,12 +5,15 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.utils import timezone
 
+import logging
 from reportlab.pdfgen import canvas
 from StringIO import StringIO
 
 from modeemintternet import mailer, helpers, settings
 from modeemintternet.models import News, Event, Soda, Application
 from modeemintternet.forms import ApplicationForm, FeedbackForm
+
+logger = logging.getLogger(__name__)
 
 def render_with_context(request, template, params={}):
     return render_to_response(template, params,
@@ -76,6 +79,7 @@ def jaseneksi(request):
         return render_with_context(request, 'jaseneksi.html',
                                    {'form': application_form})
 
+    # Check form validity for password errors
     else:
         application_form = ApplicationForm(request.POST)
 
@@ -115,11 +119,19 @@ def jaseneksi(request):
     pdf = pdfBuffer.getvalue()
     pdfBuffer.close()
 
-    # Send mail about the new application.
-    mailer.application_created(application, pdf)
+    # Try and send mail about the application, otherwise log and show error message.
+    mailingSuccess = True
+    try:
+        mailer.application_created(application, pdf)
+    except Exception as e:
+        mailingSuccess = False
+        logger.error('Failed to send mail about the new application %s' % e)
 
     # Return info page for the application.
-    return render_with_context(request, 'jaseneksi.html', {'success': True})
+    return render_with_context(request, 'jaseneksi.html', {
+        'success': True
+        , 'mailingSuccess': mailingSuccess
+    })
 
 def uutiset(request, pk=None):
     if pk:

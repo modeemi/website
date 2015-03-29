@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from passlib.hash import sha512_crypt
+from passlib.context import CryptContext
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
@@ -93,8 +93,9 @@ class Application(models.Model):
     bank_reference = models.CharField(max_length=6, editable=False)
 
     # Password hashes
-    sha512 = models.CharField(max_length=128)
     pbkdf2_sha256 = models.CharField(max_length=128)
+    sha512_crypt = models.CharField(max_length=128)
+    des_crypt = models.CharField(max_length=128)
 
     # Processing status
     application_accepted = models.BooleanField(default=False)
@@ -106,11 +107,19 @@ class Application(models.Model):
 
     def generate_password_hashes(self, password):
         """
-        Generate password hashes with SHA1, SHA-256
+        Generate password hashes with SHA512, PBKDF2/SHA-256 and DES crypt.
+
+        Refer to passlib documentation for adding new hashers:
+
+            https://pythonhosted.org/passlib/lib/passlib.hash.html
         """
 
-        self.sha512 = sha512_crypt.encrypt(password)
-        self.pbkdf2_sha256 = make_password(password, hasher='pbkdf2_sha256')
+        password_schemes = ['pbkdf2_sha256', 'sha512_crypt', 'des_crypt']
+        pwd_context = CryptContext(schemes=password_schemes)
+
+        self.pbkdf2_sha256 = pwd_context.encrypt(password, scheme='pbkdf2_sha256')
+        self.sha512_crypt = pwd_context.encrypt(password, scheme='sha512_crypt')
+        self.des_crypt = pwd_context.encrypt(password, scheme='des_crypt')
 
         self.save()
 

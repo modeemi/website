@@ -11,8 +11,9 @@ class ApplicationForm(ModelForm):
 
     class Meta:
         model = Application
-        exclude = ('sha512', 'pbkdf2_sha256', 'application_accepted',
-                'application_rejected', 'application_processed')
+        exclude = ('pbkdf2_sha256', 'sha512_crypt', 'des_crypt',
+                'application_accepted', 'application_rejected',
+                'application_processed')
 
     def __init__(self, *args, **kwargs):
         super(ApplicationForm, self).__init__(*args, **kwargs)

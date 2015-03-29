@@ -1,6 +1,6 @@
 # [Modeemi ry website](https://www.modeemi.fi)
 
-[![Requirements Status](https://requires.io/github/aleksih/modeemintternet/requirements.svg?branch=master)](https://requires.io/github/aleksih/modeemintternet/requirements/?branch=master)
+[![Requirements Status](https://requires.io/github/aleksih/modeemintternet/requirements.svg?branch=master)](https://requires.io/github/aleksih/modeemintternet/requirements/?branch=master) [![Build Status](https://travis-ci.org/aleksih/modeemintternet.svg?branch=master)](https://travis-ci.org/aleksih/modeemintternet)
 
 ### Prelude
 

@@ -9,3 +9,4 @@ script:
 before_script:
     - psql -U postgres -c "CREATE USER modeemintternet WITH PASSWORD 'modeemintternetonparraim';"
     - psql -U postgres -c "ALTER USER modeemintternet CREATEDB;"
+    - psql -U postgres -c "CREATE DATABASE modeemintternet ENCODING 'UTF8' OWNER modeemintternet;"

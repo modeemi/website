@@ -4,15 +4,17 @@
 
 ### Prelude
 
-An in-development site for a Finnish IT club based on Tampere, Finland.
+Modeemi ry website for the Finnish IT club based on Tampere, Finland.
 
-Eventually will support creating users from applications for UNIX machines and other services, automating manual labour of processing membership tasks by utilizing a neat and secure HTML5 app built on top of FOSS techs.
+Built on top of Python 2, Django and PostgreSQL.
 
-_tl;dr: Intternet 2.0_
+_tl;dr: Intternet 2.x_
 
 ### Developing
 
-This guide assumes you have some experience in web development and doesn't have 100% coverage.
+This guide assumes you have some experience in Django development and doesn't have 100% coverage. 
+
+You can find plenty of tutorials on the Intternets describing the specifics of Django and assorted plugins.
 
 Install apt and npm packages
 
@@ -40,7 +42,6 @@ Log in as the correct user, get source and create a virtualenv for the project
 Create, sync and migrate the DB, if you're using PostgreSQL configure credentials in `settings.py`.
 
     # first create the database as root as per settings.py credentials
-    python manage.py syncdb
     python manage.py migrate
 
 For production, remember to collect static files and install fixtures:

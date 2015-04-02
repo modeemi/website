@@ -1,6 +1,6 @@
 # [Modeemi ry website](https://www.modeemi.fi)
 
-[![Requirements Status](https://requires.io/github/aleksih/modeemintternet/requirements.svg?branch=master)](https://requires.io/github/aleksih/modeemintternet/requirements/?branch=master) [![Build Status](https://travis-ci.org/aleksih/modeemintternet.svg?branch=master)](https://travis-ci.org/aleksih/modeemintternet)
+[![Requirements Status](https://requires.io/github/modeemi/intternetvelho/requirements.svg?branch=master)](https://requires.io/github/modeemi/intternetvelho/requirements/?branch=master) [![Build Status](https://travis-ci.org/modeemi/intternetvelho.svg?branch=master)](https://travis-ci.org/modeemi/intternetvelho)
 
 ### Prelude
 
@@ -32,8 +32,8 @@ Create an user for hosting and add the required file system structures
 Log in as the correct user, get source and create a virtualenv for the project
 
     su - modeemintternet
-    git clone https://github.com/aleksih/modeemintternet.git
-    cd modeemintternet
+    git clone https://github.com/modeemi/intternetvelho.git
+    cd intternetvelho
     virtualenv virtualenv
     source virtualenv/bin/activate
     pip install -r requirements.txt

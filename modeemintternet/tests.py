@@ -6,34 +6,41 @@ Unit tests for modeemintternet app.
 
 from django.test import Client, TestCase
 from django.core import mail
-from django.core.urlresolvers import reverse
 
 from modeemintternet.models import Application
 from modeemintternet.forms import ApplicationForm
 from modeemintternet.mailer import application_accepted, application_rejected
 
-class FeedTest(TestCase):
-    def test_news_rss_feed_response_codes(self):
+
+class ViewGetTest(TestCase):
+    def setUp(self):
+        self.urls = [
+            '/'
+            , '/ry/'
+            , '/palvelut/'
+            , '/jaseneksi/'
+            , '/laitteisto/'
+            , '/palaute/'
+            , '/uutiset/'
+            , '/tapahtumat/'
+            , '/ry/saannot/'
+            , '/ry/rekisteriseloste/'
+            , '/ry/hallitus/'
+            , '/ry/yhteystiedot/'
+            , '/palvelut/backup/'
+            , '/palvelut/password/'
+            , '/laitteisto/halutaan/'
+            , '/feed/uutiset.rss'
+            , '/feed/tapahtumat.rss'
+            , '/feed/tapahtumat.ics'
+        ]
+
+    def test_get_urls(self):
         c = Client()
-        response = c.get('/feed/uutiset.rss')
-        self.assertEqual(response.status_code, 200)
 
-    def test_event_rss_feed_response_codes(self):
-        c = Client()
-        response = c.get('/feed/tapahtumat.rss')
-        self.assertEqual(response.status_code, 200)
-
-    def test_event_ical_feed_response_codes(self):
-        c = Client()
-        response = c.get('/feed/tapahtumat.ics')
-        self.assertEqual(response.status_code, 200)
-
-class MembershipApplicationTest(TestCase):
-    """
-    Test making a new application via the form.
-    """
-
-    pass
+        for url in self.urls:
+            response = c.get(url)
+            self.assertEqual(response.status_code, 200)
 
 
 class FeedbackTest(TestCase):
@@ -41,10 +48,24 @@ class FeedbackTest(TestCase):
     Test leaving feedback via the form.
     """
 
-    pass
+    def setUp(self):
+        self.feedback = {
+            'sender': 'Jumal Velho'
+            , 'email': 'jumal.velho@modeemi.fi'
+            , 'message': 'Moi\nTässä Jumal Velho'
+        }
 
 
-class ApplicationMailerTest(TestCase):
+    def test_feedback_sent(self):
+        c = Client()
+        response = c.post('/palaute/', self.feedback)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject, u'Modeemi ry - Palaute verkkosivujen kautta')
+
+
+class ApplicationTest(TestCase):
     """
     Check that mail is sent to users when creating an application.
     Note that you still need valid mail server in addition to this.
@@ -52,16 +73,17 @@ class ApplicationMailerTest(TestCase):
 
     def setUp(self):
         self.application = {
-            'email': 'teemu@teekkari.fi',
-            'first_name': 'Teemu',
-            'last_name': 'Testaaja',
-            'primary_nick': 'teemut',
-            'secondary_nick': 'testaajat',
-            'shell': '/bin/zsh',
-            'funet_rules_accepted': True,
-            'password': 'testi',
-            'password_check':'testi'
+            'email': 'teemu@teekkari.fi'
+            , 'first_name': 'Teemu'
+            , 'last_name': 'Testaaja'
+            , 'primary_nick': 'teemut'
+            , 'secondary_nick': 'testaajat'
+            , 'shell': '/bin/zsh'
+            , 'funet_rules_accepted': True
+            , 'password': 'testi'
+            , 'password_check':'testi'
         }
+
 
     def test_application_made(self):
         """
@@ -71,6 +93,7 @@ class ApplicationMailerTest(TestCase):
         c = Client()
         response = c.post('/jaseneksi/', self.application)
 
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(len(mail.outbox), 2)
         self.assertEqual(mail.outbox[0].subject, u'Modeemi ry - Uusi jäsenhakemus jätetty')
         self.assertEqual(mail.outbox[1].subject, u'Modeemi ry - Jäsenhakemuksesi lisätiedot')
@@ -123,7 +146,7 @@ class ApplicationBankReferenceNumberTest(TestCase):
         self.application.generate_password_hashes(password='pekkaonparas:D')
         self.application.update_bank_reference()
 
-    def test_reference_number_genration(self):
+    def test_reference_number_generation(self):
         """
         Test that an application's reference number is calculated correctly.
 

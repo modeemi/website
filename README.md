@@ -1,6 +1,6 @@
 # [Modeemi ry website](https://www.modeemi.fi)
 
-[![Build Status](https://travis-ci.org/modeemi/intternetvelho.svg?branch=master)](https://travis-ci.org/modeemi/intternetvelho) [![Requirements Status](https://requires.io/github/modeemi/intternetvelho/requirements.svg?branch=master)](https://requires.io/github/modeemi/intternetvelho/requirements/?branch=master)
+[![Build Status](https://travis-ci.org/modeemi/intternetvelho.svg?branch=master)](https://travis-ci.org/modeemi/intternetvelho) [![Coverage Status](https://coveralls.io/repos/modeemi/intternetvelho/badge.svg?branch=master)](https://coveralls.io/r/modeemi/intternetvelho?branch=master) [![Requirements Status](https://requires.io/github/modeemi/intternetvelho/requirements.svg?branch=master)](https://requires.io/github/modeemi/intternetvelho/requirements/?branch=master)
 
 ### Prelude
 

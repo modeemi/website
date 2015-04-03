@@ -11,7 +11,7 @@ class News(models.Model):
     title = models.TextField(blank=False)
     text = models.TextField(blank=True)
     posted = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now_add=True, auto_now=True)
+    modified = models.DateTimeField(auto_now=True)
     poster = models.ForeignKey(User, editable=False, null=True)
 
     def __unicode__(self):
@@ -34,7 +34,7 @@ class Event(models.Model):
     starts = models.DateTimeField()
     ends = models.DateTimeField(blank=True)
     posted = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now_add=True, auto_now=True)
+    modified = models.DateTimeField(auto_now=True)
     poster = models.ForeignKey(User, editable=False, null=True)
 
     def __unicode__(self):
@@ -87,7 +87,7 @@ class Application(models.Model):
 
     # Timestamps
     applied = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now_add=True, auto_now=True)
+    modified = models.DateTimeField(auto_now=True)
 
     # Bank reference for paying the membership fee
     bank_reference = models.CharField(max_length=6, editable=False)

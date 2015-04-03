@@ -8,3 +8,4 @@ build
 barcode.png
 static
 media
+.coverage

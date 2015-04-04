@@ -134,7 +134,7 @@ class FeedbackTest(TestCase):
     def setUp(self):
         self.feedback = {
             'sender': 'Jumal Velho'
-            , 'email': 'jumal.velho@modeemi.fi'
+            , 'email': 'jumal.velho@example.org'
             , 'message': 'Moi\nTäs Jumal Velho'
         }
 
@@ -166,7 +166,7 @@ class ApplicationViewTest(TestCase):
 
     def setUp(self):
         self.application = {
-            'email': 'teemu@teekkari.fi'
+            'email': 'teemu.teekkari@example.org'
             , 'first_name': 'Teemu'
             , 'last_name': 'Teekkari'
             , 'primary_nick': 'teemut'
@@ -241,7 +241,7 @@ class ApplicationMethodTest(TestCase):
         self.application = Application(
                 first_name='Pekka',
                 last_name='Sauron',
-                email='pekka.sauron@mordor.com',
+                email='pekka.sauron@example.org',
                 primary_nick='pekkas',
                 secondary_nick='sauronp',
                 shell=Application.BASH,

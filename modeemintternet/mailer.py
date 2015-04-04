@@ -12,7 +12,7 @@ from modeemintternet import helpers
 
 
 ORGANIZATION = 'Modeemi ry'
-ORGANIZATION_EMAIL = 'modeemi@modeemi.fi'
+ORGANIZATION_EMAIL = 'hallitus@modeemi.fi'
 
 
 def application_created(application, invoice_pdf):

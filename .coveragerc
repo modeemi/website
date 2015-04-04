@@ -4,5 +4,3 @@ omit =
     modeemintternet/__init__.py
     modeemintternet/migrations/__init__.py
     modeemintternet/templatetags/__init__.py
-exclude_lines =
-    if settings.DEBUG

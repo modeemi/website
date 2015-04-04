@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
 from passlib.context import CryptContext
 from django.db import models
+from django.utils.encoding import smart_str
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.core.urlresolvers import reverse
@@ -15,7 +18,7 @@ class News(models.Model):
     poster = models.ForeignKey(User, editable=False, null=True)
 
     def __unicode__(self):
-        return u'{0} (luotu {1} UTC)'.format(self.title, self.posted)
+        return '{0} (luotu {1} UTC)'.format(self.title, self.posted)
 
     def get_absolute_url(self):
         return reverse('modeemintternet.views.uutiset', args=[unicode(self.id)])
@@ -38,7 +41,7 @@ class Event(models.Model):
     poster = models.ForeignKey(User, editable=False, null=True)
 
     def __unicode__(self):
-        return u'{0} (alkaa {1} UTC)'.format(self.title, self.starts)
+        return '{0} (alkaa {1} UTC)'.format(self.title, self.starts)
 
     def get_absolute_url(self):
         return reverse('modeemintternet.views.tapahtumat', args=[unicode(self.id)])
@@ -54,10 +57,10 @@ class Soda(models.Model):
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return u'{0}'.format(self.name)
+        return '{0}'.format(self.name)
 
     class Meta:
-        verbose_name = 'Limu'
+        verbose_name = 'Lim'
         verbose_name_plural = 'Limut'
 
 
@@ -103,7 +106,7 @@ class Application(models.Model):
     application_processed = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return u'{0} {1} ({2})'.format(self.first_name, self.last_name, self.applied)
+        return '{0} {1} ({2})'.format(self.first_name, self.last_name, self.applied)
 
     def generate_password_hashes(self, password):
         """
@@ -114,12 +117,12 @@ class Application(models.Model):
             https://pythonhosted.org/passlib/lib/passlib.hash.html
         """
 
-        password_schemes = ['pbkdf2_sha256', 'sha512_crypt', 'des_crypt']
+        password_schemes = [b'pbkdf2_sha256', b'sha512_crypt', b'des_crypt']
         pwd_context = CryptContext(schemes=password_schemes)
 
-        self.pbkdf2_sha256 = pwd_context.encrypt(password, scheme='pbkdf2_sha256')
-        self.sha512_crypt = pwd_context.encrypt(password, scheme='sha512_crypt')
-        self.des_crypt = pwd_context.encrypt(password, scheme='des_crypt')
+        self.pbkdf2_sha256 = pwd_context.encrypt(password, scheme=b'pbkdf2_sha256')
+        self.sha512_crypt = pwd_context.encrypt(password, scheme=b'sha512_crypt')
+        self.des_crypt = pwd_context.encrypt(password, scheme=b'des_crypt')
 
         self.save()
 
@@ -145,8 +148,8 @@ class Application(models.Model):
         return self.bank_reference
 
     class Meta:
-        verbose_name = u'Hakemus'
-        verbose_name_plural = u'Hakemukset'
+        verbose_name = 'Hakemus'
+        verbose_name_plural = 'Hakemukset'
 
 
 class Feedback(models.Model):
@@ -156,8 +159,10 @@ class Feedback(models.Model):
     sent = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return u'{0} ({1})'.format(self.message[:25], self.sent)
+        return '{0} ({1})'.format(
+                self.message[:25]
+                , self.sent)
 
     class Meta:
-        verbose_name = u'Palaute'
-        verbose_name_plural = u'Palautteet'
+        verbose_name = 'Palaute'
+        verbose_name_plural = 'Palautteet'

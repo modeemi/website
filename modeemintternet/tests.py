@@ -4,10 +4,13 @@
 Unit tests for modeemintternet app.
 """
 
+import datetime
+
 from django.test import Client, TestCase
 from django.core import mail
+from django.utils import timezone
 
-from modeemintternet.models import Application
+from modeemintternet.models import Application, News, Event, Soda
 from modeemintternet.forms import ApplicationForm
 from modeemintternet.mailer import application_accepted, application_rejected
 
@@ -35,6 +38,29 @@ class ViewGetTest(TestCase):
             , '/feed/tapahtumat.ics'
         ]
 
+        self.news = News(
+            title='Testiuutinen'
+            , text='Uutisetkin pitää testata'
+        )
+
+        self.event = Event(
+            title='Testitapahtuma'
+            , description='Testikuvaus'
+            , location='Testipaikkakunta'
+            , starts=timezone.now() + datetime.timedelta(hours=24)
+            , ends=timezone.now() + datetime.timedelta(hours=42)
+        )
+
+        self.soda = Soda(
+            name='Testilimu'
+            , price=4.20
+            , active=True
+        )
+
+        self.news.save()
+        self.event.save()
+        self.soda.save()
+
     def test_get_urls(self):
         c = Client()
 
@@ -42,6 +68,48 @@ class ViewGetTest(TestCase):
             response = c.get(url)
             self.assertEqual(response.status_code, 200)
 
+    def test_get_services(self):
+        c = Client()
+
+        response = c.get('/palvelut/')
+        self.assertContains(response, 'Testilimu')
+        self.assertContains(response, r'4,20e')
+
+    def test_get_single_news(self):
+        c = Client()
+
+        response = c.get('/uutiset/%d/' % self.news.id)
+        self.assertContains(response, 'Testiuutinen')
+        self.assertContains(response, 'Uutisetkin pitää testata')
+
+    def test_get_single_event(self):
+        c = Client()
+
+        response = c.get('/tapahtumat/%d/' % self.event.id)
+        self.assertContains(response, 'Testitapahtuma')
+        self.assertContains(response, 'Testikuvaus')
+        self.assertContains(response, 'Testipaikkakunta')
+
+    def test_get_upcoming_events(self):
+        c = Client()
+
+        response = c.get('/tapahtumat/')
+        self.assertContains(response, 'Testitapahtuma')
+        self.assertContains(response, 'Testikuvaus')
+        self.assertContains(response, 'Testipaikkakunta')
+
+    def test_get_past_events(self):
+        self.event.starts = self.event.starts + datetime.timedelta(hours=-25)
+        self.event.ends = self.event.ends + datetime.timedelta(hours=-43)
+        self.event.title = 'Mennyt testitapahtuma'
+        self.event.save()
+
+        c = Client()
+
+        response = c.get('/tapahtumat/menneet/')
+        self.assertContains(response, 'Mennyt testitapahtuma')
+        self.assertContains(response, 'Testikuvaus')
+        self.assertContains(response, 'Testipaikkakunta')
 
 class FeedbackTest(TestCase):
     """
@@ -155,6 +223,19 @@ class ApplicationTest(TestCase):
         application_rejected(a)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, u'Modeemi ry - Jäsenhakemuksesi on käsitelty')
+
+    def test_reference_number(self):
+        c = Client()
+        response = c.get('/viitenumero/puuttuvaKayttaja/')
+        self.assertEqual(response.status_code, 404)
+
+        del self.application['password']
+        del self.application['password_check']
+        a = Application(**self.application)
+        a.save()
+
+        response = c.get('/viitenumero/%s/' % a.primary_nick)
+        self.assertContains(response, 'Viitteenne on %s' % a.bank_reference)
 
 
 class ApplicationBankReferenceNumberTest(TestCase):

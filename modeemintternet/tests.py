@@ -158,7 +158,7 @@ class FeedbackTest(TestCase):
         self.assertEqual(mail.outbox[0].subject, 'Modeemi ry - Palaute verkkosivujen kautta')
 
 
-class ApplicationTest(TestCase):
+class ApplicationViewTest(TestCase):
     """
     Check that mail is sent to users when creating an application.
     Note that you still need valid mail server in addition to this.
@@ -167,71 +167,15 @@ class ApplicationTest(TestCase):
     def setUp(self):
         self.application = {
             'email': 'teemu@teekkari.fi'
-            , 'first_name': 'Teem'
-            , 'last_name': 'Testaaja'
+            , 'first_name': 'Teemu'
+            , 'last_name': 'Teekkari'
             , 'primary_nick': 'teemut'
-            , 'secondary_nick': 'testaajat'
+            , 'secondary_nick': 'teekkarit'
             , 'shell': '/bin/zsh'
             , 'funet_rules_accepted': True
             , 'password': 'testi'
             , 'password_check':'testi'
         }
-
-
-    def test_application_to_unicode(self):
-        del self.application['password']
-        del self.application['password_check']
-
-        a = Application(**self.application)
-        a.save()
-        a.__unicode__()
-
-    def test_reference_number(self):
-        c = Client()
-        response = c.get('/viitenumero/puuttuvaKayttaja/')
-        self.assertEqual(response.status_code, 404)
-
-        del self.application['password']
-        del self.application['password_check']
-        a = Application(**self.application)
-        a.save()
-
-        response = c.get('/viitenumero/%s/' % a.primary_nick)
-        self.assertContains(response, 'Viitteenne on %s' % a.bank_reference)
-
-
-class ApplicationBankReferenceNumberTest(TestCase):
-    """
-    Test the generation of an user bank reference number.
-    """
-
-    def setUp(self):
-        self.application = Application(
-                first_name='Pekka',
-                last_name='Sauron',
-                email='pekka.sauron@mordor.com',
-                primary_nick='pekkas',
-                secondary_nick='sauronp',
-                shell=Application.BASH,
-                funet_rules_accepted=True)
-
-        self.application.save()
-        self.application.generate_password_hashes(password='pekkaonparas:D')
-        self.application.update_bank_reference()
-
-
-    def test_application_made(self):
-        """
-        Test that mail is sent when an application is made.
-        """
-
-        c = Client()
-        response = c.post('/jaseneksi/', self.application)
-
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(mail.outbox), 2)
-        self.assertEqual(mail.outbox[0].subject, 'Modeemi ry - Uusi jäsenhakemus jätetty')
-        self.assertEqual(mail.outbox[1].subject, 'Modeemi ry - Jäsenhakemuksesi lisätiedot')
 
     def test_invalid_application(self):
         """
@@ -242,7 +186,9 @@ class ApplicationBankReferenceNumberTest(TestCase):
         c = Client()
         response = c.post('/jaseneksi/', self.application)
 
-        self.assertEquals(response.status_code, 400)
+        self.assertContains(response
+                , 'Tämä kenttä vaaditaan.'
+                , status_code=400)
 
     def test_password_mismatch(self):
         """
@@ -257,33 +203,20 @@ class ApplicationBankReferenceNumberTest(TestCase):
                 , 'Salasana ja tarkiste eivät täsmää.'
                 , status_code=400)
 
-    def test_application_accepted(self):
-        del self.application['password']
-        del self.application['password_check']
+    def test_application_made(self):
+        """
+        Test that mail is sent when an application is made.
+        """
 
-        a = Application(**self.application)
-        a.save()
-        a.generate_password_hashes('testi')
-        a.update_bank_reference()
-        a.save()
+        c = Client()
+        response = c.post('/jaseneksi/', self.application)
 
-        application_accepted(a)
-        self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'Modeemi ry - Jäsenhakemuksesi on käsitelty')
-
-    def test_application_rejected(self):
-        del self.application['password']
-        del self.application['password_check']
-
-        a = Application(**self.application)
-        a.save()
-        a.generate_password_hashes('testi')
-        a.update_bank_reference()
-        a.save()
-
-        application_rejected(a)
-        self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'Modeemi ry - Jäsenhakemuksesi on käsitelty')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(mail.outbox), 2)
+        self.assertEqual(mail.outbox[0].subject,
+                'Modeemi ry - Uusi jäsenhakemus jätetty')
+        self.assertEqual(mail.outbox[1].subject,
+                'Modeemi ry - Jäsenhakemuksesi lisätiedot')
 
     def test_reference_number(self):
         c = Client()
@@ -299,9 +232,9 @@ class ApplicationBankReferenceNumberTest(TestCase):
         self.assertContains(response, 'Viitteenne on %s' % a.bank_reference)
 
 
-class ApplicationBankReferenceNumberTest(TestCase):
+class ApplicationMethodTest(TestCase):
     """
-    Test the generation of an user bank reference number.
+    Test Application model methods.
     """
 
     def setUp(self):
@@ -318,7 +251,22 @@ class ApplicationBankReferenceNumberTest(TestCase):
         self.application.generate_password_hashes(password='pekkaonparas:D')
         self.application.update_bank_reference()
 
-    def test_reference_number_generation(self):
+    def test_application_to_unicode(self):
+        self.application.__unicode__()
+
+    def test_application_accepted(self):
+        application_accepted(self.application)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject,
+                'Modeemi ry - Jäsenhakemuksesi on käsitelty')
+
+    def test_application_rejected(self):
+        application_rejected(self.application)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject,
+                'Modeemi ry - Jäsenhakemuksesi on käsitelty')
+
+    def test_update_bank_reference(self):
         """
         Test that an application's reference number is calculated correctly.
 

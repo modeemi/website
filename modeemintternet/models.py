@@ -77,7 +77,7 @@ class Application(models.Model):
     )
 
     # Actual application options
-    first_name = models.CharField(max_length=32, blank=False)
+    first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
     email = models.EmailField()
     primary_nick = models.CharField(max_length=32)

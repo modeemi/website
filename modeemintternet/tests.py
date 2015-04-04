@@ -56,6 +56,12 @@ class FeedbackTest(TestCase):
         }
 
 
+    def test_invalid_feedback(self):
+        del self.feedback['message']
+        c = Client()
+        response = c.post('/palaute/', self.feedback)
+        self.assertEqual(response.status_code, 400)
+
     def test_feedback_sent(self):
         c = Client()
         response = c.post('/palaute/', self.feedback)
@@ -97,6 +103,30 @@ class ApplicationTest(TestCase):
         self.assertEqual(len(mail.outbox), 2)
         self.assertEqual(mail.outbox[0].subject, u'Modeemi ry - Uusi jäsenhakemus jätetty')
         self.assertEqual(mail.outbox[1].subject, u'Modeemi ry - Jäsenhakemuksesi lisätiedot')
+
+    def test_invalid_application(self):
+        """
+        Test that invalid application is rejected with HTTP status code 400.
+        """
+
+        del self.application['first_name']
+        c = Client()
+        response = c.post('/jaseneksi/', self.application)
+
+        self.assertEquals(response.status_code, 400)
+
+    def test_password_mismatch(self):
+        """
+        Test that invalid application is rejected with HTTP status code 400.
+        """
+
+        self.application['password_check'] = 'eisama'
+        c = Client()
+        response = c.post('/jaseneksi/', self.application)
+
+        self.assertContains(response
+                , 'Salasana ja tarkiste eivät täsmää.'
+                , status_code=400)
 
     def test_application_accepted(self):
         del self.application['password']

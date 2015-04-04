@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 from django.utils import timezone
 
@@ -15,70 +15,65 @@ from modeemintternet.forms import ApplicationForm, FeedbackForm
 
 logger = logging.getLogger(__name__)
 
-def render_with_context(request, template, params={}):
-    return render_to_response(template, params,
-                context_instance=RequestContext(request))
-
 def etusivu(request):
     news = News.objects.order_by('-posted')[:10]
-    return render_with_context(request, 'etusivu.html', {'news': news})
+    return render(request, 'etusivu.html', {'news': news})
 
 def yhdistys(request):
-    return render_with_context(request, 'yhdistys.html')
+    return render(request, 'yhdistys.html')
 
 def palvelut(request):
     sodas = Soda.objects.filter(active=True).order_by('price', 'name')
-    return render_with_context(request, 'palvelut.html', {'sodas': sodas})
+    return render(request, 'palvelut.html', {'sodas': sodas})
 
 def laitteisto(request):
-    return render_with_context(request, 'laitteisto.html')
+    return render(request, 'laitteisto.html')
 
 def palaute(request):
     feedback_form = FeedbackForm()
 
     if not request.POST:
-        return render_with_context(request, 'palaute.html',
-                {'form': feedback_form})
+        return render(request, 'palaute.html', {'form': feedback_form})
 
     else:
         feedback_form = FeedbackForm(request.POST)
 
         if not feedback_form.is_valid():
-            return render_with_context(request, 'palaute.html',
-                {'form': feedback_form})
+            return render(request, 'palaute.html',
+                {'form': feedback_form}, status=400)
 
     feedback = feedback_form.save()
     mailer.feedback_received(feedback)
-    return render_with_context(request, 'palaute.html',
+
+    return render(request, 'palaute.html',
             {'form': feedback_form, 'success': True})
 
 def saannot(request):
-    return render_with_context(request, 'saannot.html')
+    return render(request, 'saannot.html')
 
 def rekisteriseloste(request):
-    return render_with_context(request, 'rekisteriseloste.html')
+    return render(request, 'rekisteriseloste.html')
 
 def hallitus(request):
-    return render_with_context(request, 'hallitus.html')
+    return render(request, 'hallitus.html')
 
 def yhteystiedot(request):
-    return render_with_context(request, 'yhteystiedot.html')
+    return render(request, 'yhteystiedot.html')
 
 def backup(request):
-    return render_with_context(request, 'backup.html')
+    return render(request, 'backup.html')
 
 def password(request):
-    return render_with_context(request, 'password.html')
+    return render(request, 'password.html')
 
 def halutaan(request):
-    return render_with_context(request, 'halutaan.html')
+    return render(request, 'halutaan.html')
 
 def jaseneksi(request):
     application_form = ApplicationForm()
 
     if not request.POST:
-        return render_with_context(request, 'jaseneksi.html',
-                                   {'form': application_form})
+        return render(request, 'jaseneksi.html', {'form': application_form})
 
     # Check form validity for password errors
     else:
@@ -90,8 +85,8 @@ def jaseneksi(request):
             request.POST.get('password') == request.POST.get('password_check')
 
         if not application_form.is_valid():
-            return render_with_context(request, 'jaseneksi.html',
-                                       {'form': application_form})
+            return render(request, 'jaseneksi.html',
+                    {'form': application_form}, status=400)
 
         # If the form is else valid but the password doesn't match or is empty,
         # mark the form as invalid and display a custom password error message.
@@ -100,8 +95,8 @@ def jaseneksi(request):
             application_form.add_error('password', '')
             application_form.add_error('password_check', error_msg)
 
-            return render_with_context(request, 'jaseneksi.html',
-                                       {'form': application_form})
+            return render(request, 'jaseneksi.html',
+                    {'form': application_form}, status=400)
 
     application = application_form.save()
     application.generate_password_hashes(request.POST.get('password'))
@@ -129,27 +124,25 @@ def jaseneksi(request):
         logger.error('Failed to send mail about the new application %s' % e)
 
     # Return info page for the application.
-    return render_with_context(request, 'jaseneksi.html', {
-        'success': True
-        , 'mailingSuccess': mailingSuccess
-    })
+    return render(request, 'jaseneksi.html',
+            {'success': True , 'mailingSuccess': mailingSuccess})
 
 def uutiset(request, pk=None):
     if pk:
-        return render_with_context(request, 'uutiset.html',
+        return render(request, 'uutiset.html',
                 {'news': News.objects.filter(id=pk)})
-    return render_with_context(request, 'uutiset.html',
+    return render(request, 'uutiset.html',
             {'news': News.objects.order_by('-id')})
 
 def tapahtumat(request, pk=None):
     if pk:
-        return render_with_context(request, 'tapahtumat.html',
+        return render(request, 'tapahtumat.html',
                 {'events': Event.objects.filter(id=pk)})
-    return render_with_context(request, 'tapahtumat.html',
+    return render(request, 'tapahtumat.html',
             {'events': Event.objects.filter(ends__gte=timezone.now()).order_by('starts')})
 
 def menneet(request):
-    return render_with_context(request, 'tapahtumat.html',
+    return render(request, 'tapahtumat.html',
             {'events': Event.objects.filter(ends__lt=timezone.now()).order_by('-starts'),
              'past': True})
 

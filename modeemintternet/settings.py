@@ -56,6 +56,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Opbeat monitoring
+    'opbeat.contrib.django',
+
     # Custom additions
     'crispy_forms',
     'rest_framework',
@@ -68,6 +71,7 @@ if DEBUG:
     INSTALLED_APPS += ('debug_toolbar', )
 
 MIDDLEWARE_CLASSES = (
+    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -183,3 +187,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 SUIT_CONFIG = {
     'ADMIN_NAME': 'modeemintternet - ylläpito',
 }
+
+try:
+    from modeemintternet.local_settings import *
+except ImportError as e:
+    print e
+    print 'No local settings available, skipping'

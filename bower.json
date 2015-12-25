@@ -1,8 +1,8 @@
 {
   "name": "modeemintternet",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "authors": [
-    "Aleksi Häkli <aleksi.hakli@gmail.com>"
+    "Aleksi Häkli <aleksi.hakli@iki.fi>"
   ],
   "description": "Uusi Modeemin Intternet",
   "main": "bower.json",

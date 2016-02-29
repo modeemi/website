@@ -1,7 +1,7 @@
 argparse==1.4.0
 coverage==4.0.3
 django-auth-ldap==1.2.7
-django-crispy-forms==1.5.2
+django-crispy-forms==1.6.0
 django-debug-toolbar==1.4
 django-guardian==1.4.1
 django-ical==1.3

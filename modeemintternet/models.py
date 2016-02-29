@@ -60,7 +60,7 @@ class Soda(models.Model):
         return '{0}'.format(self.name)
 
     class Meta:
-        verbose_name = 'Lim'
+        verbose_name = 'Limu'
         verbose_name_plural = 'Limut'
 
 

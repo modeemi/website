@@ -4,13 +4,9 @@
 Django settings for modeemintternet project.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
+https://docs.djangoproject.com/en/1.8/topics/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import json
 
@@ -19,7 +15,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_DIR = os.path.abspath(os.path.join(BASE_DIR, 'modeemintternet'))
 
 # Quick-start settings, check for deployment
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'DummyDevelopmentDjangoSecret'
@@ -35,6 +31,7 @@ with open(os.path.abspath(os.path.join(__file__, '..', '..', 'bower.json'))) as 
     VERSION_NUMBER = json.loads(f.read()).get('version')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+TEST = os.environ.get('TEST', False)
 DEBUG = os.environ.get('DEBUG', False)
 TEMPLATE_DEBUG = DEBUG
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'modeemi.fi', 'www.modeemi.fi']
@@ -95,7 +92,7 @@ ROOT_URLCONF = 'modeemintternet.urls'
 WSGI_APPLICATION = 'modeemintternet.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -107,6 +104,13 @@ DATABASES = {
     }
 }
 
+# Override database with in-memory SQLite if running test mode
+if TEST:
+    DATABASES['default'] = {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory'
+    }
+
 try:
     with open(os.path.join(SETTINGS_DIR, 'psql.txt'), 'r') as f:
         DATABASES['default']['PASSWORD'] = f.read().strip()
@@ -114,7 +118,7 @@ except Exception as e:
     print 'No overriding PostgreSQL password file found, using default password'
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
+# https://docs.djangoproject.com/en/1.8/topics/i18n/
 LANGUAGE_CODE = 'fi'
 TIME_ZONE = 'Europe/Helsinki'
 USE_I18N = True
@@ -122,7 +126,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Templates and static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
 )

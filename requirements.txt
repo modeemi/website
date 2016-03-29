@@ -3,23 +3,23 @@ coverage==4.0.3
 django-auth-ldap==1.2.7
 django-crispy-forms==1.6.0
 django-debug-toolbar==1.4
-django-guardian==1.4.1
+django-guardian==1.4.2
 django-ical==1.3
 django-rest-swagger==0.3.5
-django-suit==0.2.17
-Django==1.8.9  # rq.filter: >=1.8,<1.9
-djangorestframework==3.3.2
+django-suit==0.2.18
+Django==1.8.11  # rq.filter: >=1.8,<1.9
+djangorestframework==3.3.3
 https://bitbucket.org/whitie/python-barcode/get/6c22b96a2ca2eef95d53b644242247f0c04e2d32.zip
 icalendar==3.9.2
-opbeat==3.2.2
+opbeat==3.3
 passlib==1.6.5
 Pillow==3.1.1
 psycopg2==2.6.1
 python-ldap==2.4.25
-pytz==2015.7
+pytz==2016.3
 reportlab==3.3.0
 six==1.10.0
-sqlparse==0.1.18
+sqlparse==0.1.19
 svglib==0.6.3
 uWSGI==2.0.12
 wsgiref==0.1.2

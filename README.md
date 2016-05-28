@@ -16,11 +16,28 @@ This guide assumes you have some experience in Django development and doesn't ha
 
 You can find plenty of tutorials on the Intternets describing the specifics of Django and assorted plugins.
 
-Install apt and npm packages
+Install Vagrant with VirtualBox and spin up the machine
 
-    apt-get install python python-dev python-pip python-virtualenv \
-        nodejs nodejs-legacy npm libpq-dev libldap2-dev libsasl2-dev libssl-dev
-    npm i -g bower
+    vagrant up
+
+Then simply SSH into the machine and activate the virtualenv
+
+    vagrant ssh
+    cd /vagrant
+    source ./virtualenv-vagrant/bin/activate
+
+### Committing
+
+Please run test suite before committing your changes.
+
+    vagrant ssh
+    cd /vagrant
+    source ./virtualenv-vagrant/bin/activate
+    python manage.py test
+
+If you have implemented new views or functionality, implement tests for those as well.
+
+### Hosting
 
 Create an user for hosting and add the required file system structures
 

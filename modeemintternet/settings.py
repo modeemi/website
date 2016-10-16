@@ -34,8 +34,22 @@ with open(os.path.abspath(os.path.join(__file__, '..', '..', 'bower.json'))) as 
 TEST = os.environ.get('TEST', False)
 DEBUG = os.environ.get('DEBUG', False)
 TEMPLATE_DEBUG = DEBUG
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'modeemi.fi', 'www.modeemi.fi']
-INTERNAL_IPS = ['127.0.0.1', 'localhost']
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+    'localhost',
+]
+
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'modeemi.fi',
+    'www.modeemi.fi',
+    'beta.modeemi.fi',
+    'cherry.modeemi.fi',
+    'modeemi.cs.tut.fi',
+    'www.modeemi.cs.tut.fi',
+]
 
 # Mailer settings
 EMAIL_HOST = 'mail.modeemi.fi'

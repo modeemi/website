@@ -7,7 +7,7 @@ django-guardian==1.4.6
 django-ical==1.4
 django-rest-swagger==2.1.1
 django-suit==0.2.23
-django>=1.8,<1.9  # rq.filter: >=1.8,<1.9
+django>=1.10,<2.0  # rq.filter: >=1.10,<1.9
 djangorestframework==3.5.3
 https://bitbucket.org/whitie/python-barcode/get/6c22b96a2ca2eef95d53b644242247f0c04e2d32.zip
 icalendar==3.11.1

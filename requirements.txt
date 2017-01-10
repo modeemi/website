@@ -8,7 +8,7 @@ django-ical==1.4
 django-rest-swagger==2.0.6
 django-suit==0.2.21
 django>=1.8,<1.9  # rq.filter: >=1.8,<1.9
-djangorestframework==3.4.7
+djangorestframework==3.5.3
 https://bitbucket.org/whitie/python-barcode/get/6c22b96a2ca2eef95d53b644242247f0c04e2d32.zip
 icalendar==3.10
 opbeat==3.3.4

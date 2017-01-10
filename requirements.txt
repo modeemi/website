@@ -15,7 +15,7 @@ opbeat==3.5.2
 passlib==1.6.5
 pillow==3.4.1
 psycopg2==2.6.2
-python-ldap==2.4.27
+python-ldap==2.4.28
 pytz==2016.7
 reportlab==3.3.0
 six==1.10.0

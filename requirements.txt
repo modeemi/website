@@ -19,7 +19,7 @@ python-ldap==2.4.27
 pytz==2016.7
 reportlab==3.3.0
 six==1.10.0
-sqlparse==0.2.1
+sqlparse==0.2.2
 svglib==0.6.3
 uwsgi==2.0.14
 wsgiref==0.1.2

@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.conf.urls.static import static
 
 from django.contrib import admin
@@ -11,7 +11,7 @@ from modeemintternet.feeds import NewsRSSFeed, EventRSSFeed, EventICalFeed
 router = routers.DefaultRouter()
 router.register(r'news', apiviews.NewsViewSet)
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
     # Main level views
@@ -44,7 +44,7 @@ urlpatterns = patterns('',
 
     url(r'^api/', include(router.urls)),
     url(r'^viitenumero/(?P<username>.+)/$', views.viitenumero),
-)
+]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

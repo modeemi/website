@@ -13,7 +13,7 @@ https://bitbucket.org/whitie/python-barcode/get/6c22b96a2ca2eef95d53b644242247f0
 icalendar==3.11.1
 opbeat==3.5.2
 passlib==1.7.0
-pillow==3.4.1
+pillow==4.0.0
 psycopg2==2.6.2
 python-ldap==2.4.28
 pytz==2016.10

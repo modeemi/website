@@ -10,7 +10,7 @@ django-suit==0.2.23
 django>=1.8,<1.9  # rq.filter: >=1.8,<1.9
 djangorestframework==3.5.3
 https://bitbucket.org/whitie/python-barcode/get/6c22b96a2ca2eef95d53b644242247f0c04e2d32.zip
-icalendar==3.11.1
+icalendar==3.11.2
 opbeat==3.5.2
 passlib==1.7.0
 pillow==4.0.0

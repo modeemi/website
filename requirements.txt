@@ -20,6 +20,6 @@ pytz==2016.10
 reportlab==3.3.0
 six==1.10.0
 sqlparse==0.2.2
-svglib==0.6.3
+svglib==0.8.0
 uwsgi==2.0.14
 wsgiref==0.1.2

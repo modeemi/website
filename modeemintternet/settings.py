@@ -143,3 +143,10 @@ STATIC_ROOT = '/var/www//modeemintternet/static'
 MEDIA_ROOT = '/var/www/modeemintternet/media'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+OPBEAT = {
+    'ORGANIZATION_ID': env('DJANGO_OPBEAT_ORGANIZATION_ID', cast=str, default=None),
+    'APP_ID': env('DJANGO_OPBEAT_APP_ID', cast=str, default=None),
+    'SECRET_TOKEN': env('DJANGO_OPBEAT_SECRET_TOKEN', cast=str, default=None),
+    'DEBUG': env('DJANGO_OPBEAT_DEBUG', cast=bool, default=False),
+}

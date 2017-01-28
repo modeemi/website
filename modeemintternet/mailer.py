@@ -5,17 +5,14 @@ Custom mailer for the awesome modeemintternet super portal.
 """
 
 import textwrap
-from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-from reportlab.pdfgen import canvas
-from modeemintternet import helpers
 
 
 ORGANIZATION = 'Modeemi ry'
 ORGANIZATION_EMAIL = 'hallitus@modeemi.fi'
 
 
-def application_created(application, invoice_pdf):
+def application_created(application):
     """
     Sends an email to the board notifying that
     a new membership application has been made.
@@ -30,7 +27,8 @@ u"""
 Hei,
 
 henkilö {0} {1} ({2}) on jättänyt uuden jäsenhakemuksen {3}.
-Voit tarkastella jäsenhakemusta osoitteesta
+
+Voit tarkastella jäsenhakemusta osoitteessa:
 
     https://www.modeemi.fi/admin/modeemintternet/application/{4}/
 
@@ -48,14 +46,20 @@ Ystävällisin terveisin,
 u"""
 Hei {0},
 
-ja kiitos jäsenhakemuksestasi.
+ja kiitos jäsenhakemuksestasi!
 
-Ohessa on 8 euron suuruinen lasku jäsenmaksua varten.
+Käy maksamassa {7}n jäsenmaksu Holvin kaupassa, jos et ole vielä sitä ehtinyt tekemään:
 
-Jäsenmaksun suorittamisen jälkeen hallitus käsittelee
-hakemuksen seuraavassa hallituksen kokouksessa.
-Mikäli sinulla on kova kiire hakemuksen kanssa,
-voit olla hallitukseen yhteydessä sähköpostitse.
+    https://holvi.com/shop/modeemi/
+
+Jos laskun maksaminen ei onnistu Holvissa niin:
+
+- kysy ohjeet IRCissä: #modeemi @ IRCnet
+- kysy ohjeet sähköpostilla hallitukselta: hallitus@modeemi.fi
+
+Hallitus käsittelee hakemuksesi seuraavassa hallituksen kokouksessa.
+
+Mikäli sinulla on kova kiire hakemuksen kanssa, voit olla hallitukseen yhteydessä sähköpostitse.
 
 Ohessa hakemuksesi tiedot:
 
@@ -73,11 +77,7 @@ Ystävällisin terveisin,
            application.primary_nick, application.secondary_nick, application.shell,
            application.applied.strftime('%d.%m.%Y'), ORGANIZATION)
 
-    invoice_name = 'modeemi_jasenhakemus_{0}.pdf'.format(application.id)
-    invoice_mime = 'application/pdf'
-
-    EmailMessage(topic, msg, ORGANIZATION, [application.email],
-            attachments=[(invoice_name, invoice_pdf, invoice_mime)]).send()
+    EmailMessage(topic, msg, ORGANIZATION, [application.email]).send()
 
 
 def application_accepted(application):
@@ -95,7 +95,7 @@ Hei,
 
 {0}n hallitus on käsitellyt ja hyväksynyt jäsenhakemuksesi.
 
-Sinulle luodaan tunnus "{1}"/"{2}" ja saat lisätiedot sähköpostissa.
+Sinulle luodaan tunnus "{1}" tai "{2}" ja saat lisätiedot sähköpostissa.
 
 Ystävällisin terveisin,
 {0}n hallitus
@@ -120,8 +120,7 @@ Hei,
 
 {0}n hallitus on käsitellyt ja ikävä kyllä hylännyt jäsenhakemuksesi.
 
-Lisätietoja voit tulla tiedustelemaan kerhohuoneelta tai
-sähköpostitse osoitteesta {1}.
+Lisätietoja voit tulla tiedustelemaan kerhohuoneelta tai sähköpostitse osoitteesta {1}.
 
 Ystävällisin terveisin,
 {0}n hallitus
@@ -141,12 +140,12 @@ def feedback_received(feedback):
 u"""
 Hei,
 
-Henkilö {0} on jättänyt seuraavan palautteen hallitukselle
-verkkosivujen välityksellä:
+Henkilö {0} on jättänyt seuraavan palautteen hallitukselle verkkosivujen välityksellä:
 
 {1}
 
 Voit tarkastella palautetta myös osoitteessa
+
     https://www.modeemi.fi/admin/modeemintternet/feedback/{2}/
 
 Ystävällisin terveisin,

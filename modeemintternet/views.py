@@ -7,10 +7,8 @@ import logging
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
-from reportlab.pdfgen import canvas
-from io import StringIO
 
-from modeemintternet import mailer, helpers, settings
+from modeemintternet import mailer
 from modeemintternet.models import News, Event, Soda, Application
 from modeemintternet.forms import ApplicationForm, FeedbackForm
 
@@ -103,23 +101,10 @@ def jaseneksi(request):
     application.generate_password_hashes(request.POST.get('password'))
     application.update_bank_reference()
 
-    # Create a PDF buffer and make an emailable invoice PDF.
-    pdfBuffer = StringIO()
-    c = canvas.Canvas(pdfBuffer)
-    p = helpers.invoice(c, application)
-
-    # Close the PDF object cleanly, and we're done.
-    p.showPage()
-    p.save()
-
-    # Get the actual PDF for mailing and close the buffer cleanly.
-    pdf = pdfBuffer.getvalue()
-    pdfBuffer.close()
-
     # Try and send mail about the application, otherwise log and show error message.
     mailingSuccess = True
     try:
-        mailer.application_created(application, pdf)
+        mailer.application_created(application)
     except Exception as e:
         mailingSuccess = False
         logger.error('Failed to send mail about the new application %s' % e)

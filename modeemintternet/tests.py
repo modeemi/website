@@ -192,7 +192,6 @@ class ApplicationViewTest(TestCase):
                 , 'Salasana ja tarkiste eivät täsmää.'
                 , status_code=400)
 
-    @unittest.skip(sys.platform in ['win32'])
     def test_application_made(self):
         """
         Test that mail is sent when an application is made.

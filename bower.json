@@ -1,6 +1,6 @@
 {
   "name": "modeemintternet",
-  "version": "2017.01.10",
+  "version": "2017.01.28",
   "authors": [
     "Aleksi Häkli <aleksi.hakli@iki.fi>"
   ],
@@ -22,7 +22,7 @@
     "yhdistys"
   ],
   "license": "MIT",
-  "homepage": "http://www.modeemi.fi/",
+  "homepage": "https://www.modeemi.fi/",
   "private": true,
   "ignore": [
     "**/.*",

@@ -9,9 +9,9 @@ install:
     - pip install -r requirements.txt
     - pip install coveralls
 before_script:
-    - psql -U postgres -c "CREATE USER modeemintternet WITH PASSWORD 'modeemintternetonparraim';"
-    - psql -U postgres -c "ALTER USER modeemintternet CREATEDB;"
-    - psql -U postgres -c "CREATE DATABASE modeemintternet ENCODING 'UTF8' OWNER modeemintternet;"
+    - psql -U postgres -c "CREATE USER modeemi WITH PASSWORD 'modeemi';"
+    - psql -U postgres -c "ALTER USER modeemi CREATEDB;"
+    - psql -U postgres -c "CREATE DATABASE modeemi ENCODING 'UTF8' OWNER modeemi;"
 script:
     - python manage.py migrate
     - coverage run --source=modeemintternet manage.py test

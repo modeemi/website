@@ -31,14 +31,10 @@ with warnings.catch_warnings():
 
 DEBUG = env('DJANGO_DEBUG', cast=bool, default=True)
 TEMPLATE_DEBUG = env('DJANGO_TEMPLATE_DEBUG', cast=bool, default=DEBUG)
-SECRET_KEY = env(
-    'DJANGO_SECRET_KEY',
-    cast=str,
-    default=get_random_string(50),
-)
+SECRET_KEY = env('DJANGO_SECRET_KEY', cast=str, default=get_random_string(50))
 
-if not (isinstance(SECRET_KEY, str) and len(SECRET_KEY) < 42):
-    raise ImproperlyConfigured('Django SECRET_KEY is too short, length {} < 42'.format(len(SECRET_KEY)))
+if not (isinstance(SECRET_KEY, str) and len(SECRET_KEY) >= 42):
+    raise ImproperlyConfigured('Django SECRET_KEY is too short {}, type {}'.format(len(SECRET_KEY), type(SECRET_KEY)))
 
 try:
     with open(PROJECT_ROOT('bower.json')) as f:

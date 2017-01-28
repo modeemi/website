@@ -9,7 +9,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
     # Adds Node.js repos and runs apt-get update
-    curl -sL https://deb.nodesource.com/setup_4.x|sudo -E bash -
+    curl -sL https://deb.nodesource.com/setup_6.x|sudo -E bash -
 
     sudo apt-get install -y --upgrade \
         git imagemagick postgresql-9.4 postgresql-client-9.4 \
@@ -22,13 +22,14 @@ Vagrant.configure(2) do |config|
 
     sudo -u vagrant bash -c "
         cd /vagrant
-        [ -d 'virtualenv-vagrant' ] || virtualenv --always-copy virtualenv-vagrant
-        source virtualenv-vagrant/bin/activate
+        [ -d 'virtualenv' ] || virtualenv --always-copy virtualenv
+        source virtualenv/bin/activate
         pip install -r requirements.txt
-        bower install"
+        bower install
+    "
 
-    sudo -u postgres psql -c "CREATE USER modeemintternet WITH PASSWORD 'modeemintternetonparraim';"
-    sudo -u postgres psql -c "ALTER USER modeemintternet CREATEDB;"
-    sudo -u postgres psql -c "CREATE DATABASE modeemintternet ENCODING 'UTF8' OWNER modeemintternet;"
+    sudo -u postgres psql -c "CREATE USER modeemi WITH PASSWORD 'modeemi';"
+    sudo -u postgres psql -c "ALTER USER modeemi CREATEDB;"
+    sudo -u postgres psql -c "CREATE DATABASE modeemi ENCODING 'UTF8' OWNER modeemi;"
   SHELL
 end

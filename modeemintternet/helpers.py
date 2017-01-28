@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import os
-import settings
-from datetime import datetime, timedelta
-
-# custom barcode module for Code 128 codes
-import barcode
-from barcode.writer import ImageWriter
+from django.conf import settings
+from datetime import timedelta
 
 
 def code128(application):
@@ -118,10 +114,5 @@ def invoice(canvas, application):
     p.line(70, 80, 300, 80)
 
     p.drawString(30, 60, 'Tililtä nro')
-
-    generator = barcode.get_barcode_class('code128')
-    img = generator(code128(application),
-            writer=ImageWriter()).save('/tmp/barcode')
-    p.drawImage(img, 150, 5, height=30, width=300, anchor='nw')
 
     return p

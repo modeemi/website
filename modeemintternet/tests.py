@@ -7,13 +7,14 @@ Unit tests for modeemintternet app.
 from __future__ import unicode_literals
 
 import datetime
+import sys
+import unittest
 
 from django.test import Client, TestCase
 from django.core import mail
 from django.utils import timezone
 
 from modeemintternet.models import Application, Feedback, News, Event, Soda
-from modeemintternet.forms import ApplicationForm
 from modeemintternet.mailer import application_accepted, application_rejected
 
 
@@ -41,8 +42,8 @@ class ViewGetTest(TestCase):
         ]
 
         self.news = News(
-            title='Testiuutinen'
-            , text='Uutisetkin pitää testata'
+            title='Testiuutine'
+            , text='Uutineetkin pitää testata'
         )
 
         self.event = Event(
@@ -54,7 +55,7 @@ class ViewGetTest(TestCase):
         )
 
         self.soda = Soda(
-            name='Testilim'
+            name='Testilimu'
             , price=4.20
             , active=True
         )
@@ -87,15 +88,15 @@ class ViewGetTest(TestCase):
         c = Client()
 
         response = c.get('/palvelut/')
-        self.assertContains(response, 'Testilim')
-        self.assertContains(response, r'4,20e')
+        self.assertContains(response, 'Testilimu')
+        self.assertContains(response, '4,20e')
 
     def test_get_single_news(self):
         c = Client()
 
         response = c.get('/uutiset/%d/' % self.news.id)
-        self.assertContains(response, 'Testiuutinen')
-        self.assertContains(response, 'Uutisetkin pitää testata')
+        self.assertContains(response, 'Testiuutine')
+        self.assertContains(response, 'Uutineetkin pitää testata')
 
     def test_get_single_event(self):
         c = Client()
@@ -113,18 +114,6 @@ class ViewGetTest(TestCase):
         self.assertContains(response, 'Testikuvaus')
         self.assertContains(response, 'Testipaikkakunta')
 
-    def test_get_past_events(self):
-        self.event.starts = self.event.starts + datetime.timedelta(hours=-25)
-        self.event.ends = self.event.ends + datetime.timedelta(hours=-43)
-        self.event.title = 'Mennyt testitapahtuma'
-        self.event.save()
-
-        c = Client()
-
-        response = c.get('/tapahtumat/menneet/')
-        self.assertContains(response, 'Mennyt testitapahtuma')
-        self.assertContains(response, 'Testikuvaus')
-        self.assertContains(response, 'Testipaikkakunta')
 
 class FeedbackTest(TestCase):
     """
@@ -174,7 +163,7 @@ class ApplicationViewTest(TestCase):
             , 'shell': '/bin/zsh'
             , 'funet_rules_accepted': True
             , 'password': 'testi'
-            , 'password_check':'testi'
+            , 'password_check': 'testi'
         }
 
     def test_invalid_application(self):
@@ -203,6 +192,7 @@ class ApplicationViewTest(TestCase):
                 , 'Salasana ja tarkiste eivät täsmää.'
                 , status_code=400)
 
+    @unittest.skip(sys.platform in ['win32'])
     def test_application_made(self):
         """
         Test that mail is sent when an application is made.

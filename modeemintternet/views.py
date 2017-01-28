@@ -2,14 +2,13 @@
 
 from __future__ import unicode_literals
 
-from django.http import HttpResponse, Http404
-from django.shortcuts import render, get_object_or_404
-from django.template import RequestContext
-from django.utils import timezone
-
 import logging
+
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+
 from reportlab.pdfgen import canvas
-from StringIO import StringIO
+from io import StringIO
 
 from modeemintternet import mailer, helpers, settings
 from modeemintternet.models import News, Event, Soda, Application
@@ -127,18 +126,18 @@ def jaseneksi(request):
 
     # Return info page for the application.
     return render(request, 'jaseneksi.html',
-            {'success': True , 'mailingSuccess': mailingSuccess})
+            {'success': True, 'mailingSuccess': mailingSuccess})
 
 def uutiset(request, pk=None):
     if pk:
         return render(request, 'uutiset.html',
-                {'news': News.objects.filter(id=pk)})
+                {'news': News.objects.filter(pk=pk)})
     return render(request, 'uutiset.html',
             {'news': News.objects.order_by('-id')})
 
 def tapahtumat(request, pk=None):
     if pk:
-        events = get_object_or_404(Event, pk=pk)
+        events = Event.objects.filter(pk=pk)
     else:
         events = Event.objects.all().order_by('-starts')
 

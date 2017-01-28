@@ -3,10 +3,9 @@
 from __future__ import unicode_literals
 
 from passlib.context import CryptContext
+
 from django.db import models
-from django.utils.encoding import smart_str
 from django.contrib.auth.models import User
-from django.contrib.auth.hashers import make_password
 from django.core.urlresolvers import reverse
 
 
@@ -21,7 +20,7 @@ class News(models.Model):
         return '{0} (luotu {1} UTC)'.format(self.title, self.posted)
 
     def get_absolute_url(self):
-        return reverse('modeemintternet.views.uutiset', args=[unicode(self.id)])
+        return reverse('modeemintternet.views.uutiset', args=[self.id])
 
     class Meta:
         verbose_name = 'Uutine'
@@ -44,7 +43,7 @@ class Event(models.Model):
         return '{0} (alkaa {1} UTC)'.format(self.title, self.starts)
 
     def get_absolute_url(self):
-        return reverse('modeemintternet.views.tapahtumat', args=[unicode(self.id)])
+        return reverse('modeemintternet.views.tapahtumat', args=[self.id])
 
     class Meta:
         verbose_name = 'Tapahtuma'
@@ -117,12 +116,12 @@ class Application(models.Model):
             https://pythonhosted.org/passlib/lib/passlib.hash.html
         """
 
-        password_schemes = [b'pbkdf2_sha256', b'sha512_crypt', b'des_crypt']
+        password_schemes = ['pbkdf2_sha256', 'sha512_crypt', 'des_crypt']
         pwd_context = CryptContext(schemes=password_schemes)
 
-        self.pbkdf2_sha256 = pwd_context.encrypt(password, scheme=b'pbkdf2_sha256')
-        self.sha512_crypt = pwd_context.encrypt(password, scheme=b'sha512_crypt')
-        self.des_crypt = pwd_context.encrypt(password, scheme=b'des_crypt')
+        self.pbkdf2_sha256 = pwd_context.encrypt(password, scheme='pbkdf2_sha256')
+        self.sha512_crypt = pwd_context.encrypt(password, scheme='sha512_crypt')
+        self.des_crypt = pwd_context.encrypt(password, scheme='des_crypt')
 
         self.save()
 

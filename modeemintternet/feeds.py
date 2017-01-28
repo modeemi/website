@@ -4,7 +4,7 @@ from modeemintternet.models import News, Event
 
 
 class NewsRSSFeed(Feed):
-    title = "Modeemi ry uutineet"
+    title = "Modeemi ryn uutineet"
     link = "/uutineet/"
 
     def items(self):
@@ -17,7 +17,7 @@ class NewsRSSFeed(Feed):
         return news.text
 
 class EventRSSFeed(Feed):
-    title = "Modeemi ry tapahtumat"
+    title = "Modeemi ryn tapahtumat"
     link = "/tapahtumat/"
 
     def items(self):

@@ -4,12 +4,16 @@
 Custom mailer for the awesome modeemintternet super portal.
 """
 
+from __future__ import unicode_literals
+
 import textwrap
+
+from django.conf import settings
 from django.core.mail import EmailMessage
 
 
 ORGANIZATION = 'Modeemi ry'
-ORGANIZATION_EMAIL = 'hallitus@modeemi.fi'
+ORGANIZATION_EMAIL = settings.DEFAULT_FROM_EMAIL
 
 
 def application_created(application):
@@ -21,9 +25,9 @@ def application_created(application):
     """
 
     # Creation notifier for the board
-    topic = u'{0} - Uusi jäsenhakemus jätetty'.format(ORGANIZATION)
-    msg = \
-u"""
+    subject = 'Uusi jäsenhakemus jätetty'
+    body = \
+"""
 Hei,
 
 henkilö {0} {1} ({2}) on jättänyt uuden jäsenhakemuksen {3}.
@@ -38,12 +42,12 @@ Ystävällisin terveisin,
            application.primary_nick, application.applied.strftime('%d.%m.%Y'),
            application.id, ORGANIZATION)
 
-    EmailMessage(topic, msg, ORGANIZATION, [ORGANIZATION_EMAIL]).send()
+    EmailMessage(subject, body, to=[ORGANIZATION_EMAIL]).send()
 
     # Notifier to the end user
-    topic = u'{0} - Jäsenhakemuksesi lisätiedot'.format(ORGANIZATION)
-    msg = \
-u"""
+    subject = 'Jäsenhakemuksesi lisätiedot'
+    body = \
+"""
 Hei {0},
 
 ja kiitos jäsenhakemuksestasi!
@@ -77,7 +81,7 @@ Ystävällisin terveisin,
            application.primary_nick, application.secondary_nick, application.shell,
            application.applied.strftime('%d.%m.%Y'), ORGANIZATION)
 
-    EmailMessage(topic, msg, ORGANIZATION, [application.email]).send()
+    EmailMessage(subject, body, to=[application.email]).send()
 
 
 def application_accepted(application):
@@ -88,9 +92,9 @@ def application_accepted(application):
     :param user: Django user object.
     """
 
-    topic = u'{0} - Jäsenhakemuksesi on käsitelty'.format(ORGANIZATION)
-    msg = \
-u"""
+    subject = 'Jäsenhakemuksesi on käsitelty'
+    body = \
+"""
 Hei,
 
 {0}n hallitus on käsitellyt ja hyväksynyt jäsenhakemuksesi.
@@ -103,7 +107,7 @@ Ystävällisin terveisin,
            application.primary_nick,
            application.secondary_nick)
 
-    EmailMessage(topic, msg, ORGANIZATION, [application.email]).send()
+    EmailMessage(subject, body, to=[application.email]).send()
 
 def application_rejected(application):
     """
@@ -113,9 +117,9 @@ def application_rejected(application):
     :param application: modeemintternet Application object.
     """
 
-    topic = u'{0} - Jäsenhakemuksesi on käsitelty'.format(ORGANIZATION)
-    msg = \
-u"""
+    subject = 'Jäsenhakemuksesi on käsitelty'
+    body = \
+"""
 Hei,
 
 {0}n hallitus on käsitellyt ja ikävä kyllä hylännyt jäsenhakemuksesi.
@@ -126,7 +130,7 @@ Ystävällisin terveisin,
 {0}n hallitus
 """.format(ORGANIZATION, ORGANIZATION_EMAIL)
 
-    EmailMessage(topic, msg, ORGANIZATION, [application.email]).send()
+    EmailMessage(subject, body, to=[application.email]).send()
 
 def feedback_received(feedback):
     """
@@ -135,9 +139,9 @@ def feedback_received(feedback):
     :param feedback: modeemintternet Feedback object.
     """
 
-    topic = '{0} - Palaute verkkosivujen kautta'.format(ORGANIZATION)
-    msg = \
-u"""
+    subject = 'Palaute verkkosivujen kautta'
+    body = \
+"""
 Hei,
 
 Henkilö {0} on jättänyt seuraavan palautteen hallitukselle verkkosivujen välityksellä:
@@ -150,9 +154,11 @@ Voit tarkastella palautetta myös osoitteessa
 
 Ystävällisin terveisin,
 {3}n hallitusautomaatiobotti
-""".format(feedback.sender,
+""".format(
+        feedback.sender,
         textwrap.fill(feedback.message),
         feedback.id,
-        ORGANIZATION)
+        ORGANIZATION
+    )
 
-    EmailMessage(topic, msg, ORGANIZATION, [ORGANIZATION_EMAIL]).send()
+    EmailMessage(subject, body, to=[ORGANIZATION_EMAIL]).send()

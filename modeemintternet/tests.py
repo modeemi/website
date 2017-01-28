@@ -144,7 +144,8 @@ class FeedbackTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'Modeemi ry - Palaute verkkosivujen kautta')
+        self.assertEqual(mail.outbox[0].subject,
+                         'Palaute verkkosivujen kautta')
 
 
 class ApplicationViewTest(TestCase):
@@ -203,9 +204,9 @@ class ApplicationViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(mail.outbox), 2)
         self.assertEqual(mail.outbox[0].subject,
-                'Modeemi ry - Uusi jäsenhakemus jätetty')
+                'Uusi jäsenhakemus jätetty')
         self.assertEqual(mail.outbox[1].subject,
-                'Modeemi ry - Jäsenhakemuksesi lisätiedot')
+                'Jäsenhakemuksesi lisätiedot')
 
     def test_reference_number(self):
         c = Client()
@@ -247,13 +248,13 @@ class ApplicationMethodTest(TestCase):
         application_accepted(self.application)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject,
-                'Modeemi ry - Jäsenhakemuksesi on käsitelty')
+                'Jäsenhakemuksesi on käsitelty')
 
     def test_application_rejected(self):
         application_rejected(self.application)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject,
-                'Modeemi ry - Jäsenhakemuksesi on käsitelty')
+                'Jäsenhakemuksesi on käsitelty')
 
     def test_update_bank_reference(self):
         """

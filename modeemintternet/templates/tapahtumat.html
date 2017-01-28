@@ -2,9 +2,9 @@
 {% block content %}
 <h2>Tapahtumat</h2>
 <p class="event-header-link">
-    <a href="/feed/tapahtumat.rss"><span class="fa fa-list-alt"></span>&nbsp;&nbsp;Lataa .rss feed</a>
+    <a href="{% url 'tapahtumat.rss' %}"><span class="fa fa-list-alt"></span>&nbsp;&nbsp;Lataa .rss feed</a>
     <br />
-    <a href="/feed/tapahtumat.ics"><span class="fa fa-calendar"></span>&nbsp;&nbsp;Lataa .ics feed (GCal, iCal etc.)</a>
+    <a href="{% url 'tapahtumat.ics' %}"><span class="fa fa-calendar"></span>&nbsp;&nbsp;Lataa .ics feed (GCal, iCal etc.)</a>
 </p>
 
 {% if not events %}
@@ -15,7 +15,7 @@
 <div itemscope itemtype="http://schema.org/Event">
     <hr />
     <p>
-        <span class="event-header" itemprop="name"><a href="{% url 'views.tapahtumat' pk=e.id %}">{{ e.title }}</a></span>
+        <span class="event-header" itemprop="name"><a href="{% url 'tapahtumat' pk=e.id %}">{{ e.title }}</a></span>
         <span class="event-timestamp pull-right">
             <small itemprop="author"><time itemprop="datePublished" datetime="{{ e.posted|date:"Y-m-d"}}">{{ e.posted }}</time> {% if e.poster %} ({{ e.poster.username }}){% endif %}</small>
         </span>

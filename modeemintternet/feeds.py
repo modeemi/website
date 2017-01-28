@@ -1,12 +1,11 @@
 from django.contrib.syndication.views import Feed
-from django.core.urlresolvers import reverse
 from django_ical.views import ICalFeed
 from modeemintternet.models import News, Event
 
 
 class NewsRSSFeed(Feed):
-    title = "Modeemi ry uutiset"
-    link = "/uutiset/"
+    title = "Modeemi ry uutineet"
+    link = "/uutineet/"
 
     def items(self):
         return News.objects.order_by('-posted')

@@ -27,7 +27,7 @@ class ViewGetTest(TestCase):
             , '/jaseneksi/'
             , '/laitteisto/'
             , '/palaute/'
-            , '/uutiset/'
+            , '/uutineet/'
             , '/tapahtumat/'
             , '/ry/saannot/'
             , '/ry/rekisteriseloste/'
@@ -36,7 +36,7 @@ class ViewGetTest(TestCase):
             , '/palvelut/backup/'
             , '/palvelut/password/'
             , '/laitteisto/halutaan/'
-            , '/feed/uutiset.rss'
+            , '/feed/uutineet.rss'
             , '/feed/tapahtumat.rss'
             , '/feed/tapahtumat.ics'
         ]
@@ -94,7 +94,7 @@ class ViewGetTest(TestCase):
     def test_get_single_news(self):
         c = Client()
 
-        response = c.get('/uutiset/%d/' % self.news.id)
+        response = c.get('/uutineet/%d/' % self.news.id)
         self.assertContains(response, 'Testiuutine')
         self.assertContains(response, 'Uutineetkin pitää testata')
 

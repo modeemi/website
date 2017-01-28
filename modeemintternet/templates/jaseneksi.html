@@ -5,7 +5,7 @@
 
 <p>Halusitpa sitten oppia Unixia tai muuten vaan ATK:n säätäminen kiinnostaa, olet jokatapauksessa tervetullut jäsenistöömme. Sinun ei tarvitse olla mikään Guru, pelkkä halu oppia riittää. Me kyllä opetamme kuinka asiat tehdään Oikein&#8482;. Modeemin jäsenistöön kuuluu useiden eri tietojärjestelmien ylläpitäjiä, ohjelmoitsijoita, asentajia, tunkkaajia... osaamista löytyy.</p>
 
-<p>Jäsenillä on mahdollisuus hankkia käyttäjätunnus Modeemin koneille. Laaja <a href="{% url 'views.laitteisto' %}">laitteistovalikoima</a> sijaitsee UPS-varmistettuna <a href="https://www.csc.fi/">CSC</a>:n ylläpitämän FuNET-runkoverkon huippunopeiden verkkoyhteyksien päässä ja mahdollistaa tutustumisen moniin eri järjestelmiin. Sähköpostin ja muiden palveluiden luotettava toiminta on Modeemille kunnia-asia. Meillä sähköposteja ei tuhota ylläpidon toimesta!</p>
+<p>Jäsenillä on mahdollisuus hankkia käyttäjätunnus Modeemin koneille. Laaja <a href="{% url 'laitteisto' %}">laitteistovalikoima</a> sijaitsee UPS-varmistettuna <a href="https://www.csc.fi/">CSC</a>:n ylläpitämän FuNET-runkoverkon huippunopeiden verkkoyhteyksien päässä ja mahdollistaa tutustumisen moniin eri järjestelmiin. Sähköpostin ja muiden palveluiden luotettava toiminta on Modeemille kunnia-asia. Meillä sähköposteja ei tuhota ylläpidon toimesta!</p>
 
 <p>Modeemin jäsenenä voit myös tulla kerhohuoneelle katsomaan telkkaa, kuuntelemaan musiikkia, nauttimaan kahvista, Skrollista tai koodausrauhasta.</p>
 
@@ -30,7 +30,7 @@
     {% if mailingSuccess %}
     Sinulle on lähetetty jäsenmaksutiedot sähköpostilla.
     {% else %}
-    Ikävä kyllä emme pystyneet jostain syystä lähettämään sinulle sähköpostilaskua; maksathan jäsenmaksun <a href="{% url 'views.yhteystiedot' %}">yhteystiedot-sivun</a> pankkitilille viestillä "Jäsenmaksu $vuosi $nimi".
+    Ikävä kyllä emme pystyneet jostain syystä lähettämään sinulle sähköpostilaskua; maksathan jäsenmaksun <a href="{% url 'yhteystiedot' %}">yhteystiedot-sivun</a> pankkitilille viestillä "Jäsenmaksu $vuosi $nimi".
     {% endif %}
     Hallitus käsittelee jäsenhakemuksesi seuraavassa kokouksessa ja on sinuun yhteydessä kokouksen jälkeen.
     </p>

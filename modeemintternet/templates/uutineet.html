@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Uutiset</h2>
+<h2>Uutineet</h2>
 <p class="news-header-link">
-    <a href="/feed/uutiset.rss"><span class="fa fa-list-alt"></span>&nbsp;&nbsp;Lataa .rss feed</a>
+    <a href="{% url 'uutineet.rss' %}"><span class="fa fa-list-alt"></span>&nbsp;&nbsp;Lataa .rss feed</a>
 </p>
 
 {% if not news %}
@@ -13,7 +13,7 @@
 <div itemscope itemtype="http://schema.org/Article">
     <hr />
     <p>
-        <span class="news-header" itemprop="headline"><a href="{% url 'views.uutiset' pk=n.id %}">{{ n.title }}</a></span>
+        <span class="news-header" itemprop="headline"><a href="{% url 'uutineet' pk=n.id %}">{{ n.title }}</a></span>
         <span class="news-timestamp pull-right">
             <small itemprop="author"><time itemprop="datePublished" datetime="{{ n.posted|date:"Y-m-d"}}">{{ n.posted }}</time> ({{ n.poster.username }})</small>
         </span>

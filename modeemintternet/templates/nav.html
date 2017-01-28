@@ -24,15 +24,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse disabled" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="{% active request '^/$' %}"><a class="navbar-item" href="{% url 'views.etusivu' %}">Etusivu</a></li>
-                <li class="{% active request '^/uutiset/' %}"><a class="navbar-item" href="{% url 'views.uutiset' %}">Uutiset</a></li>
-                <li class="{% active request '^/tapahtumat/' %}"><a class="navbar-item" href="{% url 'views.tapahtumat' %}">Tapahtumat</a></li>
+                <li class="{% active request '^/$' %}"><a class="navbar-item" href="{% url 'etusivu' %}">Etusivu</a></li>
+                <li class="{% active request '^/uutineet/' %}"><a class="navbar-item" href="{% url 'uutineet' %}">uutineet</a></li>
+                <li class="{% active request '^/tapahtumat/' %}"><a class="navbar-item" href="{% url 'tapahtumat' %}">Tapahtumat</a></li>
                 <li><a class="navbar-item" href="http://blog.modeemi.fi">Blogi&nbsp;&nbsp;<i class="fa fa-external-link-square"></i></a></li>
-                <li class="{% active request '^/ry/' %}"><a class="navbar-item" href="{% url 'views.yhdistys' %}">Yhdistys</a></li>
-                <li class="{% active request '^/jaseneksi/' %}"><a class="navbar-item" href="{% url 'views.jaseneksi' %}">Jäseneksi</a></li>
-                <li class="{% active request '^/palvelut/' %}"><a class="navbar-item" href="{% url 'views.palvelut' %}">Palvelut</a></li>
-                <li class="{% active request '^/laitteisto/' %}"><a class="navbar-item" href="{% url 'views.laitteisto' %}">Laitteisto</a></li>
-                <li class="{% active request '^/palaute/' %}"><a class="navbar-item" href="{% url 'views.palaute' %}">Palaute</a></li>
+                <li class="{% active request '^/ry/' %}"><a class="navbar-item" href="{% url 'yhdistys' %}">Yhdistys</a></li>
+                <li class="{% active request '^/jaseneksi/' %}"><a class="navbar-item" href="{% url 'jaseneksi' %}">Jäseneksi</a></li>
+                <li class="{% active request '^/palvelut/' %}"><a class="navbar-item" href="{% url 'palvelut' %}">Palvelut</a></li>
+                <li class="{% active request '^/laitteisto/' %}"><a class="navbar-item" href="{% url 'laitteisto' %}">Laitteisto</a></li>
+                <li class="{% active request '^/palaute/' %}"><a class="navbar-item" href="{% url 'palaute' %}">Palaute</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

@@ -29,7 +29,7 @@ with warnings.catch_warnings():
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 DEBUG = env('DJANGO_DEBUG', cast=bool, default=False)
-TEMPLATE_DEBUG = DEBUG
+TEMPLATE_DEBUG = env('DJANGO_TEMPLATE_DEBUG', cast=bool, default=DEBUG)
 SECRET_KEY = env(
     'DJANGO_SECRET_KEY',
     cast=str,
@@ -79,7 +79,7 @@ INSTALLED_APPS = (
     'modeemintternet',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -89,20 +89,32 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.request',
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            PROJECT_DIR('templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug': TEMPLATE_DEBUG,
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 if DEBUG:
     INSTALLED_APPS += ('debug_toolbar', )
-    MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware', )
+    MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware', )
 
 ROOT_URLCONF = 'modeemintternet.urls'
 WSGI_APPLICATION = 'modeemintternet.wsgi.application'
@@ -120,12 +132,6 @@ TIME_ZONE = 'Europe/Helsinki'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
-# Templates and static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-TEMPLATE_DIRS = (
-    PROJECT_DIR('templates'),
-)
 
 STATICFILES_DIRS = (
     PROJECT_ROOT('vendor'),

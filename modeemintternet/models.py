@@ -20,7 +20,7 @@ class News(models.Model):
         return '{0} (luotu {1} UTC)'.format(self.title, self.posted)
 
     def get_absolute_url(self):
-        return reverse('modeemintternet.views.uutiset', args=[self.id])
+        return reverse('uutineet', args=[self.id])
 
     class Meta:
         verbose_name = 'Uutine'
@@ -43,7 +43,7 @@ class Event(models.Model):
         return '{0} (alkaa {1} UTC)'.format(self.title, self.starts)
 
     def get_absolute_url(self):
-        return reverse('modeemintternet.views.tapahtumat', args=[self.id])
+        return reverse('tapahtumat', args=[self.id])
 
     class Meta:
         verbose_name = 'Tapahtuma'
@@ -119,9 +119,9 @@ class Application(models.Model):
         password_schemes = ['pbkdf2_sha256', 'sha512_crypt', 'des_crypt']
         pwd_context = CryptContext(schemes=password_schemes)
 
-        self.pbkdf2_sha256 = pwd_context.encrypt(password, scheme='pbkdf2_sha256')
-        self.sha512_crypt = pwd_context.encrypt(password, scheme='sha512_crypt')
-        self.des_crypt = pwd_context.encrypt(password, scheme='des_crypt')
+        self.pbkdf2_sha256 = pwd_context.hash(password, 'pbkdf2_sha256')
+        self.sha512_crypt = pwd_context.hash(password, 'sha512_crypt')
+        self.des_crypt = pwd_context.hash(password, 'des_crypt')
 
         self.save()
 

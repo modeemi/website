@@ -138,15 +138,11 @@ def uutiset(request, pk=None):
 
 def tapahtumat(request, pk=None):
     if pk:
-        return render(request, 'tapahtumat.html',
-                {'events': Event.objects.filter(id=pk)})
-    return render(request, 'tapahtumat.html',
-            {'events': Event.objects.filter(ends__gte=timezone.now()).order_by('starts')})
+        events = get_object_or_404(Event, pk=pk)
+    else:
+        events = Event.objects.all().order_by('-starts')
 
-def menneet(request):
-    return render(request, 'tapahtumat.html',
-            {'events': Event.objects.filter(ends__lt=timezone.now()).order_by('-starts'),
-             'past': True})
+    return render(request, 'tapahtumat.html', {'events': events})
 
 def viitenumero(request, username):
     application = get_object_or_404(Application, primary_nick=username)

@@ -14,6 +14,7 @@ import warnings
 import environ
 
 from django.core.exceptions import ImproperlyConfigured
+from django.utils.crypto import get_random_string
 
 PROJECT_ROOT = environ.Path(__file__) - 2  # type: environ.Path
 PROJECT_DIR = PROJECT_ROOT.path('modeemintternet')
@@ -28,20 +29,30 @@ with warnings.catch_warnings():
 # Quick-start settings, check for deployment
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-DEBUG = env('DJANGO_DEBUG', cast=bool, default=False)
+DEBUG = env('DJANGO_DEBUG', cast=bool, default=True)
 TEMPLATE_DEBUG = env('DJANGO_TEMPLATE_DEBUG', cast=bool, default=DEBUG)
 SECRET_KEY = env(
     'DJANGO_SECRET_KEY',
     cast=str,
-    default='n8mll7c7zkdsmc0fz=7o9xqry!mzj3i48ggk=e_j0)#^3f-fn_'
+    default=get_random_string(50),
 )
 
 if not (isinstance(SECRET_KEY, str) and len(SECRET_KEY) >= 42):
     raise ImproperlyConfigured('Django SECRET_KEY is too short {}'.format(len(SECRET_KEY)))
 
-# Version number is mandatory and imported from bower.json
-with open(PROJECT_ROOT('bower.json')) as f:
-    VERSION_NUMBER = json.loads(f.read()).get('version')
+try:
+    with open(PROJECT_ROOT('bower.json')) as f:
+        VERSION_NUMBER = json.loads(f.read()).get('version')
+except Exception as e:
+    VERSION_NUMBER = 'EOS'
+
+ROOT_URLCONF = 'modeemintternet.urls'
+WSGI_APPLICATION = 'modeemintternet.wsgi.application'
+
+# Mailer settings
+EMAIL_HOST = 'mail.modeemi.fi'
+EMAIL_SUBJECT_PREFIX = '[Modeemi] '
+DEFAULT_FROM_EMAIL = 'Modeemi ryn hallitus <hallitus@modeemi.fi>'
 
 INTERNAL_IPS = (
     '127.0.0.1',
@@ -59,10 +70,28 @@ ALLOWED_HOSTS = (
     'www.modeemi.cs.tut.fi',
 )
 
-# Mailer settings
-EMAIL_HOST = 'mail.modeemi.fi'
-EMAIL_SUBJECT_PREFIX = '[Modeemi] '
-DEFAULT_FROM_EMAIL = 'Modeemi ryn hallitus <hallitus@modeemi.fi>'
+# Database
+# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+DATABASES = {
+    'default': env.db(default='postgres://modeemi:modeemi@127.0.0.1:5432/modeemi')
+}
+
+# Internationalization
+# https://docs.djangoproject.com/en/1.8/topics/i18n/
+LANGUAGE_CODE = 'fi'
+TIME_ZONE = 'Europe/Helsinki'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+STATICFILES_DIRS = (
+    PROJECT_ROOT('vendor'),
+    PROJECT_DIR('static'),
+)
+
+STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www//modeemintternet/static'
+MEDIA_ROOT = '/var/www/modeemintternet/media'
 
 # Application definition
 INSTALLED_APPS = (
@@ -91,6 +120,10 @@ MIDDLEWARE = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+if DEBUG:
+    INSTALLED_APPS += ('debug_toolbar', )
+    MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware', )
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -113,36 +146,6 @@ TEMPLATES = [
         },
     },
 ]
-
-if DEBUG:
-    INSTALLED_APPS += ('debug_toolbar', )
-    MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware', )
-
-ROOT_URLCONF = 'modeemintternet.urls'
-WSGI_APPLICATION = 'modeemintternet.wsgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-DATABASES = {
-    'default': env.db(default='postgres://modeemi:modeemi@127.0.0.1:5432/modeemi')
-}
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.8/topics/i18n/
-LANGUAGE_CODE = 'fi'
-TIME_ZONE = 'Europe/Helsinki'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
-
-STATICFILES_DIRS = (
-    PROJECT_ROOT('vendor'),
-    PROJECT_DIR('static'),
-)
-
-STATIC_URL = '/static/'
-STATIC_ROOT = '/var/www//modeemintternet/static'
-MEDIA_ROOT = '/var/www/modeemintternet/media'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 

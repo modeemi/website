@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.org/modeemi/intternetvelho.svg?branch=master)](https://travis-ci.org/modeemi/intternetvelho) [![Coverage Status](https://coveralls.io/repos/modeemi/intternetvelho/badge.svg?branch=master)](https://coveralls.io/r/modeemi/intternetvelho?branch=master) [![Requirements Status](https://requires.io/github/modeemi/intternetvelho/requirements.svg?branch=master)](https://requires.io/github/modeemi/intternetvelho/requirements/?branch=master)
 
-### Prelude
-
 Modeemi ry website for the Finnish IT club based on Tampere, Finland.
 
 Built on top of Python, Django and PostgreSQL.
@@ -12,27 +10,26 @@ Built on top of Python, Django and PostgreSQL.
 
 This guide assumes you have some experience in Django development.
 
-Install Vagrant
+Development environment can be easily provisioned with Vagrant:
 
     vagrant up
-
-Then simply SSH into the machine and activate the virtualenv
-
     vagrant ssh
     cd /vagrant
     source ./virtualenv/bin/activate
+    python -Wall manage.py test
+    python manage.py migrate --noinput
+    python manage.py collectstatic --noinput
+    python manage.py runserver
 
 ### Committing
 
 Please run test suite before committing your changes.
 
-    # Activate the environment as described before
+    # activate the environment as described before
     python manage.py test
 
 If you have implemented new views or functionality, implement tests for those as well.
 
-### Updating the service
+### Updating the running web service
 
-Run `webupdate` on the web server: 
-
-    sudo webupdate
+Run `webupdate` on the web server as `root`.

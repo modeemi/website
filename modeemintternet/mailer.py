@@ -9,7 +9,7 @@ from __future__ import unicode_literals
 import textwrap
 
 from django.conf import settings
-from django.core.mail import EmailMessage
+from django.core.mail import send_mail
 
 
 ORGANIZATION = 'Modeemi ry'
@@ -25,7 +25,7 @@ def application_created(application):
     """
 
     # Creation notifier for the board
-    subject = 'Uusi jäsenhakemus jätetty'
+    subject = settings.EMAIL_SUBJECT_PREFIX + 'Uusi jäsenhakemus jätetty'
     body = \
 """
 Hei,
@@ -42,10 +42,10 @@ Ystävällisin terveisin,
            application.primary_nick, application.applied.strftime('%d.%m.%Y'),
            application.id, ORGANIZATION)
 
-    EmailMessage(subject, body, to=[ORGANIZATION_EMAIL]).send()
+    send_mail(subject, body, ORGANIZATION_EMAIL, [ORGANIZATION_EMAIL])
 
     # Notifier to the end user
-    subject = 'Jäsenhakemuksesi lisätiedot'
+    subject = settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi lisätiedot'
     body = \
 """
 Hei {0},
@@ -81,7 +81,7 @@ Ystävällisin terveisin,
            application.primary_nick, application.secondary_nick, application.shell,
            application.applied.strftime('%d.%m.%Y'), ORGANIZATION)
 
-    EmailMessage(subject, body, to=[application.email]).send()
+    send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 
 
 def application_accepted(application):
@@ -92,7 +92,7 @@ def application_accepted(application):
     :param user: Django user object.
     """
 
-    subject = 'Jäsenhakemuksesi on käsitelty'
+    subject = settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi on käsitelty'
     body = \
 """
 Hei,
@@ -107,7 +107,7 @@ Ystävällisin terveisin,
            application.primary_nick,
            application.secondary_nick)
 
-    EmailMessage(subject, body, to=[application.email]).send()
+    send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 
 def application_rejected(application):
     """
@@ -117,7 +117,7 @@ def application_rejected(application):
     :param application: modeemintternet Application object.
     """
 
-    subject = 'Jäsenhakemuksesi on käsitelty'
+    subject = settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi on käsitelty'
     body = \
 """
 Hei,
@@ -130,7 +130,7 @@ Ystävällisin terveisin,
 {0}n hallitus
 """.format(ORGANIZATION, ORGANIZATION_EMAIL)
 
-    EmailMessage(subject, body, to=[application.email]).send()
+    send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 
 def feedback_received(feedback):
     """
@@ -139,7 +139,7 @@ def feedback_received(feedback):
     :param feedback: modeemintternet Feedback object.
     """
 
-    subject = 'Palaute verkkosivujen kautta'
+    subject = settings.EMAIL_SUBJECT_PREFIX + 'Palaute verkkosivujen kautta'
     body = \
 """
 Hei,
@@ -161,4 +161,4 @@ Ystävällisin terveisin,
         ORGANIZATION
     )
 
-    EmailMessage(subject, body, to=[ORGANIZATION_EMAIL]).send()
+    send_mail(subject, body, ORGANIZATION_EMAIL, [ORGANIZATION_EMAIL])

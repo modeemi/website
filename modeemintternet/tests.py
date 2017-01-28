@@ -7,11 +7,10 @@ Unit tests for modeemintternet app.
 from __future__ import unicode_literals
 
 import datetime
-import sys
-import unittest
 
-from django.test import Client, TestCase
+from django.conf import settings
 from django.core import mail
+from django.test import Client, TestCase
 from django.utils import timezone
 
 from modeemintternet.models import Application, Feedback, News, Event, Soda
@@ -145,7 +144,7 @@ class FeedbackTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject,
-                         'Palaute verkkosivujen kautta')
+                         settings.EMAIL_SUBJECT_PREFIX + 'Palaute verkkosivujen kautta')
 
 
 class ApplicationViewTest(TestCase):
@@ -204,9 +203,9 @@ class ApplicationViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(mail.outbox), 2)
         self.assertEqual(mail.outbox[0].subject,
-                'Uusi jäsenhakemus jätetty')
+                settings.EMAIL_SUBJECT_PREFIX + 'Uusi jäsenhakemus jätetty')
         self.assertEqual(mail.outbox[1].subject,
-                'Jäsenhakemuksesi lisätiedot')
+                settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi lisätiedot')
 
     def test_reference_number(self):
         c = Client()
@@ -248,13 +247,13 @@ class ApplicationMethodTest(TestCase):
         application_accepted(self.application)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject,
-                'Jäsenhakemuksesi on käsitelty')
+                settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi on käsitelty')
 
     def test_application_rejected(self):
         application_rejected(self.application)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject,
-                'Jäsenhakemuksesi on käsitelty')
+                settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi on käsitelty')
 
     def test_update_bank_reference(self):
         """

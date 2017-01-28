@@ -1,13 +1,10 @@
-vendor
-virtualenv*
 *.pyc
+__pycache__
+virtualenv*
+vendor
 .idea
-ldap.txt
-db.sqlite3
-build
-barcode.png
 static
 media
 .coverage
-local_settings.py
 .vagrant
+.env

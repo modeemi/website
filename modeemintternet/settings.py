@@ -61,6 +61,8 @@ ALLOWED_HOSTS = (
 
 # Mailer settings
 EMAIL_HOST = 'mail.modeemi.fi'
+EMAIL_SUBJECT_PREFIX = '[Modeemi] '
+DEFAULT_FROM_EMAIL = 'hallitus@modeemi.fi'
 
 # Application definition
 INSTALLED_APPS = (

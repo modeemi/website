@@ -9,12 +9,17 @@ https://docs.djangoproject.com/en/1.8/topics/settings/
 
 import os
 import json
+import random
+import string
 import warnings
 
 import environ
 
 from django.core.exceptions import ImproperlyConfigured
-from django.utils.crypto import get_random_string
+
+
+def get_random_secret(length=42):
+    return ''.join(random.choice(string.printable.replace('$', 'S')) for _ in range(length))
 
 PROJECT_ROOT = environ.Path(__file__) - 2  # type: environ.Path
 PROJECT_DIR = PROJECT_ROOT.path('modeemintternet')
@@ -30,8 +35,7 @@ with warnings.catch_warnings():
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 DEBUG = env('DJANGO_DEBUG', cast=bool, default=True)
-TEMPLATE_DEBUG = env('DJANGO_TEMPLATE_DEBUG', cast=bool, default=DEBUG)
-SECRET_KEY = env('DJANGO_SECRET_KEY', cast=str, default=get_random_string(50))
+SECRET_KEY = env('DJANGO_SECRET_KEY', cast=str, default=get_random_secret())
 
 if not (isinstance(SECRET_KEY, str) and len(SECRET_KEY) >= 42):
     raise ImproperlyConfigured('Django SECRET_KEY is too short {}, type {}'.format(len(SECRET_KEY), type(SECRET_KEY)))
@@ -128,7 +132,7 @@ TEMPLATES = [
         ],
         'APP_DIRS': True,
         'OPTIONS': {
-            'debug': TEMPLATE_DEBUG,
+            'debug': env('DJANGO_TEMPLATE_DEBUG', cast=bool, default=DEBUG),
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',

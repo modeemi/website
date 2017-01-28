@@ -37,8 +37,8 @@ SECRET_KEY = env(
     default=get_random_string(50),
 )
 
-if not (isinstance(SECRET_KEY, str) and len(SECRET_KEY) >= 42):
-    raise ImproperlyConfigured('Django SECRET_KEY is too short {}'.format(len(SECRET_KEY)))
+if not (isinstance(SECRET_KEY, str) and len(SECRET_KEY) < 42):
+    raise ImproperlyConfigured('Django SECRET_KEY is too short, length {} < 42'.format(len(SECRET_KEY)))
 
 try:
     with open(PROJECT_ROOT('bower.json')) as f:

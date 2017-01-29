@@ -19,5 +19,6 @@ DATABASES = {
     'default': env.db()
 }
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 STATIC_ROOT = '/var/www/modeemintternet/static'
 MEDIA_ROOT = '/var/www/modeemintternet/media'

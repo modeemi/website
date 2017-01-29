@@ -16,8 +16,9 @@
     <hr />
     <p>
         <span class="event-header" itemprop="name"><a href="{% url 'tapahtumat' pk=e.id %}">{{ e.title }}</a></span>
-        <span class="event-timestamp pull-right">
-            <small itemprop="author"><time itemprop="datePublished" datetime="{{ e.posted|date:"Y-m-d"}}">{{ e.posted }}</time> {% if e.poster %} ({{ e.poster.username }}){% endif %}</small>
+    <br/>
+        <span class="event-timestamp">
+            <i><small itemprop="author"><time itemprop="datePublished" datetime="{{ e.posted|date:"Y-m-d"}}">{{ e.posted }}</time> {% if e.poster %} ({{ e.poster.username }}){% endif %}</small></i>
         </span>
     </p>
 

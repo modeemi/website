@@ -3,154 +3,43 @@
 
 <!DOCTYPE html>
 <html lang="fi">
-    <head>
-        <title>Modeemi ry</title>
+<head>
+    <title>Modeemi ry</title>
+    {% block meta %}
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="google-site-verification" content="Z7gaVVWmpZl9-SEy4mUPSYxbvyGYJNBiXME7lxZgh1k" />
         <meta name="description" content="Modeemi ry - Tamperelainen ATK-alan harrastajien yhdistys, joka on jo vuodesta 1977 asti edistänyt Suomen tietokoneharrastajien verkostoitumista." />
+    {% endblock meta %}
+    {% block link %}
+        <link rel="canonical" href="https://www.modeemi.fi{{ request.get_full_path }}" />
         <link type="image/x-icon" rel="icon" href="{% static "favicon.ico" %}" />
-        <link type="text/css" rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.min.css" %}" />
-        <link type="text/css" rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap-theme.min.css" %}" />
-        <link type="text/css" rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}" />
+        <link type="text/css" rel="stylesheet" charset="utf-8" href="{% static "bootstrap/dist/css/bootstrap.min.css" %}" />
+        <link type="text/css" rel="stylesheet" charset="utf-8" href="{% static "bootstrap/dist/css/bootstrap-theme.min.css" %}" />
+        <link type="text/css" rel="stylesheet" charset="utf-8" href="{% static "font-awesome/css/font-awesome.min.css" %}" />
+        <link type="text/css" rel="stylesheet" charset="utf-8" href="{% static "css/modeemi.css" %}" />
+    {% endblock link %}
+</head>
 
-        <!-- Minimal page styling rules -->
-        <style>
-            /* General page styles, including sticky footer */
-            html {
-                position: relative;
-                min-height: 100%;
-            }
-            body {
-                background-color: #ddd;
-                background-image: url('{% static "image/background.png" %}');
-                margin: 0 0 140px;
-            }
-            footer {
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                height: 160px;
-                width: 100%;
-            }
+<body>
+{% include "nav.html" %}
+<div class="container-fluid">
+    {% block content %}{% endblock %}
+</div>
 
-            /* Navigation */
-            nav.navbar {
-                border-radius: 0px;
-            }
-            .navbar-brand {
-                color: #dddddd !important;
-            }
-            .navbar-brand:hover {
-                text-shadow: 0px 0px 42px blue !important;
-                cursor: wait !important;
-            }
-            .navbar-inverse .navbar-nav > li > a {
-                color: #aaaaaa;
-            }
-            .navbar-brand {
-                transition: text-shadow 500ms linear;
-                -moz-transition: text-shadow 500ms linear;
-                -webkit-transition: text-shadow 500ms linear;
-            }
-            .navbar-item {
-                transition: color 250ms linear;
-                -moz-transition: color 250ms linear;
-                -webkit-transition: color 250ms linear;
-            }
+<footer>
+    <div class="col-xs-12 text-center">
+        <hr />
+        <p>&copy; Modeemi ry 2014-2017 (BSD Licensed) &middot; Intternet {% version %} &middot; <a href="https://github.com/modeemi/intternetvelho">GitHub</a></p>
+        <p>Network service provided by <a href="https://www.csc.fi/">CSC</a>, no commercial use allowed.</p>
+        <a href="https://www.debian.org/"><img class="poweredbybadge" src="{% static "logo/debian.png" %}" border="0" height="45" width="110" alt="Powered by Debian." /></a>
+        <a href="https://www.python.org/"><img class="poweredbybadge" src="{% static "logo/python.png" %}" border="0" height="45" width="111" alt="Powered by Python." /></a>
+        <a href="https://www.djangoproject.com/"><img class="poweredbybadge" src="{% static "logo/django.png" %}" border="0" height="45" width="106" alt="Powered by Django." /></a>
+        <a href="https://www.postgresql.org/"><img class="poweredbybadge" src="{% static "logo/postgresql.png" %}" border="0" height="45" width="84" alt="Powered by PostgreSQL." /></a>
+    </div>
+</footer>
 
-            /* The main header for the whole page with image background */
-            div.header {
-                overflow-x: hidden;
-                overflow-y: hidden;
-                background-image: url('{% static "image/header.png" %}');
-            }
-            div.header h1 {
-                color: #cccccc;
-                font-size: 4em;
-                margin: 0.5em;
-            }
-            div.header a:hover {
-                text-decoration: none;
-            }
-            div.header img#ribbon {
-                opacity: 0.666;
-                position: absolute;
-                top: 0;
-                right: 0;
-                border: 0;
-
-                transition: opacity 250ms linear;
-                -moz-transition: opacity 250ms linear;
-                -webkit-transition: opacity 250ms linear;
-            }
-            div.header img#ribbon:hover {
-                opacity: 1.000;
-            }
-            @media(min-width: 768px) {
-                body > div.container-fluid {
-                    margin: 1em;
-                }
-            }
-            .btn {
-                width: 100%;
-            }
-
-            /* News */
-            .news-header {
-                font-size: 1.5em;
-            }
-            .news-header-link > a {
-                text-indent: 2em;
-            }
-
-            /* Event */
-            .event-header {
-                font-size: 1.5em;
-            }
-            .event-header-link > a {
-                text-indent: 2em;
-            }
-
-            /* Equipment */
-            th.equipment-header {
-                padding-left: 0 !important;
-            }
-
-            /* Footer */
-            img.poweredbybadge {
-                opacity: 0.666;
-
-                transition: opacity 250ms linear;
-                -moz-transition: opacity 250ms linear;
-                -webkit-transition: opacity 250ms linear;
-            }
-            img.poweredbybadge:hover {
-                opacity: 1.000;
-            }
-
-        </style>
-    </head>
-
-    <body>
-        {% include "nav.html" %}
-        <div class="container-fluid">
-            {% block content %}{% endblock %}
-        </div>
-
-        <footer>
-            <div class="col-xs-12 text-center">
-                <hr />
-                <p>&copy; Modeemi ry 2014-2017 (BSD Licensed) &middot; Intternet {% version %} &middot; <a href="https://github.com/modeemi/intternetvelho">GitHub</a></p>
-                <p>Network service provided by <a href="https://www.csc.fi/">CSC</a>, no commercial use allowed.</p>
-                <a href="https://www.debian.org/"><img class="poweredbybadge" src="{% static "logo/debian.png" %}" border="0" height="45" width="110" alt="Powered by Debian." /></a>
-                <a href="https://www.python.org/"><img class="poweredbybadge" src="{% static "logo/python.png" %}" border="0" height="45" width="111" alt="Powered by Python." /></a>
-                <a href="https://www.djangoproject.com/"><img class="poweredbybadge" src="{% static "logo/django.png" %}" border="0" height="45" width="106" alt="Powered by Django." /></a>
-                <a href="https://www.postgresql.org/"><img class="poweredbybadge" src="{% static "logo/postgresql.png" %}" border="0" height="45" width="84" alt="Powered by PostgreSQL." /></a>
-            </div>
-        </footer>
-
-        <script type="text/javascript" src="{% static "jquery/dist/jquery.min.js" %}"></script>
-        <script type="text/javascript" src="{% static "bootstrap/dist/js/bootstrap.min.js" %}"></script>
-    </body>
+<script type="text/javascript" charset="utf-8" src="{% static "jquery/dist/jquery.min.js" %}"></script>
+<script type="text/javascript" charset="utf-8" src="{% static "bootstrap/dist/js/bootstrap.min.js" %}"></script>
+</body>
 </html>

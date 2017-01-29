@@ -1,0 +1,122 @@
+@charset "utf-8";
+
+/* General page styles, including sticky footer */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    background: #dddddd url("../image/background.png");
+    margin: 0 0 140px;
+}
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 160px;
+    width: 100%;
+}
+
+/* Navigation */
+nav.navbar {
+    border-radius: 0;
+}
+.navbar-brand {
+    color: #dddddd !important;
+}
+.navbar-brand:hover {
+    cursor: default;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #aaaaaa;
+}
+.navbar-brand {
+    transition: text-shadow 500ms linear;
+    -moz-transition: text-shadow 500ms linear;
+    -webkit-transition: text-shadow 500ms linear;
+}
+.navbar-item {
+    transition: color 250ms linear;
+    -moz-transition: color 250ms linear;
+    -webkit-transition: color 250ms linear;
+}
+
+/* The main header for the whole page with image background */
+div.header {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background: #000000 url("../image/header.png");
+}
+div.header h1 {
+    color: #cccccc;
+    font-size: 4em;
+    margin: 0.5em;
+    cursor: default;
+}
+div.header a:hover {
+    text-decoration: none;
+}
+div.header img#ribbon {
+    opacity: 0.666;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+
+    transition: opacity 250ms linear;
+    -moz-transition: opacity 250ms linear;
+    -webkit-transition: opacity 250ms linear;
+}
+div.header img#ribbon:hover {
+    opacity: 1.000;
+}
+@media(min-width: 768px) {
+    body > div.container-fluid {
+        margin: 1em;
+    }
+}
+
+a {
+    color: mediumblue;
+}
+
+a:hover, a:active {
+    color: darkblue;
+}
+
+.btn {
+    width: 100%;
+}
+
+/* News */
+.news-header {
+    font-size: 1.5em;
+}
+.news-header-link > a {
+    text-indent: 2em;
+}
+
+/* Event */
+.event-header {
+    font-size: 1.5em;
+}
+.event-header-link > a {
+    text-indent: 2em;
+}
+
+/* Equipment */
+th.equipment-header {
+    padding-left: 0 !important;
+}
+
+/* Footer */
+img.poweredbybadge {
+    opacity: 0.666;
+
+    transition: opacity 250ms linear;
+    -moz-transition: opacity 250ms linear;
+    -webkit-transition: opacity 250ms linear;
+}
+img.poweredbybadge:hover {
+    opacity: 1.000;
+}

@@ -134,3 +134,6 @@ def viitenumero(request, username):
         application.update_bank_reference()
     return HttpResponse('Viitteenne on {}.'.format(application.bank_reference),
                         content_type='text/plain')
+
+def sitemap(request):
+    return render(request, 'sitemap.xml')

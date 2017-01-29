@@ -136,4 +136,4 @@ def viitenumero(request, username):
                         content_type='text/plain')
 
 def sitemap(request):
-    return render(request, 'sitemap.xml')
+    return render(request, 'sitemap.xml', content_type='application/xml')

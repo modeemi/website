@@ -47,7 +47,8 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^viitenumero/(?P<username>.+)/$', views.viitenumero, name='viitenumero'),
 
-    url(r'^sitemap.xml$', views.sitemap, name='sitemap'),
+    url(r'^sitemap/?$', views.sitemap, name='sitemap'),
+    url(r'^sitemap\.xml/?$', views.sitemap, name='sitemap'),
 ]
 
 if settings.DEBUG:

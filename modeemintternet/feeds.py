@@ -4,8 +4,8 @@ from modeemintternet.models import News, Event
 
 
 class NewsRSSFeed(Feed):
-    title = "Modeemi ryn uutineet"
-    link = "/uutineet/"
+    title = "Modeemi ryn uutiset"
+    link = "/uutiset/"
 
     def items(self):
         return News.objects.order_by('-posted')

@@ -22,8 +22,8 @@ urlpatterns = [
     url(r'^laitteisto/$', views.laitteisto, name='laitteisto'),
     url(r'^palaute/$', views.palaute, name='palaute'),
 
-    url(r'^uutineet/$', views.uutineet, name='uutineet'),
-    url(r'^uutineet/(?P<pk>\d+)/$', views.uutineet, name='uutineet'),
+    url(r'^uutiset/$', views.uutiset, name='uutiset'),
+    url(r'^uutiset/(?P<pk>\d+)/$', views.uutiset, name='uutiset'),
 
     url(r'^tapahtumat/$', views.tapahtumat, name='tapahtumat'),
     url(r'^tapahtumat/(?P<pk>\d+)/$', views.tapahtumat, name='tapahtumat'),
@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^palvelut/password/$', views.password, name='password'),
     url(r'^laitteisto/halutaan/$', views.halutaan, name='halutaan'),
 
-    url(r'^feed/uutineet.rss$', NewsRSSFeed(), name='uutineet.rss'),
+    url(r'^feed/uutiset.rss$', NewsRSSFeed(), name='uutiset.rss'),
     url(r'^feed/tapahtumat.rss$', EventRSSFeed(), name='tapahtumat.rss'),
     url(r'^feed/tapahtumat.ics$', EventICalFeed(), name='tapahtumat.ics'),
 

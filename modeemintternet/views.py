@@ -113,11 +113,11 @@ def jaseneksi(request):
     return render(request, 'jaseneksi.html',
             {'success': True, 'mailingSuccess': mailingSuccess})
 
-def uutineet(request, pk=None):
+def uutiset(request, pk=None):
     if pk:
-        return render(request, 'uutineet.html',
+        return render(request, 'uutiset.html',
                 {'news': News.objects.filter(pk=pk)})
-    return render(request, 'uutineet.html',
+    return render(request, 'uutiset.html',
             {'news': News.objects.order_by('-id')})
 
 def tapahtumat(request, pk=None):

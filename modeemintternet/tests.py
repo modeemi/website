@@ -26,7 +26,7 @@ class ViewGetTest(TestCase):
             , '/jaseneksi/'
             , '/laitteisto/'
             , '/palaute/'
-            , '/uutineet/'
+            , '/uutiset/'
             , '/tapahtumat/'
             , '/ry/saannot/'
             , '/ry/rekisteriseloste/'
@@ -35,14 +35,14 @@ class ViewGetTest(TestCase):
             , '/palvelut/backup/'
             , '/palvelut/password/'
             , '/laitteisto/halutaan/'
-            , '/feed/uutineet.rss'
+            , '/feed/uutiset.rss'
             , '/feed/tapahtumat.rss'
             , '/feed/tapahtumat.ics'
         ]
 
         self.news = News(
-            title='Testiuutine'
-            , text='Uutineetkin pitää testata'
+            title='Testiuutinen'
+            , text='Uutisetkin pitää testata'
         )
 
         self.event = Event(
@@ -93,9 +93,9 @@ class ViewGetTest(TestCase):
     def test_get_single_news(self):
         c = Client()
 
-        response = c.get('/uutineet/%d/' % self.news.id)
-        self.assertContains(response, 'Testiuutine')
-        self.assertContains(response, 'Uutineetkin pitää testata')
+        response = c.get('/uutiset/%d/' % self.news.id)
+        self.assertContains(response, 'Testiuutinen')
+        self.assertContains(response, 'Uutisetkin pitää testata')
 
     def test_get_single_event(self):
         c = Client()

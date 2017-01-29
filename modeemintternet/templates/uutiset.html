@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Uutineet</h2>
+<h2>Uutiset</h2>
 <p class="news-header-link">
-    <a href="{% url 'uutineet.rss' %}"><span class="fa fa-list-alt"></span>&nbsp;&nbsp;Lataa .rss feed</a>
+    <a href="{% url 'uutiset.rss' %}"><span class="fa fa-rss-square"></span>&nbsp;&nbsp;Lataa .rss feed</a>
 </p>
 
 {% if not news %}
-<h3>Uutineita ei löytynyt :( Kannattaa tarkistaa URL.</h3>
+<h3>Uutisita ei löytynyt :( Kannattaa tarkistaa URL.</h3>
 {% endif %}
 
 {% for n in news %}
 <div itemscope itemtype="http://schema.org/Article">
     <hr />
     <p>
-        <span class="news-header" itemprop="headline"><a href="{% url 'uutineet' pk=n.id %}">{{ n.title }}</a></span>
+        <span class="news-header" itemprop="headline"><a href="{% url 'uutiset' pk=n.id %}">{{ n.title }}</a></span>
         <span class="news-timestamp pull-right">
             <small itemprop="author"><time itemprop="datePublished" datetime="{{ n.posted|date:"Y-m-d"}}">{{ n.posted }}</time> ({{ n.poster.username }})</small>
         </span>

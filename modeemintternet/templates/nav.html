@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse disabled" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="{% active request '^/$' %}"><a class="navbar-item" href="{% url 'etusivu' %}">Etusivu</a></li>
-                <li class="{% active request '^/uutineet/' %}"><a class="navbar-item" href="{% url 'uutineet' %}">Uutineet</a></li>
+                <li class="{% active request '^/uutiset/' %}"><a class="navbar-item" href="{% url 'uutiset' %}">Uutiset</a></li>
                 <li class="{% active request '^/tapahtumat/' %}"><a class="navbar-item" href="{% url 'tapahtumat' %}">Tapahtumat</a></li>
                 <li><a class="navbar-item" href="http://blog.modeemi.fi">Blogi&nbsp;&nbsp;<i class="fa fa-external-link-square"></i></a></li>
                 <li class="{% active request '^/ry/' %}"><a class="navbar-item" href="{% url 'yhdistys' %}">Yhdistys</a></li>
@@ -36,7 +36,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="navbar-item" href="/admin/">Kirjaudu</a></li>
+                <li><a rel="nofollow" class="navbar-item" href="{% url 'admin:index' %}"><span class="fa fa-cogs"></span></a></li>
             </ul>
         </div> <!-- /.navbar-collapse -->
     </div> <!-- /.container-fluid -->

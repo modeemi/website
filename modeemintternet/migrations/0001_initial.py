@@ -62,8 +62,8 @@ class Migration(migrations.Migration):
                 ('poster', models.ForeignKey(editable=False, to=settings.AUTH_USER_MODEL, null=True)),
             ],
             options={
-                'verbose_name': 'Uutine',
-                'verbose_name_plural': 'Uutineet',
+                'verbose_name': 'Uutinen',
+                'verbose_name_plural': 'Uutiset',
             },
             bases=(models.Model,),
         ),

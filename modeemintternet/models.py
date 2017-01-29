@@ -20,11 +20,11 @@ class News(models.Model):
         return '{0} (luotu {1} UTC)'.format(self.title, self.posted)
 
     def get_absolute_url(self):
-        return reverse('uutineet', args=[self.id])
+        return reverse('uutiset', args=[self.id])
 
     class Meta:
-        verbose_name = 'Uutine'
-        verbose_name_plural = 'Uutineet'
+        verbose_name = 'Uutinen'
+        verbose_name_plural = 'Uutiset'
 
 
 class Event(models.Model):

@@ -1,8 +1,8 @@
 from django import template
-from modeemintternet.settings import VERSION_NUMBER
+from django.conf import settings
 
 register = template.Library()
 
 @register.simple_tag
 def version():
-    return VERSION_NUMBER
+    return settings.VERSION_NUMBER

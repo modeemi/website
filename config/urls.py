@@ -4,8 +4,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 admin.autodiscover()
 
+from django.conf import settings
+
 from rest_framework import routers
-from modeemintternet import settings, views, apiviews
+
+from modeemintternet import views, apiviews
 from modeemintternet.feeds import NewsRSSFeed, EventRSSFeed, EventICalFeed
 
 router = routers.DefaultRouter()

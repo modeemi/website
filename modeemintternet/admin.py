@@ -92,8 +92,11 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_display = ('name_column', 'applied_column', 'processed_column')
     actions = ('accept', 'reject')
 
+class FeedbackAdmin(admin.ModelAdmin):
+    has_change_permissions = lambda _: False
+
 admin.site.register(News, NewsAdmin)
 admin.site.register(Event)
 admin.site.register(Soda, SodaAdmin)
 admin.site.register(Application, ApplicationAdmin)
-admin.site.register(Feedback)
+admin.site.register(Feedback, FeedbackAdmin)

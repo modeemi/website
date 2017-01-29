@@ -8,3 +8,5 @@ media
 .coverage
 .vagrant
 .env
+staticfiles
+mediafiles

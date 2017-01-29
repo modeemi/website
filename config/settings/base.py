@@ -21,7 +21,7 @@ from django.core.exceptions import ImproperlyConfigured
 def get_random_secret(length=42):
     return ''.join(random.choice(string.printable.replace('$', 'S')) for _ in range(length))
 
-PROJECT_ROOT = environ.Path(__file__) - 2  # type: environ.Path
+PROJECT_ROOT = environ.Path(__file__) - 3  # type: environ.Path
 PROJECT_DIR = PROJECT_ROOT.path('modeemintternet')
 
 env = environ.Env()
@@ -46,8 +46,13 @@ try:
 except Exception as e:
     VERSION_NUMBER = 'EOS'
 
-ROOT_URLCONF = 'modeemintternet.urls'
-WSGI_APPLICATION = 'modeemintternet.wsgi.application'
+ROOT_URLCONF = 'config.urls'
+WSGI_APPLICATION = 'config.wsgi.application'
+
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+SESSION_COOKIE_AGE = 60 * 60 * 24
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SECURE_HSTS_SECONDS = 60 * 60 * 24 * 30
 
 # Mailer settings
 EMAIL_HOST = 'mail.modeemi.fi'
@@ -90,8 +95,8 @@ STATICFILES_DIRS = (
 )
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/var/www//modeemintternet/static'
-MEDIA_ROOT = '/var/www/modeemintternet/media'
+STATIC_ROOT = 'staticfiles'
+MEDIA_ROOT = 'mediafiles'
 
 # Application definition
 INSTALLED_APPS = (
@@ -121,9 +126,7 @@ MIDDLEWARE = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-if DEBUG:
-    INSTALLED_APPS += ('debug_toolbar', )
-    MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware', )
+
 
 TEMPLATES = [
     {

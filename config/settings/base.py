@@ -40,8 +40,8 @@ with warnings.catch_warnings():
 DEBUG = env('DJANGO_DEBUG', cast=bool, default=True)
 SECRET_KEY = env('DJANGO_SECRET_KEY', cast=str, default=get_random_secret())
 
-if not (isinstance(SECRET_KEY, str) and len(SECRET_KEY) >= 42):
-    raise ImproperlyConfigured('Django SECRET_KEY is too short {}, type {}'.format(len(SECRET_KEY), type(SECRET_KEY)))
+if len(SECRET_KEY) < 42:
+    raise ImproperlyConfigured('Django SECRET_KEY is too short {}'.format(len(SECRET_KEY), type(SECRET_KEY)))
 
 try:
     with open(PROJECT_ROOT('bower.json')) as f:
@@ -56,6 +56,8 @@ SESSION_ENGINE = "django.contrib.sessions.backends.db"
 SESSION_COOKIE_AGE = 60 * 60 * 24
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SECURE_HSTS_SECONDS = 60 * 60 * 24 * 30
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Mailer settings
 EMAIL_HOST = 'mail.modeemi.fi'

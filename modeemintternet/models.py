@@ -16,7 +16,7 @@ class News(models.Model):
     modified = models.DateTimeField(auto_now=True)
     poster = models.ForeignKey(User, editable=False, null=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return '{0} (luotu {1} UTC)'.format(self.title, self.posted)
 
     def get_absolute_url(self):
@@ -39,7 +39,7 @@ class Event(models.Model):
     modified = models.DateTimeField(auto_now=True)
     poster = models.ForeignKey(User, editable=False, null=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return '{0} (alkaa {1} UTC)'.format(self.title, self.starts)
 
     def get_absolute_url(self):
@@ -55,7 +55,7 @@ class Soda(models.Model):
     price = models.DecimalField(max_digits=3, decimal_places=2)
     active = models.BooleanField(default=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return '{0}'.format(self.name)
 
     class Meta:
@@ -104,7 +104,7 @@ class Application(models.Model):
     application_rejected = models.BooleanField(default=False)
     application_processed = models.BooleanField(default=False)
 
-    def __str__(self):
+    def __unicode__(self):
         return '{0} {1} ({2})'.format(self.first_name, self.last_name, self.applied)
 
     def generate_password_hashes(self, password):
@@ -157,7 +157,7 @@ class Feedback(models.Model):
     message = models.TextField(blank=False)
     sent = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return '{0} ({1})'.format(
                 self.message[:25]
                 , self.sent)

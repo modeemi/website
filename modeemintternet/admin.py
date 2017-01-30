@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
 from django.contrib import admin
-from django.contrib.auth.models import User
 from modeemintternet.models import News, Event, Soda, Application, Feedback
 from modeemintternet import mailer
 
@@ -24,24 +25,24 @@ class SodaAdmin(admin.ModelAdmin):
 
     def name_column(self, obj):
         return obj.name
-    name_column.short_description = u'Nimi'
+    name_column.short_description = 'Nimi'
 
     def price_column(self, obj):
-        return u'{0}e'.format(obj.price)
-    price_column.short_description = u'Hinta'
+        return '{0}e'.format(obj.price)
+    price_column.short_description = 'Hinta'
 
     def active_column(self, obj):
         return obj.active
     active_column.boolean = True
-    active_column.short_description = u'Myynnissä'
+    active_column.short_description = 'Myynnissä'
 
     def activate(self, request, queryset):
         queryset.update(active=True)
-    activate.short_description = u'Lisää myyntiin'
+    activate.short_description = 'Lisää myyntiin'
 
     def deactivate(self, request, queryset):
         queryset.update(active=False)
-    deactivate.short_description = u'Poista myynnistä'
+    deactivate.short_description = 'Poista myynnistä'
 
     list_display = ('name_column', 'price_column', 'active_column')
     actions = (activate, deactivate)
@@ -55,18 +56,18 @@ class ApplicationAdmin(admin.ModelAdmin):
     """
 
     def name_column(self, obj):
-        return u'{0} {1} ({2})'.format(obj.first_name,
+        return '{0} {1} ({2})'.format(obj.first_name,
                 obj.last_name, obj.primary_nick)
-    name_column.short_description = u'Hakijan nimi (nick)'
+    name_column.short_description = 'Hakijan nimi (nick)'
 
     def applied_column(self, obj):
         return obj.applied
-    applied_column.short_description = u'Hakemus tehty'
+    applied_column.short_description = 'Hakemus tehty'
 
     def processed_column(self, obj):
         return obj.application_processed
     processed_column.boolean = True
-    processed_column.short_description = u'Hakemus käsitelty'
+    processed_column.short_description = 'Hakemus käsitelty'
 
     def accept(self, request, queryset):
         queryset.update(application_accepted=True,
@@ -77,7 +78,7 @@ class ApplicationAdmin(admin.ModelAdmin):
             # TODO: create actual users, send mail with credentials
             mailer.application_accepted(application)
 
-    accept.short_description = u'Hyväksy valitut hakemukset'
+    accept.short_description = 'Hyväksy valitut hakemukset'
 
     def reject(self, request, queryset):
         queryset.update(application_rejected=True,
@@ -87,7 +88,7 @@ class ApplicationAdmin(admin.ModelAdmin):
         for application in queryset:
             mailer.application_rejected(application)
 
-    reject.short_description = u'Hylkää valitut hakemukset'
+    reject.short_description = 'Hylkää valitut hakemukset'
 
     list_display = ('name_column', 'applied_column', 'processed_column')
     actions = ('accept', 'reject')

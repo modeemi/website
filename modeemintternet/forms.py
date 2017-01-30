@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
 from modeemintternet.models import Application, News, Feedback
 from django.forms import ModelForm, CharField, PasswordInput
 from crispy_forms.helper import FormHelper

@@ -30,7 +30,7 @@ PROJECT_DIR = PROJECT_ROOT.path('modeemintternet')
 env = environ.Env()
 
 with warnings.catch_warnings():
-    warnings.simplefilter("ignore")
+    warnings.simplefilter('ignore')
     env.read_env('.env')
     env.read_env('/etc/modeemintternet/env')
 

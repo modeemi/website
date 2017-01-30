@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Tapahtumat</h2>
+<h1>Tapahtumat</h1>
 <p class="event-header-link">
     <a href="{% url 'tapahtumat.rss' %}"><span class="fa fa-rss-square"></span>&nbsp;&nbsp;Lataa .rss feed</a>
     <br />
@@ -8,20 +8,14 @@
 </p>
 
 {% if not events %}
-<h3>Tapahtumia ei löytynyt :( Kannattaa tarkistaa URL.</h3>
+<h2>Tapahtumia ei löytynyt :( Kannattaa tarkistaa URL.</h2>
 {% endif %}
 
 {% for e in events %}
 <div itemscope itemtype="http://schema.org/Event">
     <hr />
-    <p>
-        <span class="event-header" itemprop="name"><a href="{% url 'tapahtumat' pk=e.id %}">{{ e.title }}</a></span>
-    <br/>
-        <span class="event-timestamp">
-            <i><small itemprop="author"><time itemprop="datePublished" datetime="{{ e.posted|date:"Y-m-d"}}">{{ e.posted }}</time> {% if e.poster %} ({{ e.poster.username }}){% endif %}</small></i>
-        </span>
-    </p>
-
+    <h2 itemprop="name"><a href="{% url 'tapahtumat' pk=e.id %}">{{ e.title }}</a></h2>
+    <i><small itemprop="author"><time itemprop="datePublished" datetime="{{ e.posted|date:"Y-m-d"}}">{{ e.posted }}</time>{% if e.poster %} ({{ e.poster.username }}){% endif %}</small></i>
     <p>
         <small><b>Alkaa</b>: {{ e.starts|date:"Y-m-d" }} {{ e.starts|time:"G:i" }}</small>
         {% if e.ends %}

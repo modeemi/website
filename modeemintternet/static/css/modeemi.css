@@ -27,31 +27,43 @@ nav.navbar {
 .navbar-brand:hover {
     cursor: default;
 }
-.navbar-inverse .navbar-nav > li > a {
-    color: #aaaaaa;
-}
 .navbar-brand {
     transition: text-shadow 500ms linear;
     -moz-transition: text-shadow 500ms linear;
     -webkit-transition: text-shadow 500ms linear;
 }
+
+.navbar-inverse .nav > li > a {
+    color: #aaaaaa;
+}
+
 .navbar-item {
     transition: color 250ms linear;
     -moz-transition: color 250ms linear;
     -webkit-transition: color 250ms linear;
 }
 
+@media (min-width: 768px) and (max-width: 970px) {
+    .nav > li > a {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+}
+
 /* The main header for the whole page with image background */
 div.header {
+    height: 120px;
     overflow-x: hidden;
     overflow-y: hidden;
     background: #000000 url("../image/header.png");
 }
-div.header h1 {
+div.header span {
     color: #cccccc;
     font-size: 4em;
-    margin: 0.5em;
     cursor: default;
+    position: absolute;
+    margin-top: 0.42em;
+    margin-left: 0.6em;
 }
 div.header a:hover {
     text-decoration: none;
@@ -86,22 +98,6 @@ a:hover, a:active {
 
 .btn {
     width: 100%;
-}
-
-/* News */
-.news-header {
-    font-size: 1.5em;
-}
-.news-header-link > a {
-    text-indent: 2em;
-}
-
-/* Event */
-.event-header {
-    font-size: 1.5em;
-}
-.event-header-link > a {
-    text-indent: 2em;
 }
 
 /* Equipment */

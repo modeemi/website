@@ -108,6 +108,7 @@ th.equipment-header {
 /* Footer */
 img.poweredbybadge {
     opacity: 0.666;
+    border: 0;
 
     transition: opacity 250ms linear;
     -moz-transition: opacity 250ms linear;

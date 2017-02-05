@@ -36,4 +36,7 @@ If you have implemented new views or functionality, implement tests for those as
 
 ### Updating the running web service
 
-Run `webupdate` on the web server as `root`.
+To update the project you can
+
+- Go get a soda and wait for a maximum of two hours for a cronjob to update the site.
+- Manually run `webupdate` on the web server as `root`.

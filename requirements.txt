@@ -6,11 +6,9 @@
 #
 appdirs==1.4.0            # via setuptools
 astroid==1.4.9            # via pylint, pylint-celery, pylint-flask, pylint-plugin-utils, requirements-detector
-backports.functools-lru-cache==1.3  # via pylint
 certifi==2017.1.23        # via opbeat
 click==6.7                # via pip-tools
 colorama==0.3.7           # via pylint
-configparser==3.5.0       # via pylint
 coreapi==2.1.1            # via django-rest-swagger, openapi-codec
 django-crispy-forms==1.6.1
 django-debug-toolbar==1.6
@@ -24,6 +22,8 @@ djangorestframework==3.5.3
 dodgy==0.1.9              # via prospector
 first==2.0.1              # via pip-tools
 future==0.16.0
+gitdb2==2.0.0             # via gitpython
+gitpython==2.1.1
 gunicorn==19.6.0
 icalendar==3.11.2
 isort==4.2.5              # via pylint
@@ -58,6 +58,7 @@ requirements-detector==0.5.2  # via prospector
 setoptconf==0.2.0         # via prospector
 simplejson==3.10.0        # via django-rest-swagger
 six==1.10.0               # via astroid, django-environ, django-guardian, packaging, pip-tools, pylint, python-dateutil, setuptools
+smmap2==2.0.1             # via gitdb2
 sqlparse==0.2.2           # via django-debug-toolbar
 uritemplate==3.0.0        # via coreapi
 urllib3==1.20             # via opbeat

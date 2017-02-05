@@ -43,12 +43,6 @@ SECRET_KEY = env('DJANGO_SECRET_KEY', cast=str, default=get_random_secret())
 if len(SECRET_KEY) < 42:
     raise ImproperlyConfigured('Django SECRET_KEY is too short {}'.format(len(SECRET_KEY), type(SECRET_KEY)))
 
-try:
-    with open(PROJECT_ROOT('bower.json')) as f:
-        VERSION_NUMBER = json.loads(f.read()).get('version')
-except Exception as e:
-    VERSION_NUMBER = 'EOS'
-
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -84,6 +78,10 @@ ALLOWED_HOSTS = (
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {
     'default': env.db(default='postgres://modeemi:modeemi@127.0.0.1:5432/modeemi')
+}
+
+CACHES = {
+    'default': env.cache(default='locmemcache://')
 }
 
 # Internationalization
@@ -135,8 +133,6 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
 )
-
-
 
 TEMPLATES = [
     {

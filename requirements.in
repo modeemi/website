@@ -8,6 +8,7 @@ django-rest-swagger
 django-suit
 djangorestframework
 future
+gitpython
 gunicorn
 icalendar
 opbeat

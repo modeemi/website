@@ -41,7 +41,7 @@ pip-tools==1.8.0
 prospector==0.12.4
 psycopg2==2.6.2
 pycodestyle==2.0.0        # via prospector
-pydocstyle==1.0.0         # via prospector
+pydocstyle==1.1.1         # via prospector
 pyflakes==1.5.0           # via prospector
 pylint-celery==0.3        # via prospector
 pylint-common==0.2.2      # via prospector

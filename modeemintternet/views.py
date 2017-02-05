@@ -107,7 +107,7 @@ def jaseneksi(request):
         mailer.application_created(application)
     except Exception as e:
         mailing_success = False
-        logger.error('Failed to send mail about the new application: {}' % e)
+        logger.error('Failed to send mail about the new application: {}'.format(e))
 
     # Return info page for the application.
     return render(request, 'jaseneksi.html',

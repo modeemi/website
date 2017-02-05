@@ -23,11 +23,13 @@
     {% endblock meta %}
     {% block link %}
         <link rel="canonical" href="https://www.modeemi.fi{{ request.get_full_path }}" />
-        <link type="image/x-icon" rel="icon" href="{% static "favicon.ico" %}" />
-        <link type="text/css" rel="stylesheet"  href="{% static "bootstrap/dist/css/bootstrap.min.css" %}" />
-        <link type="text/css" rel="stylesheet"  href="{% static "bootstrap/dist/css/bootstrap-theme.min.css" %}" />
-        <link type="text/css" rel="stylesheet"  href="{% static "font-awesome/css/font-awesome.min.css" %}" />
-        <link type="text/css" rel="stylesheet"  href="{% static "css/modeemi.css" %}" />
+        {% cache 3600 link %}
+            <link type="image/x-icon" rel="icon" href="{% static "favicon.ico" %}" />
+            <link type="text/css" rel="stylesheet"  href="{% static "bootstrap/dist/css/bootstrap.min.css" %}" />
+            <link type="text/css" rel="stylesheet"  href="{% static "bootstrap/dist/css/bootstrap-theme.min.css" %}" />
+            <link type="text/css" rel="stylesheet"  href="{% static "font-awesome/css/font-awesome.min.css" %}" />
+            <link type="text/css" rel="stylesheet"  href="{% static "css/modeemi.css" %}" />
+        {% endcache %}
     {% endblock link %}
 </head>
 
@@ -37,19 +39,26 @@
     {% block content %}{% endblock %}
 </div>
 
-<footer>
-    <div class="col-xs-12 text-center">
-        <hr />
-        <p>&copy; Modeemi ry 2014-2017 (BSD Licensed) &middot; Versio {% cache 3600 version %}<a href="https://github.com/modeemi/intternetvelho/commit/{% version %}">{% version %}</a>{% endcache %}
-        <p>Network service provided by <a href="https://www.csc.fi/">CSC</a>, no ads or commercial use allowed.</p>
-        <a href="https://www.debian.org/"><img class="poweredbybadge" src="{% static "logo/debian.png" %}" height="45" width="110" alt="Powered by Debian." /></a>
-        <a href="https://www.python.org/"><img class="poweredbybadge" src="{% static "logo/python.png" %}" height="45" width="111" alt="Powered by Python." /></a>
-        <a href="https://www.djangoproject.com/"><img class="poweredbybadge" src="{% static "logo/django.png" %}" height="45" width="106" alt="Powered by Django." /></a>
-        <a href="https://www.postgresql.org/"><img class="poweredbybadge" src="{% static "logo/postgresql.png" %}" height="45" width="84" alt="Powered by PostgreSQL." /></a>
-    </div>
-</footer>
+{% cache 3600 footer %}
+    <footer>
+        <div class="col-xs-12 text-center">
+            <hr />
+            <p>&copy; Modeemi ry 2014-2017 (BSD Licensed) &middot; Versio <a href="https://github.com/modeemi/intternetvelho/commit/{% version %}">{% version %}</a>
+            <p>Network service provided by <a href="https://www.csc.fi/">CSC</a>, no ads or commercial use allowed.</p>
+            <a href="https://www.debian.org/"><img class="poweredbybadge" src="{% static "logo/debian.png" %}" height="45" width="110" alt="Powered by Debian." /></a>
+            <a href="https://www.python.org/"><img class="poweredbybadge" src="{% static "logo/python.png" %}" height="45" width="111" alt="Powered by Python." /></a>
+            <a href="https://www.djangoproject.com/"><img class="poweredbybadge" src="{% static "logo/django.png" %}" height="45" width="106" alt="Powered by Django." /></a>
+            <a href="https://www.postgresql.org/"><img class="poweredbybadge" src="{% static "logo/postgresql.png" %}" height="45" width="84" alt="Powered by PostgreSQL." /></a>
+        </div>
+    </footer>
+{% endcache %}
 
-<script type="text/javascript" charset="utf-8" src="{% static "jquery/dist/jquery.min.js" %}"></script>
-<script type="text/javascript" charset="utf-8" src="{% static "bootstrap/dist/js/bootstrap.min.js" %}"></script>
+{% block script %}
+    {% cache 3600 script %}
+        <script type="text/javascript" charset="utf-8" src="{% static "jquery/dist/jquery.min.js" %}"></script>
+        <script type="text/javascript" charset="utf-8" src="{% static "bootstrap/dist/js/bootstrap.min.js" %}"></script>
+    {% endcache %}
+{% endblock script %}
+
 </body>
 </html>

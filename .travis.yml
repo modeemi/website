@@ -14,5 +14,6 @@ before_script:
 script:
     - python manage.py migrate
     - coverage run --source=modeemintternet manage.py test
+    - prospector --zero-exit --output-format pylint
 after_success:
     - coveralls

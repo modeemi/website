@@ -1,6 +1,9 @@
 # [Modeemi ry website](https://www.modeemi.fi)
 
-[![Build Status](https://travis-ci.org/modeemi/intternetvelho.svg?branch=master)](https://travis-ci.org/modeemi/intternetvelho) [![Coverage Status](https://coveralls.io/repos/modeemi/intternetvelho/badge.svg?branch=master)](https://coveralls.io/r/modeemi/intternetvelho?branch=master) [![Requirements Status](https://requires.io/github/modeemi/intternetvelho/requirements.svg?branch=master)](https://requires.io/github/modeemi/intternetvelho/requirements/?branch=master)
+[![Build Status](https://travis-ci.org/modeemi/intternetvelho.svg?branch=master)](https://travis-ci.org/modeemi/intternetvelho)
+[![Coverage Status](https://coveralls.io/repos/modeemi/intternetvelho/badge.svg?branch=master)](https://coveralls.io/r/modeemi/intternetvelho?branch=master)
+[![Requirements Status](https://requires.io/github/modeemi/intternetvelho/requirements.svg?branch=master)](https://requires.io/github/modeemi/intternetvelho/requirements/?branch=master)
+[![Code Issues](https://www.quantifiedcode.com/api/v1/project/35baebb5d31d4a6b8ca49d319768b6c1/badge.svg)](https://www.quantifiedcode.com/app/project/35baebb5d31d4a6b8ca49d319768b6c1)
 
 Modeemi ry website for the Finnish IT club based on Tampere, Finland.
 
@@ -27,6 +30,7 @@ Please run test suite before committing your changes.
 
     # activate the environment as described before
     python manage.py test
+    prospector
 
 If you have implemented new views or functionality, implement tests for those as well.
 

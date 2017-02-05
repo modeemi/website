@@ -5,13 +5,20 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-    <title>Modeemi ry</title>
+    <title>{% block title %}Modeemi ry{% endblock title %}</title>
     {% block meta %}
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="google-site-verification" content="Z7gaVVWmpZl9-SEy4mUPSYxbvyGYJNBiXME7lxZgh1k" />
         <meta name="author" content="Modeemi ry - ATK-alan harrastajien yhdistys">
-        <meta name="description" content="Modeemi ry - ATK-alan harrastajien yhdistys, joka on vuodesta 1977 edistänyt Suomen tietokoneharrastajien verkostoitumista Tampereelta, TTY:ltä." />
+        <meta name="description" content="{% block description %}Modeemi ry - ATK-alan harrastajien yhdistys, joka on vuodesta 1977 edistänyt Suomen tietokoneharrastajien verkostoitumista Tampereelta, TTY:ltä.{% endblock description %}" />
+        {% block og %}
+            <meta property="og:type" content="{% block og-type %}website{% endblock og-type %}" />
+            <meta property="og:title" content="{% block og-title %}Modeemi ry{% endblock og-title %}" />
+            <meta property="og:description" content="{% block og-description %}Modeemi ry - ATK-alan harrastajien yhdistys{% endblock og-description %}" />
+            <meta property="og:url" content="{% block og-url %}https://www.modeemi.fi{{ request.get_full_path }}{% endblock og-url %}" />
+            <meta property="og:image" content="{% block og-image %}{% static "logo/logo.png" %}{% endblock og-image %}" />
+        {% endblock og %}
     {% endblock meta %}
     {% block link %}
         <link rel="canonical" href="https://www.modeemi.fi{{ request.get_full_path }}" />

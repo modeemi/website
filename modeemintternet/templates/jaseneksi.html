@@ -27,7 +27,7 @@
 <div class="alert alert-info" role="alert">
     <p>
     Kiitos jäsenhakemuksestasi!
-    {% if mailingSuccess %}
+    {% if mailing_success %}
     Sinulle on lähetetty jäsenmaksutiedot sähköpostilla.
     {% else %}
     Ikävä kyllä emme pystyneet jostain syystä lähettämään sinulle sähköpostilaskua; maksathan jäsenmaksun <a href="{% url 'yhteystiedot' %}">yhteystiedot-sivun</a> pankkitilille viestillä "Jäsenmaksu $vuosi $nimi".

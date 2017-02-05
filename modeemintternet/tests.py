@@ -93,14 +93,14 @@ class ViewGetTest(TestCase):
     def test_get_single_news(self):
         c = Client()
 
-        response = c.get('/uutiset/%d/' % self.news.id)
+        response = c.get('/uutiset/{}/'.format(self.news.id))
         self.assertContains(response, 'Testiuutinen')
         self.assertContains(response, 'Uutisetkin pitää testata')
 
     def test_get_single_event(self):
         c = Client()
 
-        response = c.get('/tapahtumat/%d/' % self.event.id)
+        response = c.get('/tapahtumat/{}/'.format(self.event.id))
         self.assertContains(response, 'Testitapahtuma')
         self.assertContains(response, 'Testikuvaus')
         self.assertContains(response, 'Testipaikkakunta')
@@ -217,8 +217,8 @@ class ApplicationViewTest(TestCase):
         a = Application(**self.application)
         a.save()
 
-        response = c.get('/viitenumero/%s/' % a.primary_nick)
-        self.assertContains(response, 'Viitteenne on %s' % a.bank_reference)
+        response = c.get('/viitenumero/{}/'.format(a.primary_nick))
+        self.assertContains(response, 'Viitteenne on {}'.format(a.bank_reference))
 
 
 class ApplicationMethodTest(TestCase):

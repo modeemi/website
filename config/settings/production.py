@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .base import *
+from .base import *  # noqa
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")

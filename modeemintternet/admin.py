@@ -94,7 +94,8 @@ class ApplicationAdmin(admin.ModelAdmin):
     actions = ('accept', 'reject')
 
 class FeedbackAdmin(admin.ModelAdmin):
-    has_change_permissions = lambda _: False
+    def has_change_permission(self, request, obj=None):
+        return False
 
 admin.site.register(News, NewsAdmin)
 admin.site.register(Event)

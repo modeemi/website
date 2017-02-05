@@ -102,16 +102,16 @@ def jaseneksi(request):
     application.update_bank_reference()
 
     # Try and send mail about the application, otherwise log and show error message.
-    mailingSuccess = True
     try:
+        mailing_success = True
         mailer.application_created(application)
     except Exception as e:
-        mailingSuccess = False
-        logger.error('Failed to send mail about the new application %s' % e)
+        mailing_success = False
+        logger.error('Failed to send mail about the new application: {}' % e)
 
     # Return info page for the application.
     return render(request, 'jaseneksi.html',
-            {'success': True, 'mailingSuccess': mailingSuccess})
+            {'success': True, 'mailing_success': mailing_success})
 
 def uutiset(request, pk=None):
     if pk:

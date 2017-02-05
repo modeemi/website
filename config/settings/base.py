@@ -9,11 +9,8 @@ https://docs.djangoproject.com/en/1.8/topics/settings/
 
 from __future__ import unicode_literals
 
-import os
-import json
 import random
 import string
-import sys
 import warnings
 
 import environ

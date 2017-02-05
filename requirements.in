@@ -15,6 +15,5 @@ opbeat
 passlib
 pillow
 pip-tools
-prospector
 psycopg2
 pytz

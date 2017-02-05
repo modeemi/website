@@ -5,10 +5,8 @@
 #    pip-compile --output-file requirements.txt requirements.in
 #
 appdirs==1.4.0            # via setuptools
-astroid==1.4.9            # via pylint, pylint-celery, pylint-flask, pylint-plugin-utils, requirements-detector
 certifi==2017.1.23        # via opbeat
 click==6.7                # via pip-tools
-colorama==0.3.7           # via pylint
 coreapi==2.1.1            # via django-rest-swagger, openapi-codec
 django-crispy-forms==1.6.1
 django-debug-toolbar==1.6
@@ -19,50 +17,31 @@ django-rest-swagger==2.1.1
 django-suit==0.2.24
 django==1.10.5
 djangorestframework==3.5.3
-dodgy==0.1.9              # via prospector
 first==2.0.1              # via pip-tools
 future==0.16.0
 gitdb2==2.0.0             # via gitpython
 gitpython==2.1.1
 gunicorn==19.6.0
 icalendar==3.11.2
-isort==4.2.5              # via pylint
 itypes==1.1.0             # via coreapi
-lazy-object-proxy==1.2.2  # via astroid
-mccabe==0.6.1             # via prospector, pylint
 olefile==0.44             # via pillow
 opbeat==3.5.2
 openapi-codec==1.2.1      # via django-rest-swagger
 packaging==16.8           # via setuptools
 passlib==1.7.1
-pep8-naming==0.4.1        # via prospector
 pillow==4.0.0
 pip-tools==1.8.0
-prospector==0.12.4
 psycopg2==2.6.2
-pycodestyle==2.0.0        # via prospector
-pydocstyle==1.1.1         # via prospector
-pyflakes==1.5.0           # via prospector
-pylint-celery==0.3        # via prospector
-pylint-common==0.2.2      # via prospector
-pylint-django==0.7.2      # via prospector
-pylint-flask==0.5         # via prospector
-pylint-plugin-utils==0.2.4  # via prospector, pylint-celery, pylint-django, pylint-flask
-pylint==1.6.5             # via prospector, pylint-celery, pylint-common, pylint-django, pylint-flask, pylint-plugin-utils
 pyparsing==2.1.10         # via packaging
 python-dateutil==2.6.0    # via icalendar
 pytz==2016.10
-pyyaml==3.12              # via prospector
 requests==2.13.0          # via coreapi
-requirements-detector==0.5.2  # via prospector
-setoptconf==0.2.0         # via prospector
 simplejson==3.10.0        # via django-rest-swagger
-six==1.10.0               # via astroid, django-environ, django-guardian, packaging, pip-tools, pylint, python-dateutil, setuptools
+six==1.10.0               # via django-environ, django-guardian, packaging, pip-tools, python-dateutil, setuptools
 smmap2==2.0.1             # via gitdb2
 sqlparse==0.2.2           # via django-debug-toolbar
 uritemplate==3.0.0        # via coreapi
 urllib3==1.20             # via opbeat
-wrapt==1.10.8             # via astroid
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools                # via icalendar

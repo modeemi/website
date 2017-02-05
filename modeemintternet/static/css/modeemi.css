@@ -21,6 +21,11 @@ footer {
 nav.navbar {
     border-radius: 0;
 }
+@media (min-width: 768px) {
+    .navbar-header {
+        display: none;
+    }
+}
 .navbar-brand {
     color: #dddddd !important;
 }
@@ -51,11 +56,13 @@ nav.navbar {
 }
 
 /* The main header for the whole page with image background */
-div.header {
-    height: 120px;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    background: #000000 url("../image/header.png");
+@media (min-width: 768px) {
+    div.header {
+        height: 120px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        background: #000000 url("../image/header.png");
+    }
 }
 div.header span {
     color: #cccccc;

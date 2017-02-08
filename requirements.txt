@@ -26,7 +26,7 @@ icalendar==3.11.2
 itypes==1.1.0             # via coreapi
 olefile==0.44             # via pillow
 opbeat==3.5.2
-openapi-codec==1.2.1      # via django-rest-swagger
+openapi-codec==1.3.0      # via django-rest-swagger
 packaging==16.8           # via setuptools
 passlib==1.7.1
 pillow==4.0.0

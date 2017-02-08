@@ -7,7 +7,7 @@
 appdirs==1.4.0            # via setuptools
 certifi==2017.1.23        # via opbeat
 click==6.7                # via pip-tools
-coreapi==2.1.1            # via django-rest-swagger, openapi-codec
+coreapi==2.2.1            # via django-rest-swagger, openapi-codec
 django-crispy-forms==1.6.1
 django-debug-toolbar==1.6
 django-environ==0.4.1

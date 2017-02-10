@@ -16,7 +16,7 @@ django-ical==1.4
 django-rest-swagger==2.1.1
 django-suit==0.2.24
 django==1.10.5
-djangorestframework==3.5.3
+djangorestframework==3.5.4
 first==2.0.1              # via pip-tools
 future==0.16.0
 gitdb2==2.0.0             # via gitpython

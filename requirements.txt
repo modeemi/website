@@ -22,7 +22,7 @@ future==0.16.0
 gitdb2==2.0.0             # via gitpython
 gitpython==2.1.1
 gunicorn==19.6.0
-icalendar==3.11.2
+icalendar==3.11.3
 itypes==1.1.0             # via coreapi
 olefile==0.44             # via pillow
 opbeat==3.5.2

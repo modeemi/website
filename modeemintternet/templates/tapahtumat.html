@@ -19,7 +19,7 @@
 <div itemscope itemtype="http://schema.org/Event">
     <hr />
     <h2 itemprop="name"><a href="{% url 'tapahtumat' pk=e.id %}">{{ e.title }}</a></h2>
-    <i><small itemprop="author"><time itemprop="datePublished" datetime="{{ e.posted|date:"Y-m-d"}}">{{ e.posted }}</time>{% if e.poster %} ({{ e.poster.username }}){% endif %}</small></i>
+    <i><small><time itemprop="datePublished" datetime="{{ e.posted|date:'Y-m-d' }}">{{ e.posted|date:'Y-m-d' }}</time></small></i>
     <p>
         <small><b>Alkaa</b>: {{ e.starts|date:"Y-m-d" }} {{ e.starts|time:"G:i" }}</small>
         {% if e.ends %}

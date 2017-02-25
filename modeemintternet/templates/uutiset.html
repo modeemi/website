@@ -17,7 +17,7 @@
 <div itemscope itemtype="http://schema.org/Article">
     <hr />
     <h2 itemprop="headline"><a href="{% url 'uutiset' pk=n.id %}">{{ n.title }}</a></h2>
-    <i><small itemprop="author"><time itemprop="datePublished" datetime="{{ n.posted|date:"Y-m-d"}}">{{ n.posted }}</time>{% if n.poster %} ({{ n.poster.username }}){% endif %}</small></i>
+    <i><small><time itemprop="datePublished" datetime="{{ n.posted|date:'Y-m-d' }}">{{ n.posted:'Y-m-d' }}</time>{% if n.poster %}</small></i>
     <p class="news" itemprop="articleBody">{{ n.text|urlize|linebreaks }}</p>
 </div>
 

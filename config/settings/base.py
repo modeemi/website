@@ -9,11 +9,13 @@ https://docs.djangoproject.com/en/1.8/topics/settings/
 
 from __future__ import unicode_literals
 
+import os
 import random
 import string
 import warnings
 
 import environ
+import raven
 
 from django.core.exceptions import ImproperlyConfigured
 
@@ -108,8 +110,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'opbeat.contrib.django',
     'crispy_forms',
+    'opbeat.contrib.django',
+    'raven.contrib.django.raven_compat',
     'rest_framework',
 
     'modeemintternet',
@@ -161,4 +164,9 @@ OPBEAT = {
     'APP_ID': env('DJANGO_OPBEAT_APP_ID', cast=str, default=None),
     'SECRET_TOKEN': env('DJANGO_OPBEAT_SECRET_TOKEN', cast=str, default=None),
     'DEBUG': env('DJANGO_OPBEAT_DEBUG', cast=bool, default=False),
+}
+
+RAVEN_CONFIG = {
+    'dsn': env('DJANGO_SENTRY_DSN', cast=str, default=None),
+    'release': raven.fetch_git_sha(str(PROJECT_ROOT)),
 }

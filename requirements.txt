@@ -22,7 +22,7 @@ first==2.0.1              # via pip-tools
 future==0.16.0
 gitdb2==2.0.0             # via gitpython
 gitpython==2.1.1
-gunicorn==19.6.0
+gunicorn==19.7.0
 icalendar==3.11.3
 itypes==1.1.0             # via coreapi
 jinja2==2.9.5             # via coreschema

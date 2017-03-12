@@ -14,7 +14,7 @@ django-debug-toolbar==1.6
 django-environ==0.4.1
 django-guardian==1.4.6
 django-ical==1.4
-django-rest-swagger==2.1.1
+django-rest-swagger==2.1.2
 django-suit==0.2.24
 django==1.10.6
 djangorestframework==3.5.4

@@ -35,7 +35,7 @@ pillow==4.0.0
 pip-tools==1.8.2
 psycopg2==2.7.1
 python-dateutil==2.6.0    # via icalendar
-pytz==2016.10
+pytz==2017.2
 raven==6.0.0
 requests==2.13.0          # via coreapi
 simplejson==3.10.0        # via django-rest-swagger

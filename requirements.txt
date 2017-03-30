@@ -15,7 +15,7 @@ django-environ==0.4.1
 django-guardian==1.4.6
 django-ical==1.4
 django-rest-swagger==2.1.2
-django-suit==0.2.24
+django-suit==0.2.25
 django==1.10.6
 djangorestframework==3.6.2
 first==2.0.1              # via pip-tools

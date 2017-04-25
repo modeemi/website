@@ -6,7 +6,7 @@
 #
 certifi==2017.4.17        # via opbeat
 click==6.7                # via pip-tools
-contextlib2==0.5.4        # via raven
+contextlib2==0.5.5        # via raven
 coreapi==2.3.0            # via django-rest-swagger, openapi-codec
 coreschema==0.0.4         # via coreapi
 django-crispy-forms==1.6.1

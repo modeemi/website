@@ -43,4 +43,4 @@ six==1.10.0               # via django-environ, django-guardian, pip-tools, pyth
 smmap2==2.0.1             # via gitdb2
 sqlparse==0.2.3           # via django-debug-toolbar
 uritemplate==3.0.0        # via coreapi
-urllib3==1.20             # via opbeat
+urllib3==1.21             # via opbeat

@@ -23,7 +23,7 @@ future==0.16.0
 gitdb2==2.0.2             # via gitpython
 gitpython==2.1.5
 gunicorn==19.7.1
-icalendar==3.11.4
+icalendar==3.11.5
 itypes==1.1.0             # via coreapi
 jinja2==2.9.6             # via coreschema
 MarkupSafe==1.0          # via jinja2

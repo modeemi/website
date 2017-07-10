@@ -34,7 +34,7 @@ passlib==1.7.1
 pillow==4.2.1
 pip-tools==1.9.0
 psycopg2==2.7.1
-python-dateutil==2.6.0    # via icalendar
+python-dateutil==2.6.1    # via icalendar
 pytz==2017.2
 raven==6.1.0
 requests==2.18.1          # via coreapi

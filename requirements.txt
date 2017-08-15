@@ -37,7 +37,7 @@ psycopg2==2.7.1
 python-dateutil==2.6.1    # via icalendar
 pytz==2017.2
 raven==6.1.0
-requests==2.18.1          # via coreapi
+requests==2.18.4          # via coreapi
 simplejson==3.11.1        # via django-rest-swagger
 six==1.10.0               # via django-environ, django-guardian, pip-tools, python-dateutil
 smmap2==2.0.3             # via gitdb2

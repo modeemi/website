@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/modeemi/intternetvelho.svg?branch=master)](https://travis-ci.org/modeemi/intternetvelho)
 [![Coverage Status](https://coveralls.io/repos/modeemi/intternetvelho/badge.svg?branch=master)](https://coveralls.io/r/modeemi/intternetvelho?branch=master)
 [![Requirements Status](https://requires.io/github/modeemi/intternetvelho/requirements.svg?branch=master)](https://requires.io/github/modeemi/intternetvelho/requirements/?branch=master)
-[![Code Issues](https://www.quantifiedcode.com/api/v1/project/0eee6dbb748f474196c63d03575a8d63/badge.svg)](https://www.quantifiedcode.com/app/project/0eee6dbb748f474196c63d03575a8d63)
 
 Modeemi ry website for the Finnish IT club based on Tampere, Finland.
 

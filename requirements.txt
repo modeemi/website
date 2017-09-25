@@ -21,7 +21,7 @@ djangorestframework==3.6.4
 first==2.0.1              # via pip-tools
 future==0.16.0
 gitdb2==2.0.2             # via gitpython
-gitpython==2.1.5
+gitpython==2.1.6
 gunicorn==19.7.1
 icalendar==3.11.7
 itypes==1.1.0             # via coreapi

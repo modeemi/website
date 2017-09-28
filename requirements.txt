@@ -20,7 +20,7 @@ django==1.11.5
 djangorestframework==3.6.4
 first==2.0.1              # via pip-tools
 future==0.16.0
-gitdb2==2.0.2             # via gitpython
+gitdb2==2.0.3             # via gitpython
 gitpython==2.1.5
 gunicorn==19.7.1
 icalendar==3.11.7

@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
-certifi==2017.7.27.1        # via opbeat
+certifi==2017.11.5        # via opbeat
 click==6.7                # via pip-tools
 contextlib2==0.5.5        # via raven
 coreapi==2.3.3            # via django-rest-swagger, openapi-codec

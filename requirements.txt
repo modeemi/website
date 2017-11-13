@@ -10,7 +10,7 @@ contextlib2==0.5.5        # via raven
 coreapi==2.3.3            # via django-rest-swagger, openapi-codec
 coreschema==0.0.4         # via coreapi
 django-crispy-forms==1.7.0
-django-debug-toolbar==1.8
+django-debug-toolbar==1.9
 django-environ==0.4.4
 django-guardian==1.4.9
 django-ical==1.4

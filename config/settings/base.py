@@ -12,7 +12,6 @@ from __future__ import unicode_literals
 import warnings
 
 import environ
-import raven
 
 PROJECT_ROOT = environ.Path(__file__) - 3  # type: environ.Path
 PROJECT_DIR = PROJECT_ROOT.path('modeemintternet')

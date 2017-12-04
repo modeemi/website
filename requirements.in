@@ -1,4 +1,5 @@
-django>=1.10<1.11
+coverage
+django>=2.0<2.1
 django-crispy-forms
 django-debug-toolbar
 django-environ
@@ -17,4 +18,3 @@ pillow
 pip-tools
 psycopg2
 pytz
-raven

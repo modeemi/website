@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('ends', models.DateTimeField(blank=True)),
                 ('posted', models.DateTimeField(auto_now_add=True)),
                 ('modified', models.DateTimeField(auto_now=True, auto_now_add=True)),
-                ('poster', models.ForeignKey(editable=False, to=settings.AUTH_USER_MODEL, null=True)),
+                ('poster', models.ForeignKey(editable=False, to=settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name': 'Tapahtuma',

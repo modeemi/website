@@ -6,7 +6,7 @@ from passlib.context import CryptContext
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 class News(models.Model):
@@ -14,7 +14,7 @@ class News(models.Model):
     text = models.TextField(blank=True)
     posted = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    poster = models.ForeignKey(User, editable=False, null=True)
+    poster = models.ForeignKey(User, editable=False, null=True, on_delete=models.SET_NULL)
 
     def __unicode__(self):
         return '{0} (luotu {1} UTC)'.format(self.title, self.posted)
@@ -37,7 +37,7 @@ class Event(models.Model):
     ends = models.DateTimeField(blank=True)
     posted = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    poster = models.ForeignKey(User, editable=False, null=True)
+    poster = models.ForeignKey(User, editable=False, null=True, on_delete=models.SET_NULL)
 
     def __unicode__(self):
         return '{0} (alkaa {1} UTC)'.format(self.title, self.starts)

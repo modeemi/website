@@ -2,7 +2,7 @@
 
 from __future__ import unicode_literals
 
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.conf.urls.static import static
 
 from django.contrib import admin
@@ -19,40 +19,40 @@ router = routers.DefaultRouter()
 router.register(r'news', apiviews.NewsViewSet)
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    path('admin/', admin.site.urls),
 
     # Main level views
-    url(r'^$', views.etusivu, name='etusivu'),
-    url(r'^ry/$', views.yhdistys, name='yhdistys'),
-    url(r'^palvelut/$', views.palvelut, name='palvelut'),
-    url(r'^jaseneksi/$', views.jaseneksi, name='jaseneksi'),
-    url(r'^laitteisto/$', views.laitteisto, name='laitteisto'),
-    url(r'^palaute/$', views.palaute, name='palaute'),
+    path('', views.etusivu, name='etusivu'),
+    path('ry/', views.yhdistys, name='yhdistys'),
+    path('palvelut/', views.palvelut, name='palvelut'),
+    path('jaseneksi/', views.jaseneksi, name='jaseneksi'),
+    path('laitteisto/', views.laitteisto, name='laitteisto'),
+    path('palaute/', views.palaute, name='palaute'),
 
-    url(r'^uutiset/$', views.uutiset, name='uutiset'),
-    url(r'^uutiset/(?P<pk>\d+)/$', views.uutiset, name='uutiset'),
+    path('uutiset/', views.uutiset, name='uutiset'),
+    path('uutiset/<int:pk>/', views.uutiset, name='uutiset'),
 
-    url(r'^tapahtumat/$', views.tapahtumat, name='tapahtumat'),
-    url(r'^tapahtumat/(?P<pk>\d+)/$', views.tapahtumat, name='tapahtumat'),
+    path('tapahtumat/', views.tapahtumat, name='tapahtumat'),
+    path('tapahtumat/<int:pk>/', views.tapahtumat, name='tapahtumat'),
 
     # Sub level views
-    url(r'^ry/saannot/$', views.saannot, name='saannot'),
-    url(r'^ry/rekisteriseloste/$', views.rekisteriseloste, name='rekisteriseloste'),
-    url(r'^ry/hallitus/$', views.hallitus, name='hallitus'),
-    url(r'^ry/yhteystiedot/$', views.yhteystiedot, name='yhteystiedot'),
-    url(r'^palvelut/backup/$', views.backup, name='backup'),
-    url(r'^palvelut/password/$', views.password, name='password'),
-    url(r'^laitteisto/halutaan/$', views.halutaan, name='halutaan'),
+    path('ry/saannot/', views.saannot, name='saannot'),
+    path('ry/rekisteriseloste/', views.rekisteriseloste, name='rekisteriseloste'),
+    path('ry/hallitus/', views.hallitus, name='hallitus'),
+    path('ry/yhteystiedot/', views.yhteystiedot, name='yhteystiedot'),
+    path('palvelut/backup/', views.backup, name='backup'),
+    path('palvelut/password/', views.password, name='password'),
+    path('laitteisto/halutaan/', views.halutaan, name='halutaan'),
 
-    url(r'^feed/uutiset.rss$', NewsRSSFeed(), name='uutiset.rss'),
-    url(r'^feed/tapahtumat.rss$', EventRSSFeed(), name='tapahtumat.rss'),
-    url(r'^feed/tapahtumat.ics$', EventICalFeed(), name='tapahtumat.ics'),
+    path('feed/uutiset.rss', NewsRSSFeed(), name='uutiset.rss'),
+    path('feed/tapahtumat.rss', EventRSSFeed(), name='tapahtumat.rss'),
+    path('feed/tapahtumat.ics', EventICalFeed(), name='tapahtumat.ics'),
 
-    url(r'^api/', include(router.urls)),
-    url(r'^viitenumero/(?P<username>.+)/$', views.viitenumero, name='viitenumero'),
+    path('api/', include(router.urls)),
+    path('viitenumero/<str:username>/', views.viitenumero, name='viitenumero'),
 
-    url(r'^sitemap/?$', views.sitemap, name='sitemap'),
-    url(r'^sitemap\.xml/?$', views.sitemap, name='sitemap'),
+    path('sitemap/?', views.sitemap, name='sitemap'),
+    path('sitemap\.xml/?', views.sitemap, name='sitemap'),
 ]
 
 if settings.DEBUG:
@@ -60,5 +60,5 @@ if settings.DEBUG:
 
     import debug_toolbar
     urlpatterns += [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
+        path(r'__debug__/', include(debug_toolbar.urls)),
     ]

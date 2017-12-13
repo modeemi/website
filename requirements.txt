@@ -30,7 +30,7 @@ itypes==1.1.0             # via coreapi
 jinja2==2.10              # via coreschema
 markupsafe==1.0           # via jinja2
 olefile==0.44             # via pillow
-opbeat==3.5.3
+opbeat==3.6.0
 openapi-codec==1.3.2      # via django-rest-swagger
 passlib==1.7.1
 pillow==4.3.0

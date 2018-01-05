@@ -33,7 +33,7 @@ olefile==0.44             # via pillow
 opbeat==3.6.0
 openapi-codec==1.3.2      # via django-rest-swagger
 passlib==1.7.1
-pillow==4.3.0
+pillow==5.0.0
 pip-tools==1.11.0
 psycopg2==2.7.3.2
 python-dateutil==2.6.1    # via icalendar

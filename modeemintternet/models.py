@@ -16,15 +16,15 @@ class News(models.Model):
     modified = models.DateTimeField(auto_now=True)
     poster = models.ForeignKey(User, editable=False, null=True, on_delete=models.SET_NULL)
 
-    def __unicode__(self):
+    class Meta:
+        verbose_name = 'Uutinen'
+        verbose_name_plural = 'Uutiset'
+
+    def __str__(self):
         return '{0} (luotu {1} UTC)'.format(self.title, self.posted)
 
     def get_absolute_url(self):
         return reverse('uutiset', args=[self.id])
-
-    class Meta:
-        verbose_name = 'Uutinen'
-        verbose_name_plural = 'Uutiset'
 
 
 class Event(models.Model):
@@ -39,15 +39,15 @@ class Event(models.Model):
     modified = models.DateTimeField(auto_now=True)
     poster = models.ForeignKey(User, editable=False, null=True, on_delete=models.SET_NULL)
 
-    def __unicode__(self):
+    class Meta:
+        verbose_name = 'Tapahtuma'
+        verbose_name_plural = 'Tapahtumat'
+
+    def __str__(self):
         return '{0} (alkaa {1} UTC)'.format(self.title, self.starts)
 
     def get_absolute_url(self):
         return reverse('tapahtumat', args=[self.id])
-
-    class Meta:
-        verbose_name = 'Tapahtuma'
-        verbose_name_plural = 'Tapahtumat'
 
 
 class Soda(models.Model):
@@ -55,12 +55,12 @@ class Soda(models.Model):
     price = models.DecimalField(max_digits=3, decimal_places=2)
     active = models.BooleanField(default=True)
 
-    def __unicode__(self):
-        return '{0}'.format(self.name)
-
     class Meta:
         verbose_name = 'Limu'
         verbose_name_plural = 'Limut'
+
+    def __str__(self):
+        return '{0}'.format(self.name)
 
 
 class Application(models.Model):
@@ -104,7 +104,11 @@ class Application(models.Model):
     application_rejected = models.BooleanField(default=False)
     application_processed = models.BooleanField(default=False)
 
-    def __unicode__(self):
+    class Meta:
+        verbose_name = 'Hakemus'
+        verbose_name_plural = 'Hakemukset'
+
+    def __str__(self):
         return '{0} {1} ({2})'.format(self.first_name, self.last_name, self.applied)
 
     def generate_password_hashes(self, password):
@@ -146,10 +150,6 @@ class Application(models.Model):
 
         return self.bank_reference
 
-    class Meta:
-        verbose_name = 'Hakemus'
-        verbose_name_plural = 'Hakemukset'
-
 
 class Feedback(models.Model):
     sender = models.CharField(blank=True, max_length=64)
@@ -157,11 +157,11 @@ class Feedback(models.Model):
     message = models.TextField(blank=False)
     sent = models.DateTimeField(auto_now_add=True)
 
-    def __unicode__(self):
-        return '{0} ({1})'.format(
-                self.message[:25]
-                , self.sent)
-
     class Meta:
         verbose_name = 'Palaute'
         verbose_name_plural = 'Palautteet'
+
+    def __str__(self):
+        return '{0} ({1})'.format(
+                self.message[:25]
+                , self.sent)

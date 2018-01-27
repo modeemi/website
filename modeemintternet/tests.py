@@ -65,16 +65,16 @@ class ViewGetTest(TestCase):
 
     def test_unicode_methods(self):
         """
-        __unicode__ can crash and burn views as well
+        __str__ can crash and burn views as well
         if an exception is thrown, so we want to test
         that the models can serialize themselves correctly.
 
         Just not having an exception is good 'nuf.
         """
 
-        self.news.__unicode__()
-        self.event.__unicode__()
-        self.soda.__unicode__()
+        self.news.__str__()
+        self.event.__str__()
+        self.soda.__str__()
 
     def test_get_urls(self):
         c = Client()
@@ -129,7 +129,7 @@ class FeedbackTest(TestCase):
     def test_feedback_to_unicode(self):
         feedback = Feedback(**self.feedback)
         feedback.save()
-        feedback.__unicode__()
+        feedback.__str__()
 
     def test_invalid_feedback(self):
         del self.feedback['message']
@@ -241,7 +241,7 @@ class ApplicationMethodTest(TestCase):
         self.application.update_bank_reference()
 
     def test_application_to_unicode(self):
-        self.application.__unicode__()
+        self.application.__str__()
 
     def test_application_accepted(self):
         application_accepted(self.application)

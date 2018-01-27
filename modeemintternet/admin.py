@@ -16,6 +16,7 @@ class NewsAdmin(admin.ModelAdmin):
         news.poster = request.user
         news.save()
 
+
 class SodaAdmin(admin.ModelAdmin):
     """
     Custom admin view for Soda that supports a compact list view.
@@ -93,8 +94,10 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_display = ('name_column', 'applied_column', 'processed_column')
     actions = ('accept', 'reject')
 
+
 class FeedbackAdmin(admin.ModelAdmin):
     pass
+
 
 admin.site.register(News, NewsAdmin)
 admin.site.register(Event)

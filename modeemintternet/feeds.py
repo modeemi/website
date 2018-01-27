@@ -31,7 +31,7 @@ class EventRSSFeed(Feed):
         return event.title
 
     def item_description(self, event):
-        return event.description
+        return event.text
 
 
 class EventICalFeed(ICalFeed):
@@ -50,7 +50,7 @@ class EventICalFeed(ICalFeed):
         return event.title
 
     def item_description(self, event):
-        return event.description
+        return event.text
 
     def item_location(self, event):
         return event.location

@@ -20,8 +20,11 @@
     <hr />
     <h2 itemprop="name"><a href="{% url 'tapahtumat' pk=e.id %}">{{ e.title }}</a></h2>
     <i><small><time itemprop="datePublished" datetime="{{ e.posted|date:'Y-m-d' }}">{{ e.posted|date:'Y-m-d' }}</time></small></i>
+    {% if e.starts and e.ends and e.location %}
     <p>
+        {% if e.starts %}
         <small><b>Alkaa</b>: {{ e.starts|date:"Y-m-d" }} {{ e.starts|time:"G:i" }}</small>
+        {% endif %}
         {% if e.ends %}
         <br />
         <small><b>Loppuu</b>: {{ e.ends|date:"Y-m-d" }} {{ e.ends|time:"G:i" }}</small>
@@ -31,6 +34,7 @@
         <small><b>Paikka</b>: <a href="https://www.google.com/maps/search/{% if e.location %}{{ e.location.split|join:'+' }}{% endif %}{% if e.lat and e.lon %}/@{{ e.lat|safe }},{{ e.lon|safe }}{% endif %}">{{ e.location }}</a></small>
         {% endif %}
     </p>
+    {% endif %}
 
     <p class="event" itemprop="description">{{ e.text|urlize|linebreaks }}</p>
 </div>

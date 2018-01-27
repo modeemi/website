@@ -12,7 +12,6 @@ future
 gitpython
 gunicorn
 icalendar
-opbeat
 passlib
 pillow>=4.3<5.0
 pip-tools

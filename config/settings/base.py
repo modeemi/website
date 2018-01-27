@@ -96,17 +96,14 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'crispy_forms',
-    'opbeat.contrib.django',
     'rest_framework',
 
     'modeemintternet',
 )
 
 MIDDLEWARE = (
-    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
-    'django.middleware.gzip.GZipMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -142,10 +139,3 @@ TEMPLATES = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-
-OPBEAT = {
-    'ORGANIZATION_ID': env('DJANGO_OPBEAT_ORGANIZATION_ID', cast=str, default=None),
-    'APP_ID': env('DJANGO_OPBEAT_APP_ID', cast=str, default=None),
-    'SECRET_TOKEN': env('DJANGO_OPBEAT_SECRET_TOKEN', cast=str, default=None),
-    'DEBUG': env('DJANGO_OPBEAT_DEBUG', cast=bool, default=False),
-}

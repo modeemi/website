@@ -47,7 +47,7 @@ class ViewGetTest(TestCase):
 
         self.event = Event(
             title='Testitapahtuma'
-            , description='Testikuvaus'
+            , text='Testikuvaus'
             , location='Testipaikkakunta'
             , starts=timezone.now() + datetime.timedelta(hours=24)
             , ends=timezone.now() + datetime.timedelta(hours=42)

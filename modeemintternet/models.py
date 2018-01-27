@@ -29,7 +29,7 @@ class News(models.Model):
 
 class Event(models.Model):
     title = models.TextField(blank=False)
-    description = models.TextField(blank=True)
+    text = models.TextField(blank=True)
     location = models.TextField(blank=True)
     lat = models.FloatField(default=0.0)
     lon = models.FloatField(default=0.0)

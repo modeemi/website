@@ -32,7 +32,7 @@
         {% endif %}
     </p>
 
-    <p class="event" itemprop="description">{{ e.description|urlize|linebreaks }}</p>
+    <p class="event" itemprop="description">{{ e.text|urlize|linebreaks }}</p>
 </div>
 
 {% endfor %}

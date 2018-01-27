@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import os
+import raven
+from logging import getLogger
+
 from django.core.exceptions import ImproperlyConfigured
 
 from .base import *  # noqa
+
+log = getLogger(__name__)
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")
@@ -24,3 +30,16 @@ DATABASES = {
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 STATIC_ROOT = '/var/www/modeemintternet/static'
 MEDIA_ROOT = '/var/www/modeemintternet/media'
+
+# Configure Raven for error reporting
+INSTALLED_APPS += (
+    'raven.contrib.django.raven_compat',
+)
+
+try:
+    RAVEN_CONFIG = {
+        'dsn': env('RAVEN_DSN'),
+        'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+    }
+except Exception as e:
+    log.error(e)

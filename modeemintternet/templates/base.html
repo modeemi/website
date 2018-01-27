@@ -55,6 +55,11 @@
 
 {% block script %}
     {% cache 3600 script %}
+        {% if not debug %}
+        <script src="https://cdn.ravenjs.com/3.22.1/raven.min.js" crossorigin="anonymous"></script>
+        Raven.config('https://e7cc343c5ff04979967584191e0510f3@sentry.io/278644').install()
+        {% endif %}
+
         <script type="text/javascript" charset="utf-8" defer="defer" src="{% static "jquery/dist/jquery.min.js" %}"></script>
         <script type="text/javascript" charset="utf-8" defer="defer" src="{% static "bootstrap/dist/js/bootstrap.min.js" %}"></script>
     {% endcache %}

@@ -36,7 +36,7 @@ class ApplicationForm(ModelForm):
         self.fields['shell'].label = 'Haluamani komentokehoite kerhon *nix -koneilla'
         self.fields['funet_rules_accepted'].label = 'Hyväksyn FuNET-verkon käyttöehdot'
         self.fields['funet_rules_accepted'].required = True
-        self.fields['virtual_key_required'].label = 'Tarvitse virtuaaliavaimen kerhohuoneelle'
+        self.fields['virtual_key_required'].label = 'Tarvitsen virtuaaliavaimen kerhohuoneelle'
 
 
 class FeedbackForm(ModelForm):

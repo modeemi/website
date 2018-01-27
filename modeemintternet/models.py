@@ -88,7 +88,8 @@ class Application(models.Model):
     primary_nick = models.CharField(max_length=32)
     secondary_nick = models.CharField(max_length=32)
     shell = models.CharField(max_length=32, choices=SHELL_OPTIONS, default=BASH)
-    funet_rules_accepted = models.BooleanField(blank=False, default=False)
+    funet_rules_accepted = models.BooleanField(default=False)
+    virtual_key_required = models.BooleanField(default=False)
 
     # Timestamps
     applied = models.DateTimeField(auto_now_add=True)

@@ -7,15 +7,17 @@ from django.forms import ModelForm, CharField, PasswordInput
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
+
 class ApplicationForm(ModelForm):
     password = CharField(max_length=128, label='Haluamani salasana on', widget=PasswordInput())
     password_check = CharField(max_length=128, label='Salasana uudelleen', widget=PasswordInput())
 
     class Meta:
         model = Application
-        exclude = ('pbkdf2_sha256', 'sha512_crypt', 'des_crypt',
-                'application_accepted', 'application_rejected',
-                'application_processed')
+        exclude = (
+            'pbkdf2_sha256', 'sha512_crypt', 'des_crypt',
+            'application_accepted', 'application_rejected', 'application_processed'
+        )
 
     def __init__(self, *args, **kwargs):
         super(ApplicationForm, self).__init__(*args, **kwargs)
@@ -34,6 +36,7 @@ class ApplicationForm(ModelForm):
         self.fields['shell'].label = 'Haluamani komentokehoite kerhon *nix -koneilla'
         self.fields['funet_rules_accepted'].label = 'Hyväksyn FuNET-verkon käyttöehdot'
         self.fields['funet_rules_accepted'].required = True
+        self.fields['virtual_key_required'].label = 'Tarvitse virtuaaliavaimen kerhohuoneelle'
 
 
 class FeedbackForm(ModelForm):

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import os
 import raven
 from logging import getLogger
 
@@ -32,9 +31,12 @@ STATIC_ROOT = '/var/www/modeemintternet/static'
 MEDIA_ROOT = '/var/www/modeemintternet/media'
 
 try:
-    RAVEN_CONFIG = {
-        'dsn': env('RAVEN_DSN'),
-        'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
-    }
+    release = raven.fetch_git_sha(str(PROJECT_ROOT))
 except Exception as e:
     log.error(e)
+    release = None
+
+RAVEN_CONFIG = {
+    'dsn': env('RAVEN_DSN', default=None),
+    'release': release,
+}

@@ -73,13 +73,17 @@ Ohessa hakemuksesi tiedot:
     Ensisijainen tunnustoive: {3}
     Toissijainen tunnustoive: {4}
     Ensisijainen komentokehoite: {5}
-    Hakemus jätetty: {6}
+    Virtuaaliavainta haettu: {6}
+    Hakemus jätetty: {7}
 
 Ystävällisin terveisin,
-{7}n hallitus
-""".format(application.first_name, application.last_name,  application.email,
-           application.primary_nick, application.secondary_nick, application.shell,
-           application.applied.strftime('%d.%m.%Y'), ORGANIZATION)
+{8}n hallitus
+""".format(
+    application.first_name, application.last_name,  application.email,
+    application.primary_nick, application.secondary_nick, application.shell,
+    'Kyllä' if application.virtual_key_required else 'Ei',
+    application.applied.strftime('%d.%m.%Y'), ORGANIZATION
+)
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 

@@ -97,6 +97,7 @@ INSTALLED_APPS = (
 
     'crispy_forms',
     'rest_framework',
+    'raven.contrib.django.raven_compat',
 
     'modeemintternet',
 )

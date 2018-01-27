@@ -31,11 +31,6 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStora
 STATIC_ROOT = '/var/www/modeemintternet/static'
 MEDIA_ROOT = '/var/www/modeemintternet/media'
 
-# Configure Raven for error reporting
-INSTALLED_APPS += (
-    'raven.contrib.django.raven_compat',
-)
-
 try:
     RAVEN_CONFIG = {
         'dsn': env('RAVEN_DSN'),

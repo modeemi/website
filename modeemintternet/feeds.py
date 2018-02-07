@@ -3,8 +3,10 @@
 from __future__ import unicode_literals
 
 from django.contrib.syndication.views import Feed
+
 from django_ical.views import ICalFeed
-from modeemintternet.models import News, Event
+
+from modeemintternet.models import News
 
 
 class NewsRSSFeed(Feed):
@@ -14,58 +16,45 @@ class NewsRSSFeed(Feed):
     def items(self):
         return News.objects.order_by('-posted')
 
-    def item_title(self, news):
-        return news.title
+    def item_title(self, item):
+        return item.title
 
-    def item_description(self, news):
-        return news.text
-
-class EventRSSFeed(Feed):
-    title = "Modeemi ryn tapahtumat"
-    link = "/tapahtumat/"
-
-    def items(self):
-        return Event.objects.order_by('-starts')
-
-    def item_title(self, event):
-        return event.title
-
-    def item_description(self, event):
-        return event.text
+    def item_description(self, item):
+        return item.text
 
 
-class EventICalFeed(ICalFeed):
+class NewsICalFeed(ICalFeed):
     """
-    Modeemi event iCal feed.
+    Modeemi news iCal feed.
     """
 
-    product_id = '-//Modeemi ry//Tapahtumat//FI'
+    product_id = '-//Modeemi ry//Uutiset//FI'
     timezone = 'UTC'
-    file_name = 'tapahtumat.ics'
+    file_name = 'uutiset.ics'
 
     def items(self):
-        return Event.objects.all().order_by('-starts')
+        return News.objects.all().order_by('-starts')
 
-    def item_title(self, event):
-        return event.title
+    def item_title(self, item):
+        return item.title
 
-    def item_description(self, event):
-        return event.text
+    def item_description(self, item):
+        return item.text
 
-    def item_location(self, event):
-        return event.location
+    def item_location(self, item):
+        return item.location
 
-    def item_geolocation(self, event):
-        return (event.lat, event.lon)
+    def item_geolocation(self, item):
+        return (item.lat, item.lon)
 
-    def item_created(self, event):
-        return event.posted
+    def item_created(self, item):
+        return item.posted
 
-    def item_updated(self, event):
-        return event.modified
+    def item_updated(self, item):
+        return item.modified
 
-    def item_start_datetime(self, event):
-        return event.starts
+    def item_start_datetime(self, item):
+        return item.starts
 
-    def item_end_datetime(self, event):
-        return event.ends
+    def item_end_datetime(self, item):
+        return item.ends

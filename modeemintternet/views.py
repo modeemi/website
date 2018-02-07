@@ -119,14 +119,6 @@ def uutiset(request, pk=None):
     return render(request, 'uutiset.html',
             {'news': News.objects.order_by('-id')})
 
-def tapahtumat(request, pk=None):
-    if pk:
-        events = Event.objects.filter(pk=pk)
-    else:
-        events = Event.objects.all().order_by('-starts')
-
-    return render(request, 'tapahtumat.html', {'events': events})
-
 
 def sitemap(request):
     return render(request, 'sitemap.xml', content_type='application/xml')

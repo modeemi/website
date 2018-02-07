@@ -13,6 +13,12 @@ class News(models.Model):
     title = models.TextField(blank=False)
     text = models.TextField(blank=True)
 
+    location = models.TextField(blank=True)
+    lat = models.FloatField(default=0.0)
+    lon = models.FloatField(default=0.0)
+    starts = models.DateTimeField(blank=True, null=True)
+    ends = models.DateTimeField(blank=True, null=True)
+
     posted = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     poster = models.ForeignKey(User, editable=False, null=True, on_delete=models.SET_NULL)

@@ -7,6 +7,8 @@
 <h1>Uutiset</h1>
 <p class="news-header-link">
     <a href="{% url 'uutiset.rss' %}"><span class="fa fa-rss-square"></span>&nbsp;&nbsp;Lataa .rss feed</a>
+    <br />
+    <a href="{% url 'uutiset.ics' %}"><span class="fa fa-calendar"></span>&nbsp;&nbsp;Lataa .ics feed (GCal, iCal etc.)</a>
 </p>
 
 {% if not news %}
@@ -14,11 +16,26 @@
 {% endif %}
 
 {% for n in news %}
-<div itemscope itemtype="http://schema.org/Article">
+<div itemscope itemtype="http://schema.org/Event">
     <hr />
-    <h2 itemprop="headline"><a href="{% url 'uutiset' pk=n.id %}">{{ n.title }}</a></h2>
+    <h2 itemprop="name"><a href="{% url 'uutiset' pk=n.id %}">{{ n.title }}</a></h2>
     <i><small><time itemprop="datePublished" datetime="{{ n.posted|date:'Y-m-d' }}">{{ n.posted|date:'Y-m-d' }}</time></small></i>
-    <p class="news" itemprop="articleBody">{{ n.text|urlize|linebreaks }}</p>
+    {% if n.starts and n.ends and n.location %}
+    <p>
+        {% if n.starts %}
+        <small><b>Alkaa</b>: {{ n.starts|date:"Y-m-d" }} {{ n.starts|time:"G:i" }}</small>
+        {% endif %}
+        {% if n.ends %}
+        <br />
+        <small><b>Loppuu</b>: {{ n.ends|date:"Y-m-d" }} {{ n.ends|time:"G:i" }}</small>
+        {% endif %}
+        {% if n.location %}
+        <br />
+        <small><b>Paikka</b>: <a href="https://www.google.com/maps/search/{% if n.location %}{{ n.location.split|join:'+' }}{% endif %}{% if n.lat and n.lon %}/@{{ n.lat|safe }},{{ n.lon|safe }}{% endif %}">{{ n.location }}</a></small>
+        {% endif %}
+    </p>
+    {% endif %}
+    <p class="news" itemprop="description">{{ n.text|urlize|linebreaks }}</p>
 </div>
 
 {% endfor %}

@@ -13,7 +13,7 @@ from django.conf import settings
 from rest_framework import routers
 
 from modeemintternet import views, apiviews
-from modeemintternet.feeds import NewsRSSFeed, EventRSSFeed, EventICalFeed
+from modeemintternet.feeds import NewsRSSFeed, NewsICalFeed
 
 router = routers.DefaultRouter()
 router.register(r'news', apiviews.NewsViewSet)
@@ -32,9 +32,6 @@ urlpatterns = [
     path('uutiset/', views.uutiset, name='uutiset'),
     path('uutiset/<int:pk>/', views.uutiset, name='uutiset'),
 
-    path('tapahtumat/', views.tapahtumat, name='tapahtumat'),
-    path('tapahtumat/<int:pk>/', views.tapahtumat, name='tapahtumat'),
-
     # Sub level views
     path('ry/saannot/', views.saannot, name='saannot'),
     path('ry/rekisteriseloste/', views.rekisteriseloste, name='rekisteriseloste'),
@@ -45,8 +42,7 @@ urlpatterns = [
     path('laitteisto/halutaan/', views.halutaan, name='halutaan'),
 
     path('feed/uutiset.rss', NewsRSSFeed(), name='uutiset.rss'),
-    path('feed/tapahtumat.rss', EventRSSFeed(), name='tapahtumat.rss'),
-    path('feed/tapahtumat.ics', EventICalFeed(), name='tapahtumat.ics'),
+    path('feed/uutiset.ics', NewsICalFeed(), name='uutiset.ics'),
 
     path('api/', include(router.urls)),
 

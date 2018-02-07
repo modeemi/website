@@ -13,7 +13,7 @@ from django.core import mail
 from django.test import Client, TestCase
 from django.utils import timezone
 
-from modeemintternet.models import Application, Feedback, News, Event, Soda
+from modeemintternet.models import Application, Feedback, News, Soda
 from modeemintternet.mailer import application_accepted, application_rejected
 
 
@@ -27,7 +27,6 @@ class ViewGetTest(TestCase):
             , '/laitteisto/'
             , '/palaute/'
             , '/uutiset/'
-            , '/tapahtumat/'
             , '/ry/saannot/'
             , '/ry/rekisteriseloste/'
             , '/ry/hallitus/'
@@ -36,18 +35,12 @@ class ViewGetTest(TestCase):
             , '/palvelut/password/'
             , '/laitteisto/halutaan/'
             , '/feed/uutiset.rss'
-            , '/feed/tapahtumat.rss'
-            , '/feed/tapahtumat.ics'
+            , '/feed/uutiset.ics'
         ]
 
         self.news = News(
             title='Testiuutinen'
             , text='Uutisetkin pitää testata'
-        )
-
-        self.event = Event(
-            title='Testitapahtuma'
-            , text='Testikuvaus'
             , location='Testipaikkakunta'
             , starts=timezone.now() + datetime.timedelta(hours=24)
             , ends=timezone.now() + datetime.timedelta(hours=42)
@@ -60,7 +53,6 @@ class ViewGetTest(TestCase):
         )
 
         self.news.save()
-        self.event.save()
         self.soda.save()
 
     def test_unicode_methods(self):
@@ -73,7 +65,6 @@ class ViewGetTest(TestCase):
         """
 
         self.news.__str__()
-        self.event.__str__()
         self.soda.__str__()
 
     def test_get_urls(self):
@@ -96,22 +87,6 @@ class ViewGetTest(TestCase):
         response = c.get('/uutiset/{}/'.format(self.news.id))
         self.assertContains(response, 'Testiuutinen')
         self.assertContains(response, 'Uutisetkin pitää testata')
-
-    def test_get_single_event(self):
-        c = Client()
-
-        response = c.get('/tapahtumat/{}/'.format(self.event.id))
-        self.assertContains(response, 'Testitapahtuma')
-        self.assertContains(response, 'Testikuvaus')
-        self.assertContains(response, 'Testipaikkakunta')
-
-    def test_get_upcoming_events(self):
-        c = Client()
-
-        response = c.get('/tapahtumat/')
-        self.assertContains(response, 'Testitapahtuma')
-        self.assertContains(response, 'Testikuvaus')
-        self.assertContains(response, 'Testipaikkakunta')
 
 
 class FeedbackTest(TestCase):

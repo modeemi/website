@@ -173,6 +173,15 @@ class Feedback(models.Model):
         return '{0} ({1})'.format(self.message[:25], self.sent)
 
 
+class Format(models.Model):
+    format = models.CharField(primary_key=True, max_length=32)
+    description = models.TextField(blank=True)
+
+    class Meta:
+        db_table = 'format'
+        managed = False
+
+
 class Passwd(models.Model):
     username = models.CharField(primary_key=True, max_length=64)
     uid = models.IntegerField()
@@ -219,4 +228,14 @@ class UserGroup(models.Model):
 
     class Meta:
         db_table = 'usergroup'
+        managed = False
+
+
+class UserGroupMember(models.Model):
+    id = models.IntegerField(primary_key=True)
+    groupname = models.CharField(max_length=64)
+    username = models.CharField(max_length=64)
+
+    class Meta:
+        db_table = 'usergroupmember'
         managed = False

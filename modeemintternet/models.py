@@ -95,9 +95,6 @@ class Application(models.Model):
     applied = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    # Bank reference for paying the membership fee
-    bank_reference = models.CharField(max_length=6, editable=False)
-
     # Password hashes
     pbkdf2_sha256 = models.CharField(max_length=128)
     sha512_crypt = models.CharField(max_length=128)
@@ -136,27 +133,6 @@ class Application(models.Model):
         self.md5_crypt = pwd_context.hash(password, 'des_crypt')
 
         self.save()
-
-    def update_bank_reference(self):
-        """
-        Update the user's bank payment reference number.
-        This method has to be called AFTER the object has been saved.
-
-        Reference to:
-
-            https://www.fkl.fi/en/material/publications/Publications/The_reference_number_and_the_check_digit.pdf
-        """
-
-        padded = str(self.id).zfill(4)
-        multiplicators = (7, 3, 1)
-        inverse = map(int, padded[::-1])
-        result = sum(multiplicators[i % 3] * x for i, x in enumerate(inverse))
-        checksum = str((10 - (result % 10)) % 10)
-
-        self.bank_reference = padded + checksum
-        self.save()
-
-        return self.bank_reference
 
 
 class Feedback(models.Model):

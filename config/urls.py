@@ -49,7 +49,6 @@ urlpatterns = [
     path('feed/tapahtumat.ics', EventICalFeed(), name='tapahtumat.ics'),
 
     path('api/', include(router.urls)),
-    path('viitenumero/<str:username>/', views.viitenumero, name='viitenumero'),
 
     path('sitemap/?', views.sitemap, name='sitemap'),
     path('sitemap\.xml/?', views.sitemap, name='sitemap'),

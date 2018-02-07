@@ -99,7 +99,6 @@ def jaseneksi(request):
 
     application = application_form.save()
     application.generate_password_hashes(request.POST.get('password'))
-    application.update_bank_reference()
 
     # Try and send mail about the application, otherwise log and show error message.
     try:
@@ -128,12 +127,6 @@ def tapahtumat(request, pk=None):
 
     return render(request, 'tapahtumat.html', {'events': events})
 
-def viitenumero(request, username):
-    application = get_object_or_404(Application, primary_nick=username)
-    if not application.bank_reference:
-        application.update_bank_reference()
-    return HttpResponse('Viitteenne on {}.'.format(application.bank_reference),
-                        content_type='text/plain')
 
 def sitemap(request):
     return render(request, 'sitemap.xml', content_type='application/xml')

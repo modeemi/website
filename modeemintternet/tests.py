@@ -207,19 +207,6 @@ class ApplicationViewTest(TestCase):
         self.assertEqual(mail.outbox[1].subject,
                 settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi lisätiedot')
 
-    def test_reference_number(self):
-        c = Client()
-        response = c.get('/viitenumero/puuttuvaKayttaja/')
-        self.assertEqual(response.status_code, 404)
-
-        del self.application['password']
-        del self.application['password_check']
-        a = Application(**self.application)
-        a.save()
-
-        response = c.get('/viitenumero/{}/'.format(a.primary_nick))
-        self.assertContains(response, 'Viitteenne on {}'.format(a.bank_reference))
-
 
 class ApplicationMethodTest(TestCase):
     """
@@ -238,7 +225,6 @@ class ApplicationMethodTest(TestCase):
 
         self.application.save()
         self.application.generate_password_hashes(password='pekkaonparas:D')
-        self.application.update_bank_reference()
 
     def test_application_to_unicode(self):
         self.application.__str__()
@@ -254,29 +240,3 @@ class ApplicationMethodTest(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject,
                 settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi on käsitelty')
-
-    def test_update_bank_reference(self):
-        """
-        Test that an application's reference number is calculated correctly.
-
-        Preceding zeros don't actually matter,
-        we're just padding the numbers for consistency.
-        """
-
-        comparisons = [
-                (1, '00013'),
-                (2, '00026'),
-                (3, '00039'),
-                (42, '00424'),
-                (420, '04200'),
-                (666, '06664'),
-                (9001, '90010')
-        ]
-
-        for (id, bank_reference) in comparisons:
-            self.application.id = id
-            self.application.save()
-            self.application.update_bank_reference()
-            self.application.save()
-
-            self.assertEqual(self.application.bank_reference, bank_reference)

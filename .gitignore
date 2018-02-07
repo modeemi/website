@@ -1,4 +1,5 @@
 *.pyc
+*.sql
 __pycache__
 virtualenv*
 vendor

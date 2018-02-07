@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from modeemintternet.models import News, Event, Soda, Application, Feedback
+from modeemintternet.models import News, Soda, Application, Feedback
 from modeemintternet import mailer
 
 
@@ -100,7 +100,6 @@ class FeedbackAdmin(admin.ModelAdmin):
 
 
 admin.site.register(News, NewsAdmin)
-admin.site.register(Event)
 admin.site.register(Soda, SodaAdmin)
 admin.site.register(Application, ApplicationAdmin)
 admin.site.register(Feedback, FeedbackAdmin)

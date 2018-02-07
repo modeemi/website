@@ -9,7 +9,7 @@ from django.shortcuts import render, get_object_or_404
 
 
 from modeemintternet import mailer
-from modeemintternet.models import News, Event, Soda, Application
+from modeemintternet.models import News, Soda, Application
 from modeemintternet.forms import ApplicationForm, FeedbackForm
 
 logger = logging.getLogger(__name__)

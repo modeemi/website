@@ -34,31 +34,6 @@ class News(models.Model):
         return reverse('uutiset', args=[self.id])
 
 
-class Event(models.Model):
-    title = models.TextField(blank=False)
-    text = models.TextField(blank=True)
-
-    location = models.TextField(blank=True)
-    lat = models.FloatField(default=0.0)
-    lon = models.FloatField(default=0.0)
-    starts = models.DateTimeField(blank=True, null=True)
-    ends = models.DateTimeField(blank=True, null=True)
-
-    posted = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-    poster = models.ForeignKey(User, editable=False, null=True, on_delete=models.SET_NULL)
-
-    class Meta:
-        verbose_name = 'Tapahtuma'
-        verbose_name_plural = 'Tapahtumat'
-
-    def __str__(self):
-        return '{0} (alkaa {1} UTC)'.format(self.title, self.starts)
-
-    def get_absolute_url(self):
-        return reverse('tapahtumat', args=[self.id])
-
-
 class Soda(models.Model):
     name = models.CharField(max_length=128)
     price = models.DecimalField(max_digits=3, decimal_places=2)

@@ -14,19 +14,24 @@ from modeemintternet.forms import ApplicationForm, FeedbackForm
 
 logger = logging.getLogger(__name__)
 
+
 def etusivu(request):
     news = News.objects.order_by('-posted')[:10]
     return render(request, 'etusivu.html', {'news': news})
 
+
 def yhdistys(request):
     return render(request, 'yhdistys.html')
+
 
 def palvelut(request):
     sodas = Soda.objects.filter(active=True).order_by('price', 'name')
     return render(request, 'palvelut.html', {'sodas': sodas})
 
+
 def laitteisto(request):
     return render(request, 'laitteisto.html')
+
 
 def palaute(request):
     feedback_form = FeedbackForm()
@@ -38,35 +43,46 @@ def palaute(request):
         feedback_form = FeedbackForm(request.POST)
 
         if not feedback_form.is_valid():
-            return render(request, 'palaute.html',
-                {'form': feedback_form}, status=400)
+            return render(request, 'palaute.html', {
+                'form': feedback_form,
+            }, status=400)
 
     feedback = feedback_form.save()
     mailer.feedback_received(feedback)
 
-    return render(request, 'palaute.html',
-            {'form': feedback_form, 'success': True})
+    return render(request, 'palaute.html', {
+        'form': feedback_form,
+        'success': True,
+    })
+
 
 def saannot(request):
     return render(request, 'saannot.html')
 
+
 def rekisteriseloste(request):
     return render(request, 'rekisteriseloste.html')
+
 
 def hallitus(request):
     return render(request, 'hallitus.html')
 
+
 def yhteystiedot(request):
     return render(request, 'yhteystiedot.html')
+
 
 def backup(request):
     return render(request, 'backup.html')
 
+
 def password(request):
     return render(request, 'password.html')
 
+
 def halutaan(request):
     return render(request, 'halutaan.html')
+
 
 def jaseneksi(request):
     application_form = ApplicationForm()
@@ -84,8 +100,9 @@ def jaseneksi(request):
             request.POST.get('password') == request.POST.get('password_check')
 
         if not application_form.is_valid():
-            return render(request, 'jaseneksi.html',
-                    {'form': application_form}, status=400)
+            return render(request, 'jaseneksi.html', {
+                'form': application_form,
+            }, status=400)
 
         # If the form is else valid but the password doesn't match or is empty,
         # mark the form as invalid and display a custom password error message.
@@ -94,8 +111,9 @@ def jaseneksi(request):
             application_form.add_error('password', '')
             application_form.add_error('password_check', error_msg)
 
-            return render(request, 'jaseneksi.html',
-                    {'form': application_form}, status=400)
+            return render(request, 'jaseneksi.html', {
+                'form': application_form,
+            }, status=400)
 
     application = application_form.save()
     application.generate_password_hashes(request.POST.get('password'))
@@ -109,15 +127,20 @@ def jaseneksi(request):
         logger.error('Failed to send mail about the new application: {}'.format(e))
 
     # Return info page for the application.
-    return render(request, 'jaseneksi.html',
-            {'success': True, 'mailing_success': mailing_success})
+    return render(request, 'jaseneksi.html', {
+        'success': True,
+        'mailing_success': mailing_success,
+    })
+
 
 def uutiset(request, pk=None):
     if pk:
-        return render(request, 'uutiset.html',
-                {'news': News.objects.filter(pk=pk)})
-    return render(request, 'uutiset.html',
-            {'news': News.objects.order_by('-id')})
+        return render(request, 'uutiset.html', {
+            'news': News.objects.filter(pk=pk),
+        })
+    return render(request, 'uutiset.html', {
+        'news': News.objects.order_by('-id'),
+    })
 
 
 def sitemap(request):

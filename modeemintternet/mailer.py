@@ -113,6 +113,7 @@ Ystävällisin terveisin,
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 
+
 def application_rejected(application):
     """
     Sends an email to an user notifying that his/her
@@ -135,6 +136,7 @@ Ystävällisin terveisin,
 """.format(ORGANIZATION, ORGANIZATION_EMAIL)
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
+
 
 def feedback_received(feedback):
     """

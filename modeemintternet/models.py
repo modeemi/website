@@ -166,6 +166,40 @@ class Feedback(models.Model):
         verbose_name_plural = 'Palautteet'
 
     def __str__(self):
-        return '{0} ({1})'.format(
-                self.message[:25]
-                , self.sent)
+        return '{0} ({1})'.format(self.message[:25], self.sent)
+
+class Passwd(models.Model):
+    username = models.CharField(primary_key=True, max_length=64)
+    uid = models.IntegerField()
+    gid = models.IntegerField()
+    gecos = models.CharField(max_length=255)
+    home = models.CharField(max_length=255)
+    shell = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'passwd'
+        managed = False
+
+
+class Shadow(models.Model):
+    username = models.CharField(primary_key=True, max_length=64)
+    lastchanged = models.IntegerField()
+    min = models.IntegerField()
+    max = models.IntegerField()
+    warn = models.IntegerField()
+    inact = models.IntegerField()
+    expire = models.IntegerField()
+    flags = models.IntegerField()
+
+    class Meta:
+        db_table = 'shadow'
+        managed = False
+
+
+class UserGroup(models.Model):
+    groupname = models.CharField(primary_key=True, max_length=64)
+    gid = models.CharField(models.IntegerField)
+
+    class Meta:
+        db_table = 'usergroup'
+        managed = False

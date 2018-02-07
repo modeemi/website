@@ -60,8 +60,20 @@ ALLOWED_HOSTS = (
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+
+DATABASE_ROUTERS = [
+    'modeemintternet.routers.Router'
+]
+
 DATABASES = {
-    'default': env.db(default='postgres://modeemi:modeemi@127.0.0.1:5432/modeemi')
+    'default': env.db(
+        'DATABASE_URL',
+        default='postgres://modeemi:modeemi@127.0.0.1:5432/modeemi'
+    ),
+    'modeemiuserdb': env.db(
+        'MODEEMIUSERDB_URL',
+        default='postgres://modeemiuserdb:modeemiuserdb@127.0.0.1:5432/modeemiuserdb'
+    )
 }
 
 CACHES = {

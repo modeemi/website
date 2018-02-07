@@ -199,7 +199,7 @@ class Shadow(models.Model):
 
 class UserGroup(models.Model):
     groupname = models.CharField(primary_key=True, max_length=64)
-    gid = models.CharField(models.IntegerField)
+    gid = models.IntegerField()
 
     class Meta:
         db_table = 'usergroup'

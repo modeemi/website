@@ -101,7 +101,9 @@ class Application(models.Model):
     # Password hashes
     pbkdf2_sha256 = models.CharField(max_length=128)
     sha512_crypt = models.CharField(max_length=128)
+    sha256_crypt = models.CharField(max_length=128)
     des_crypt = models.CharField(max_length=128)
+    md5_crypt = models.CharField(max_length=128)
 
     # Processing status
     application_accepted = models.BooleanField(default=False)
@@ -124,12 +126,14 @@ class Application(models.Model):
             https://pythonhosted.org/passlib/lib/passlib.hash.html
         """
 
-        password_schemes = ['pbkdf2_sha256', 'sha512_crypt', 'des_crypt']
+        password_schemes = ['pbkdf2_sha256', 'sha512_crypt', 'sha256_crypt', 'des_crypt', 'md5_crypt']
         pwd_context = CryptContext(schemes=password_schemes)
 
         self.pbkdf2_sha256 = pwd_context.hash(password, 'pbkdf2_sha256')
         self.sha512_crypt = pwd_context.hash(password, 'sha512_crypt')
+        self.sha512_crypt = pwd_context.hash(password, 'sha256_crypt')
         self.des_crypt = pwd_context.hash(password, 'des_crypt')
+        self.md5_crypt = pwd_context.hash(password, 'des_crypt')
 
         self.save()
 
@@ -194,6 +198,18 @@ class Shadow(models.Model):
 
     class Meta:
         db_table = 'shadow'
+        managed = False
+
+
+class ShadowFormat(models.Model):
+    id = models.IntegerField(primary_key=True)
+    username = models.CharField(unique=True, max_length=64)
+    format = models.CharField(max_length=32)
+    hash = models.CharField(max_length=1024)
+    last_updated = models.DateTimeField()
+
+    class Meta:
+        db_table = 'shadowformat'
         managed = False
 
 

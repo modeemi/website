@@ -168,6 +168,7 @@ class Feedback(models.Model):
     def __str__(self):
         return '{0} ({1})'.format(self.message[:25], self.sent)
 
+
 class Passwd(models.Model):
     username = models.CharField(primary_key=True, max_length=64)
     uid = models.IntegerField()

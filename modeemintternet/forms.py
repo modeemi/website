@@ -15,7 +15,7 @@ class ApplicationForm(ModelForm):
     class Meta:
         model = Application
         exclude = (
-            'pbkdf2_sha256', 'sha512_crypt', 'des_crypt',
+            'pbkdf2_sha256', 'sha512_crypt', 'sha256_crypt', 'des_crypt', 'md5_crypt',
             'application_accepted', 'application_rejected', 'application_processed'
         )
 

@@ -128,7 +128,7 @@ class Application(models.Model):
 
         self.pbkdf2_sha256 = pwd_context.hash(password, 'pbkdf2_sha256')
         self.sha512_crypt = pwd_context.hash(password, 'sha512_crypt')
-        self.sha512_crypt = pwd_context.hash(password, 'sha256_crypt')
+        self.sha256_crypt = pwd_context.hash(password, 'sha256_crypt')
         self.des_crypt = pwd_context.hash(password, 'des_crypt')
         self.md5_crypt = pwd_context.hash(password, 'des_crypt')
 

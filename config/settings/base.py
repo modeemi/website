@@ -110,6 +110,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'rest_framework',
     'raven.contrib.django.raven_compat',
+    'snowpenguin.django.recaptcha2',
 
     'modeemintternet',
 )
@@ -152,3 +153,6 @@ TEMPLATES = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY', cast=str)
+RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY', cast=str)

@@ -2,15 +2,18 @@
 
 from __future__ import unicode_literals
 
-from modeemintternet.models import Application, News, Feedback
+from modeemintternet.models import Application, Feedback
 from django.forms import ModelForm, CharField, PasswordInput
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from snowpenguin.django.recaptcha2.fields import ReCaptchaField
+from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
 
 
 class ApplicationForm(ModelForm):
     password = CharField(max_length=128, label='Haluamani salasana on', widget=PasswordInput())
     password_check = CharField(max_length=128, label='Salasana uudelleen', widget=PasswordInput())
+    captcha = ReCaptchaField(widget=ReCaptchaWidget())
 
     class Meta:
         model = Application
@@ -40,6 +43,8 @@ class ApplicationForm(ModelForm):
 
 
 class FeedbackForm(ModelForm):
+    captcha = ReCaptchaField(widget=ReCaptchaWidget())
+
     class Meta:
         model = Feedback
         exclude = ()

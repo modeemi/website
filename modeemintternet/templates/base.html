@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load raven %}
 {% load version %}
+{% load recaptcha2 %}
 
 <!DOCTYPE html>
 <html lang="fi">
@@ -32,6 +33,7 @@
             <link type="text/css" rel="stylesheet"  href="{% static "css/modeemi.css" %}" />
         {% endcache %}
     {% endblock link %}
+    {% recaptcha_init %}
 </head>
 
 <body>

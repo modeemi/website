@@ -195,7 +195,7 @@ class ApplicationMethodTest(TestCase):
                 email='pekka.sauron@example.org',
                 primary_nick='pekkas',
                 secondary_nick='sauronp',
-                shell=Application.BASH,
+                shell=Application.Shell.BASH,
                 funet_rules_accepted=True)
 
         self.application.save()

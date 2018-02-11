@@ -2,11 +2,16 @@
 
 from __future__ import unicode_literals
 
+from datetime import datetime
+from random import choice
 from passlib.context import CryptContext
 
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models, transaction, IntegrityError
 from django.urls import reverse
+from django.utils.timezone import now
+
+from modeemintternet import mailer
 
 
 class News(models.Model):
@@ -48,19 +53,20 @@ class Soda(models.Model):
 
 
 class Application(models.Model):
-    BASH = '/bin/bash'
-    SH = '/bin/sh'
-    ZSH = '/bin/zsh'
-    TCSH = '/bin/tcsh'
-    FALSE = '/bin/false'
+    class Shell:
+        BASH = '/bin/bash'
+        SH = '/bin/sh'
+        ZSH = '/bin/zsh'
+        TCSH = '/bin/tcsh'
+        FALSE = '/bin/false'
 
-    SHELL_OPTIONS = (
-        (SH, SH),
-        (BASH, BASH),
-        (ZSH, ZSH),
-        (TCSH, TCSH),
-        (FALSE, FALSE)
-    )
+        CHOICES = (
+            (SH, SH),
+            (BASH, BASH),
+            (ZSH, ZSH),
+            (TCSH, TCSH),
+            (FALSE, FALSE)
+        )
 
     # Actual application options
     first_name = models.CharField(max_length=32)
@@ -68,7 +74,7 @@ class Application(models.Model):
     email = models.EmailField()
     primary_nick = models.CharField(max_length=32)
     secondary_nick = models.CharField(max_length=32)
-    shell = models.CharField(max_length=32, choices=SHELL_OPTIONS, default=BASH)
+    shell = models.CharField(max_length=32, choices=Shell.CHOICES, default=Shell.BASH)
     funet_rules_accepted = models.BooleanField(default=False)
     virtual_key_required = models.BooleanField(default=False)
 
@@ -115,6 +121,67 @@ class Application(models.Model):
 
         self.save()
 
+    @transaction.atomic('default')
+    @transaction.atomic('modeemiuserdb')
+    def accept(self):
+        def get_shadow_format(method):
+            return {
+                'SHA512': self.sha512_crypt,
+                'SHA256': self.sha256_crypt,
+                'MD5': self.md5_crypt,
+                'DES': self.des_crypt,
+            }[method]
+
+        if self.application_processed:
+            raise IntegrityError('This application has already been accepted')
+
+        group = UserGroup.objects.get(groupname='modeemi')
+
+        passwd = Passwd.objects.create(
+            username=self.primary_nick,
+            uid=Passwd.get_free_uid(),
+            gid=group.gid,
+            gecos='{} {}'.format(self.first_name, self.last_name),
+            home='/home/{}'.format(self.primary_nick),
+            shell=self.shell,
+        )
+
+        UserGroupMember.objects.create(
+            username=passwd.username,
+            groupname=group.groupname,
+        )
+
+        dt = now()
+        epoch = datetime.utcfromtimestamp(0)
+        lastchanged = (dt - epoch).total_seconds() // 86400
+
+        Shadow.objects.create(
+            username=passwd.username,
+            lastchanged=lastchanged
+        )
+
+        for format in Format.objects.values_list('format', flat=True):
+            ShadowFormat.objects.create(
+                username=passwd.username,
+                format=format,
+                hash=get_shadow_format(format),
+                last_updated=dt,
+            )
+
+        self.application_accepted = True
+        self.application_processed = True
+        mailer.application_accepted(self)
+
+    @transaction.atomic('default')
+    @transaction.atomic('modeemiuserdb')
+    def reject(self):
+        if self.application_processed:
+            raise IntegrityError('This application has already been rejected')
+
+        self.application_rejected = True
+        self.application_processed = True
+        mailer.application_rejected(self)
+
 
 class Feedback(models.Model):
     sender = models.CharField(blank=True, max_length=64)
@@ -145,7 +212,13 @@ class Passwd(models.Model):
     gid = models.IntegerField()
     gecos = models.CharField(max_length=255)
     home = models.CharField(max_length=255)
-    shell = models.CharField(max_length=255)
+    shell = models.CharField(max_length=255, choices=Application.Shell.CHOICES)
+
+    @staticmethod
+    def get_free_uid():
+        reserved = Passwd.objects.values_list('uid', flat=True)
+        free = list(set(range(1000, 4200)) - set(reserved))
+        return choice(free)
 
     class Meta:
         db_table = 'passwd'
@@ -169,7 +242,7 @@ class Shadow(models.Model):
 
 class ShadowFormat(models.Model):
     id = models.IntegerField(primary_key=True)
-    username = models.CharField(unique=True, max_length=64)
+    username = models.CharField(max_length=64)
     format = models.CharField(max_length=32)
     hash = models.CharField(max_length=1024)
     last_updated = models.DateTimeField()
@@ -177,6 +250,7 @@ class ShadowFormat(models.Model):
     class Meta:
         db_table = 'shadowformat'
         managed = False
+        unique_together = ('username', 'format')
 
 
 class UserGroup(models.Model):

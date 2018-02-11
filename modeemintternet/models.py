@@ -165,6 +165,13 @@ class Application(models.Model):
                 last_updated=now(),
             )
 
+        if self.virtual_key_required:
+            group = UserGroup.objects.get(groupname='ovi')
+            UserGroupMember.objects.create(
+                username=passwd.username,
+                groupname=group.groupname,
+            )
+
         self.application_accepted = True
         self.application_processed = True
         self.save()

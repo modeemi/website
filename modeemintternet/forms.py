@@ -18,9 +18,9 @@ class ApplicationForm(ModelForm):
     class Meta:
         model = Application
         fields = (
-            'email',
             'first_name',
             'last_name',
+            'email',
             'username',
             'shell',
             'funet_rules_accepted',

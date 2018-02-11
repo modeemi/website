@@ -1,7 +1,5 @@
 language: python
-python:
-    - "3.5"
-    - "3.6"
+python: "3.6"
 env:
     - DJANGO_SETTINGS_MODULE=config.settings.test
     - RECAPTCHA_PUBLIC_KEY=recaptcha_public_key_test

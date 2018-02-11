@@ -7,7 +7,8 @@ from random import choice
 from time import time
 
 from django.contrib.auth.models import User
-from django.db import models, transaction, IntegrityError
+from django.core.exceptions import ValidationError
+from django.db import models, transaction
 from django.urls import reverse
 from django.utils.timezone import now
 
@@ -133,7 +134,7 @@ class Application(models.Model):
             }[method]
 
         if self.application_processed:
-            raise IntegrityError('This application has already been accepted')
+            raise ValidationError('Application {} has already been accepted'.format(self.username))
 
         group = UserGroup.objects.get(groupname='modeemi')
 
@@ -182,7 +183,7 @@ class Application(models.Model):
     @transaction.atomic('modeemiuserdb')
     def reject(self):
         if self.application_processed:
-            raise IntegrityError('This application has already been rejected')
+            raise ValidationError('Application {} has already been rejected'.format(self.username))
 
         self.application_rejected = True
         self.application_processed = True

@@ -84,7 +84,6 @@ class Application(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     # Password hashes
-    pbkdf2_sha256 = models.CharField(max_length=128)
     sha512_crypt = models.CharField(max_length=128)
     sha256_crypt = models.CharField(max_length=128)
     des_crypt = models.CharField(max_length=128)
@@ -104,8 +103,6 @@ class Application(models.Model):
 
     def generate_password_hashes(self, password):
         """
-        Generate password hashes with SHA512, PBKDF2/SHA-256 and DES crypt.
-
         Refer to passlib documentation for adding new hashers:
 
             https://pythonhosted.org/passlib/lib/passlib.hash.html
@@ -114,7 +111,6 @@ class Application(models.Model):
         password_schemes = ['pbkdf2_sha256', 'sha512_crypt', 'sha256_crypt', 'des_crypt', 'md5_crypt']
         pwd_context = CryptContext(schemes=password_schemes)
 
-        self.pbkdf2_sha256 = pwd_context.hash(password, 'pbkdf2_sha256')
         self.sha512_crypt = pwd_context.hash(password, 'sha512_crypt')
         self.sha256_crypt = pwd_context.hash(password, 'sha256_crypt')
         self.des_crypt = pwd_context.hash(password, 'des_crypt')

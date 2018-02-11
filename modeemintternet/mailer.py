@@ -38,9 +38,14 @@ Voit tarkastella jäsenhakemusta osoitteessa:
 
 Ystävällisin terveisin,
 {5}n hallitusautomaatiobotti
-""".format(application.first_name, application.last_name,
-           application.primary_nick, application.applied.strftime('%d.%m.%Y'),
-           application.id, ORGANIZATION)
+""".format(
+    application.first_name,
+    application.last_name,
+    application.primary_nick,
+    application.applied.strftime('%d.%m.%Y'),
+    application.id,
+    ORGANIZATION,
+)
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [ORGANIZATION_EMAIL])
 
@@ -70,19 +75,22 @@ Ohessa hakemuksesi tiedot:
     Etunimi: {0}
     Sukunimi: {1}
     Sähköpostiosoite: {2}
-    Ensisijainen tunnustoive: {3}
-    Toissijainen tunnustoive: {4}
-    Ensisijainen komentokehoite: {5}
-    Virtuaaliavainta haettu: {6}
-    Hakemus jätetty: {7}
+    Tunnus: {3}
+    Komentokehoite: {4}
+    Virtuaaliavain: {5}
+    Hakemus jätetty: {6}
 
 Ystävällisin terveisin,
-{8}n hallitus
+{7}n hallitus
 """.format(
-    application.first_name, application.last_name,  application.email,
-    application.primary_nick, application.secondary_nick, application.shell,
+    application.first_name,
+    application.last_name,
+    application.email,
+    application.primary_nick,
+    application.shell,
     'Kyllä' if application.virtual_key_required else 'Ei',
-    application.applied.strftime('%d.%m.%Y'), ORGANIZATION
+    application.applied.strftime('%d.%m.%Y'),
+    ORGANIZATION,
 )
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
@@ -103,13 +111,14 @@ Hei,
 
 {0}n hallitus on käsitellyt ja hyväksynyt jäsenhakemuksesi.
 
-Sinulle luodaan tunnus "{1}" tai "{2}" ja saat lisätiedot sähköpostissa.
+Sinulle on luotu tunnus {1}.
 
 Ystävällisin terveisin,
 {0}n hallitus
-""".format(ORGANIZATION,
-           application.primary_nick,
-           application.secondary_nick)
+""".format(
+    ORGANIZATION,
+    application.primary_nick,
+)
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 
@@ -133,7 +142,10 @@ Lisätietoja voit tulla tiedustelemaan kerhohuoneelta tai sähköpostitse osoitt
 
 Ystävällisin terveisin,
 {0}n hallitus
-""".format(ORGANIZATION, ORGANIZATION_EMAIL)
+""".format(
+    ORGANIZATION,
+    ORGANIZATION_EMAIL
+)
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 
@@ -161,10 +173,10 @@ Voit tarkastella palautetta myös osoitteessa
 Ystävällisin terveisin,
 {3}n hallitusautomaatiobotti
 """.format(
-        feedback.sender,
-        textwrap.fill(feedback.message),
-        feedback.id,
-        ORGANIZATION
-    )
+    feedback.sender,
+    textwrap.fill(feedback.message),
+    feedback.id,
+    ORGANIZATION,
+)
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [ORGANIZATION_EMAIL])

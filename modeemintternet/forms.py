@@ -17,9 +17,14 @@ class ApplicationForm(ModelForm):
 
     class Meta:
         model = Application
-        exclude = (
-            'pbkdf2_sha256', 'sha512_crypt', 'sha256_crypt', 'des_crypt', 'md5_crypt',
-            'application_accepted', 'application_rejected', 'application_processed'
+        fields = (
+            'email',
+            'first_name',
+            'last_name',
+            'primary_nick',
+            'shell',
+            'funet_rules_accepted',
+            'virtual_key_required',
         )
 
     def __init__(self, *args, **kwargs):
@@ -34,8 +39,7 @@ class ApplicationForm(ModelForm):
         self.fields['email'].label = 'Sähköpostini on'
         self.fields['first_name'].label = 'Etunimeni on'
         self.fields['last_name'].label = 'Sukunimeni on'
-        self.fields['primary_nick'].label = 'Ensisijaisesti haluamani käyttäjätunnus on'
-        self.fields['secondary_nick'].label = 'Vaihtoehto, jos ensisijainen on jo käytössä'
+        self.fields['primary_nick'].label = 'Haluamani käyttäjätunnus on'
         self.fields['shell'].label = 'Haluamani komentokehoite kerhon *nix -koneilla'
         self.fields['funet_rules_accepted'].label = 'Hyväksyn FuNET-verkon käyttöehdot'
         self.fields['funet_rules_accepted'].required = True

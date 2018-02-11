@@ -68,27 +68,32 @@ class FormatAdmin(admin.ModelAdmin):
 class PasswdAdmin(admin.ModelAdmin):
     list_display = ('username', 'uid', 'gid', 'gecos', 'home', 'shell', )
     readonly_fields = ('uid', 'gid', 'home', )
+    search_fields = list_display
 
 
 class ShadowAdmin(admin.ModelAdmin):
     list_display = ('username', 'lastchanged', )
     readonly_fields = ('username', 'lastchanged', )
+    search_fields = list_display
 
 
 class ShadowFormatAdmin(admin.ModelAdmin):
     list_display = ('username', 'format', 'last_updated', )
     exclude = ('hash', )
     readonly_fields = ('id', 'username', 'format', 'last_updated', )
+    search_fields = list_display
 
 
 class UserGroupAdmin(admin.ModelAdmin):
     list_display = ('groupname', 'gid', )
     readonly_fields = ('groupname', 'gid', )
+    search_fields = list_display
 
 
 class UserGroupMemberAdmin(admin.ModelAdmin):
     list_display = ('groupname', 'username', )
     readonly_fields = ('groupname', 'username',)
+    search_fields = list_display
 
 
 admin.site.register(models.News, NewsAdmin)

@@ -2,9 +2,9 @@
 
 from __future__ import unicode_literals
 
-from datetime import datetime
-from random import choice
 from passlib.context import CryptContext
+from random import choice
+from time import time
 
 from django.contrib.auth.models import User
 from django.db import models, transaction, IntegrityError
@@ -151,13 +151,10 @@ class Application(models.Model):
             groupname=group.groupname,
         )
 
-        dt = now()
-        epoch = datetime.utcfromtimestamp(0)
-        lastchanged = (dt - epoch).total_seconds() // 86400
-
         Shadow.objects.create(
             username=passwd.username,
-            lastchanged=lastchanged
+            lastchanged=int(time()) // 86400,
+            min=0,
         )
 
         for format in Format.objects.values_list('format', flat=True):
@@ -165,7 +162,7 @@ class Application(models.Model):
                 username=passwd.username,
                 format=format,
                 hash=get_shadow_format(format),
-                last_updated=dt,
+                last_updated=now(),
             )
 
         self.application_accepted = True
@@ -241,7 +238,6 @@ class Shadow(models.Model):
 
 
 class ShadowFormat(models.Model):
-    id = models.IntegerField(primary_key=True)
     username = models.CharField(max_length=64)
     format = models.CharField(max_length=32)
     hash = models.CharField(max_length=1024)
@@ -263,7 +259,6 @@ class UserGroup(models.Model):
 
 
 class UserGroupMember(models.Model):
-    id = models.IntegerField(primary_key=True)
     groupname = models.CharField(max_length=64)
     username = models.CharField(max_length=64)
 

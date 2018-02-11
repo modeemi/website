@@ -72,8 +72,8 @@ class Application(models.Model):
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
     email = models.EmailField()
-    primary_nick = models.CharField(max_length=32)
-    secondary_nick = models.CharField(max_length=32)
+    username = models.CharField(max_length=32)
+    secondary_nick = models.CharField(max_length=32)  # TODO: Remove this after processing current applications
     shell = models.CharField(max_length=32, choices=Shell.CHOICES, default=Shell.BASH)
     funet_rules_accepted = models.BooleanField(default=False)
     virtual_key_required = models.BooleanField(default=False)
@@ -138,11 +138,11 @@ class Application(models.Model):
         group = UserGroup.objects.get(groupname='modeemi')
 
         passwd = Passwd.objects.create(
-            username=self.primary_nick,
+            username=self.username,
             uid=Passwd.get_free_uid(),
             gid=group.gid,
             gecos='{} {}'.format(self.first_name, self.last_name),
-            home='/home/{}'.format(self.primary_nick),
+            home='/home/{}'.format(self.username),
             shell=self.shell,
         )
 

@@ -41,7 +41,7 @@ Ystävällisin terveisin,
 """.format(
     application.first_name,
     application.last_name,
-    application.primary_nick,
+    application.username,
     application.applied.strftime('%d.%m.%Y'),
     application.id,
     ORGANIZATION,
@@ -86,7 +86,7 @@ Ystävällisin terveisin,
     application.first_name,
     application.last_name,
     application.email,
-    application.primary_nick,
+    application.username,
     application.shell,
     'Kyllä' if application.virtual_key_required else 'Ei',
     application.applied.strftime('%d.%m.%Y'),
@@ -117,7 +117,7 @@ Ystävällisin terveisin,
 {0}n hallitus
 """.format(
     ORGANIZATION,
-    application.primary_nick,
+    application.username,
 )
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])

@@ -21,7 +21,7 @@ class ApplicationForm(ModelForm):
             'email',
             'first_name',
             'last_name',
-            'primary_nick',
+            'username',
             'shell',
             'funet_rules_accepted',
             'virtual_key_required',
@@ -39,7 +39,7 @@ class ApplicationForm(ModelForm):
         self.fields['email'].label = 'Sähköpostini on'
         self.fields['first_name'].label = 'Etunimeni on'
         self.fields['last_name'].label = 'Sukunimeni on'
-        self.fields['primary_nick'].label = 'Haluamani käyttäjätunnus on'
+        self.fields['username'].label = 'Haluamani käyttäjätunnus on'
         self.fields['shell'].label = 'Haluamani komentokehoite kerhon *nix -koneilla'
         self.fields['funet_rules_accepted'].label = 'Hyväksyn FuNET-verkon käyttöehdot'
         self.fields['funet_rules_accepted'].required = True

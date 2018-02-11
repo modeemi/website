@@ -48,8 +48,9 @@ class ApplicationAdmin(admin.ModelAdmin):
         for application in queryset:
             application.reject()
 
-    list_display = ('first_name', 'last_name', 'primary_nick', 'applied', 'application_processed')
+    list_display = ('first_name', 'last_name', 'username', 'applied', 'application_processed')
     actions = ('accept', 'reject')
+    exclude = ('pbkdf2_sha256', 'sha512_crypt', 'sha256_crypt', 'des_crypt', 'md5_crypt', )
 
 
 class FeedbackAdmin(admin.ModelAdmin):

@@ -4,6 +4,8 @@ python:
     - "3.6"
 env:
     - DJANGO_SETTINGS_MODULE=config.settings.test
+    - RECAPTCHA_PUBLIC_KEY=recaptcha_public_key_test
+    - RECAPTCHA_PRIVATE_KEY=recaptcha_private_key_test
 install:
     - pip install wheel
     - pip install -r requirements.txt

@@ -25,7 +25,8 @@ if len(SECRET_KEY) < 42:
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {
-    'default': env.db()
+    'default': env.db(),
+    'modeemiuserdb': env.db('MODEEMIUSERDB_URL'),
 }
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'

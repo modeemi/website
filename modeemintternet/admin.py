@@ -3,8 +3,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from modeemintternet.models import News, Soda, Application, Feedback
-from modeemintternet import mailer
+from modeemintternet import models
 
 
 class NewsAdmin(admin.ModelAdmin):
@@ -24,28 +23,13 @@ class SodaAdmin(admin.ModelAdmin):
     Also supports marking sodas as being in or out of sale in bunch.
     """
 
-    def name_column(self, obj):
-        return obj.name
-    name_column.short_description = 'Nimi'
-
-    def price_column(self, obj):
-        return '{0}e'.format(obj.price)
-    price_column.short_description = 'Hinta'
-
-    def active_column(self, obj):
-        return obj.active
-    active_column.boolean = True
-    active_column.short_description = 'Myynnissä'
-
     def activate(self, request, queryset):
         queryset.update(active=True)
-    activate.short_description = 'Lisää myyntiin'
 
     def deactivate(self, request, queryset):
         queryset.update(active=False)
-    deactivate.short_description = 'Poista myynnistä'
 
-    list_display = ('name_column', 'price_column', 'active_column')
+    list_display = ('name', 'price', 'active')
     actions = (activate, deactivate)
 
 
@@ -56,50 +40,65 @@ class ApplicationAdmin(admin.ModelAdmin):
     Approving an application creates a user from the application.
     """
 
-    def name_column(self, obj):
-        return '{0} {1} ({2})'.format(obj.first_name,
-                obj.last_name, obj.primary_nick)
-    name_column.short_description = 'Hakijan nimi (nick)'
-
-    def applied_column(self, obj):
-        return obj.applied
-    applied_column.short_description = 'Hakemus tehty'
-
-    def processed_column(self, obj):
-        return obj.application_processed
-    processed_column.boolean = True
-    processed_column.short_description = 'Hakemus käsitelty'
-
     def accept(self, request, queryset):
-        queryset.update(application_accepted=True,
-                        application_rejected=False,
-                        application_processed=True)
-
         for application in queryset:
-            # TODO: create actual users, send mail with credentials
-            mailer.application_accepted(application)
-
-    accept.short_description = 'Hyväksy valitut hakemukset'
+            application.accept()
 
     def reject(self, request, queryset):
-        queryset.update(application_rejected=True,
-                        application_accepted=False,
-                        application_processed=True)
-
         for application in queryset:
-            mailer.application_rejected(application)
+            application.reject()
 
-    reject.short_description = 'Hylkää valitut hakemukset'
-
-    list_display = ('name_column', 'applied_column', 'processed_column')
+    list_display = ('first_name', 'last_name', 'primary_nick', 'applied', 'application_processed')
     actions = ('accept', 'reject')
 
 
 class FeedbackAdmin(admin.ModelAdmin):
-    pass
+    def message_column(self, obj):
+        return obj.message[:25]
+    message_column.short_description = 'message'
+
+    list_display = ('sender', 'email', 'sent', 'message_column')
 
 
-admin.site.register(News, NewsAdmin)
-admin.site.register(Soda, SodaAdmin)
-admin.site.register(Application, ApplicationAdmin)
-admin.site.register(Feedback, FeedbackAdmin)
+class FormatAdmin(admin.ModelAdmin):
+    list_display = ('format', 'description', )
+    readonly_fields = ('format', )
+
+
+class PasswdAdmin(admin.ModelAdmin):
+    list_display = ('username', 'uid', 'gid', 'gecos', 'home', 'shell', )
+    readonly_fields = ('uid', 'gid', 'home', )
+
+
+class ShadowAdmin(admin.ModelAdmin):
+    list_display = ('username', 'lastchanged', )
+    readonly_fields = ('username', 'lastchanged', )
+
+
+class ShadowFormatAdmin(admin.ModelAdmin):
+    list_display = ('username', 'format', 'last_updated', )
+    exclude = ('hash', )
+    readonly_fields = ('id', 'username', 'format', 'last_updated', )
+
+
+class UserGroupAdmin(admin.ModelAdmin):
+    list_display = ('groupname', 'gid', )
+    readonly_fields = ('groupname', 'gid', )
+
+
+class UserGroupMemberAdmin(admin.ModelAdmin):
+    list_display = ('groupname', 'username', )
+    readonly_fields = ('groupname', 'username',)
+
+
+admin.site.register(models.News, NewsAdmin)
+admin.site.register(models.Soda, SodaAdmin)
+admin.site.register(models.Application, ApplicationAdmin)
+admin.site.register(models.Feedback, FeedbackAdmin)
+
+admin.site.register(models.Format, FormatAdmin)
+admin.site.register(models.Passwd, PasswdAdmin)
+admin.site.register(models.Shadow, ShadowAdmin)
+admin.site.register(models.ShadowFormat, ShadowFormatAdmin)
+admin.site.register(models.UserGroup, UserGroupAdmin)
+admin.site.register(models.UserGroupMember, UserGroupMemberAdmin)

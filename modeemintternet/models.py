@@ -167,6 +167,8 @@ class Application(models.Model):
 
         self.application_accepted = True
         self.application_processed = True
+        self.save()
+
         mailer.application_accepted(self)
 
     @transaction.atomic('default')
@@ -177,6 +179,8 @@ class Application(models.Model):
 
         self.application_rejected = True
         self.application_processed = True
+        self.save()
+
         mailer.application_rejected(self)
 
 

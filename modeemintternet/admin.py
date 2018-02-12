@@ -2,8 +2,13 @@
 
 from __future__ import unicode_literals
 
+from logging import getLogger
+
 from django.contrib import admin
-from modeemintternet import models
+
+from modeemintternet import mailer, models
+
+log = getLogger(__name__)
 
 
 class NewsAdmin(admin.ModelAdmin):
@@ -44,9 +49,21 @@ class ApplicationAdmin(admin.ModelAdmin):
         for application in queryset:
             application.accept()
 
+        try:
+            for application in queryset:
+                mailer.application_accepted(application)
+        except Exception as e:
+            log.exception('Sending application accepted mail failed', exc_info=e)
+
     def reject(self, request, queryset):
         for application in queryset:
             application.reject()
+
+        try:
+            for application in queryset:
+                mailer.application_rejected(application)
+        except Exception as e:
+            log.exception('Sending application accepted mail failed', exc_info=e)
 
     list_display = ('first_name', 'last_name', 'username', 'applied', 'application_processed', 'application_accepted', )
     readonly_fields = ('application_processed', 'application_accepted', 'application_rejected', )

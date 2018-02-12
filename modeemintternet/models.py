@@ -13,8 +13,6 @@ from django.db import models, transaction, utils
 from django.urls import reverse
 from django.utils.timezone import now
 
-from modeemintternet import mailer
-
 log = getLogger(__name__)
 
 
@@ -139,6 +137,9 @@ class Application(models.Model):
     @transaction.atomic('default')
     @transaction.atomic('modeemiuserdb')
     def accept(self):
+        if self.application_processed:
+            raise ValidationError('Application {} has already been accepted'.format(self.username))
+
         def get_shadow_format(method):
             return {
                 'SHA512': self.sha512_crypt,
@@ -146,9 +147,6 @@ class Application(models.Model):
                 'MD5': self.md5_crypt,
                 'DES': self.des_crypt,
             }[method]
-
-        if self.application_processed:
-            raise ValidationError('Application {} has already been accepted'.format(self.username))
 
         group = UserGroup.objects.get(groupname='modeemi')
 
@@ -191,8 +189,6 @@ class Application(models.Model):
         self.application_processed = True
         self.save()
 
-        mailer.application_accepted(self)
-
     @transaction.atomic('default')
     @transaction.atomic('modeemiuserdb')
     def reject(self):
@@ -202,8 +198,6 @@ class Application(models.Model):
         self.application_rejected = True
         self.application_processed = True
         self.save()
-
-        mailer.application_rejected(self)
 
 
 class Feedback(models.Model):

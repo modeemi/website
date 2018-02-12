@@ -235,9 +235,7 @@ class Passwd(models.Model):
 
     @staticmethod
     def get_free_uid():
-        reserved = Passwd.objects.values_list('uid', flat=True)
-        free = list(set(range(40000, 42000)) - set(reserved))
-        return choice(free)
+        return 1 + Passwd.objects.order_by('uid').last().uid
 
     class Meta:
         db_table = 'passwd'

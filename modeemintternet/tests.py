@@ -137,8 +137,8 @@ class ApplicationViewTest(TestCase):
             , 'secondary_nick': 'teekkarit'
             , 'shell': '/bin/zsh'
             , 'funet_rules_accepted': True
-            , 'password': 'testi'
-            , 'password_check': 'testi'
+            , 'password': 'testisalasana'
+            , 'password_check': 'testisalasana'
         }
 
     def test_invalid_application(self):
@@ -159,7 +159,7 @@ class ApplicationViewTest(TestCase):
         Test that invalid application is rejected with HTTP status code 400.
         """
 
-        self.application['password_check'] = 'eisama'
+        self.application['password_check'] = 'eisamasalasana'
         c = Client()
         response = c.post('/jaseneksi/', self.application)
 

@@ -3,25 +3,29 @@
 from __future__ import unicode_literals
 
 import re
-
+from logging import getLogger
 from passlib.context import CryptContext
-from random import choice
 from time import time
 
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.db import models, transaction
+from django.db import models, transaction, utils
 from django.urls import reverse
 from django.utils.timezone import now
 
 from modeemintternet import mailer
 
+log = getLogger(__name__)
+
 
 def validate_username(username):
     if not re.match(r'^[a-z]+$', username):
         raise ValidationError('Käyttäjätunnuksen pitää koostua pienistä kirjaimista.')
-    if Passwd.objects.filter(username__iexact=username).exists():
-        raise ValidationError('Käyttäjätunnus ei ole saatavilla.')
+    try:
+        if Passwd.objects.filter(username__iexact=username).exists():
+            raise ValidationError('Käyttäjätunnus ei ole saatavilla.')
+    except Exception as e:
+        log.exception('Error in querying passwd objects', exc_info=e)
 
 
 class News(models.Model):

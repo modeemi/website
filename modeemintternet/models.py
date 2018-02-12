@@ -2,6 +2,8 @@
 
 from __future__ import unicode_literals
 
+import re
+
 from passlib.context import CryptContext
 from random import choice
 from time import time
@@ -13,6 +15,13 @@ from django.urls import reverse
 from django.utils.timezone import now
 
 from modeemintternet import mailer
+
+
+def validate_username(username):
+    if not re.match(r'^[a-z]+$', username):
+        raise ValidationError('Käyttäjätunnuksen pitää koostua pienistä kirjaimista.')
+    if Passwd.objects.filter(username__iexact=username).exists():
+        raise ValidationError('Käyttäjätunnus ei ole saatavilla.')
 
 
 class News(models.Model):
@@ -73,7 +82,12 @@ class Application(models.Model):
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
     email = models.EmailField()
-    username = models.CharField(max_length=32)
+    username = models.CharField(
+        max_length=32,
+        validators=[
+            validate_username
+        ]
+    )
     secondary_nick = models.CharField(max_length=32)  # TODO: Remove this after processing current applications
     shell = models.CharField(max_length=32, choices=Shell.CHOICES, default=Shell.BASH)
     funet_rules_accepted = models.BooleanField(default=False)

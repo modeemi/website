@@ -2,17 +2,30 @@
 
 from __future__ import unicode_literals
 
-from modeemintternet.models import Application, Feedback
+from django.core.exceptions import ValidationError
 from django.forms import ModelForm, CharField, PasswordInput
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from snowpenguin.django.recaptcha2.fields import ReCaptchaField
 from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
 
+from modeemintternet.models import Application, Feedback
+
 
 class ApplicationForm(ModelForm):
-    password = CharField(max_length=128, label='Haluamani salasana on', widget=PasswordInput())
-    password_check = CharField(max_length=128, label='Salasana uudelleen', widget=PasswordInput())
+    password = CharField(
+        min_length=8,
+        max_length=128,
+        label='Haluamani salasana on',
+        widget=PasswordInput(),
+    )
+    password_check = CharField(
+        min_length=8,
+        max_length=128,
+        label='Salasana uudelleen',
+        widget=PasswordInput(),
+    )
     captcha = ReCaptchaField(widget=ReCaptchaWidget())
 
     class Meta:

@@ -48,8 +48,9 @@ class ApplicationAdmin(admin.ModelAdmin):
         for application in queryset:
             application.reject()
 
-    list_display = ('first_name', 'last_name', 'username', 'applied', 'application_processed')
-    actions = ('accept', 'reject')
+    list_display = ('first_name', 'last_name', 'username', 'applied', 'application_processed', 'application_accepted', )
+    readonly_fields = ('application_processed', 'application_accepted', 'application_rejected', )
+    actions = ('accept', 'reject', )
     exclude = ('sha512_crypt', 'sha256_crypt', 'des_crypt', 'md5_crypt', )
 
 
@@ -58,7 +59,7 @@ class FeedbackAdmin(admin.ModelAdmin):
         return obj.message[:25]
     message_column.short_description = 'message'
 
-    list_display = ('sender', 'email', 'sent', 'message_column')
+    list_display = ('sender', 'email', 'sent', 'message_column', )
 
 
 class FormatAdmin(admin.ModelAdmin):

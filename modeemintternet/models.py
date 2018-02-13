@@ -130,7 +130,7 @@ class Application(models.Model):
         self.sha512_crypt = pwd_context.hash(password, 'sha512_crypt')
         self.sha256_crypt = pwd_context.hash(password, 'sha256_crypt')
         self.des_crypt = pwd_context.hash(password, 'des_crypt')
-        self.md5_crypt = pwd_context.hash(password, 'des_crypt')
+        self.md5_crypt = pwd_context.hash(password, 'md5_crypt')
 
         self.save()
 

@@ -140,7 +140,7 @@ class Application(models.Model):
         if self.application_processed:
             raise ValidationError('Application {} has already been accepted'.format(self.username))
 
-        def get_shadow_format(method):
+        def get_hash(method):
             return {
                 'SHA512': self.sha512_crypt,
                 'SHA256': self.sha256_crypt,
@@ -170,13 +170,15 @@ class Application(models.Model):
             min=0,
         )
 
-        for format in Format.objects.values_list('format', flat=True):
-            ShadowFormat.objects.create(
-                username=passwd.username,
-                format=format,
-                hash=get_shadow_format(format),
-                last_updated=now(),
-            )
+        for f in Format.objects.values_list('format', flat=True):
+            h = get_hash(f)
+            if h:
+                ShadowFormat.objects.create(
+                    username=passwd.username,
+                    format=f,
+                    hash=h,
+                    last_updated=now(),
+                )
 
         if self.virtual_key_required:
             group = UserGroup.objects.get(groupname='ovi')

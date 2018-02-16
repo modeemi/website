@@ -146,7 +146,7 @@ class Application(models.Model):
                 'SHA256': self.sha256_crypt,
                 'MD5': self.md5_crypt,
                 'DES': self.des_crypt,
-            }[method]
+            }.get(method, None)
 
         group = UserGroup.objects.get(groupname='modeemi')
 

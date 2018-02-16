@@ -49,21 +49,21 @@ class ApplicationAdmin(admin.ModelAdmin):
         for application in queryset:
             application.accept()
 
-        try:
-            for application in queryset:
+        for application in queryset:
+            try:
                 mailer.application_accepted(application)
-        except Exception as e:
-            log.exception('Sending application accepted mail failed', exc_info=e)
+            except Exception as e:
+                log.exception('Sending application accepted mail failed', exc_info=e)
 
     def reject(self, request, queryset):
         for application in queryset:
             application.reject()
 
-        try:
-            for application in queryset:
+        for application in queryset:
+            try:
                 mailer.application_rejected(application)
-        except Exception as e:
-            log.exception('Sending application accepted mail failed', exc_info=e)
+            except Exception as e:
+                log.exception('Sending application accepted mail failed', exc_info=e)
 
     list_display = ('first_name', 'last_name', 'username', 'applied', 'application_processed', 'application_accepted', )
     readonly_fields = ('application_processed', 'application_accepted', 'application_rejected', )

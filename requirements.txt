@@ -10,7 +10,7 @@ click==6.7                # via pip-tools
 coreapi==2.3.3            # via django-rest-swagger, openapi-codec
 coreschema==0.0.4         # via coreapi
 coverage==4.5.1
-django-crispy-forms==1.7.0
+django-crispy-forms==1.7.1
 django-debug-toolbar==1.9.1
 django-environ==0.4.4
 django-guardian==1.4.9

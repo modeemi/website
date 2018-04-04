@@ -113,6 +113,8 @@ Hei,
 
 Sinulle on luotu tunnus {1}.
 
+Tunnuksien jakelu jäsenkoneille tehdään öisin, joten kirjautuminen onnistuu vasta seuraavana päivänä.
+
 Ystävällisin terveisin,
 {0}n hallitus
 """.format(

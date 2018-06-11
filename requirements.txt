@@ -26,7 +26,7 @@ gitdb2==2.0.3             # via gitpython
 gitpython==2.1.10
 gunicorn==19.8.1
 icalendar==4.0.1
-idna==2.6                 # via requests
+idna==2.7                 # via requests
 itypes==1.1.0             # via coreapi
 jinja2==2.10              # via coreschema
 markupsafe==1.0           # via jinja2

@@ -12,7 +12,7 @@ coreschema==0.0.4         # via coreapi
 coverage==4.5.1
 django-crispy-forms==1.7.2
 django-debug-toolbar==1.9.1
-django-environ==0.4.4
+django-environ==0.4.5
 django-guardian==1.4.9
 django-ical==1.4
 django-rest-swagger==2.2.0

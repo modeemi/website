@@ -35,7 +35,7 @@ passlib==1.7.1
 pip-tools==2.0.2
 psycopg2==2.7.5
 python-dateutil==2.7.3    # via icalendar
-pytz==2018.4
+pytz==2018.5
 raven==6.9.0
 requests==2.19.1          # via coreapi
 simplejson==3.15.0        # via django-rest-swagger

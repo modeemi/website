@@ -18,7 +18,7 @@ django-ical==1.5
 django-rest-swagger==2.2.0
 django-suit==0.2.26
 django==2.0.7
-django-recaptcha2==1.0.3
+django-recaptcha2==1.1.0
 djangorestframework==3.8.2
 first==2.0.1              # via pip-tools
 future==0.16.0

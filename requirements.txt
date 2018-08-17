@@ -17,14 +17,14 @@ django-guardian==1.4.9
 django-ical==1.5
 django-rest-swagger==2.2.0
 django-suit==0.2.26
-django==2.0.7
-django-recaptcha2==1.0.3
+django==2.1
+django-recaptcha2==1.2.0
 djangorestframework==3.8.2
 first==2.0.1              # via pip-tools
 future==0.16.0
 gitdb2==2.0.4             # via gitpython
 gitpython==2.1.11
-gunicorn==19.8.1
+gunicorn==19.9.0
 icalendar==4.0.2
 idna==2.7                 # via requests
 itypes==1.1.0             # via coreapi
@@ -43,4 +43,4 @@ six==1.11.0               # via django-environ, django-guardian, pip-tools, pyth
 smmap2==2.0.4             # via gitdb2
 sqlparse==0.2.4           # via django-debug-toolbar
 uritemplate==3.0.0        # via coreapi
-urllib3==1.22             # via requests
+urllib3==1.23             # via requests

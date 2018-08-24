@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
-certifi==2018.8.13        # via requests
+certifi==2018.8.24        # via requests
 chardet==3.0.4            # via requests
 click==6.7                # via pip-tools
 coreapi==2.3.3            # via django-rest-swagger, openapi-codec

@@ -1,5 +1,5 @@
 coverage
-django>=2.0<2.1
+django>=2.1<2.2
 django-crispy-forms
 django-debug-toolbar
 django-environ

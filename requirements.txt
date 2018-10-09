@@ -24,7 +24,7 @@ first==2.0.1              # via pip-tools
 future==0.16.0
 gitdb2==2.0.4             # via gitpython
 gitpython==2.1.11
-gunicorn==19.8.1
+gunicorn==19.9.0
 icalendar==4.0.2
 idna==2.7                 # via requests
 itypes==1.1.0             # via coreapi

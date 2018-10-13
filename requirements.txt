@@ -22,7 +22,7 @@ django-recaptcha2==1.3.0
 djangorestframework==3.8.2
 first==2.0.1              # via pip-tools
 future==0.16.0
-gitdb2==2.0.4             # via gitpython
+gitdb2==2.0.5             # via gitpython
 gitpython==2.1.11
 gunicorn==19.9.0
 icalendar==4.0.2

@@ -19,7 +19,7 @@ django-rest-swagger==2.2.0
 django-suit==0.2.26
 django==2.2
 django-recaptcha2==1.4.1
-djangorestframework==3.9.2
+djangorestframework==3.9.3
 first==2.0.2              # via pip-tools
 future==0.17.1
 gitdb2==2.0.5             # via gitpython

@@ -9,6 +9,5 @@ indent_style = space
 [*.{js,py}]
 indent_size = 4
 
-# Matches the exact files either package.json or .travis.yml
 [{*.json,*.yml}]
 indent_size = 2

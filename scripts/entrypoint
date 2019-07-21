@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ ! -z "${DATABASE_MIGRATE:-}" ]]; then
+    if [[ ! -z "${DATABASE_WAIT_ON_STARTUP_SECONDS:-}" ]]; then
+        echo "Waiting for ${DATABASE_WAIT_ON_STARTUP_SECONDS} seconds before running any database operations"
+        sleep ${DATABASE_WAIT_ON_STARTUP_SECONDS}
+    fi
+
+    echo "Running database migrations"
+    python manage.py migrate --noinput
+    echo "Creating database cache tables"
+    python manage.py createcachetable
+fi
+
+exec "$@"

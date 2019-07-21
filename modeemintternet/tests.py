@@ -1,10 +1,6 @@
-# -*- coding: utf-8 -*-
-
 """
 Unit tests for modeemintternet app.
 """
-
-from __future__ import unicode_literals
 
 import datetime
 

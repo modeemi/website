@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
 Django settings for modeemintternet project.
 
@@ -7,11 +5,10 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.8/topics/settings/
 """
 
-from __future__ import unicode_literals
-
 import warnings
 
 import environ
+
 
 PROJECT_ROOT = environ.Path(__file__) - 3  # type: environ.Path
 PROJECT_DIR = PROJECT_ROOT.path('modeemintternet')
@@ -22,9 +19,6 @@ with warnings.catch_warnings():
     warnings.simplefilter('ignore')
     env.read_env('.env')
     env.read_env('/etc/modeemintternet/env')
-
-# Quick-start settings, check for deployment
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 DEBUG = env('DJANGO_DEBUG', cast=bool, default=False)
 ROOT_URLCONF = 'config.urls'
@@ -89,7 +83,6 @@ USE_L10N = True
 USE_TZ = True
 
 STATICFILES_DIRS = (
-    PROJECT_ROOT('vendor'),
     PROJECT_DIR('static'),
 )
 
@@ -109,7 +102,6 @@ INSTALLED_APPS = (
 
     'crispy_forms',
     'rest_framework',
-    'raven.contrib.django.raven_compat',
     'snowpenguin.django.recaptcha2',
 
     'modeemintternet',
@@ -117,6 +109,9 @@ INSTALLED_APPS = (
 
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -151,5 +146,29 @@ TEMPLATES = [
         },
     },
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': env('DJANGO_LOG_LEVEL', default='INFO'),
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': env('DJANGO_LOG_LEVEL', default='INFO'),
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': env('DJANGO_REQUEST_LOG_LEVEL', default='INFO'),
+        },
+    },
+}
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

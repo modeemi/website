@@ -1,6 +1,5 @@
 {% load cache %}
 {% load staticfiles %}
-{% load raven %}
 {% load version %}
 {% load recaptcha2 %}
 
@@ -25,13 +24,13 @@
     {% endblock meta %}
     {% block link %}
         <link rel="canonical" href="https://www.modeemi.fi{{ request.get_full_path }}" />
-        {% cache 3600 link %}
-            <link type="image/x-icon" rel="icon" href="{% static "favicon.ico" %}" />
-            <link type="text/css" rel="stylesheet"  href="{% static "bootstrap/dist/css/bootstrap.min.css" %}" />
-            <link type="text/css" rel="stylesheet"  href="{% static "bootstrap/dist/css/bootstrap-theme.min.css" %}" />
-            <link type="text/css" rel="stylesheet"  href="{% static "font-awesome/css/font-awesome.min.css" %}" />
-            <link type="text/css" rel="stylesheet"  href="{% static "css/modeemi.css" %}" />
-        {% endcache %}
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.css" integrity="sha256-0XAFLBbK7DgQ8t7mRWU5BF2OMm9tjtfH945Z7TTeNIo=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap-theme.css" integrity="sha256-oIWMwI/cjhHBz2sP3vyOGSc1DmGqA09eJTpJdZQmtN8=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
+
+        <link type="image/x-icon" rel="icon" href="{% static "favicon.ico" %}" />
+        <link type="text/css" rel="stylesheet"  href="{% static "css/modeemi.css" %}" />
     {% endblock link %}
     {% recaptcha_init %}
 </head>
@@ -42,32 +41,21 @@
     {% block content %}{% endblock %}
 </div>
 
-{% cache 3600 footer %}
-    <footer>
-        <div class="col-xs-12 text-center">
-            <hr />
-            <p>&copy; Modeemi ry 2014-{% now "Y" %} (BSD Licensed) &middot; Versio <a href="https://github.com/modeemi/intternetvelho/commit/{% version %}">{% version %}</a>
-            <p>Network service provided by <a href="https://www.csc.fi/">CSC</a>, no ads or commercial use allowed.</p>
-            <a href="https://www.debian.org/"><img class="poweredbybadge" src="{% static "logo/debian.png" %}" height="45" width="110" alt="Powered by Debian." /></a>
-            <a href="https://www.python.org/"><img class="poweredbybadge" src="{% static "logo/python.png" %}" height="45" width="111" alt="Powered by Python." /></a>
-            <a href="https://www.djangoproject.com/"><img class="poweredbybadge" src="{% static "logo/django.png" %}" height="45" width="106" alt="Powered by Django." /></a>
-            <a href="https://www.postgresql.org/"><img class="poweredbybadge" src="{% static "logo/postgresql.png" %}" height="45" width="84" alt="Powered by PostgreSQL." /></a>
-        </div>
-    </footer>
-{% endcache %}
+<footer>
+    <div class="col-xs-12 text-center">
+        <hr />
+        <p>&copy; Modeemi ry 2014-{% now "Y" %} (BSD Licensed) &middot; Versio <a href="https://github.com/modeemi/intternetvelho/commit/{% version %}">{% version %}</a>
+        <p>Network service provided by <a href="https://www.csc.fi/">CSC</a>, no ads or commercial use allowed.</p>
+        <a href="https://www.debian.org/"><img class="poweredbybadge" src="{% static "logo/debian.png" %}" height="45" width="110" alt="Powered by Debian." /></a>
+        <a href="https://www.python.org/"><img class="poweredbybadge" src="{% static "logo/python.png" %}" height="45" width="111" alt="Powered by Python." /></a>
+        <a href="https://www.djangoproject.com/"><img class="poweredbybadge" src="{% static "logo/django.png" %}" height="45" width="106" alt="Powered by Django." /></a>
+        <a href="https://www.postgresql.org/"><img class="poweredbybadge" src="{% static "logo/postgresql.png" %}" height="45" width="84" alt="Powered by PostgreSQL." /></a>
+    </div>
+</footer>
 
 {% block script %}
-    {% cache 3600 script %}
-        {% comment 'Ei lie tarvetta ajella virhetrackaysta ilman JavaScriptiä frontissa' %}
-        {% if not debug %}
-        <script src="https://cdn.ravenjs.com/3.22.1/raven.min.js" crossorigin="anonymous"></script>
-        <script>Raven.config('{% sentry_public_dsn 'https' %}').install()</script>
-        {% endif %}
-        {% endcomment %}
-
-        <script type="text/javascript" charset="utf-8" defer="defer" src="{% static "jquery/dist/jquery.min.js" %}"></script>
-        <script type="text/javascript" charset="utf-8" defer="defer" src="{% static "bootstrap/dist/js/bootstrap.min.js" %}"></script>
-    {% endcache %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.js" integrity="sha256-29KjXnLtx9a95INIGpEvHDiqV/qydH2bBx0xcznuA6I=" crossorigin="anonymous"></script>
 {% endblock script %}
 
 </body>

@@ -1,0 +1,12 @@
+/virtualenv
+/venv
+/results
+/etc
+**.pyc
+__pycache__
+.env
+.git
+db.sqlite3
+Makefile
+Dockerfile
+.coverage

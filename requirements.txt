@@ -23,7 +23,7 @@ djangorestframework==3.10.2
 first==2.0.2              # via pip-tools
 future==0.17.1
 gitdb2==2.0.5             # via gitpython
-gitpython==2.1.12
+gitpython==2.1.13
 gunicorn==19.9.0
 icalendar==4.0.3
 idna==2.8                 # via requests

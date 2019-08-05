@@ -36,6 +36,9 @@ EMAIL_HOST = 'mail.modeemi.fi'
 EMAIL_SUBJECT_PREFIX = '[Modeemi] '
 DEFAULT_FROM_EMAIL = 'Modeemi ryn hallitus <hallitus@modeemi.fi>'
 
+# Sites configuration
+SITE_ID = 1
+
 INTERNAL_IPS = (
     '127.0.0.1',
     'localhost',
@@ -98,6 +101,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 
     'crispy_forms',

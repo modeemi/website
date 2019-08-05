@@ -20,9 +20,13 @@ pull:
 default:
 	make test
 
+update:
+	make build
+	make push
+
 all:
 	make test
 	make build
 	make push
 
-.PHONY: all default test build push pull run
+.PHONY: all default test build push pull run update

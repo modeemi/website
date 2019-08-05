@@ -20,7 +20,7 @@ django-guardian==2.0.0
 django-ical==1.5
 django-recaptcha2==1.4.1
 django-rest-swagger==2.2.0
-django==2.2.3
+django==2.2.4
 djangorestframework==3.10.2
 future==0.17.1
 gitdb2==2.0.5             # via gitpython

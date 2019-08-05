@@ -117,6 +117,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.staticfiles',
 
+    'axes',
     'crispy_forms',
     'rest_framework',
     'snowpenguin.django.recaptcha2',
@@ -124,12 +125,16 @@ INSTALLED_APPS = (
     'modeemintternet',
 )
 
+AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
 
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
-    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -138,7 +143,8 @@ MIDDLEWARE = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
+
+    'axes.middleware.AxesMiddleware',
 )
 
 TEMPLATES = [

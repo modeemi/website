@@ -13,11 +13,14 @@ coreapi==2.3.3            # via django-rest-swagger, openapi-codec
 coreschema==0.0.4         # via coreapi
 coverage==4.5.4
 decorator==4.4.0          # via ipython, traitlets
+django-appconf==1.0.3     # via django-axes
+django-axes==5.0.12
 django-crispy-forms==1.7.2
 django-debug-toolbar==2.0
 django-environ==0.4.5
 django-guardian==2.0.0
 django-ical==1.5
+django-ipware==2.1.0      # via django-axes
 django-recaptcha2==1.4.1
 django-rest-swagger==2.2.0
 django==2.2.4
@@ -48,7 +51,7 @@ python-dateutil==2.8.0    # via icalendar
 pytz==2019.2
 requests==2.22.0          # via coreapi, django-recaptcha2
 simplejson==3.16.0        # via django-rest-swagger
-six==1.12.0               # via pip-tools, prompt-toolkit, python-dateutil, traitlets
+six==1.12.0               # via django-appconf, pip-tools, prompt-toolkit, python-dateutil, traitlets
 smmap2==2.0.5             # via gitdb2
 sqlparse==0.3.0           # via django, django-debug-toolbar
 traitlets==4.3.2          # via ipython

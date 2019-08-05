@@ -27,9 +27,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
 SESSION_COOKIE_AGE = 60 * 60 * 24
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 SECURE_HSTS_SECONDS = 60 * 60 * 24 * 30
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
+
+SECURE_PROXY_SSL_HEADER = env(
+    'DJANGO_SECURE_PROXY_SSL_HEADER',
+    cast=tuple,
+    default=None
+)
 
 # Mailer settings
 EMAIL_HOST = 'mail.modeemi.fi'

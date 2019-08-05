@@ -45,7 +45,7 @@ psycopg2-binary==2.8.3
 ptyprocess==0.6.0         # via pexpect
 pygments==2.4.2           # via ipython
 python-dateutil==2.8.0    # via icalendar
-pytz==2019.1
+pytz==2019.2
 requests==2.22.0          # via coreapi, django-recaptcha2
 simplejson==3.16.0        # via django-rest-swagger
 six==1.12.0               # via pip-tools, prompt-toolkit, python-dateutil, traitlets

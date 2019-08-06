@@ -78,11 +78,11 @@ DATABASE_ROUTERS = [
 DATABASES = {
     'default': env.db(
         'DATABASE_URL',
-        default='postgres://modeemi:modeemi@127.0.0.1:5432/modeemi'
+        default='postgres://modeemintternet:modeemintternet@127.0.0.1:5432/modeemintternet'
     ),
     'modeemiuserdb': env.db(
         'MODEEMIUSERDB_URL',
-        default='postgres://modeemiuserdb:modeemiuserdb@127.0.0.1:5432/modeemiuserdb'
+        default='postgres://modeemintternet:modeemintternet@127.0.0.1:5432/modeemiuserdb'
     )
 }
 
@@ -128,6 +128,7 @@ INSTALLED_APPS = (
 AUTHENTICATION_BACKENDS = [
     'axes.backends.AxesBackend',
     'django.contrib.auth.backends.ModelBackend',
+    'modeemintternet.auth.ModeemiUserDBBackend',
 ]
 
 MIDDLEWARE = (

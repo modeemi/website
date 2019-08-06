@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Kirjautuminen</h1>
+
+    {% if form.errors %}
+        <p>Käyttäjätunnus ja salasana eivät täsmänneet. Yritä uudestaan.</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'sisaan' %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="id_username">Käyttäjätunnus</label>
+            <input name="username" type="text" class="form-control" required id="id_username" placeholder="Käyttäjätunnus" />
+        </div>
+        <div class="form-group">
+            <label for="id_password">Salasana</label>
+            <input name="password" type="password" class="form-control" required id="id_password" placeholder="Salasana" />
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Kirjaudu">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+{% endblock %}

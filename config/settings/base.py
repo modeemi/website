@@ -150,6 +150,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = '/tili/sisaan/'
+LOGIN_REDIRECT_URL = '/tili/tiedot/'
+LOGOUT_REDIRECT_URL = '/'
+
 MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
 

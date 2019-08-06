@@ -32,10 +32,19 @@
                 <li class="{% active request '^/palvelut/' %}"><a class="navbar-item" href="{% url 'palvelut' %}">Palvelut</a></li>
                 <li class="{% active request '^/laitteisto/' %}"><a class="navbar-item" href="{% url 'laitteisto' %}">Laitteisto</a></li>
                 <li class="{% active request '^/palaute/' %}"><a class="navbar-item" href="{% url 'palaute' %}">Palaute</a></li>
+                <li class="{% active request '^/tili/tiedot/' %}"><a class="navbar-item" href="{% url 'kayttajatiedot' %}">Käyttäjätiedot</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a rel="nofollow" class="navbar-item" title="Ylläpito" href="{% url 'admin:index' %}"><span class="fa fa-sign-in"></span></a></li>
+                {% if not user.is_authenticated %}
+                    <li><a rel="nofollow" class="navbar-item" title="Sisäänkirjautuminen" href="{% url 'sisaan' %}">Sisään <span class="fa fa-sign-in"></span></a></li>
+                {% else %}
+                    <li><a rel="nofollow" class="navbar-item" title="Uloskirjautuminen" href="{% url 'ulos' %}">Ulos <span class="fa fa-sign-out"></span></a></li>
+                {% endif %}
+
+                {% if user.is_staff %}
+                    <li><a rel="nofollow" class="navbar-item" title="Ylläpito" href="{% url 'admin:index' %}">Hallintaan <span class="fa fa-cogs"></span></a></li>
+                {% endif %}
             </ul>
         </div> <!-- /.navbar-collapse -->
     </div> <!-- /.container-fluid -->

@@ -1,11 +1,12 @@
 import logging
 
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
 
 from modeemintternet import mailer
-from modeemintternet.models import News, Soda, Application
+from modeemintternet.models import News, Soda, Application, Passwd
 from modeemintternet.forms import ApplicationForm, FeedbackForm
 
 logger = logging.getLogger(__name__)
@@ -14,6 +15,11 @@ logger = logging.getLogger(__name__)
 def etusivu(request):
     news = News.objects.order_by('-posted')[:10]
     return render(request, 'etusivu.html', {'news': news})
+
+
+@login_required
+def kayttajatiedot(request):
+    return render(request, 'tili/tiedot.html', {})
 
 
 def yhdistys(request):

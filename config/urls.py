@@ -1,10 +1,11 @@
-from django.urls import include, path
-from django.conf.urls.static import static
-
 from django.contrib import admin
+
 admin.autodiscover()
 
 from django.conf import settings
+from django.urls import include, path
+from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 from rest_framework import routers
 
@@ -16,6 +17,10 @@ router.register(r'news', apiviews.NewsViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('tili/sisaan/', auth_views.LoginView.as_view(template_name='tili/sisaan.html'), name='sisaan'),
+    path('tili/ulos/', auth_views.LogoutView.as_view(), name='ulos'),
+    path('tili/tiedot/', views.kayttajatiedot, name='kayttajatiedot'),
 
     # Main level views
     path('', views.etusivu, name='etusivu'),

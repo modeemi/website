@@ -28,7 +28,7 @@ def check_password(username, password) -> bool:
         format__in=hashers.keys(),
     )
 
-    for name, hasher in hashers:
+    for name, hasher in hashers.items():
         try:
             shadow_format_hash = shadow_formats.get(format=name).hash
             return hasher.verify(password, shadow_format_hash)

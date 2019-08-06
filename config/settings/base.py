@@ -5,6 +5,7 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.8/topics/settings/
 """
 
+import datetime
 import warnings
 
 import environ
@@ -221,6 +222,8 @@ LOGGING = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+AXES_COOLOFF_TIME = datetime.timedelta(minutes=5)
 
 AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
 

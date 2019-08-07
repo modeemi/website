@@ -38,7 +38,10 @@
     {{ block.super }}
     <script>
         $(document).ready(function () {
-            $('#registry').DataTable();
+            $('#registry').DataTable({
+                pageLength: 420,
+                lengthMenu: [[100, 200, 420, -1], [100, 200, 420, "All"]]
+            });
         });
     </script>
 {% endblock script %}

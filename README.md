@@ -33,9 +33,14 @@ Please run test suite before committing your changes.
 
 If you have implemented new views or functionality, implement tests for those as well.
 
+If you modify the views, remember to run `python manage.py makemigrations` before committing.
+
 ### Updating the running web service
+
+The web service Docker container is automatically built by a Dockerhub job
+from the `master` branch and a new version is deployed onto the web server periodically.
 
 To update the project you can
 
-- Go get a soda and wait for a maximum of two hours for a cronjob to update the site.
+- Go get a soda and wait for 15 minutes for a cronjob to update the site.
 - Manually run `webupdate` on the web server as `root`.

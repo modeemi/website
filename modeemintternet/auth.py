@@ -1,3 +1,5 @@
+from secrets import token_hex
+
 from passlib.hash import (
     md5_crypt,
     sha256_crypt,
@@ -34,6 +36,10 @@ def check_password(username, password) -> bool:
             return hasher.verify(password, shadow_format_hash)
         except ShadowFormat.DoesNotExist:
             continue
+
+    # Run a hasher once to reduce the differentiation between
+    # existing and non-existing users and to mitigate enumeration attacks
+    sha512_crypt.hash(token_hex(42))
 
     return False
 

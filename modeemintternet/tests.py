@@ -247,6 +247,34 @@ class MembershipTest(TestCase):
         response = self.client.get(reverse('kayttajatiedot'))
         self.assertEqual(200, response.status_code)
 
+    def test_view_membership_update_own_not_logged_in(self):
+        response = self.client.get(reverse('kayttajapaivitys'))
+        self.assertEqual(302, response.status_code)
+
+    def test_view_membership_update_own_logged_in(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('kayttajapaivitys'))
+        self.assertEqual(200, response.status_code)
+
+    def test_view_membership_update_own_logged_in_post(self):
+        self.client.force_login(self.user)
+
+        data = {
+            'first_name': 'Testi',
+            'last_name': 'Hehtokuutio',
+            'email': 'testi.hehtokuutio@example.com',
+            'city': 'Mordor',
+        }
+
+        response = self.client.post(reverse('kayttajapaivitys'), data)
+
+        self.assertEqual(302, response.status_code)
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.first_name, data['first_name'])
+        self.assertEqual(self.user.last_name, data['last_name'])
+        self.assertEqual(self.user.email, data['email'])
+        self.assertEqual(self.user.membership.city, data['city'])
+
     def test_view_membership_registry_not_logged_in(self):
         response = self.client.get(reverse('kayttajarekisteri'))
         self.assertEqual(302, response.status_code)

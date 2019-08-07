@@ -1,5 +1,4 @@
-from django.core.exceptions import ValidationError
-from django.forms import ModelForm, CharField, PasswordInput
+from django.forms import Form, ModelForm, CharField, PasswordInput, EmailField
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -7,6 +6,13 @@ from snowpenguin.django.recaptcha2.fields import ReCaptchaField
 from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
 
 from modeemintternet.models import Application, Feedback
+
+
+class MembershipForm(Form):
+    first_name = CharField(max_length=128, required=True)
+    last_name = CharField(max_length=128, required=True)
+    email = EmailField(max_length=128, required=True)
+    city = CharField(max_length=128, required=True)
 
 
 class ApplicationForm(ModelForm):

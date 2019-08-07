@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Käyttäjätietojen päivitys</h1>
+
+    {% if form.errors %}
+        <p>Korjaa lomakkeen tiedot.</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'kayttajapaivitys' %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="first_name">Etunimi</label>
+            <input name="first_name" type="text" class="form-control" required id="first_name" value="{{ user.first_name }}" />
+        </div>
+        <div class="form-group">
+            <label for="last_name">Sukunimi</label>
+            <input name="last_name" type="text" class="form-control" required id="last_name" value="{{ user.last_name }}" />
+        </div>
+        <div class="form-group">
+            <label for="email">Sähköpostiosoite</label>
+            <input name="email" type="email" class="form-control" required id="email" value="{{ user.email }}" />
+        </div>
+        <div class="form-group">
+            <label for="city">Kotikunta</label>
+            <input name="city" type="text" class="form-control" required id="city" value="{{ user.membership.city }}" />
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Päivitä">
+    </form>
+{% endblock %}

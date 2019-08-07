@@ -1,12 +1,14 @@
 import logging
 
 from django.contrib.auth.decorators import login_required, permission_required
+from django.db import transaction
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
+from django.urls import reverse
 
 from modeemintternet import mailer
 from modeemintternet.models import News, Soda, Membership
-from modeemintternet.forms import ApplicationForm, FeedbackForm
+from modeemintternet.forms import ApplicationForm, FeedbackForm, MembershipForm
 
 logger = logging.getLogger(__name__)
 
@@ -19,6 +21,32 @@ def etusivu(request):
 @login_required
 def kayttajatiedot(request):
     return render(request, 'tili/tiedot.html', {})
+
+
+@login_required
+@transaction.atomic
+def kayttajapaivitys(request):
+    if request.method == 'POST':
+        form = MembershipForm(request.POST)
+
+        if form.is_valid():
+            user = request.user
+            membership, _ = Membership.objects.get_or_create(user=user)
+
+            user.first_name = form.cleaned_data['first_name']
+            user.last_name = form.cleaned_data['last_name']
+            user.email = form.cleaned_data['email']
+            membership.city = form.cleaned_data['city']
+
+            user.save()
+            membership.save()
+
+            return HttpResponseRedirect(reverse('kayttajatiedot'))
+
+    else:
+        form = MembershipForm()
+
+    return render(request, 'tili/paivita.html', {'form': form})
 
 
 @login_required

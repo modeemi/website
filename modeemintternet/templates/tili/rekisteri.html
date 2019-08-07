@@ -15,8 +15,8 @@
             <th>Jäsenmaksu</th>
             <th>Avaimet</th>
         </tr>
-        <tr>
-            {% for membership in memberships %}
+        {% for membership in memberships %}
+            <tr>
                 <td>{{ membership.user.username }}</td>
                 <td>{{ membership.user.email }}</td>
                 <td>{{ membership.user.first_name }}</td>
@@ -24,7 +24,7 @@
                 <td>{{ membership.city }}</td>
                 <td>{{ membership.get_fee }}</td>
                 <td>{{ membership.get_keys }}</td>
-            {% endfor %}
-        </tr>
+            </tr>
+        {% endfor %}
     </table>
 {% endblock %}

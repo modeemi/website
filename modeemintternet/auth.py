@@ -1,6 +1,7 @@
 from secrets import token_hex
 
 from passlib.hash import (
+    des_crypt,
     md5_crypt,
     sha256_crypt,
     sha512_crypt,
@@ -23,6 +24,7 @@ def check_password(username, password) -> bool:
         'SHA512': sha512_crypt,
         'SHA256': sha256_crypt,
         'MD5': md5_crypt,
+        'DES': des_crypt,
     }
 
     shadow_formats = ShadowFormat.objects.filter(

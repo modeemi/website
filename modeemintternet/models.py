@@ -86,7 +86,7 @@ class MembershipFee(models.Model):
 
 class Membership(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name='Käyttäjä')
-    fee = models.ManyToManyField(MembershipFee, verbose_name='Jäsenmaksut')
+    fee = models.ManyToManyField(MembershipFee, blank=True, verbose_name='Jäsenmaksut')
     lifetime = models.BooleanField(default=False, verbose_name='Ainaisjäsenyys')
 
     city = models.CharField(max_length=128, blank=True, default='', verbose_name='Kotikunta')

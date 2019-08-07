@@ -1,11 +1,14 @@
 import re
 from logging import getLogger
-from passlib.context import CryptContext
 from time import time
 
+from passlib.context import CryptContext
+
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.db import models, transaction, utils
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.db import models, transaction
 from django.urls import reverse
 from django.utils.timezone import now
 
@@ -58,6 +61,66 @@ class Soda(models.Model):
 
     def __str__(self):
         return '{0}'.format(self.name)
+
+
+class MembershipFee(models.Model):
+    year = models.PositiveIntegerField(
+        primary_key=True,
+        unique=True,
+        validators=[
+            MinValueValidator(1975),
+            MaxValueValidator(now().year + 1),
+        ],
+        verbose_name='Vuosi',
+    )
+
+    def __str__(self) -> str:
+        return str(self.year)
+
+    class Meta:
+        ordering = ['year']
+        get_latest_by = ['year']
+        verbose_name = 'Jäsenmaksu'
+        verbose_name_plural = 'Jäsenmaksut'
+
+
+class Membership(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name='Käyttäjä')
+    fee = models.ManyToManyField(MembershipFee, verbose_name='Jäsenmaksut')
+    lifetime = models.BooleanField(default=False, verbose_name='Ainaisjäsenyys')
+
+    city = models.CharField(max_length=128, blank=True, default='', verbose_name='Kotikunta')
+    key_engineering = models.BooleanField(default=False, verbose_name='Konehuoneen kova-avain')
+    key_physical = models.BooleanField(default=False, verbose_name='Kerhohuoneen kova-avain')
+    key_virtual = models.BooleanField(default=False, verbose_name='Kerhohuoneen virtuaaliavain')
+
+    def __str__(self) -> str:
+        return self.user.username
+
+    def get_fee(self) -> str:
+        if self.lifetime:
+            return 'Ainaisjäsen'
+        try:
+            return str(self.fee.latest())
+        except MembershipFee.DoesNotExist:
+            return ''
+
+    def get_keys(self) -> str:
+        keys = []
+
+        if self.key_engineering:
+            keys.append('kovo')
+        if self.key_physical:
+            keys.append('kerhohuone')
+        if self.key_virtual:
+            keys.append('virtuaalinen')
+
+        return ', '.join(keys).capitalize()
+
+    class Meta:
+        ordering = ['user__username']
+        verbose_name = 'Jäsenyys'
+        verbose_name_plural = 'Jäsenyydet'
 
 
 class Application(models.Model):
@@ -210,6 +273,11 @@ class Feedback(models.Model):
 
     def __str__(self):
         return '{0} ({1})'.format(self.message[:25], self.sent)
+
+
+###
+# Existing modeemiuserdb models that are unmanaged and handled by the custom database router
+###
 
 
 class Format(models.Model):

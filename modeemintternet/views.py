@@ -1,12 +1,11 @@
 import logging
 
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required, permission_required
+from django.shortcuts import render
 
 
 from modeemintternet import mailer
-from modeemintternet.models import News, Soda, Application, Passwd
+from modeemintternet.models import News, Soda, Membership
 from modeemintternet.forms import ApplicationForm, FeedbackForm
 
 logger = logging.getLogger(__name__)
@@ -20,6 +19,13 @@ def etusivu(request):
 @login_required
 def kayttajatiedot(request):
     return render(request, 'tili/tiedot.html', {})
+
+
+@login_required
+@permission_required('modeemintternet.view_membership', raise_exception=True)
+def kayttajarekisteri(request):
+    memberships = Membership.objects.all().select_related('user').prefetch_related('fee')
+    return render(request, 'tili/rekisteri.html', {'memberships': memberships})
 
 
 def yhdistys(request):

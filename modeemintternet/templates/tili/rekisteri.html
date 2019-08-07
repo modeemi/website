@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Käyttäjärekisteri</h1>
+
+    <p>Rekisterissä näkyvät vain aktiiviseksi merkityt käyttäjät.</p>
+
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th>Käyttäjätunnus</th>
+            <th>Sähköpostiosoite</th>
+            <th>Etunimi</th>
+            <th>Sukunimi</th>
+            <th>Kotikunta</th>
+            <th>Jäsenmaksu</th>
+            <th>Avaimet</th>
+        </tr>
+        {% for membership in memberships %}
+            <tr>{{ membership.user.username }}</tr>
+            <tr>{{ membership.user.email }}</tr>
+            <tr>{{ membership.user.first_name }}</tr>
+            <tr>{{ membership.user.last_name }}</tr>
+            <tr>{{ membership.city }}</tr>
+            <tr>{{ membership.get_fee }}</tr>
+            <tr>{{ membership.get_keys }}</tr>
+        {% endfor %}
+    </table>
+{% endblock %}

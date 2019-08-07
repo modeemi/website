@@ -20,5 +20,17 @@
             <th>Sukunimi</th>
             <td>{{ user.last_name }}</td>
         </tr>
+        <tr>
+            <th>Kotikunta</th>
+            <td>{{ user.membership.city }}</td>
+        </tr>
+        <tr>
+            <th>Jäsenmaksu</th>
+            <td>{{ user.membership.get_fee }}</td>
+        </tr>
+        <tr>
+            <th>Avaimet</th>
+            <td>{{ user.membership.get_keys }}</td>
+        </tr>
     </table>
 {% endblock %}

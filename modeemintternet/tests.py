@@ -5,12 +5,17 @@ Unit tests for modeemintternet app.
 import datetime
 
 from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Permission
 from django.core import mail
 from django.test import Client, TestCase
+from django.urls import reverse
 from django.utils import timezone
 
-from modeemintternet.models import Application, Feedback, News, Soda
+from modeemintternet.models import Application, Membership, MembershipFee, Feedback, News, Soda
 from modeemintternet.mailer import application_accepted, application_rejected
+
+User = get_user_model()
 
 
 class ViewGetTest(TestCase):
@@ -211,3 +216,50 @@ class ApplicationMethodTest(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject,
                 settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi on käsitelty')
+
+
+class MembershipTest(TestCase):
+    """
+    Test membership registry views.
+    """
+
+    def setUp(self):
+        self.user = User.objects.create(
+            username='ahtosi',
+            email='ahto.simakuutio@example.com',
+        )
+
+        self.membership = Membership.objects.create(
+            user=self.user,
+            city='Tampere',
+            key_virtual=True,
+        )
+
+        self.fee = MembershipFee.objects.create(year=2011)
+        self.membership.fee.add(self.fee)
+
+    def test_view_membership_own_not_logged_in(self):
+        response = self.client.get(reverse('kayttajatiedot'))
+        self.assertEqual(302, response.status_code)
+
+    def test_view_membership_own_logged_in(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('kayttajatiedot'))
+        self.assertEqual(200, response.status_code)
+
+    def test_view_membership_registry_not_logged_in(self):
+        response = self.client.get(reverse('kayttajarekisteri'))
+        self.assertEqual(302, response.status_code)
+
+    def test_view_membership_registry_logged_in_without_permission(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('kayttajarekisteri'))
+        self.assertEqual(403, response.status_code)
+
+    def test_view_membership_registry_logged_in_with_permission(self):
+        permission = Permission.objects.get(codename='view_membership')
+        self.user.user_permissions.add(permission)
+
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('kayttajarekisteri'))
+        self.assertEqual(200, response.status_code)

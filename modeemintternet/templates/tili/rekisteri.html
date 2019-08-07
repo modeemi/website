@@ -4,17 +4,21 @@
     <h1>Käyttäjärekisteri</h1>
 
     <p>Rekisterissä näkyvät vain aktiiviseksi merkityt käyttäjät.</p>
+    <p>Jäseniä yhteensä: {{ memberships.count }}</p>
 
-    <table class="table table-bordered table-condensed">
+    <table id="registry" class="table table-bordered table-condensed table-responsive">
+        <thead>
         <tr>
             <th>Käyttäjätunnus</th>
             <th>Sähköpostiosoite</th>
             <th>Etunimi</th>
             <th>Sukunimi</th>
             <th>Kotikunta</th>
-            <th>Jäsenmaksu</th>
+            <th>Jäsenmaksu (viimeisin)</th>
             <th>Avaimet</th>
         </tr>
+        </thead>
+        <tbody>
         {% for membership in memberships %}
             <tr>
                 <td>{{ membership.user.username }}</td>
@@ -26,5 +30,15 @@
                 <td>{{ membership.get_keys }}</td>
             </tr>
         {% endfor %}
+        </tbody>
     </table>
 {% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function () {
+            $('#registry').DataTable();
+        });
+    </script>
+{% endblock script %}

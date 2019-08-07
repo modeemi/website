@@ -78,7 +78,7 @@ class MembershipFee(models.Model):
         return str(self.year)
 
     class Meta:
-        ordering = ['year']
+        ordering = ['-year']
         get_latest_by = ['year']
         verbose_name = 'Jäsenmaksu'
         verbose_name_plural = 'Jäsenmaksut'
@@ -104,6 +104,7 @@ class Membership(models.Model):
             return str(self.fee.latest())
         except MembershipFee.DoesNotExist:
             return ''
+    get_fee.short_description = 'Jäsenmaksu'
 
     def get_keys(self) -> str:
         keys = []
@@ -116,6 +117,7 @@ class Membership(models.Model):
             keys.append('virtuaalinen')
 
         return ', '.join(keys).capitalize()
+    get_keys.short_description = 'Avaimet'
 
     class Meta:
         ordering = ['user__username']

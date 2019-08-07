@@ -34,6 +34,23 @@ class SodaAdmin(admin.ModelAdmin):
     actions = (activate, deactivate)
 
 
+class MembershipAdmin(admin.ModelAdmin):
+    def username(self, membership) -> str:
+        return membership.user.username
+    username.short_description = 'Käyttäjätunnus'
+
+    list_display = (
+        'username',
+        'city',
+        'get_keys',
+        'get_fee',
+    )
+
+
+class MembershipFeeAdmin(admin.ModelAdmin):
+    list_display = ('year', )
+
+
 class ApplicationAdmin(admin.ModelAdmin):
     """
     Custom admin for approving a membership application.
@@ -113,6 +130,8 @@ class UserGroupMemberAdmin(admin.ModelAdmin):
 
 admin.site.register(models.News, NewsAdmin)
 admin.site.register(models.Soda, SodaAdmin)
+admin.site.register(models.Membership, MembershipAdmin)
+admin.site.register(models.MembershipFee, MembershipFeeAdmin)
 admin.site.register(models.Application, ApplicationAdmin)
 admin.site.register(models.Feedback, FeedbackAdmin)
 

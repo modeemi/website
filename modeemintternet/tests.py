@@ -300,6 +300,9 @@ class MembershipTest(TestCase):
 
         user, _ = User.objects.get_or_create(username='hehtosi')
 
+        response = self.client.get(reverse('kayttajarekisteri_paivita', args=(user.username, )))
+        self.assertEqual(200, response.status_code)
+
         data = {
             'first_name': 'Testi',
             'last_name': 'Hehtokuutio',
@@ -322,6 +325,9 @@ class MembershipTest(TestCase):
         self.user.user_permissions.add(permission)
 
         self.client.force_login(self.user)
+
+        response = self.client.get(reverse('kayttajarekisteri_jasenmaksu'))
+        self.assertEqual(200, response.status_code)
 
         user_one, _ = User.objects.get_or_create(username='hehtosi')
         user_two, _ = User.objects.get_or_create(username='simakuu')

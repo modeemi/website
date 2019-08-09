@@ -64,13 +64,13 @@ def kayttajarekisteri(request):
 def kayttajarekisteri_paivita(request, username: str):
     User = get_user_model()
 
+    user = User.objects.get(username=username)
+    membership, _ = Membership.objects.get_or_create(user=user)
+
     if request.method == 'POST':
         form = MembershipForm(request.POST)
 
         if form.is_valid():
-            user = User.objects.get(username=username)
-            membership, _ = Membership.objects.get_or_create(user=user)
-
             user.first_name = form.cleaned_data['first_name']
             user.last_name = form.cleaned_data['last_name']
             user.email = form.cleaned_data['email']
@@ -84,7 +84,7 @@ def kayttajarekisteri_paivita(request, username: str):
     else:
         form = MembershipForm()
 
-    return render(request, 'rekisteri/paivita.html')
+    return render(request, 'rekisteri/paivita.html', {'membership': membership})
 
 
 @login_required

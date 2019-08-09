@@ -5,33 +5,33 @@
 
     <p>
         Rekisterin kautta voit päivittää käyttäjän perustiedot.
-        Jäsenmaksutiedot voi päivittää tavallisille jäsenille
-        <a href="{% url 'kayttajarekisteri_jasenmaksu' membership.pk %}">jäsenmaksusivulla</a>.
-        Ainaisjäsentiedot päivittää laitteistovastaava ylläpitonäkymien kautta,
+        Jäsenmaksutiedot voi päivittää vuosijäsenille
+        <a href="{% url 'kayttajarekisteri_jasenmaksu' %}">jäsenmaksusivulla</a>.
+        Ainaisjäsentiedot päivittää laitteistovastaava ylläpitonäkymien kautta.
     </p>
 
     {% if form.errors %}
         <p>Korjaa lomakkeen tiedot.</p>
     {% endif %}
 
-    <form method="post" action="{% url 'kayttajarekisteri_paivita' membership.pk %}">
+    <form method="post" action="{% url 'kayttajarekisteri_paivita' membership.user.username %}">
         {% csrf_token %}
 
         <div class="form-group">
             <label for="first_name">Etunimi</label>
-            <input name="first_name" type="text" class="form-control" required id="first_name" value="{{ user.first_name }}" />
+            <input name="first_name" type="text" class="form-control" required id="first_name" value="{{ membership.user.first_name }}" />
         </div>
         <div class="form-group">
             <label for="last_name">Sukunimi</label>
-            <input name="last_name" type="text" class="form-control" required id="last_name" value="{{ user.last_name }}" />
+            <input name="last_name" type="text" class="form-control" required id="last_name" value="{{ membership.user.last_name }}" />
         </div>
         <div class="form-group">
             <label for="email">Sähköpostiosoite</label>
-            <input name="email" type="email" class="form-control" required id="email" value="{{ user.email }}" />
+            <input name="email" type="email" class="form-control" required id="email" value="{{ membership.user.email }}" />
         </div>
         <div class="form-group">
             <label for="city">Kotikunta</label>
-            <input name="city" type="text" class="form-control" required id="city" value="{{ user.membership.city }}" />
+            <input name="city" type="text" class="form-control" required id="city" value="{{ membership.user.membership.city }}" />
         </div>
 
         <input type="submit" class="btn btn-primary" value="Päivitä jäsentiedot rekisteriin">

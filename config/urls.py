@@ -23,7 +23,8 @@ urlpatterns = [
     path('tili/tiedot/', views.kayttajatiedot, name='kayttajatiedot'),
     path('tili/paivita/', views.kayttajatiedot_paivita, name='kayttajatiedot_paivita'),
     path('tili/rekisteri/', views.kayttajarekisteri, name='kayttajarekisteri'),
-    path('tili/rekisteri/jasenmaksu/', views.kayttajarekisteri_jasenmaksu, name='kayttajarekisteri_jasenmaksu'),
+    path('tili/rekisteri/listat/', views.kayttajarekisteri_listat, name='kayttajarekisteri_listat'),
+    path('tili/rekisteri/jasenmaksut/', views.kayttajarekisteri_jasenmaksut, name='kayttajarekisteri_jasenmaksut'),
     path('tili/rekisteri/<str:username>/', views.kayttajarekisteri_paivita, name='kayttajarekisteri_paivita'),
 
     # Main level views

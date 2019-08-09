@@ -59,6 +59,20 @@ def kayttajarekisteri(request):
 
 
 @login_required
+@permission_required('modeemintternet.view_membership', raise_exception=True)
+def kayttajarekisteri_listat(request):
+    memberships = Membership.objects.all().select_related('user').prefetch_related('fee')
+    emails = ', '.join((
+        f'{first_name} {last_name} <{email}>'
+        for first_name, last_name, email in
+        memberships.values_list('user__first_name', 'user__last_name', 'user__email')
+        if email
+    ))
+
+    return render(request, 'rekisteri/listat.html', {'memberships': memberships, 'emails': emails})
+
+
+@login_required
 @permission_required('modeemintternet.change_membership', raise_exception=True)
 @transaction.atomic
 def kayttajarekisteri_paivita(request, username: str):
@@ -90,7 +104,7 @@ def kayttajarekisteri_paivita(request, username: str):
 @login_required
 @permission_required('modeemintternet.change_membership', raise_exception=True)
 @transaction.atomic
-def kayttajarekisteri_jasenmaksu(request):
+def kayttajarekisteri_jasenmaksut(request):
     User = get_user_model()
 
     if request.method == 'POST':
@@ -110,7 +124,7 @@ def kayttajarekisteri_jasenmaksu(request):
     else:
         form = MembershipFeeForm()
 
-    return render(request, 'rekisteri/jasenmaksu.html')
+    return render(request, 'rekisteri/jasenmaksut.html')
 
 
 def yhdistys(request):

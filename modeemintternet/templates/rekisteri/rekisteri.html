@@ -4,8 +4,10 @@
     <h1>Käyttäjärekisteri</h1>
 
     {% if perms.modeemintternet.change_membership %}
-        <p>Voit päivittää jäsenmaksutietoja <a href="{% url 'kayttajarekisteri_jasenmaksu' %}">täältä</a>.</p>
+        <p>Voit päivittää jäsenmaksutietoja <a href="{% url 'kayttajarekisteri_jasenmaksut' %}">täältä</a>.</p>
     {% endif %}
+
+    <p>Sähköpostilistat löydät <a href="{% url 'kayttajarekisteri_listat' %}">täältä</a>.</p>
 
     <table id="registry" class="table table-bordered table-condensed table-responsive">
         <thead>
@@ -24,7 +26,7 @@
             <tr>
                 {% if perms.modeemintternet.change_membership %}
                     <td><a href="{% url 'kayttajarekisteri_paivita' membership.user.username %}">{{ membership.user.username }}</a></td>
-                    {% else %}
+                {% else %}
                     <td>{{ membership.user.username }}</td>
                 {% endif %}
                 <td>{{ membership.user.email }}</td>

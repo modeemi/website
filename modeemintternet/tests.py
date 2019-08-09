@@ -292,6 +292,14 @@ class MembershipTest(TestCase):
         response = self.client.get(reverse('kayttajarekisteri'))
         self.assertEqual(200, response.status_code)
 
+    def test_view_membership_registry_lists_logged_in_with_permission(self):
+        permission = Permission.objects.get(codename='view_membership')
+        self.user.user_permissions.add(permission)
+
+        self.client.force_login(self.user)
+        response = self.client.get(reverse('kayttajarekisteri_listat'))
+        self.assertEqual(200, response.status_code)
+
     def test_update_membership_registry(self):
         permission = Permission.objects.get(codename='change_membership')
         self.user.user_permissions.add(permission)
@@ -326,7 +334,7 @@ class MembershipTest(TestCase):
 
         self.client.force_login(self.user)
 
-        response = self.client.get(reverse('kayttajarekisteri_jasenmaksu'))
+        response = self.client.get(reverse('kayttajarekisteri_jasenmaksut'))
         self.assertEqual(200, response.status_code)
 
         user_one, _ = User.objects.get_or_create(username='hehtosi')
@@ -337,7 +345,7 @@ class MembershipTest(TestCase):
             'usernames': 'hehtosi simakuu',
         }
 
-        response = self.client.post(reverse('kayttajarekisteri_jasenmaksu'), data)
+        response = self.client.post(reverse('kayttajarekisteri_jasenmaksut'), data)
         self.assertEqual(302, response.status_code)
         self.assertTrue(user_one.membership.fee.get(year='2018'))
         self.assertTrue(user_two.membership.fee.get(year='2018'))
@@ -347,6 +355,6 @@ class MembershipTest(TestCase):
             'usernames': 'simakuu',
         }
 
-        response = self.client.post(reverse('kayttajarekisteri_jasenmaksu'), data)
+        response = self.client.post(reverse('kayttajarekisteri_jasenmaksut'), data)
         self.assertEqual(302, response.status_code)
         self.assertTrue(user_two.membership.fee.get(year='2019'))

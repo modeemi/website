@@ -100,7 +100,7 @@ def kayttajarekisteri_jasenmaksu(request):
             year = form.cleaned_data['year']
             membership_fee, _ = MembershipFee.objects.get_or_create(year=year)
 
-            usernames = list(filter(None, map(str.strip, re.split(r'(\s+|,)', form.cleaned_data['usernames']))))
+            usernames = list(filter(None, map(str.strip, re.split(r'[\s,]+', form.cleaned_data['usernames']))))
             for username in usernames:
                 user = User.objects.get(username=username)
                 membership, _ = Membership.objects.get_or_create(user=user)

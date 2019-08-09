@@ -3,8 +3,6 @@
 {% block content %}
     <h1>Käyttäjärekisteri</h1>
 
-    <p>Rekisterissä näkyvät vain aktiiviseksi merkityt käyttäjät. Jäseniä on yhteensä {{ memberships.count }} henkilön verran.</p>
-
     {% if perms.modeemintternet.change_membership %}
         <p>Voit päivittää jäsenmaksutietoja <a href="{% url 'kayttajarekisteri_jasenmaksu' %}">täältä</a>.</p>
     {% endif %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Jäsenmaksutietojen päivitys</h1>
+
+    <p>
+        Jäsenten maksutiedot voi päivittää syöttämällä maksuvuoden ja maksaneiden jäsenten tunnukset.
+    </p>
+    <p>
+        Jäsenten käyttäjätunnukset voi syöttää pilkulla tai whitespacella eroteltuna listana,
+        jossa on yksi tai useampi aktiivista jäsentunnusta.
+    </p>
+
+    <code>
+        teekkari
+        teemu,
+        simakuutio
+
+        ahto
+    </code>
+
+    <p>
+        Helpoin tapa päivittää jäsenmaksutietoja on noutaa tilaustiedot Holvista,
+        kopioida Excel-kirjanpidosta käyttäjätunnus-sarake, ja liittää se lomakkeeseen.
+        Vuosi kannattaa tarkistaa syöttäessä, jotta merkkaukset menevät oikein.
+    </p>
+
+    {% if form.errors %}
+        <p>Korjaa lomakkeen tiedot.</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'kayttajarekisteri_jasenmaksu' %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="year">Jäsenmaksuvuosi</label>
+            <input name="year" type="number" class="form-control" required id="year" />
+        </div>
+        <div class="form-group">
+            <label for="usernames">Käyttäjätunnukset</label>
+            <textarea name="usernames" class="form-control" rows="5" required id="usernames"></textarea>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Päivitä maksutiedot rekisteriin">
+    </form>
+{% endblock %}

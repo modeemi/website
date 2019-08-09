@@ -220,7 +220,7 @@ class ApplicationMethodTest(TestCase):
 
 class MembershipTest(TestCase):
     """
-    Test membership registry views.
+    Test membership account_registry views.
     """
 
     def setUp(self):
@@ -248,12 +248,12 @@ class MembershipTest(TestCase):
         self.assertEqual(200, response.status_code)
 
     def test_view_membership_update_own_not_logged_in(self):
-        response = self.client.get(reverse('kayttajapaivitys'))
+        response = self.client.get(reverse('kayttajatiedot_paivita'))
         self.assertEqual(302, response.status_code)
 
     def test_view_membership_update_own_logged_in(self):
         self.client.force_login(self.user)
-        response = self.client.get(reverse('kayttajapaivitys'))
+        response = self.client.get(reverse('kayttajatiedot_paivita'))
         self.assertEqual(200, response.status_code)
 
     def test_view_membership_update_own_logged_in_post(self):
@@ -266,7 +266,7 @@ class MembershipTest(TestCase):
             'city': 'Mordor',
         }
 
-        response = self.client.post(reverse('kayttajapaivitys'), data)
+        response = self.client.post(reverse('kayttajatiedot_paivita'), data)
 
         self.assertEqual(302, response.status_code)
         self.user.refresh_from_db()
@@ -291,3 +291,56 @@ class MembershipTest(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(reverse('kayttajarekisteri'))
         self.assertEqual(200, response.status_code)
+
+    def test_update_membership_registry(self):
+        permission = Permission.objects.get(codename='change_membership')
+        self.user.user_permissions.add(permission)
+
+        self.client.force_login(self.user)
+
+        user, _ = User.objects.get_or_create(username='hehtosi')
+
+        data = {
+            'first_name': 'Testi',
+            'last_name': 'Hehtokuutio',
+            'email': 'testi.hehtokuutio@example.com',
+            'city': 'Mordor',
+        }
+
+        response = self.client.post(reverse('kayttajarekisteri_paivita', args=(user.username, )), data)
+
+        user.refresh_from_db()
+        self.assertEqual(user.first_name, data['first_name'])
+        self.assertEqual(user.last_name, data['last_name'])
+        self.assertEqual(user.email, data['email'])
+        self.assertEqual(user.membership.city, data['city'])
+
+        self.assertEqual(302, response.status_code)
+
+    def test_update_membership_fee(self):
+        permission = Permission.objects.get(codename='change_membership')
+        self.user.user_permissions.add(permission)
+
+        self.client.force_login(self.user)
+
+        user_one, _ = User.objects.get_or_create(username='hehtosi')
+        user_two, _ = User.objects.get_or_create(username='simakuu')
+
+        data = {
+            'year': '2018',
+            'usernames': 'hehtosi simakuu',
+        }
+
+        response = self.client.post(reverse('kayttajarekisteri_jasenmaksu'), data)
+        self.assertEqual(302, response.status_code)
+        self.assertTrue(user_one.membership.fee.get(year='2018'))
+        self.assertTrue(user_two.membership.fee.get(year='2018'))
+
+        data = {
+            'year': '2019',
+            'usernames': 'simakuu',
+        }
+
+        response = self.client.post(reverse('kayttajarekisteri_jasenmaksu'), data)
+        self.assertEqual(302, response.status_code)
+        self.assertTrue(user_two.membership.fee.get(year='2019'))

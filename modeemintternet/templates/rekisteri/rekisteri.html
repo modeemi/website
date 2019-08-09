@@ -3,8 +3,11 @@
 {% block content %}
     <h1>Käyttäjärekisteri</h1>
 
-    <p>Rekisterissä näkyvät vain aktiiviseksi merkityt käyttäjät.</p>
-    <p>Jäseniä yhteensä: {{ memberships.count }}</p>
+    <p>Rekisterissä näkyvät vain aktiiviseksi merkityt käyttäjät. Jäseniä on yhteensä {{ memberships.count }} henkilön verran.</p>
+
+    {% if perms.modeemintternet.change_membership %}
+        <p>Voit päivittää jäsenmaksutietoja <a href="{% url 'kayttajarekisteri_jasenmaksu' %}">täältä</a>.</p>
+    {% endif %}
 
     <table id="registry" class="table table-bordered table-condensed table-responsive">
         <thead>
@@ -16,6 +19,9 @@
             <th>Kotikunta</th>
             <th>Jäsenmaksu (viimeisin)</th>
             <th>Avaimet</th>
+            {% if perms.modeemintternet.change_membership %}
+                <th>Päivitä</th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
@@ -28,6 +34,9 @@
                 <td>{{ membership.city }}</td>
                 <td>{{ membership.get_fee }}</td>
                 <td>{{ membership.get_keys }}</td>
+                {% if perms.modeemintternet.change_membership %}
+                    <td><a href="{% url 'kayttajarekisteri_paivita' membership.user.username %}"><span class="fa fa-cogs"></span></a></td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>

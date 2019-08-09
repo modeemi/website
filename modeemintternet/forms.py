@@ -1,4 +1,4 @@
-from django.forms import Form, ModelForm, CharField, PasswordInput, EmailField
+from django.forms import Form, ModelForm, CharField, PasswordInput, EmailField, IntegerField
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -13,6 +13,11 @@ class MembershipForm(Form):
     last_name = CharField(max_length=128, required=True)
     email = EmailField(max_length=128, required=True)
     city = CharField(max_length=128, required=True)
+
+
+class MembershipFeeForm(Form):
+    year = IntegerField(required=True)
+    usernames = CharField(max_length=4096, required=True)
 
 
 class ApplicationForm(ModelForm):

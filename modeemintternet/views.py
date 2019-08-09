@@ -1,5 +1,7 @@
 import logging
+import re
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db import transaction
 from django.http import HttpResponseRedirect
@@ -7,8 +9,8 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from modeemintternet import mailer
-from modeemintternet.models import News, Soda, Membership
-from modeemintternet.forms import ApplicationForm, FeedbackForm, MembershipForm
+from modeemintternet.models import News, Soda, Membership, MembershipFee
+from modeemintternet.forms import ApplicationForm, FeedbackForm, MembershipForm, MembershipFeeForm
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +27,7 @@ def kayttajatiedot(request):
 
 @login_required
 @transaction.atomic
-def kayttajapaivitys(request):
+def kayttajatiedot_paivita(request):
     if request.method == 'POST':
         form = MembershipForm(request.POST)
 
@@ -53,7 +55,62 @@ def kayttajapaivitys(request):
 @permission_required('modeemintternet.view_membership', raise_exception=True)
 def kayttajarekisteri(request):
     memberships = Membership.objects.all().select_related('user').prefetch_related('fee')
-    return render(request, 'tili/rekisteri.html', {'memberships': memberships})
+    return render(request, 'rekisteri/rekisteri.html', {'memberships': memberships})
+
+
+@login_required
+@permission_required('modeemintternet.change_membership', raise_exception=True)
+@transaction.atomic
+def kayttajarekisteri_paivita(request, username: str):
+    User = get_user_model()
+
+    if request.method == 'POST':
+        form = MembershipForm(request.POST)
+
+        if form.is_valid():
+            user = User.objects.get(username=username)
+            membership, _ = Membership.objects.get_or_create(user=user)
+
+            user.first_name = form.cleaned_data['first_name']
+            user.last_name = form.cleaned_data['last_name']
+            user.email = form.cleaned_data['email']
+            membership.city = form.cleaned_data['city']
+
+            user.save()
+            membership.save()
+
+            return HttpResponseRedirect(reverse('kayttajarekisteri'))
+
+    else:
+        form = MembershipForm()
+
+    return render(request, 'rekisteri/paivita.html')
+
+
+@login_required
+@permission_required('modeemintternet.change_membership', raise_exception=True)
+@transaction.atomic
+def kayttajarekisteri_jasenmaksu(request):
+    User = get_user_model()
+
+    if request.method == 'POST':
+        form = MembershipFeeForm(request.POST)
+
+        if form.is_valid():
+            year = form.cleaned_data['year']
+            membership_fee, _ = MembershipFee.objects.get_or_create(year=year)
+
+            usernames = list(filter(None, map(str.strip, re.split(r'(\s+|,)', form.cleaned_data['usernames']))))
+            for username in usernames:
+                user = User.objects.get(username=username)
+                membership, _ = Membership.objects.get_or_create(user=user)
+                membership.fee.add(membership_fee)
+
+            return HttpResponseRedirect(reverse('kayttajarekisteri'))
+    else:
+        form = MembershipFeeForm()
+
+    return render(request, 'rekisteri/jasenmaksu.html')
 
 
 def yhdistys(request):

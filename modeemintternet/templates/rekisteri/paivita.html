@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Käyttäjätietojen päivitys</h1>
+    <h1>Käyttäjärekisterin päivitys</h1>
 
     <p>
-        Itsepalveluna on mahdollista päivittää nimi, sähköpostiosoite ja kotikunta.
-        Mikäli haluat päivittää muita tietojasi, tai huomaat virheen, voit
-        pyytää tietojen lähettämällä sähköpostia osoitteeseen
-        <a href="mailto:hallitus@modeemi.fi">hallitus@modeemi.fi</a>.
+        Rekisterin kautta voit päivittää käyttäjän perustiedot.
+        Jäsenmaksutiedot voi päivittää tavallisille jäsenille
+        <a href="{% url 'kayttajarekisteri_jasenmaksu' membership.pk %}">jäsenmaksusivulla</a>.
+        Ainaisjäsentiedot päivittää laitteistovastaava ylläpitonäkymien kautta,
     </p>
 
     {% if form.errors %}
         <p>Korjaa lomakkeen tiedot.</p>
     {% endif %}
 
-    <form method="post" action="{% url 'kayttajatiedot_paivita' %}">
+    <form method="post" action="{% url 'kayttajarekisteri_paivita' membership.pk %}">
         {% csrf_token %}
 
         <div class="form-group">
@@ -34,6 +34,6 @@
             <input name="city" type="text" class="form-control" required id="city" value="{{ user.membership.city }}" />
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Päivitä">
+        <input type="submit" class="btn btn-primary" value="Päivitä jäsentiedot rekisteriin">
     </form>
 {% endblock %}

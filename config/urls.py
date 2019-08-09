@@ -18,7 +18,7 @@ router.register(r'news', apiviews.NewsViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('tili/sisaan/', auth_views.LoginView.as_view(template_name='tili/login.html'), name='sisaan'),
+    path('tili/sisaan/', auth_views.LoginView.as_view(template_name='tili/sisaan.html'), name='sisaan'),
     path('tili/ulos/', auth_views.LogoutView.as_view(), name='ulos'),
     path('tili/tiedot/', views.kayttajatiedot, name='kayttajatiedot'),
     path('tili/paivita/', views.kayttajatiedot_paivita, name='kayttajatiedot_paivita'),

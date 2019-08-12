@@ -10,7 +10,7 @@ from passlib.hash import (
 )
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models, transaction
@@ -21,10 +21,14 @@ log = getLogger(__name__)
 
 
 def validate_username(username):
+    User = get_user_model()
     if not re.match(r'^[a-z]+$', username):
         raise ValidationError('Käyttäjätunnuksen pitää koostua pienistä kirjaimista.')
     try:
-        if Passwd.objects.filter(username__iexact=username).exists():
+        if (
+            Passwd.objects.filter(username__iexact=username).exists()
+            or User.objects.filter(username__iexact=username).exists()
+        ):
             raise ValidationError('Käyttäjätunnus ei ole saatavilla.')
     except Exception as e:
         log.exception('Error in querying passwd objects', exc_info=e)
@@ -42,7 +46,12 @@ class News(models.Model):
 
     posted = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    poster = models.ForeignKey(User, editable=False, null=True, on_delete=models.SET_NULL)
+    poster = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        editable=False,
+        null=True,
+        on_delete=models.SET_NULL
+    )  # TODO: remove nullable and set on_delete=models.PROTECT
 
     class Meta:
         verbose_name = 'Uutinen'
@@ -210,6 +219,16 @@ class Application(models.Model):
                 'MD5': self.md5_crypt,
                 'DES': self.des_crypt,
             }.get(method, None)
+
+        User = get_user_model()
+        user = User.objects.create(
+            username=self.username,
+            email=self.email,
+            first_name=self.first_name,
+            last_name=self.last_name,
+        )
+
+        Membership.objects.create(user=user)
 
         group = UserGroup.objects.get(groupname='modeemi')
 

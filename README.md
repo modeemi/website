@@ -1,7 +1,7 @@
 # [Modeemi ry website](https://www.modeemi.fi)
 
 [![Build Status](https://travis-ci.org/modeemi/intternetvelho.svg?branch=master)](https://travis-ci.org/modeemi/intternetvelho)
-[![Coverage Status](https://coveralls.io/repos/modeemi/intternetvelho/badge.svg?branch=master)](https://coveralls.io/r/modeemi/intternetvelho?branch=master)
+[![Coverage Status](https://codecov.io/gh/modeemi/website/branch/master/graph/badge.svg)](https://codecov.io/gh/imodeemi/website)
 [![Updates](https://pyup.io/repos/github/modeemi/intternetvelho/shield.svg)](https://pyup.io/repos/github/modeemi/intternetvelho/)
 
 Modeemi ry website for the Finnish IT club based on Tampere, Finland.

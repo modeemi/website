@@ -1,5 +1,5 @@
 RELEASE := $$(git show -s --format=%H)
-IMAGE := modeemi/intternetvelho
+IMAGE := modeemi/website
 
 test:
 	@echo "Running tests and linters"

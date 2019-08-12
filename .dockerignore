@@ -10,3 +10,9 @@ db.sqlite3
 Makefile
 Dockerfile
 .coverage
+staticfiles
+mediafiles
+.tox
+.mypy_cache
+*.egg.info
+*.eggs

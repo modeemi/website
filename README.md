@@ -1,8 +1,8 @@
 # [Modeemi ry website](https://www.modeemi.fi)
 
-[![Build Status](https://travis-ci.org/modeemi/intternetvelho.svg?branch=master)](https://travis-ci.org/modeemi/intternetvelho)
+[![Build Status](https://travis-ci.org/modeemi/website.svg?branch=master)](https://travis-ci.org/modeemi/website)
 [![Coverage Status](https://codecov.io/gh/modeemi/website/branch/master/graph/badge.svg)](https://codecov.io/gh/imodeemi/website)
-[![Updates](https://pyup.io/repos/github/modeemi/intternetvelho/shield.svg)](https://pyup.io/repos/github/modeemi/intternetvelho/)
+[![Updates](https://pyup.io/repos/github/modeemi/website/shield.svg)](https://pyup.io/repos/github/modeemi/website/)
 
 Modeemi ry website for the Finnish IT club based on Tampere, Finland.
 
@@ -18,18 +18,16 @@ Development environment can be easily provisioned with Vagrant:
     vagrant ssh
     cd /vagrant
     source ./virtualenv/bin/activate
-    python -Wall manage.py test
+    pytest
     python manage.py migrate --noinput
     python manage.py collectstatic --noinput
     python manage.py runserver
 
 ### Committing
 
-Please run test suite before committing your changes.
+Please run test suite before committing your changes:
 
-    # activate the environment as described before
-    python manage.py test
-    prospector
+    tox
 
 If you have implemented new views or functionality, implement tests for those as well.
 

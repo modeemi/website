@@ -141,25 +141,22 @@ def laitteisto(request):
 
 
 def palaute(request):
-    feedback_form = FeedbackForm()
+    if not request.method == 'POST':
+        return render(request, 'palaute.html', {'form': FeedbackForm()})
 
-    if not request.POST:
-        return render(request, 'palaute.html', {'form': feedback_form})
-
-    else:
-        feedback_form = FeedbackForm(request.POST)
-
-        if not feedback_form.is_valid():
-            return render(request, 'palaute.html', {
-                'form': feedback_form,
-            }, status=400)
+    feedback_form = FeedbackForm(request.POST)
+    if not feedback_form.is_valid():
+        return render(request, 'palaute.html', {
+            'form': feedback_form,
+        }, status=400)
 
     feedback = feedback_form.save()
     mailer.feedback_received(feedback)
+    success = True
 
     return render(request, 'palaute.html', {
         'form': feedback_form,
-        'success': True,
+        'success': success,
     })
 
 
@@ -192,35 +189,32 @@ def halutaan(request):
 
 
 def jaseneksi(request):
-    application_form = ApplicationForm()
-
     if not request.POST:
-        return render(request, 'jaseneksi.html', {'form': application_form})
+        return render(request, 'jaseneksi.html', {'form': ApplicationForm()})
 
     # Check form validity for password errors
-    else:
-        application_form = ApplicationForm(request.POST)
+    application_form = ApplicationForm(request.POST)
 
-        # Password is not saved in the form, so we check it manually
-        # and notify of errors in context the data, if there are any.
-        password_matches = \
-            request.POST.get('password') == request.POST.get('password_check')
+    if not application_form.is_valid():
+        return render(request, 'jaseneksi.html', {
+            'form': application_form,
+        }, status=400)
 
-        if not application_form.is_valid():
-            return render(request, 'jaseneksi.html', {
-                'form': application_form,
-            }, status=400)
+    # Password is not saved in the form, so we check it manually
+    # and notify of errors in context the data, if there are any.
+    password_matches = \
+        request.POST.get('password') == request.POST.get('password_check')
 
-        # If the form is else valid but the password doesn't match or is empty,
-        # mark the form as invalid and display a custom password error message.
-        elif not password_matches:
-            error_msg = 'Salasana ja tarkiste eivät täsmää.'
-            application_form.add_error('password', '')
-            application_form.add_error('password_check', error_msg)
+    # If the form is else valid but the password doesn't match or is empty,
+    # mark the form as invalid and display a custom password error message.
+    if not password_matches:
+        error_msg = 'Salasana ja tarkiste eivät täsmää.'
+        application_form.add_error('password', '')
+        application_form.add_error('password_check', error_msg)
 
-            return render(request, 'jaseneksi.html', {
-                'form': application_form,
-            }, status=400)
+        return render(request, 'jaseneksi.html', {
+            'form': application_form,
+        }, status=400)
 
     application = application_form.save()
     application.generate_password_hashes(request.POST.get('password'))
@@ -231,7 +225,7 @@ def jaseneksi(request):
         mailer.application_created(application)
     except Exception as e:
         mailing_success = False
-        logger.error('Failed to send mail about the new application: {}'.format(e))
+        logger.error('Failed to send mail about the new application: %e', e)
 
     # Return info page for the application.
     return render(request, 'jaseneksi.html', {

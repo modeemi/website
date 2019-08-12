@@ -72,8 +72,9 @@ class ViewGetTest(TestCase):
         c = Client()
 
         for url in self.urls:
-            response = c.get(url)
-            self.assertEqual(response.status_code, 200)
+            with self.subTest(url):
+                response = c.get(url)
+                self.assertEqual(response.status_code, 200)
 
     def test_get_services(self):
         c = Client()

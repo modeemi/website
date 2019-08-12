@@ -1,20 +1,18 @@
+dist: xenial
 language: python
-python: "3.6"
+cache: pip
+python:
+  - 3.7
 addons:
-  postgresql: "9.6"
-env:
-    - DJANGO_SETTINGS_MODULE=config.settings.test
+  postgresql: 9.6
 install:
-    - pip install wheel
-    - pip install -r requirements.txt
-    - pip install coveralls
+  - pip install tox-travis codecov
 before_script:
-    - psql -U postgres -c "CREATE USER modeemintternet WITH PASSWORD 'modeemintternet';"
-    - psql -U postgres -c "ALTER USER modeemintternet CREATEDB;"
-    - psql -U postgres -c "CREATE DATABASE modeemintternet ENCODING 'UTF8' OWNER modeemintternet;"
-    - psql -U postgres -c "CREATE DATABASE modeemiuserdb ENCODING 'UTF8' OWNER modeemintternet;"
+  - psql -U postgres -c "CREATE USER modeemintternet WITH PASSWORD 'modeemintternet';"
+  - psql -U postgres -c "ALTER USER modeemintternet CREATEDB;"
+  - psql -U postgres -c "CREATE DATABASE modeemintternet ENCODING 'UTF8' OWNER modeemintternet;"
+  - psql -U postgres -c "CREATE DATABASE modeemiuserdb ENCODING 'UTF8' OWNER modeemintternet;"
 script:
-    - python manage.py migrate
-    - coverage run --source=modeemintternet manage.py test
+  - tox
 after_success:
-    - coveralls
+  - codecov

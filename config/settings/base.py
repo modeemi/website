@@ -128,8 +128,8 @@ INSTALLED_APPS = (
 
 AUTHENTICATION_BACKENDS = [
     'axes.backends.AxesBackend',
-    'django.contrib.auth.backends.ModelBackend',
     'modeemintternet.auth.ModeemiUserDBBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 AUTH_PASSWORD_VALIDATORS = [

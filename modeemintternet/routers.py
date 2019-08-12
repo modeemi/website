@@ -12,13 +12,13 @@ MODEEMIUSERDB_MODELS = (
 
 class Router:
     @staticmethod
-    def db_for_read(model, **hints):
+    def db_for_read(model, **hints):  # pylint: disable=unused-argument
         if model in MODEEMIUSERDB_MODELS:
             return 'modeemiuserdb'
         return None
 
     @staticmethod
-    def db_for_write(model, **hints):
+    def db_for_write(model, **hints):  # pylint: disable=unused-argument
         if model in MODEEMIUSERDB_MODELS:
             return 'modeemiuserdb'
         return None

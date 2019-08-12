@@ -31,4 +31,3 @@ STATICFILES_STORAGE = env(
 
 STATIC_ROOT = '/var/www/modeemintternet/static'
 MEDIA_ROOT = '/var/www/modeemintternet/media'
-

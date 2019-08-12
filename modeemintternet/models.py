@@ -2,7 +2,12 @@ import re
 from logging import getLogger
 from time import time
 
-from passlib.context import CryptContext
+from passlib.hash import (
+    des_crypt,
+    md5_crypt,
+    sha256_crypt,
+    sha512_crypt,
+)
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -104,7 +109,7 @@ class Membership(models.Model):
             return str(self.fee.latest())
         except MembershipFee.DoesNotExist:
             return ''
-    get_fee.short_description = 'Jäsenmaksu'
+    get_fee.short_description = 'Jäsenmaksu'  # type: ignore
 
     def get_keys(self) -> str:
         keys = []
@@ -117,7 +122,7 @@ class Membership(models.Model):
             keys.append('virtuaalinen')
 
         return ', '.join(keys).capitalize()
-    get_keys.short_description = 'Avaimet'
+    get_keys.short_description = 'Avaimet'  # type: ignore
 
     class Meta:
         ordering = ['user__username']
@@ -185,13 +190,10 @@ class Application(models.Model):
             https://pythonhosted.org/passlib/lib/passlib.hash.html
         """
 
-        password_schemes = ['pbkdf2_sha256', 'sha512_crypt', 'sha256_crypt', 'des_crypt', 'md5_crypt']
-        pwd_context = CryptContext(schemes=password_schemes)
-
-        self.sha512_crypt = pwd_context.hash(password, 'sha512_crypt')
-        self.sha256_crypt = pwd_context.hash(password, 'sha256_crypt')
-        self.des_crypt = pwd_context.hash(password, 'des_crypt')
-        self.md5_crypt = pwd_context.hash(password, 'md5_crypt')
+        self.sha512_crypt = sha512_crypt.hash(password)
+        self.sha256_crypt = sha256_crypt.hash(password)
+        self.md5_crypt = md5_crypt.hash(password)
+        self.des_crypt = des_crypt.hash(password)
 
         self.save()
 
@@ -274,7 +276,7 @@ class Feedback(models.Model):
         verbose_name_plural = 'Palautteet'
 
     def __str__(self):
-        return '{0} ({1})'.format(self.message[:25], self.sent)
+        return '{0} ({1})'.format(self.message[:25], self.sent)  # pylint: disable=unsubscriptable-object
 
 
 ###

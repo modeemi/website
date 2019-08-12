@@ -1,0 +1,10 @@
+ignore-paths:
+  - modeemintternet/migrations
+
+pep8:
+  options:
+    max-line-length: 119
+
+pyflakes:
+  disable:
+    - F999

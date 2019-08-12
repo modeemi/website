@@ -1,16 +1,15 @@
-from django.contrib import admin
-
-admin.autodiscover()
-
 from django.conf import settings
 from django.urls import include, path
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 from rest_framework import routers
 
 from modeemintternet import views, apiviews
 from modeemintternet.feeds import NewsRSSFeed, NewsICalFeed
+
+admin.autodiscover()
 
 router = routers.DefaultRouter()
 router.register(r'news', apiviews.NewsViewSet)
@@ -53,7 +52,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
 
     path('sitemap/?', views.sitemap, name='sitemap'),
-    path('sitemap\.xml/?', views.sitemap, name='sitemap'),
+    path('sitemap.xml/?', views.sitemap, name='sitemap'),
 ]
 
 if settings.DEBUG:

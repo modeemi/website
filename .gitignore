@@ -11,3 +11,7 @@ media
 .env
 staticfiles
 mediafiles
+.mypy_cache/
+.tox/
+*.egg-info/
+.eggs/

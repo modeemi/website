@@ -76,8 +76,6 @@ class FeedbackForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(FeedbackForm, self).__init__(*args, **kwargs)
 
-        instance = kwargs.get('instance')
-
         self.helper = FormHelper(self)
         self.helper.form_id = 'feedback-form'
         self.helper.form_method = 'POST'

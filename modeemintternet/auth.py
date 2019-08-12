@@ -39,7 +39,7 @@ def check_password(username, password) -> bool:
         except ShadowFormat.DoesNotExist:
             continue
 
-    # Run a hasher once to reduce the differentiation between
+    # Run a hasher once to reduce the timing difference between
     # existing and non-existing users and to mitigate enumeration attacks
     sha512_crypt.hash(token_hex(42))
 
@@ -47,14 +47,16 @@ def check_password(username, password) -> bool:
 
 
 class ModeemiUserDBBackend(ModelBackend):
-    def authenticate(self, request, username=None, password=None, **kwargs):
+    def authenticate(  # pylint: disable=inconsistent-return-statements
+        self, request, username=None, password=None, **kwargs
+    ):
         UserModel = get_user_model()
 
         if username is None:
             username = kwargs.get(UserModel.USERNAME_FIELD)
 
         try:
-            user = UserModel._default_manager.get_by_natural_key(username)
+            user = UserModel._default_manager.get_by_natural_key(username)  # pylint: disable=protected-access
         except UserModel.DoesNotExist:
             # Run the default password hasher once to reduce the timing
             # difference between an existing and a nonexistent user (#20760).

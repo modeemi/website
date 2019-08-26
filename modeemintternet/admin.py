@@ -57,7 +57,7 @@ class ApplicationAdmin(admin.ModelAdmin):
             try:
                 mailer.application_accepted(application)
             except Exception as e:
-                log.exception('Sending application accepted mail failed', exc_info=e)
+                log.exception('Sending application rejected mail failed', exc_info=e)
 
     def reject(self, request, queryset):  # pylint: disable=unused-argument
         for application in queryset:

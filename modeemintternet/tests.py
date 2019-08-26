@@ -136,7 +136,6 @@ class ApplicationViewTest(TestCase):
             , 'first_name': 'Teemu'
             , 'last_name': 'Teekkari'
             , 'username': 'teemut'
-            , 'secondary_nick': 'teekkarit'
             , 'shell': '/bin/zsh'
             , 'funet_rules_accepted': True
             , 'password': 'testisalasana'
@@ -196,7 +195,6 @@ class ApplicationMethodTest(TestCase):
                 last_name='Sauron',
                 email='pekka.sauron@example.org',
                 username='pekkas',
-                secondary_nick='sauronp',
                 shell=Application.Shell.BASH,
                 funet_rules_accepted=True)
 

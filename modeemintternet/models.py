@@ -36,7 +36,7 @@ def validate_username(username):
 
 class News(models.Model):
     title = models.TextField(blank=False)
-    text = models.TextField(blank=True)
+    text = models.TextField()
 
     location = models.TextField(blank=True)
     lat = models.FloatField(default=0.0)

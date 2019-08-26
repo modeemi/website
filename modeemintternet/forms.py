@@ -24,7 +24,7 @@ class ApplicationForm(ModelForm):
     password = CharField(
         min_length=8,
         max_length=128,
-        label='Haluamani salasana on',
+        label='Salasana',
         widget=PasswordInput(),
     )
     password_check = CharField(
@@ -56,12 +56,12 @@ class ApplicationForm(ModelForm):
         self.helper.form_action = '/jaseneksi/'
         self.helper.add_input(Submit('submit', 'Lähetä hakemus'))
 
-        self.fields['email'].label = 'Sähköpostini on'
-        self.fields['first_name'].label = 'Etunimeni on'
-        self.fields['last_name'].label = 'Sukunimeni on'
-        self.fields['username'].label = 'Haluamani käyttäjätunnus on'
-        self.fields['shell'].label = 'Haluamani komentokehoite kerhon *nix -koneilla'
-        self.fields['funet_rules_accepted'].label = 'Hyväksyn FuNET-verkon käyttöehdot'
+        self.fields['email'].label = 'Sähköpostiosoite'
+        self.fields['first_name'].label = 'Etunimi'
+        self.fields['last_name'].label = 'Sukunimi'
+        self.fields['username'].label = 'Käyttäjätunnus'
+        self.fields['shell'].label = 'Komentokehoite kerhon *nix -ympäristössä'
+        self.fields['funet_rules_accepted'].label = 'Hyväksyn Funet-verkon käyttöehdot'
         self.fields['funet_rules_accepted'].required = True
         self.fields['virtual_key_required'].label = 'Tarvitsen virtuaaliavaimen kerhohuoneelle'
 

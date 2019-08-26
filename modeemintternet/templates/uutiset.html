@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load markdownify %}
+
 {% block title %}{{ block.super }} uutiset{% endblock title %}
 {% block og-title %}{{ block.super }} uutiset{% endblock og-title %}
 
@@ -16,10 +18,10 @@
 {% endif %}
 
 {% for n in news %}
-<div itemscope itemtype="http://schema.org/Event">
+<div>
     <hr />
-    <h2 itemprop="name"><a href="{% url 'uutiset' pk=n.id %}">{{ n.title }}</a></h2>
-    <i><small><time itemprop="datePublished" datetime="{{ n.posted|date:'Y-m-d' }}">{{ n.posted|date:'Y-m-d' }}</time></small></i>
+    <h2><a href="{% url 'uutiset' pk=n.id %}">{{ n.title }}</a></h2>
+    <p><i><small><time datetime="{{ n.posted|date:'Y-m-d' }}">{{ n.posted|date:'Y-m-d' }}</time></small></i></p>
     {% if n.starts and n.ends and n.location %}
     <p>
         {% if n.starts %}
@@ -35,8 +37,8 @@
         {% endif %}
     </p>
     {% endif %}
-    <p class="news" itemprop="description">{{ n.text|urlize|linebreaks }}</p>
-</div>
 
+    {{ n.text|markdownify }}
+</div>
 {% endfor %}
 {% endblock %}

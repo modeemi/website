@@ -6,6 +6,7 @@ django-debug-toolbar
 django-environ
 django-guardian
 django-ical
+django-markdownify
 django-recaptcha2
 django-rest-swagger
 djangorestframework

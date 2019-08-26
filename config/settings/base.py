@@ -120,6 +120,7 @@ INSTALLED_APPS = (
 
     'axes',
     'crispy_forms',
+    'markdownify',
     'rest_framework',
     'snowpenguin.django.recaptcha2',
 
@@ -218,13 +219,38 @@ LOGGING = {
     },
 }
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
-
 AXES_COOLOFF_TIME = datetime.timedelta(minutes=5)
-
 AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
-
 AXES_META_PRECEDENCE_ORDER = [
     'HTTP_X_FORWARDED_FOR',
     'REMOTE_ADDR',
+]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+MARKDOWNIFY_LINKIFY_TEXT = True
+MARKDOWNIFY_LINKIFY_PARSE_EMAIL = True
+MARKDOWNIFY_LINKIFY_SKIP_TAGS = ['pre', 'code']
+MARKDOWNIFY_MARKDOWN_EXTENSIONS = ['extra']
+MARKDOWNIFY_WHITELIST_TAGS = [
+    'a',
+    'abbr',
+    'acronym',
+    'b',
+    'blockquote',
+    'br',
+    'code',
+    'em',
+    'i',
+    'li',
+    'ol',
+    'p',
+    'pre',
+    'strong',
+    'table',
+    'tbody',
+    'td',
+    'th',
+    'tr',
+    'ul',
 ]

@@ -26,7 +26,7 @@ def remind():
     )
 
     if settings.MODE_DRY_RUN:
-        logger.info(f'Would remind: {list(memberships.values_list("user__username", flat=True))}')
+        logger.info('Would remind: %s', list(memberships.values_list("user__username", flat=True)))
         return
 
     for membership in memberships:
@@ -53,7 +53,7 @@ def deactivate():
     )
 
     if settings.MODE_DRY_RUN:
-        logger.info(f'Would deactivate: {list(memberships.values_list("user__username", flat=True))}')
+        logger.info('Would deactivate: %s', list(memberships.values_list("user__username", flat=True)))
         return
 
     with transaction.atomic('default'):

@@ -22,8 +22,7 @@ def application_created(application):
 
     # Creation notifier for the board
     subject = settings.EMAIL_SUBJECT_PREFIX + 'Uusi jäsenhakemus jätetty'
-    body = \
-"""
+    body = f"""
 Hei,
 
 henkilö {0} {1} ({2}) on jättänyt uuden jäsenhakemuksen {3}.
@@ -35,20 +34,19 @@ Voit tarkastella jäsenhakemusta osoitteessa:
 Ystävällisin terveisin,
 {5}n hallitusautomaatiobotti
 """.format(
-    application.first_name,
-    application.last_name,
-    application.username,
-    application.applied.strftime('%d.%m.%Y'),
-    application.id,
-    ORGANIZATION,
-)
+        application.first_name,
+        application.last_name,
+        application.username,
+        application.applied.strftime('%d.%m.%Y'),
+        application.id,
+        ORGANIZATION,
+    )
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [ORGANIZATION_EMAIL])
 
     # Notifier to the end user
     subject = settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi lisätiedot'
-    body = \
-"""
+    body = """
 Hei {0},
 
 ja kiitos jäsenhakemuksestasi!
@@ -79,15 +77,15 @@ Ohessa hakemuksesi tiedot:
 Ystävällisin terveisin,
 {7}n hallitus
 """.format(
-    application.first_name,
-    application.last_name,
-    application.email,
-    application.username,
-    application.shell,
-    'Kyllä' if application.virtual_key_required else 'Ei',
-    application.applied.strftime('%d.%m.%Y'),
-    ORGANIZATION,
-)
+        application.first_name,
+        application.last_name,
+        application.email,
+        application.username,
+        application.shell,
+        'Kyllä' if application.virtual_key_required else 'Ei',
+        application.applied.strftime('%d.%m.%Y'),
+        ORGANIZATION,
+    )
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 
@@ -101,8 +99,7 @@ def application_accepted(application):
     """
 
     subject = settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi on käsitelty'
-    body = \
-"""
+    body = """
 Hei,
 
 {0}n hallitus on käsitellyt ja hyväksynyt jäsenhakemuksesi.
@@ -114,9 +111,9 @@ Tunnuksien jakelu jäsenkoneille tehdään öisin, joten kirjautuminen onnistuu 
 Ystävällisin terveisin,
 {0}n hallitus
 """.format(
-    ORGANIZATION,
-    application.username,
-)
+        ORGANIZATION,
+        application.username,
+    )
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 
@@ -130,8 +127,7 @@ def application_rejected(application):
     """
 
     subject = settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi on käsitelty'
-    body = \
-"""
+    body = """
 Hei,
 
 {0}n hallitus on käsitellyt ja ikävä kyllä hylännyt jäsenhakemuksesi.
@@ -141,9 +137,9 @@ Lisätietoja voit tulla tiedustelemaan kerhohuoneelta tai sähköpostitse osoitt
 Ystävällisin terveisin,
 {0}n hallitus
 """.format(
-    ORGANIZATION,
-    ORGANIZATION_EMAIL
-)
+        ORGANIZATION,
+        ORGANIZATION_EMAIL
+    )
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 
@@ -156,11 +152,10 @@ def feedback_received(feedback):
     """
 
     subject = settings.EMAIL_SUBJECT_PREFIX + 'Palaute verkkosivujen kautta'
-    body = \
-"""
+    body = """
 Hei,
 
-Henkilö {0} on jättänyt seuraavan palautteen hallitukselle verkkosivujen välityksellä:
+henkilö {0} on jättänyt seuraavan palautteen hallitukselle verkkosivujen välityksellä:
 
 {1}
 
@@ -171,10 +166,60 @@ Voit tarkastella palautetta myös osoitteessa
 Ystävällisin terveisin,
 {3}n hallitusautomaatiobotti
 """.format(
-    feedback.sender,
-    textwrap.fill(feedback.message),
-    feedback.id,
-    ORGANIZATION,
-)
+        feedback.sender,
+        textwrap.fill(feedback.message),
+        feedback.id,
+        ORGANIZATION,
+    )
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [ORGANIZATION_EMAIL])
+
+
+def membership_remind(membership):
+    """
+    Sends an email to a member notifying about a missing payment.
+
+    :param membership: modeemintternet Membership object.
+    """
+
+    subject = settings.EMAIL_SUBJECT_PREFIX + 'Tunnus sulkeutumassa'
+    body = f"""
+Hei {membership.user.username},
+
+automaattinen järjestelmämme on huomannut, että et ole vielä suorittanut kuluvan vuoden jäsenmaksua.
+
+Voit maksaa jäsenmaksun helposti itsepalveluna osoitteessa
+
+    https://holvi.com/shop/modeemi/
+
+Mikäli et maksa jäsenmaksua, tunnuksesi kerhon järjestelmiin sulkeutuu automaattisesti.
+
+Mikäli olet suorittanut maksun jotakin muuta kautta, mutta se ei ole
+jostakin syystä kirjautunut jäsenmaksujen seurantajärjestelmäämme,
+voit olla yhteydessä kerhon hallitukseen sähköpostilla tai IRCissä.
+
+Ystävällisin terveisin,
+{ORGANIZATION}n hallitusautomaatiobotti
+"""
+
+    send_mail(subject, body, ORGANIZATION_EMAIL, [membership.user.email])
+
+
+def membership_deactivate(membership):
+    """
+    Sends an email to a member notifying about membership deactivation.
+
+    :param membership: modeemintternet Membership object.
+    """
+
+    subject = settings.EMAIL_SUBJECT_PREFIX + 'Tunnus suljettu'
+    body = f"""
+Hei {membership.user.username},
+
+tunnuksesi on suljettu maksamattoman jäsenmaksun tai muun syyn vuoksi.
+
+Ystävällisin terveisin,
+{ORGANIZATION}n hallitusautomaatiobotti
+"""
+
+    send_mail(subject, body, ORGANIZATION_EMAIL, [membership.user.email])

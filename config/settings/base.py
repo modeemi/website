@@ -10,6 +10,7 @@ import warnings
 
 import environ
 
+TESTING = False
 
 PROJECT_ROOT = environ.Path(__file__) - 3  # type: environ.Path
 PROJECT_DIR = PROJECT_ROOT.path('modeemintternet')

@@ -14,6 +14,7 @@ from django.utils import timezone
 
 from modeemintternet.models import Application, Membership, MembershipFee, Feedback, News, Soda
 from modeemintternet.mailer import application_accepted, application_rejected
+from modeemintternet.tasks import remind, deactivate
 
 User = get_user_model()
 
@@ -225,6 +226,8 @@ class MembershipTest(TestCase):
     Test membership account_registry views.
     """
 
+    databases = ['default', 'modeemiuserdb']
+
     def setUp(self):
         self.user = User.objects.create(
             username='ahtosi',
@@ -360,3 +363,27 @@ class MembershipTest(TestCase):
         response = self.client.post(reverse('kayttajarekisteri_jasenmaksut'), data)
         self.assertEqual(302, response.status_code)
         self.assertTrue(user_two.membership.fee.get(year='2019'))
+
+    def test_membership_remind(self):
+        remind()
+        self.assertEqual(1, len(mail.outbox))
+        self.assertIn('Tunnus sulkeutumassa', mail.outbox[0].subject)
+        self.assertIn(self.membership.user.username, mail.outbox[0].body)
+
+    def test_membership_remind_paid(self):
+        fee = MembershipFee.objects.create(year=datetime.datetime.now().year)
+        self.membership.fee.add(fee)
+        remind()
+        self.assertEqual(0, len(mail.outbox))
+
+    def test_membership_deactivate(self):
+        deactivate()
+        self.assertEqual(1, len(mail.outbox))
+        self.assertIn('Tunnus suljettu', mail.outbox[0].subject)
+        self.assertIn(self.membership.user.username, mail.outbox[0].body)
+
+    def test_membership_deactivate_paid(self):
+        fee = MembershipFee.objects.create(year=datetime.datetime.now().year)
+        self.membership.fee.add(fee)
+        deactivate()
+        self.assertEqual(0, len(mail.outbox))

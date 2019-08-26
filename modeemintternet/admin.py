@@ -12,10 +12,6 @@ class NewsAdmin(admin.ModelAdmin):
     Custom admin for News that supports updating posters on post.
     """
 
-    def save_model(self, request, news, form, change):  # pylint: disable=arguments-differ
-        news.poster = request.user
-        news.save()
-
 
 class SodaAdmin(admin.ModelAdmin):
     """

@@ -20,6 +20,8 @@ User = get_user_model()
 
 class ViewGetTest(TestCase):
     def setUp(self):
+        poster = User.objects.create(username='ahto.simakuutio')
+
         self.urls = [
             '/'
             , '/ry/'
@@ -45,6 +47,7 @@ class ViewGetTest(TestCase):
             , location='Testipaikkakunta'
             , starts=timezone.now() + datetime.timedelta(hours=24)
             , ends=timezone.now() + datetime.timedelta(hours=42)
+            , poster=poster,
         )
 
         self.soda = Soda(

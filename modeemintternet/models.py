@@ -49,9 +49,8 @@ class News(models.Model):
     poster = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         editable=False,
-        null=True,
-        on_delete=models.SET_NULL
-    )  # TODO: remove nullable and set on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+    )
 
     class Meta:
         verbose_name = 'Uutinen'

@@ -31,7 +31,7 @@ djangorestframework==3.10.2
 dodgy==0.1.9              # via prospector
 future==0.17.1
 gitdb2==2.0.5             # via gitpython
-gitpython==3.0.0
+gitpython==3.0.1
 gunicorn==19.9.0
 icalendar==4.0.3
 idna==2.8                 # via requests
@@ -40,7 +40,7 @@ ipython-genutils==0.2.0   # via traitlets
 ipython==7.7.0
 isort==4.3.21             # via pylint
 itypes==1.1.0             # via coreapi
-jedi==0.15.0              # via ipython
+jedi==0.15.1              # via ipython
 jinja2==2.10.1            # via coreschema
 lazy-object-proxy==1.4.1  # via astroid
 markupsafe==1.1.1         # via jinja2
@@ -63,7 +63,7 @@ psycopg2-binary==2.8.3
 ptyprocess==0.6.0         # via pexpect
 py==1.8.0                 # via pytest
 pycodestyle==2.5.0        # via prospector
-pydocstyle==4.0.0         # via prospector
+pydocstyle==4.0.1         # via prospector
 pyflakes==2.1.1           # via prospector
 pygments==2.4.2           # via ipython
 pylint-celery==0.3        # via prospector
@@ -75,7 +75,7 @@ pyparsing==2.4.2          # via packaging
 pytest-cov==2.7.1
 pytest-django==3.5.1
 pytest-subtests==0.2.1
-pytest==5.0.1
+pytest==5.1.0
 python-dateutil==2.8.0    # via icalendar
 pytz==2019.2
 pyyaml==5.1.2             # via prospector

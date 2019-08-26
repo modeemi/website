@@ -1,5 +1,5 @@
-ignore-paths:
-  - modeemintternet/migrations
+ignore-patterns:
+  - .*migrations
 
 pep8:
   options:

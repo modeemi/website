@@ -10,8 +10,6 @@ import warnings
 
 import environ
 
-TESTING = False
-
 PROJECT_ROOT = environ.Path(__file__) - 3  # type: environ.Path
 PROJECT_DIR = PROJECT_ROOT.path('modeemintternet')
 
@@ -21,6 +19,10 @@ with warnings.catch_warnings():
     warnings.simplefilter('ignore')
     env.read_env('.env')
     env.read_env('/etc/modeemintternet/env')
+
+# Custom flags for feature toggles
+MODE_TESTING = env('DJANGO_MODE_TESTING', cast=bool, default=False)
+MODE_DRY_RUN = env('DJANGO_MODE_DRY_RUN', cast=bool, default=False)
 
 DEBUG = env('DJANGO_DEBUG', cast=bool, default=False)
 ROOT_URLCONF = 'config.urls'

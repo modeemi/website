@@ -25,6 +25,10 @@ def remind():
         ]
     )
 
+    if settings.MODE_DRY_RUN:
+        print(f'Would remind: {list(memberships.values_list("user", flat=True))}')
+        return
+
     for membership in memberships:
         try:
             membership_remind(membership)
@@ -48,6 +52,10 @@ def deactivate():
         ]
     )
 
+    if settings.MODE_DRY_RUN:
+        print(f'Would deactivate: {list(memberships.values_list("user", flat=True))}')
+        return
+
     with transaction.atomic('default'):
         with transaction.atomic(using='modeemiuserdb'):
             for membership in memberships:
@@ -55,7 +63,7 @@ def deactivate():
                 user.is_active = False
                 user.save()
 
-                if settings.TESTING:
+                if settings.MODE_TESTING:
                     continue
 
                 passwd = Passwd.objects.get(username__iexact=user.username)

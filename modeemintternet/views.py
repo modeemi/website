@@ -1,3 +1,4 @@
+import datetime
 import logging
 import re
 
@@ -95,9 +96,6 @@ def kayttajarekisteri_paivita(request, username: str):
 
             return HttpResponseRedirect(reverse('kayttajarekisteri'))
 
-    else:
-        form = MembershipForm()
-
     return render(request, 'rekisteri/paivita.html', {'membership': membership})
 
 
@@ -121,8 +119,6 @@ def kayttajarekisteri_jasenmaksut(request):
                 membership.fee.add(membership_fee)
 
             return HttpResponseRedirect(reverse('kayttajarekisteri'))
-    else:
-        form = MembershipFeeForm()
 
     return render(request, 'rekisteri/jasenmaksut.html')
 

@@ -41,6 +41,7 @@ class ApplicationForm(ModelForm):
             'first_name',
             'last_name',
             'email',
+            'municipality',
             'username',
             'shell',
             'funet_rules_accepted',
@@ -56,9 +57,11 @@ class ApplicationForm(ModelForm):
         self.helper.form_action = '/jaseneksi/'
         self.helper.add_input(Submit('submit', 'Lähetä hakemus'))
 
-        self.fields['email'].label = 'Sähköpostiosoite'
         self.fields['first_name'].label = 'Etunimi'
         self.fields['last_name'].label = 'Sukunimi'
+        self.fields['email'].label = 'Sähköpostiosoite'
+        self.fields['municipality'].label = 'Kotipaikka'
+
         self.fields['username'].label = 'Käyttäjätunnus'
         self.fields['shell'].label = 'Komentokehoite kerhon *nix -ympäristössä'
         self.fields['funet_rules_accepted'].label = 'Hyväksyn Funet-verkon käyttöehdot'

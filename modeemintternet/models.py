@@ -158,6 +158,8 @@ class Application(models.Model):
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
     email = models.EmailField()
+    municipality = models.CharField(max_length=64)
+
     username = models.CharField(
         max_length=32,
         validators=[
@@ -226,7 +228,7 @@ class Application(models.Model):
             last_name=self.last_name,
         )
 
-        Membership.objects.create(user=user)
+        Membership.objects.create(user=user, municipality=self.municipality)
 
         group = UserGroup.objects.get(groupname='modeemi')
 

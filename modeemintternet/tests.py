@@ -139,6 +139,7 @@ class ApplicationViewTest(TestCase):
             'email': 'teemu.teekkari@example.org'
             , 'first_name': 'Teemu'
             , 'last_name': 'Teekkari'
+            , 'municipality': 'Tampere'
             , 'username': 'teemut'
             , 'shell': '/bin/zsh'
             , 'funet_rules_accepted': True

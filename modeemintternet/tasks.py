@@ -130,7 +130,6 @@ def activate(memberships=None) -> List[str]:
                 if not inactive:
                     continue
 
-                print('Pasdfasdf')
                 activated.append(user.username)
                 try:
                     membership_activate(membership)

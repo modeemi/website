@@ -223,3 +223,23 @@ Ystävällisin terveisin,
 """
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [membership.user.email])
+
+
+def membership_activate(membership):
+    """
+    Sends an email to a member notifying about membership activation.
+
+    :param membership: modeemintternet Membership object.
+    """
+
+    subject = settings.EMAIL_SUBJECT_PREFIX + 'Tunnus avattu'
+    body = f"""
+Hei {membership.user.username},
+
+tunnuksesi Modeemin järjestelmiin on avattu.
+
+Ystävällisin terveisin,
+{ORGANIZATION}n hallitusautomaatiobotti
+"""
+
+    send_mail(subject, body, ORGANIZATION_EMAIL, [membership.user.email])

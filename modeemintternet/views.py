@@ -1,3 +1,4 @@
+import datetime
 import logging
 import re
 
@@ -11,6 +12,7 @@ from django.urls import reverse
 from modeemintternet import mailer
 from modeemintternet.models import News, Soda, Membership, MembershipFee
 from modeemintternet.forms import ApplicationForm, FeedbackForm, MembershipForm, MembershipFeeForm
+from modeemintternet.tasks import activate
 
 logger = logging.getLogger(__name__)
 
@@ -102,8 +104,6 @@ def kayttajarekisteri_paivita(request, username: str):
 @permission_required('modeemintternet.change_membership', raise_exception=True)
 @transaction.atomic
 def kayttajarekisteri_jasenmaksut(request):
-    User = get_user_model()
-
     if request.method == 'POST':
         form = MembershipFeeForm(request.POST)
 
@@ -111,11 +111,16 @@ def kayttajarekisteri_jasenmaksut(request):
             year = form.cleaned_data['year']
             membership_fee, _ = MembershipFee.objects.get_or_create(year=year)
 
-            usernames = list(filter(None, map(str.strip, re.split(r'[\s,]+', form.cleaned_data['usernames']))))
-            for username in usernames:
-                user = User.objects.get(username=username)
-                membership, _ = Membership.objects.get_or_create(user=user)
-                membership.fee.add(membership_fee)
+            usernames = list(filter(None, map(str.lower, map(str.strip,
+                re.split(r'[\s,]+', form.cleaned_data['usernames']))
+            )))
+
+            memberships = Membership.objects.filter(user__username__in=usernames)
+            membership_fee.membership_set.add(*memberships.values_list('pk', flat=True))
+
+            # Activate users that have paid their membership fees
+            if year >= datetime.datetime.now().year:
+                activate(memberships)
 
             return HttpResponseRedirect(reverse('kayttajarekisteri'))
 

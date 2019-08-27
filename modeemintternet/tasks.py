@@ -6,7 +6,7 @@ from django.conf import settings
 from django.db import transaction
 from django.db.models import Q
 
-from modeemintternet.mailer import membership_remind, membership_deactivate
+from modeemintternet.mailer import membership_remind, membership_deactivate, membership_activate
 
 from modeemintternet.models import Membership, Passwd
 
@@ -60,31 +60,82 @@ def deactivate(memberships=None) -> List[str]:
         )
 
     deactivated = list(memberships.values_list("user__username", flat=True))
-
     if settings.MODE_DRY_RUN:
         logger.info('Would deactivate: %s', deactivated)
         return deactivated
 
-    with transaction.atomic('default'):
+    deactivated = list()
+    with transaction.atomic(using='default'):
         with transaction.atomic(using='modeemiuserdb'):
             for membership in memberships:
+                active = False
+
                 user = membership.user
-                user.is_active = False
-                user.save()
+                if user.is_active:
+                    active = True
+                    user.is_active = False
+                    user.save()
 
                 # TODO: move all models to modeemiuserdb and make them managed so no flags are required
-                if settings.MODE_TESTING:
+                if not settings.MODE_TESTING:
+                    try:
+                        passwd = Passwd.objects.get(username__iexact=user.username)
+                        if passwd.shell != settings.MODEEMI_SHELL_INACTIVE:
+                            active = True
+                            passwd.shell = settings.MODEEMI_SHELL_INACTIVE
+                            passwd.save()
+                    except Passwd.DoesNotExist:
+                        pass
+
+                if not active:
                     continue
 
-                passwd = Passwd.objects.get(username__iexact=user.username)
-                passwd.shell = '/home/adm/bin/maksa'
-                passwd.save()
-
-    for membership in memberships:
-        try:
-            membership_deactivate(membership)
-            logger.warning('Sent membership deactivation email to %s', membership.user)
-        except Exception as e:
-            logger.exception('Sending membership deactivation email to %s failed', membership.user, exc_info=e)
+                deactivated.append(user.username)
+                try:
+                    membership_deactivate(membership)
+                    logger.warning('Sent membership deactivation email to %s', membership.user)
+                except Exception as e:
+                    logger.exception('Sending membership deactivation email to %s failed', membership.user, exc_info=e)
 
     return deactivated
+
+
+def activate(memberships=None) -> List[str]:
+    if memberships is None:
+        memberships = Membership.objects.filter(user__is_active=False, fee__year__gte=datetime.now().year)
+
+    activated = list()
+    with transaction.atomic(using='default'):
+        with transaction.atomic(using='modeemiuserdb'):
+            for membership in memberships:
+                inactive = False
+
+                user = membership.user
+                if not user.is_active:
+                    inactive = True
+                    user.is_active = True
+                    user.save()
+
+                # TODO: move all models to modeemiuserdb and make them managed so no flags are required
+                if not settings.MODE_TESTING:
+                    try:
+                        passwd = Passwd.objects.get(username__iexact=user.username)
+                        if passwd.shell == settings.MODEEMI_SHELL_INACTIVE:
+                            inactive = True
+                            passwd.shell = '/bin/bash'
+                        passwd.save()
+                    except Passwd.DoesNotExist:
+                        pass
+
+                if not inactive:
+                    continue
+
+                print('Pasdfasdf')
+                activated.append(user.username)
+                try:
+                    membership_activate(membership)
+                    logger.warning('Sent membership activation email to %s', membership.user)
+                except Exception as e:
+                    logger.exception('Sending membership activation email to %s failed', membership.user, exc_info=e)
+
+    return activated

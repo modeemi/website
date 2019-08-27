@@ -342,8 +342,11 @@ class MembershipTest(TestCase):
         response = self.client.get(reverse('kayttajarekisteri_jasenmaksut'))
         self.assertEqual(200, response.status_code)
 
-        user_one, _ = User.objects.get_or_create(username='hehtosi')
-        user_two, _ = User.objects.get_or_create(username='simakuu')
+        user_one, _ = User.objects.get_or_create(username='hehtosi', email='hehtosi@example.com')
+        Membership.objects.get_or_create(user=user_one)
+
+        user_two, _ = User.objects.get_or_create(username='simakuu', email='simakuu@example.com', is_active=False)
+        Membership.objects.get_or_create(user=user_two)
 
         data = {
             'year': '2018',
@@ -354,15 +357,25 @@ class MembershipTest(TestCase):
         self.assertEqual(302, response.status_code)
         self.assertTrue(user_one.membership.fee.get(year='2018'))
         self.assertTrue(user_two.membership.fee.get(year='2018'))
+        self.assertFalse(user_two.is_active)
+
+        year = datetime.datetime.now().year
 
         data = {
-            'year': '2019',
+            'year': str(year),
             'usernames': 'simakuu',
         }
 
         response = self.client.post(reverse('kayttajarekisteri_jasenmaksut'), data)
         self.assertEqual(302, response.status_code)
-        self.assertTrue(user_two.membership.fee.get(year='2019'))
+
+        user_two.refresh_from_db()
+        self.assertTrue(user_two.membership.fee.get(year=year))
+        self.assertTrue(user_two.is_active)
+
+        self.assertEqual(1, len(mail.outbox))
+        self.assertIn('Tunnus avattu', mail.outbox[0].subject)
+        self.assertIn(user_two.username, mail.outbox[0].body)
 
     def test_membership_remind(self):
         reminded = remind()

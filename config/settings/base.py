@@ -24,6 +24,9 @@ with warnings.catch_warnings():
 MODE_TESTING = env('DJANGO_MODE_TESTING', cast=bool, default=False)
 MODE_DRY_RUN = env('DJANGO_MODE_DRY_RUN', cast=bool, default=False)
 
+# Custom flags for application features
+MODEEMI_SHELL_INACTIVE = env('MODEEMI_SHELL_INACTIVE', cast=str, default='/home/adm/bin/maksa')
+
 DEBUG = env('DJANGO_DEBUG', cast=bool, default=False)
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'

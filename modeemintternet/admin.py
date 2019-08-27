@@ -35,7 +35,7 @@ class MembershipAdmin(admin.ModelAdmin):
         return membership.user.username
     username.short_description = 'Käyttäjätunnus'  # type: ignore
 
-    list_display = ['username', 'city', 'get_keys', 'get_fee']
+    list_display = ['username', 'municipality', 'get_keys', 'get_fee']
 
 
 class MembershipFeeAdmin(admin.ModelAdmin):

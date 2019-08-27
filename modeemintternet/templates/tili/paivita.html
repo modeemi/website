@@ -4,7 +4,7 @@
     <h1>Käyttäjätietojen päivitys</h1>
 
     <p>
-        Itsepalveluna on mahdollista päivittää nimi, sähköpostiosoite ja kotikunta.
+        Itsepalveluna on mahdollista päivittää nimi, sähköpostiosoite ja kotipaikka.
         Mikäli haluat päivittää muita tietojasi, tai huomaat virheen, voit
         pyytää tietojen lähettämällä sähköpostia osoitteeseen
         <a href="mailto:hallitus@modeemi.fi">hallitus@modeemi.fi</a>.
@@ -30,8 +30,8 @@
             <input name="email" type="email" class="form-control" required id="email" value="{{ user.email }}" />
         </div>
         <div class="form-group">
-            <label for="city">Kotikunta</label>
-            <input name="city" type="text" class="form-control" id="city" value="{{ user.membership.city }}" />
+            <label for="municipality">Kotipaikka</label>
+            <input name="municipality" type="text" class="form-control" id="municipality" value="{{ user.membership.municipality }}" />
         </div>
 
         <input type="submit" class="btn btn-primary" value="Päivitä">

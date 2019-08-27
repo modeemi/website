@@ -12,7 +12,7 @@ class MembershipForm(Form):
     first_name = CharField(max_length=128, required=True)
     last_name = CharField(max_length=128, required=True)
     email = EmailField(max_length=128, required=True)
-    city = CharField(max_length=128, required=False)
+    municipality = CharField(max_length=128, required=False)
 
 
 class MembershipFeeForm(Form):

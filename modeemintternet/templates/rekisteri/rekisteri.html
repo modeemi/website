@@ -16,7 +16,7 @@
             <th>Sähköpostiosoite</th>
             <th>Etunimi</th>
             <th>Sukunimi</th>
-            <th>Kotikunta</th>
+            <th>Kotipaikka</th>
             <th>Jäsenmaksu (viimeisin)</th>
             <th>Avaimet</th>
         </tr>
@@ -32,7 +32,7 @@
                 <td>{{ membership.user.email }}</td>
                 <td>{{ membership.user.first_name }}</td>
                 <td>{{ membership.user.last_name }}</td>
-                <td>{{ membership.city }}</td>
+                <td>{{ membership.municipality }}</td>
                 <td>{{ membership.get_fee }}</td>
                 <td>{{ membership.get_keys }}</td>
             </tr>

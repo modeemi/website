@@ -102,7 +102,7 @@ class Membership(models.Model):
     fee = models.ManyToManyField(MembershipFee, blank=True, verbose_name='Jäsenmaksut')
     lifetime = models.BooleanField(default=False, verbose_name='Ainaisjäsenyys')
 
-    city = models.CharField(max_length=128, blank=True, default='', verbose_name='Kotikunta')
+    municipality = models.CharField(max_length=128, blank=True, default='', verbose_name='Kotipaikka')
     key_engineering = models.BooleanField(default=False, verbose_name='Konehuoneen kova-avain')
     key_physical = models.BooleanField(default=False, verbose_name='Kerhohuoneen kova-avain')
     key_virtual = models.BooleanField(default=False, verbose_name='Kerhohuoneen virtuaaliavain')

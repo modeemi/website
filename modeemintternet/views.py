@@ -40,7 +40,7 @@ def kayttajatiedot_paivita(request):
             user.first_name = form.cleaned_data['first_name']
             user.last_name = form.cleaned_data['last_name']
             user.email = form.cleaned_data['email']
-            membership.city = form.cleaned_data['city']
+            membership.municipality = form.cleaned_data['municipality']
 
             user.save()
             membership.save()
@@ -90,7 +90,7 @@ def kayttajarekisteri_paivita(request, username: str):
             user.first_name = form.cleaned_data['first_name']
             user.last_name = form.cleaned_data['last_name']
             user.email = form.cleaned_data['email']
-            membership.city = form.cleaned_data['city']
+            membership.municipality = form.cleaned_data['municipality']
 
             user.save()
             membership.save()

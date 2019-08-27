@@ -236,7 +236,7 @@ class MembershipTest(TestCase):
 
         self.membership = Membership.objects.create(
             user=self.user,
-            city='Tampere',
+            municipality='Tampere',
             key_virtual=True,
         )
 
@@ -268,7 +268,7 @@ class MembershipTest(TestCase):
             'first_name': 'Testi',
             'last_name': 'Hehtokuutio',
             'email': 'testi.hehtokuutio@example.com',
-            'city': 'Mordor',
+            'municipality': 'Mordor',
         }
 
         response = self.client.post(reverse('kayttajatiedot_paivita'), data)
@@ -278,7 +278,7 @@ class MembershipTest(TestCase):
         self.assertEqual(self.user.first_name, data['first_name'])
         self.assertEqual(self.user.last_name, data['last_name'])
         self.assertEqual(self.user.email, data['email'])
-        self.assertEqual(self.user.membership.city, data['city'])
+        self.assertEqual(self.user.membership.municipality, data['municipality'])
 
     def test_view_membership_registry_not_logged_in(self):
         response = self.client.get(reverse('kayttajarekisteri'))
@@ -320,7 +320,7 @@ class MembershipTest(TestCase):
             'first_name': 'Testi',
             'last_name': 'Hehtokuutio',
             'email': 'testi.hehtokuutio@example.com',
-            'city': 'Mordor',
+            'municipality': 'Mordor',
         }
 
         response = self.client.post(reverse('kayttajarekisteri_paivita', args=(user.username, )), data)
@@ -329,7 +329,7 @@ class MembershipTest(TestCase):
         self.assertEqual(user.first_name, data['first_name'])
         self.assertEqual(user.last_name, data['last_name'])
         self.assertEqual(user.email, data['email'])
-        self.assertEqual(user.membership.city, data['city'])
+        self.assertEqual(user.membership.municipality, data['municipality'])
 
         self.assertEqual(302, response.status_code)
 

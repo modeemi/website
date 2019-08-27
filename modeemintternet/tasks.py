@@ -13,6 +13,7 @@ from modeemintternet.models import Membership, Passwd
 logger = getLogger(__name__)
 
 
+@transaction.atomic
 def remind(memberships=None) -> List[str]:
     """
     Send reminder emails about unpaid membership fees.
@@ -44,6 +45,7 @@ def remind(memberships=None) -> List[str]:
     return reminded
 
 
+@transaction.atomic
 def deactivate(memberships=None) -> List[str]:
     """
     Deactivate accounts and send informative emails.
@@ -65,76 +67,69 @@ def deactivate(memberships=None) -> List[str]:
         return deactivated
 
     deactivated = list()
-    with transaction.atomic(using='default'):
-        with transaction.atomic(using='modeemiuserdb'):
-            for membership in memberships:
-                active = False
+    for membership in memberships:
+        active = False
 
-                user = membership.user
-                if user.is_active:
-                    active = True
-                    user.is_active = False
-                    user.save()
+        user = membership.user
+        if user.is_active:
+            active = True
+            user.is_active = False
+            user.save()
 
-                # TODO: move all models to modeemiuserdb and make them managed so no flags are required
-                if not settings.MODE_TESTING:
-                    try:
-                        passwd = Passwd.objects.get(username__iexact=user.username)
-                        if passwd.shell != settings.MODEEMI_SHELL_INACTIVE:
-                            active = True
-                            passwd.shell = settings.MODEEMI_SHELL_INACTIVE
-                            passwd.save()
-                    except Passwd.DoesNotExist:
-                        pass
+        try:
+            passwd = Passwd.objects.get(username__iexact=user.username)
+            if passwd.shell != settings.MODEEMI_SHELL_INACTIVE:
+                active = True
+                passwd.shell = settings.MODEEMI_SHELL_INACTIVE
+                passwd.save()
+        except Passwd.DoesNotExist:
+            pass
 
-                if not active:
-                    continue
+        if not active:
+            continue
 
-                deactivated.append(user.username)
-                try:
-                    membership_deactivate(membership)
-                    logger.warning('Sent membership deactivation email to %s', membership.user)
-                except Exception as e:
-                    logger.exception('Sending membership deactivation email to %s failed', membership.user, exc_info=e)
+        deactivated.append(user.username)
+        try:
+            membership_deactivate(membership)
+            logger.warning('Sent membership deactivation email to %s', membership.user)
+        except Exception as e:
+            logger.exception('Sending membership deactivation email to %s failed', membership.user, exc_info=e)
 
     return deactivated
 
 
+@transaction.atomic
 def activate(memberships=None) -> List[str]:
     if memberships is None:
         memberships = Membership.objects.filter(user__is_active=False, fee__year__gte=datetime.now().year)
 
     activated = list()
-    with transaction.atomic(using='default'):
-        with transaction.atomic(using='modeemiuserdb'):
-            for membership in memberships:
-                inactive = False
+    for membership in memberships:
+        inactive = False
 
-                user = membership.user
-                if not user.is_active:
-                    inactive = True
-                    user.is_active = True
-                    user.save()
+        user = membership.user
+        if not user.is_active:
+            inactive = True
+            user.is_active = True
+            user.save()
 
-                # TODO: move all models to modeemiuserdb and make them managed so no flags are required
-                if not settings.MODE_TESTING:
-                    try:
-                        passwd = Passwd.objects.get(username__iexact=user.username)
-                        if passwd.shell == settings.MODEEMI_SHELL_INACTIVE:
-                            inactive = True
-                            passwd.shell = '/bin/bash'
-                        passwd.save()
-                    except Passwd.DoesNotExist:
-                        pass
+        try:
+            passwd = Passwd.objects.get(username__iexact=user.username)
+            if passwd.shell == settings.MODEEMI_SHELL_INACTIVE:
+                inactive = True
+                passwd.shell = '/bin/bash'
+            passwd.save()
+        except Passwd.DoesNotExist:
+            pass
 
-                if not inactive:
-                    continue
+        if not inactive:
+            continue
 
-                activated.append(user.username)
-                try:
-                    membership_activate(membership)
-                    logger.warning('Sent membership activation email to %s', membership.user)
-                except Exception as e:
-                    logger.exception('Sending membership activation email to %s failed', membership.user, exc_info=e)
+        activated.append(user.username)
+        try:
+            membership_activate(membership)
+            logger.warning('Sent membership activation email to %s', membership.user)
+        except Exception as e:
+            logger.exception('Sending membership activation email to %s failed', membership.user, exc_info=e)
 
     return activated

@@ -6,7 +6,6 @@ ENV DJANGO_SETTINGS_MODULE="config.settings.docker"
 
 ARG DJANGO_SECRET_KEY="notneededforbuilds"
 ARG DATABASE_URL="postgres://not@neededforbuilds"
-ARG MODEEMIUSERDB_URL="postgres://not@neededforbuilds"
 ARG RECAPTCHA_PUBLIC_KEY="notneededforbuilds"
 ARG RECAPTCHA_PRIVATE_KEY="notneededforbuilds"
 

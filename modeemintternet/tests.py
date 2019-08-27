@@ -227,8 +227,6 @@ class MembershipTest(TestCase):
     Test membership account_registry views.
     """
 
-    databases = ['default', 'modeemiuserdb']
-
     def setUp(self):
         self.user = User.objects.create(
             username='ahtosi',

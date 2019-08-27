@@ -206,8 +206,7 @@ class Application(models.Model):
 
         self.save()
 
-    @transaction.atomic('default')
-    @transaction.atomic('modeemiuserdb')
+    @transaction.atomic
     def accept(self):
         if self.application_processed:
             raise ValidationError('Application {} has already been accepted'.format(self.username))
@@ -273,8 +272,7 @@ class Application(models.Model):
         self.application_processed = True
         self.save()
 
-    @transaction.atomic('default')
-    @transaction.atomic('modeemiuserdb')
+    @transaction.atomic
     def reject(self):
         if self.application_processed:
             raise ValidationError('Application {} has already been rejected'.format(self.username))
@@ -298,22 +296,21 @@ class Feedback(models.Model):
         return '{0} ({1})'.format(self.message[:25], self.sent)  # pylint: disable=unsubscriptable-object
 
 
-###
-# Existing modeemiuserdb models that are unmanaged and handled by the custom database router
-###
+# Existing modeemiuserdb models that have been created manually and previously handled by the custom database router.
+# Feel free to rename the models, but don't rename db_table values or field names.
+# Do not change model properties unless you know what you are doing, they are used by other programs.
 
 
 class Format(models.Model):
-    format = models.CharField(primary_key=True, max_length=32)
-    description = models.TextField(blank=True)
+    format = models.CharField(primary_key=True, max_length=32, db_index=False)
+    description = models.TextField(default='')
 
     class Meta:
         db_table = 'format'
-        managed = False
 
 
 class Passwd(models.Model):
-    username = models.CharField(primary_key=True, max_length=64)
+    username = models.CharField(primary_key=True, max_length=64, db_index=False)
     uid = models.IntegerField()
     gid = models.IntegerField()
     gecos = models.CharField(max_length=255)
@@ -326,49 +323,49 @@ class Passwd(models.Model):
 
     class Meta:
         db_table = 'passwd'
-        managed = False
 
 
 class Shadow(models.Model):
-    username = models.CharField(primary_key=True, max_length=64)
+    username = models.OneToOneField(Passwd, models.DO_NOTHING, db_index=False, db_column='username', db_constraint=False, primary_key=True)
     lastchanged = models.IntegerField()
-    min = models.IntegerField()
-    max = models.IntegerField()
-    warn = models.IntegerField()
-    inact = models.IntegerField()
-    expire = models.IntegerField()
-    flags = models.IntegerField()
+    min = models.IntegerField(default=0)
+    max = models.IntegerField(blank=True, null=True)
+    warn = models.IntegerField(blank=True, null=True)
+    inact = models.IntegerField(blank=True, null=True)
+    expire = models.IntegerField(blank=True, null=True)
+    flags = models.IntegerField(blank=True, null=True)
 
     class Meta:
         db_table = 'shadow'
-        managed = False
 
 
 class ShadowFormat(models.Model):
-    username = models.CharField(max_length=64)
-    format = models.CharField(max_length=32)
+    username = models.ForeignKey(Passwd, models.DO_NOTHING, db_index=False, db_constraint=False, db_column='username')
+    format = models.ForeignKey(Format, models.DO_NOTHING, db_index=False, db_constraint=False, db_column='format')
     hash = models.CharField(max_length=1024)
-    last_updated = models.DateTimeField()
+    last_updated = models.DateTimeField(default=now)
 
     class Meta:
         db_table = 'shadowformat'
-        managed = False
-        unique_together = ('username', 'format')
+        constraints = [
+            models.UniqueConstraint(fields=['username', 'format'], name='shadowformat_username_key'),
+        ]
 
 
 class UserGroup(models.Model):
-    groupname = models.CharField(primary_key=True, max_length=64)
+    groupname = models.CharField(primary_key=True, db_index=False, max_length=64)
     gid = models.IntegerField()
 
     class Meta:
         db_table = 'usergroup'
-        managed = False
+        constraints = [
+            models.UniqueConstraint(fields=['gid'], name='usergroup_gid_key'),
+        ]
 
 
 class UserGroupMember(models.Model):
-    groupname = models.CharField(max_length=64)
-    username = models.CharField(max_length=64)
+    groupname = models.ForeignKey(UserGroup, models.DO_NOTHING, db_index=False, db_column='groupname', db_constraint=False, blank=True, null=True)
+    username = models.ForeignKey(Passwd, models.DO_NOTHING, db_index=False, db_column='username', db_constraint=False, blank=True, null=True)
 
     class Meta:
         db_table = 'usergroupmember'
-        managed = False

@@ -21,7 +21,6 @@ if len(SECRET_KEY) < 18:
 
 DATABASES = {
     'default': env.db(),
-    'modeemiuserdb': env.db('MODEEMIUSERDB_URL'),
 }
 
 STATICFILES_STORAGE = env(

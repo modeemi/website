@@ -10,41 +10,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='Format',
-            fields=[
-                ('format', models.CharField(max_length=32, primary_key=True, serialize=False)),
-                ('description', models.TextField(blank=True)),
-            ],
-            options={
-                'db_table': 'format',
-                'managed': False,
-            },
-        ),
-        migrations.CreateModel(
-            name='ShadowFormat',
-            fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('username', models.CharField(max_length=64, unique=True)),
-                ('format', models.CharField(max_length=32)),
-                ('hash', models.CharField(max_length=1024)),
-                ('last_updated', models.DateTimeField()),
-            ],
-            options={
-                'db_table': 'shadowformat',
-                'managed': False,
-            },
-        ),
-        migrations.CreateModel(
-            name='UserGroupMember',
-            fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('groupname', models.CharField(max_length=64)),
-                ('username', models.CharField(max_length=64)),
-            ],
-            options={
-                'db_table': 'usergroupmember',
-                'managed': False,
-            },
-        ),
     ]

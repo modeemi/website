@@ -30,7 +30,6 @@ Vagrant.configure(2) do |config|
 
     sudo -u postgres psql -c "CREATE USER modeemintternet WITH PASSWORD 'modeemintternet';"
     sudo -u postgres psql -c "ALTER USER modeemintternet CREATEDB;"
-    sudo -u postgres psql -c "CREATE DATABASE modeemintternet ENCODING 'UTF8' OWNER modeemintternet;"
     sudo -u postgres psql -c "CREATE DATABASE modeemiuserdb ENCODING 'UTF8' OWNER modeemintternet;"
   SHELL
 end

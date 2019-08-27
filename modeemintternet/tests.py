@@ -7,7 +7,7 @@ import datetime
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
-from django.core import mail
+from django.core import mail, management
 from django.test import Client, TestCase
 from django.urls import reverse
 from django.utils import timezone
@@ -365,7 +365,14 @@ class MembershipTest(TestCase):
         self.assertTrue(user_two.membership.fee.get(year='2019'))
 
     def test_membership_remind(self):
-        remind()
+        reminded = remind()
+        self.assertEqual(reminded, [self.user.username])
+        self.assertEqual(1, len(mail.outbox))
+        self.assertIn('Tunnus sulkeutumassa', mail.outbox[0].subject)
+        self.assertIn(self.membership.user.username, mail.outbox[0].body)
+
+    def test_membership_remind_command(self):
+        management.call_command('remind')
         self.assertEqual(1, len(mail.outbox))
         self.assertIn('Tunnus sulkeutumassa', mail.outbox[0].subject)
         self.assertIn(self.membership.user.username, mail.outbox[0].body)
@@ -377,7 +384,14 @@ class MembershipTest(TestCase):
         self.assertEqual(0, len(mail.outbox))
 
     def test_membership_deactivate(self):
-        deactivate()
+        deactivated = deactivate()
+        self.assertEqual(deactivated, [self.user.username])
+        self.assertEqual(1, len(mail.outbox))
+        self.assertIn('Tunnus suljettu', mail.outbox[0].subject)
+        self.assertIn(self.membership.user.username, mail.outbox[0].body)
+
+    def test_membership_deactivate_command(self):
+        management.call_command('deactivate')
         self.assertEqual(1, len(mail.outbox))
         self.assertIn('Tunnus suljettu', mail.outbox[0].subject)
         self.assertIn(self.membership.user.username, mail.outbox[0].body)

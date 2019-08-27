@@ -326,7 +326,12 @@ class Passwd(models.Model):
 
 
 class Shadow(models.Model):
-    username = models.OneToOneField(Passwd, models.DO_NOTHING, db_index=False, db_column='username', db_constraint=False, primary_key=True)
+    username = models.OneToOneField(
+        Passwd,
+        db_index=False, db_constraint=False, db_column='username',
+        on_delete=models.PROTECT,
+        primary_key=True,
+    )
     lastchanged = models.IntegerField()
     min = models.IntegerField(default=0)
     max = models.IntegerField(blank=True, null=True)
@@ -340,8 +345,16 @@ class Shadow(models.Model):
 
 
 class ShadowFormat(models.Model):
-    username = models.ForeignKey(Passwd, models.DO_NOTHING, db_index=False, db_constraint=False, db_column='username')
-    format = models.ForeignKey(Format, models.DO_NOTHING, db_index=False, db_constraint=False, db_column='format')
+    username = models.ForeignKey(
+        Passwd,
+        db_index=False, db_constraint=False, db_column='username',
+        on_delete=models.PROTECT,
+    )
+    format = models.ForeignKey(
+        Format,
+        db_index=False, db_constraint=False, db_column='format',
+        on_delete=models.PROTECT,
+    )
     hash = models.CharField(max_length=1024)
     last_updated = models.DateTimeField(default=now)
 
@@ -364,8 +377,16 @@ class UserGroup(models.Model):
 
 
 class UserGroupMember(models.Model):
-    groupname = models.ForeignKey(UserGroup, models.DO_NOTHING, db_index=False, db_column='groupname', db_constraint=False, blank=True, null=True)
-    username = models.ForeignKey(Passwd, models.DO_NOTHING, db_index=False, db_column='username', db_constraint=False, blank=True, null=True)
+    groupname = models.ForeignKey(
+        UserGroup,
+        db_constraint=False, db_index=False, db_column='groupname',
+        on_delete=models.PROTECT,
+    )
+    username = models.ForeignKey(
+        Passwd,
+        db_constraint=False, db_index=False, db_column='username',
+        on_delete=models.PROTECT,
+    )
 
     class Meta:
         db_table = 'usergroupmember'

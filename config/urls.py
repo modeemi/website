@@ -40,7 +40,7 @@ urlpatterns = [
     path('laitteisto/halutaan/', views.wishlist, name='wishlist'),
 
     path('jaseneksi/', views.application, name='application'),
-    path('palaute/', views.palaute, name='palaute'),
+    path('palaute/', views.feedback, name='feedback'),
 
     path('uutiset/', views.uutiset, name='uutiset'),
     path('uutiset/<int:pk>/', views.uutiset, name='uutiset'),

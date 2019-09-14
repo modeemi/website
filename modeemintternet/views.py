@@ -76,13 +76,13 @@ def uutiset(request, pk=None):
     return render(request, 'uutiset.html', {'news': news})
 
 
-def palaute(request):
+def feedback(request):
     if not request.method == 'POST':
-        return render(request, 'palaute.html', {'form': FeedbackForm()})
+        return render(request, 'feedback.html', {'form': FeedbackForm()})
 
     feedback_form = FeedbackForm(request.POST)
     if not feedback_form.is_valid():
-        return render(request, 'palaute.html', {
+        return render(request, 'feedback.html', {
             'form': feedback_form,
         }, status=400)
 
@@ -93,7 +93,7 @@ def palaute(request):
     except Exception as e:
         logger.exception('Exception in sending feedback email', exc_info=e)
 
-    return render(request, 'palaute.html', {
+    return render(request, 'feedback.html', {
         'form': feedback_form,
         'feedback_saved': True,
     })

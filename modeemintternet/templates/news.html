@@ -8,9 +8,9 @@
 {% block content %}
 <h1>Uutiset</h1>
 <p class="news-header-link">
-    <a href="{% url 'uutiset.rss' %}"><span class="fa fa-rss-square"></span>&nbsp;&nbsp;Lataa .rss feed</a>
+    <a href="{% url 'news.rss' %}"><span class="fa fa-rss-square"></span>&nbsp;&nbsp;Lataa .rss feed</a>
     <br />
-    <a href="{% url 'uutiset.ics' %}"><span class="fa fa-calendar"></span>&nbsp;&nbsp;Lataa .ics feed (GCal, iCal etc.)</a>
+    <a href="{% url 'news.ics' %}"><span class="fa fa-calendar"></span>&nbsp;&nbsp;Lataa .ics feed (GCal, iCal etc.)</a>
 </p>
 
 {% if not news %}
@@ -20,7 +20,7 @@
 {% for n in news %}
 <div>
     <hr />
-    <h2><a href="{% url 'uutiset' pk=n.id %}">{{ n.title }}</a></h2>
+    <h2><a href="{% url 'news' pk=n.id %}">{{ n.title }}</a></h2>
     <p><i><small>{{ n.poster }} @ <time datetime="{{ n.posted|date:'Y-m-d' }}">{{ n.posted|date:'Y-m-d' }}</time></small></i></p>
     {% if n.starts and n.ends and n.location %}
     <p>

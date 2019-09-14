@@ -60,7 +60,7 @@ class News(models.Model):
         return '{0} (luotu {1} UTC)'.format(self.title, self.posted)
 
     def get_absolute_url(self):
-        return reverse('uutiset', args=[self.id])
+        return reverse('news', args=[self.id])
 
 
 class Soda(models.Model):

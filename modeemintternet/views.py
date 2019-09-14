@@ -67,13 +67,13 @@ def services(request):
     return render(request, 'services.html', {'sodas': sodas})
 
 
-def uutiset(request, pk=None):
+def news(request, pk=None):
     if pk:
         news = News.objects.filter(pk=pk)
     else:
         news = News.objects.order_by('-id')
 
-    return render(request, 'uutiset.html', {'news': news})
+    return render(request, 'news.html', {'news': news})
 
 
 def feedback(request):

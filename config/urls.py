@@ -18,8 +18,8 @@ urlpatterns = [
     path('sitemap/?', views.sitemap, name='sitemap'),
     path('sitemap.xml/?', views.sitemap, name='sitemap'),
 
-    path('feed/uutiset.rss', NewsRSSFeed(), name='uutiset.rss'),
-    path('feed/uutiset.ics', NewsICalFeed(), name='uutiset.ics'),
+    path('feed/uutiset.rss', NewsRSSFeed(), name='news.rss'),
+    path('feed/uutiset.ics', NewsICalFeed(), name='news.ics'),
 
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
@@ -42,8 +42,8 @@ urlpatterns = [
     path('jaseneksi/', views.application, name='application'),
     path('palaute/', views.feedback, name='feedback'),
 
-    path('uutiset/', views.uutiset, name='uutiset'),
-    path('uutiset/<int:pk>/', views.uutiset, name='uutiset'),
+    path('uutiset/', views.news, name='news'),
+    path('uutiset/<int:pk>/', views.news, name='news'),
 
     path('tili/sisaan/', auth_views.LoginView.as_view(template_name='tili/sisaan.html'), name='sisaan'),
     path('tili/ulos/', auth_views.LogoutView.as_view(), name='ulos'),

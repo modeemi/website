@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse disabled" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="{% active request '^/$' %}"><a class="navbar-item" href="{% url 'index' %}">Etusivu</a></li>
-                <li class="{% active request '^/uutiset/' %}"><a class="navbar-item" href="{% url 'uutiset' %}">Uutiset</a></li>
+                <li class="{% active request '^/uutiset/' %}"><a class="navbar-item" href="{% url 'news' %}">Uutiset</a></li>
                 <li><a class="navbar-item" href="http://blog.modeemi.fi">Blogi&nbsp;&nbsp;<i class="fa fa-external-link-square"></i></a></li>
                 <li class="{% active request '^/ry/' %}"><a class="navbar-item" href="{% url 'society' %}">Yhdistys</a></li>
                 <li class="{% active request '^/jaseneksi/' %}"><a class="navbar-item" href="{% url 'application' %}">Jäseneksi</a></li>

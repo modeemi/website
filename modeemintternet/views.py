@@ -62,9 +62,9 @@ def laitteisto(request):
     return render(request, 'laitteisto.html')
 
 
-def palvelut(request):
+def services(request):
     sodas = Soda.objects.filter(active=True).order_by('price', 'name')
-    return render(request, 'palvelut.html', {'sodas': sodas})
+    return render(request, 'services.html', {'sodas': sodas})
 
 
 def uutiset(request, pk=None):

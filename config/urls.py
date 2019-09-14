@@ -30,9 +30,9 @@ urlpatterns = [
     path('ry/saannot/', views.rules, name='rules'),
     path('ry/rekisteriseloste/', views.policy, name='policy'),
     path('ry/hallitus/', views.board, name='board'),
-    path('ry/yhteystiedot/', views.yhteystiedot, name='yhteystiedot'),
+    path('ry/yhteystiedot/', views.contact, name='contact'),
 
-    path('palvelut/', views.palvelut, name='palvelut'),
+    path('palvelut/', views.services, name='services'),
     path('palvelut/backup/', views.backup, name='backup'),
     path('palvelut/password/', views.password, name='password'),
 

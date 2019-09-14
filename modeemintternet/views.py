@@ -38,8 +38,8 @@ def policy(request):
     return render(request, 'policy.html')
 
 
-def hallitus(request):
-    return render(request, 'hallitus.html')
+def board(request):
+    return render(request, 'board.html')
 
 
 def yhteystiedot(request):

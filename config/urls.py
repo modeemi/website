@@ -29,7 +29,7 @@ urlpatterns = [
     path('ry/', views.society, name='society'),
     path('ry/saannot/', views.rules, name='rules'),
     path('ry/rekisteriseloste/', views.policy, name='policy'),
-    path('ry/hallitus/', views.hallitus, name='hallitus'),
+    path('ry/hallitus/', views.board, name='board'),
     path('ry/yhteystiedot/', views.yhteystiedot, name='yhteystiedot'),
 
     path('palvelut/', views.palvelut, name='palvelut'),

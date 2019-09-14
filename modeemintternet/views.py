@@ -26,8 +26,8 @@ def index(request):
     return render(request, 'index.html', {'news': news})
 
 
-def yhdistys(request):
-    return render(request, 'yhdistys.html')
+def society(request):
+    return render(request, 'society.html')
 
 
 def saannot(request):

@@ -99,15 +99,15 @@ def palaute(request):
     })
 
 
-def jaseneksi(request):
+def application(request):
     if not request.POST:
-        return render(request, 'jaseneksi.html', {'form': ApplicationForm()})
+        return render(request, 'application.html', {'form': ApplicationForm()})
 
     # Check form validity aside from passwords.
     application_form = ApplicationForm(request.POST)
 
     if not application_form.is_valid():
-        return render(request, 'jaseneksi.html', {
+        return render(request, 'application.html', {
             'form': application_form,
         }, status=400)
 
@@ -124,7 +124,7 @@ def jaseneksi(request):
         application_form.add_error('password', '')
         application_form.add_error('password_check', error_msg)
 
-        return render(request, 'jaseneksi.html', {
+        return render(request, 'application.html', {
             'form': application_form,
         }, status=400)
 
@@ -140,7 +140,7 @@ def jaseneksi(request):
         logger.error('Failed to send mail about the new application: %e', e)
 
     # Return info page for the application.
-    return render(request, 'jaseneksi.html', {
+    return render(request, 'application.html', {
         'application_saved': True,
         'mailing_success': mailing_success,
     })

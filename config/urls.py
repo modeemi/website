@@ -39,7 +39,7 @@ urlpatterns = [
     path('laitteisto/', views.hardware, name='hardware'),
     path('laitteisto/halutaan/', views.wishlist, name='wishlist'),
 
-    path('jaseneksi/', views.jaseneksi, name='jaseneksi'),
+    path('jaseneksi/', views.application, name='application'),
     path('palaute/', views.palaute, name='palaute'),
 
     path('uutiset/', views.uutiset, name='uutiset'),

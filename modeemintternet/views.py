@@ -30,8 +30,8 @@ def society(request):
     return render(request, 'society.html')
 
 
-def saannot(request):
-    return render(request, 'saannot.html')
+def rules(request):
+    return render(request, 'rules.html')
 
 
 def rekisteriseloste(request):

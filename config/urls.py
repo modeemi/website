@@ -27,7 +27,7 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     path('ry/', views.society, name='society'),
-    path('ry/saannot/', views.saannot, name='saannot'),
+    path('ry/saannot/', views.rules, name='rules'),
     path('ry/rekisteriseloste/', views.rekisteriseloste, name='rekisteriseloste'),
     path('ry/hallitus/', views.hallitus, name='hallitus'),
     path('ry/yhteystiedot/', views.yhteystiedot, name='yhteystiedot'),

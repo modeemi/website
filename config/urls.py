@@ -24,7 +24,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
 
-    path('', views.etusivu, name='etusivu'),
+    path('', views.index, name='index'),
 
     path('ry/', views.yhdistys, name='yhdistys'),
     path('ry/saannot/', views.saannot, name='saannot'),

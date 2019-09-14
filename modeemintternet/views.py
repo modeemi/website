@@ -21,9 +21,9 @@ def sitemap(request):
     return render(request, 'sitemap.xml', content_type='application/xml')
 
 
-def etusivu(request):
+def index(request):
     news = News.objects.order_by('-posted')[:10]
-    return render(request, 'etusivu.html', {'news': news})
+    return render(request, 'index.html', {'news': news})
 
 
 def yhdistys(request):

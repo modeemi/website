@@ -37,7 +37,7 @@ urlpatterns = [
     path('palvelut/password/', views.password, name='password'),
 
     path('laitteisto/', views.hardware, name='hardware'),
-    path('laitteisto/halutaan/', views.halutaan, name='halutaan'),
+    path('laitteisto/halutaan/', views.wishlist, name='wishlist'),
 
     path('jaseneksi/', views.jaseneksi, name='jaseneksi'),
     path('palaute/', views.palaute, name='palaute'),

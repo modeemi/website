@@ -54,8 +54,8 @@ def password(request):
     return render(request, 'password.html')
 
 
-def halutaan(request):
-    return render(request, 'halutaan.html')
+def wishlist(request):
+    return render(request, 'wishlist.html')
 
 
 def hardware(request):

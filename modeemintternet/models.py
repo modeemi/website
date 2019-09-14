@@ -1,5 +1,5 @@
-import re
 from logging import getLogger
+from re import match
 from time import time
 
 from passlib.hash import (
@@ -22,7 +22,7 @@ log = getLogger(__name__)
 
 def validate_username(username):
     User = get_user_model()
-    if not re.match(r'^[a-z]+$', username):
+    if not match(r'^[a-z]+$', username):
         raise ValidationError('Käyttäjätunnuksen pitää koostua pienistä kirjaimista.')
     try:
         if (

@@ -240,7 +240,7 @@ def kayttajarekisteri_jasenmaksut(request):
             membership_fee.membership_set.add(*memberships.values_list('pk', flat=True))
 
             # Activate users that have paid their membership fees
-            if year >= datetime.datetime.now().year:
+            if year >= datetime.now().year:
                 activate(memberships)
 
             return HttpResponseRedirect(reverse('kayttajarekisteri'))

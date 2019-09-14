@@ -2,7 +2,7 @@
 Unit tests for modeemintternet app.
 """
 
-import datetime
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -46,8 +46,8 @@ class ViewGetTest(TestCase):
             title='Testiuutinen'
             , text='Uutisetkin pitää testata'
             , location='Testipaikkakunta'
-            , starts=timezone.now() + datetime.timedelta(hours=24)
-            , ends=timezone.now() + datetime.timedelta(hours=42)
+            , starts=timezone.now() + timedelta(hours=24)
+            , ends=timezone.now() + timedelta(hours=42)
             , poster=poster,
         )
 
@@ -358,7 +358,7 @@ class MembershipTest(TestCase):
         self.assertTrue(user_two.membership.fee.get(year='2018'))
         self.assertFalse(user_two.is_active)
 
-        year = datetime.datetime.now().year
+        year = datetime.now().year
 
         data = {
             'year': str(year),
@@ -390,7 +390,7 @@ class MembershipTest(TestCase):
         self.assertIn(self.membership.user.username, mail.outbox[0].body)
 
     def test_membership_remind_paid(self):
-        fee = MembershipFee.objects.create(year=datetime.datetime.now().year)
+        fee = MembershipFee.objects.create(year=datetime.now().year)
         self.membership.fee.add(fee)
         remind()
         self.assertEqual(0, len(mail.outbox))
@@ -409,7 +409,7 @@ class MembershipTest(TestCase):
         self.assertIn(self.membership.user.username, mail.outbox[0].body)
 
     def test_membership_deactivate_paid(self):
-        fee = MembershipFee.objects.create(year=datetime.datetime.now().year)
+        fee = MembershipFee.objects.create(year=datetime.now().year)
         self.membership.fee.add(fee)
         deactivate()
         self.assertEqual(0, len(mail.outbox))

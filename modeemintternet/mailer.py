@@ -2,7 +2,7 @@
 Custom mailer for the awesome modeemintternet super portal.
 """
 
-import textwrap
+from textwrap import fill
 
 from django.conf import settings
 from django.core.mail import send_mail
@@ -167,7 +167,7 @@ Ystävällisin terveisin,
 {3}n hallitusautomaatiobotti
 """.format(
         feedback.sender,
-        textwrap.fill(feedback.message),
+        fill(feedback.message),
         feedback.id,
         ORGANIZATION,
     )

@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+
 from modeemintternet.models import News
 from modeemintternet.serializers import NewsSerializer
 

@@ -2,13 +2,6 @@ from logging import getLogger
 from re import match
 from time import time
 
-from passlib.hash import (
-    des_crypt,
-    md5_crypt,
-    sha256_crypt,
-    sha512_crypt,
-)
-
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
@@ -16,6 +9,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models, transaction
 from django.urls import reverse
 from django.utils.timezone import now
+
+from passlib.hash import des_crypt, md5_crypt, sha256_crypt, sha512_crypt
 
 log = getLogger(__name__)
 

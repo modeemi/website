@@ -7,7 +7,6 @@ from django.db import transaction
 from django.db.models import Q
 
 from modeemintternet.mailer import membership_remind, membership_deactivate, membership_activate
-
 from modeemintternet.models import Membership, Passwd
 
 logger = getLogger(__name__)

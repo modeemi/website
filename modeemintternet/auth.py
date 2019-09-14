@@ -1,16 +1,11 @@
 from secrets import token_hex
 
-from passlib.hash import (
-    des_crypt,
-    md5_crypt,
-    sha256_crypt,
-    sha512_crypt,
-)
-
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
 
-from .models import ShadowFormat
+from passlib.hash import des_crypt, md5_crypt, sha256_crypt, sha512_crypt
+
+from modeemintternet.models import ShadowFormat
 
 
 def check_password(username, password) -> bool:

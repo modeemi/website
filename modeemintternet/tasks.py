@@ -99,6 +99,12 @@ def deactivate(memberships=None) -> List[str]:
 
 @transaction.atomic
 def activate(memberships=None) -> List[str]:
+    """
+    Activate accounts that have paid their membership fees.
+
+    This function is to be run from a suitable task runner.
+    """
+
     if memberships is None:
         memberships = Membership.objects.filter(user__is_active=False, fee__year__gte=datetime.now().year)
 

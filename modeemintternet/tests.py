@@ -14,7 +14,7 @@ from django.utils import timezone
 
 from modeemintternet.models import Application, Membership, MembershipFee, Feedback, News, Soda
 from modeemintternet.mailer import application_accepted, application_rejected
-from modeemintternet.tasks import remind, deactivate
+from modeemintternet.tasks import remind, deactivate, activate
 
 User = get_user_model()
 
@@ -413,3 +413,24 @@ class MembershipTest(TestCase):
         self.membership.fee.add(fee)
         deactivate()
         self.assertEqual(0, len(mail.outbox))
+
+    def test_membership_activate(self):
+        self.test_membership_deactivate()
+        fee = MembershipFee.objects.create(year=datetime.now().year)
+        self.membership.fee.add(fee)
+
+        activated = activate()
+        self.assertEqual(activated, [self.user.username])
+        self.assertEqual(2, len(mail.outbox))
+        self.assertIn('Tunnus avattu', mail.outbox[1].subject)
+        self.assertIn(self.membership.user.username, mail.outbox[1].body)
+
+    def test_membership_activate_command(self):
+        self.test_membership_deactivate()
+        fee = MembershipFee.objects.create(year=datetime.now().year)
+        self.membership.fee.add(fee)
+
+        management.call_command('activate')
+        self.assertEqual(2, len(mail.outbox))
+        self.assertIn('Tunnus avattu', mail.outbox[1].subject)
+        self.assertIn(self.membership.user.username, mail.outbox[1].body)

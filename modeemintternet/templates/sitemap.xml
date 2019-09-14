@@ -4,7 +4,6 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 <url>
   <loc>https://www.modeemi.fi/</loc>
@@ -13,11 +12,6 @@
 </url>
 <url>
   <loc>https://www.modeemi.fi/uutiset/</loc>
-  <changefreq>daily</changefreq>
-  <priority>0.90</priority>
-</url>
-<url>
-  <loc>https://www.modeemi.fi/tapahtumat/</loc>
   <changefreq>daily</changefreq>
   <priority>0.90</priority>
 </url>

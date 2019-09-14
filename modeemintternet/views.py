@@ -42,8 +42,8 @@ def board(request):
     return render(request, 'board.html')
 
 
-def yhteystiedot(request):
-    return render(request, 'yhteystiedot.html')
+def contact(request):
+    return render(request, 'contact.html')
 
 
 def backup(request):

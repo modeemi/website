@@ -34,8 +34,8 @@ def rules(request):
     return render(request, 'rules.html')
 
 
-def rekisteriseloste(request):
-    return render(request, 'rekisteriseloste.html')
+def policy(request):
+    return render(request, 'policy.html')
 
 
 def hallitus(request):

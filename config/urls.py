@@ -45,14 +45,16 @@ urlpatterns = [
     path('uutiset/', views.news, name='news'),
     path('uutiset/<int:pk>/', views.news, name='news'),
 
-    path('tili/sisaan/', auth_views.LoginView.as_view(template_name='tili/sisaan.html'), name='sisaan'),
-    path('tili/ulos/', auth_views.LogoutView.as_view(), name='ulos'),
-    path('tili/tiedot/', views.kayttajatiedot, name='kayttajatiedot'),
-    path('tili/paivita/', views.kayttajatiedot_paivita, name='kayttajatiedot_paivita'),
-    path('tili/rekisteri/', views.kayttajarekisteri, name='kayttajarekisteri'),
-    path('tili/rekisteri/listat/', views.kayttajarekisteri_listat, name='kayttajarekisteri_listat'),
-    path('tili/rekisteri/jasenmaksut/', views.kayttajarekisteri_jasenmaksut, name='kayttajarekisteri_jasenmaksut'),
-    path('tili/rekisteri/<str:username>/', views.kayttajarekisteri_paivita, name='kayttajarekisteri_paivita'),
+    path('tili/sisaan/', auth_views.LoginView.as_view(template_name='account/login.html'), name='login'),
+    path('tili/ulos/', auth_views.LogoutView.as_view(), name='logout'),
+
+    path('tili/tiedot/', views.account_read, name='account_read'),
+    path('tili/paivita/', views.account_update, name='account_update'),
+
+    path('tili/rekisteri/', views.register_read, name='register_read'),
+    path('tili/rekisteri/listat/', views.register_emails, name='register_emails'),
+    path('tili/rekisteri/jasenmaksut/', views.register_fees, name='register_fees'),
+    path('tili/rekisteri/<str:username>/', views.register_update, name='register_update'),
 ]
 
 if settings.DEBUG:

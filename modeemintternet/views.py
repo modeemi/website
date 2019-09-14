@@ -147,13 +147,13 @@ def application(request):
 
 
 @login_required
-def kayttajatiedot(request):
-    return render(request, 'tili/tiedot.html', {})
+def account_read(request):
+    return render(request, 'account/read.html', {})
 
 
 @login_required
 @transaction.atomic
-def kayttajatiedot_paivita(request):
+def account_update(request):
     if request.method == 'POST':
         form = MembershipForm(request.POST)
 
@@ -169,24 +169,24 @@ def kayttajatiedot_paivita(request):
             user.save()
             membership.save()
 
-            return HttpResponseRedirect(reverse('kayttajatiedot'))
+            return HttpResponseRedirect(reverse('account_read'))
 
     else:
         form = MembershipForm()
 
-    return render(request, 'tili/paivita.html', {'form': form})
+    return render(request, 'account/update.html', {'form': form})
 
 
 @login_required
 @permission_required('modeemintternet.view_membership', raise_exception=True)
-def kayttajarekisteri(request):
+def register_read(request):
     memberships = Membership.objects.all().select_related('user').prefetch_related('fee')
-    return render(request, 'rekisteri/rekisteri.html', {'memberships': memberships})
+    return render(request, 'register/read.html', {'memberships': memberships})
 
 
 @login_required
 @permission_required('modeemintternet.view_membership', raise_exception=True)
-def kayttajarekisteri_listat(request):
+def register_emails(request):
     memberships = Membership.objects.all().select_related('user').prefetch_related('fee')
     emails = ', '.join((
         f'{first_name} {last_name} <{email}>'
@@ -195,13 +195,13 @@ def kayttajarekisteri_listat(request):
         if email
     ))
 
-    return render(request, 'rekisteri/listat.html', {'memberships': memberships, 'emails': emails})
+    return render(request, 'register/emails.html', {'memberships': memberships, 'emails': emails})
 
 
 @login_required
 @permission_required('modeemintternet.change_membership', raise_exception=True)
 @transaction.atomic
-def kayttajarekisteri_paivita(request, username: str):
+def register_update(request, username: str):
     User = get_user_model()
 
     user = User.objects.get(username=username)
@@ -219,15 +219,15 @@ def kayttajarekisteri_paivita(request, username: str):
             user.save()
             membership.save()
 
-            return HttpResponseRedirect(reverse('kayttajarekisteri'))
+            return HttpResponseRedirect(reverse('register_read'))
 
-    return render(request, 'rekisteri/paivita.html', {'membership': membership})
+    return render(request, 'register/update.html', {'membership': membership})
 
 
 @login_required
 @permission_required('modeemintternet.change_membership', raise_exception=True)
 @transaction.atomic
-def kayttajarekisteri_jasenmaksut(request):
+def register_fees(request):
     if request.method == 'POST':
         form = MembershipFeeForm(request.POST)
 
@@ -246,6 +246,6 @@ def kayttajarekisteri_jasenmaksut(request):
             if year >= datetime.now().year:
                 activate(memberships)
 
-            return HttpResponseRedirect(reverse('kayttajarekisteri'))
+            return HttpResponseRedirect(reverse('register_read'))
 
-    return render(request, 'rekisteri/jasenmaksut.html')
+    return render(request, 'register/fees.html')

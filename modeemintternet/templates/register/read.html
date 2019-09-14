@@ -4,12 +4,12 @@
     <h1>Käyttäjärekisteri</h1>
 
     {% if perms.modeemintternet.change_membership %}
-        <p>Voit päivittää jäsenmaksutietoja <a href="{% url 'kayttajarekisteri_jasenmaksut' %}">täältä</a>.</p>
+        <p>Voit päivittää jäsenmaksutietoja <a href="{% url 'register_fees' %}">täältä</a>.</p>
     {% endif %}
 
-    <p>Sähköpostilistat löydät <a href="{% url 'kayttajarekisteri_listat' %}">täältä</a>.</p>
+    <p>Sähköpostilistat löydät <a href="{% url 'register_emails' %}">täältä</a>.</p>
 
-    <table id="registry" class="table table-bordered table-condensed table-responsive">
+    <table id="register_read" class="table table-bordered table-condensed table-responsive">
         <thead>
         <tr>
             <th>Käyttäjätunnus</th>
@@ -25,7 +25,7 @@
         {% for membership in memberships %}
             <tr>
                 {% if perms.modeemintternet.change_membership %}
-                    <td><a href="{% url 'kayttajarekisteri_paivita' membership.user.username %}">{{ membership.user.username }}</a></td>
+                    <td><a href="{% url 'register_update' membership.user.username %}">{{ membership.user.username }}</a></td>
                 {% else %}
                     <td>{{ membership.user.username }}</td>
                 {% endif %}
@@ -45,7 +45,7 @@
     {{ block.super }}
     <script>
         $(document).ready(function () {
-            $('#registry').DataTable({
+            $('#register_read').DataTable({
                 pageLength: 420,
                 lengthMenu: [[100, 200, 420, -1], [100, 200, 420, "All"]]
             });

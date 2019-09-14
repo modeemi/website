@@ -6,7 +6,7 @@
     <p>
         Rekisterin kautta voit päivittää käyttäjän perustiedot.
         Jäsenmaksutiedot voi päivittää vuosijäsenille
-        <a href="{% url 'kayttajarekisteri_jasenmaksut' %}">jäsenmaksusivulla</a>.
+        <a href="{% url 'register_fees' %}">jäsenmaksusivulla</a>.
         Ainaisjäsentiedot päivittää laitteistovastaava ylläpitonäkymien kautta.
     </p>
 
@@ -14,7 +14,7 @@
         <p>Korjaa lomakkeen tiedot.</p>
     {% endif %}
 
-    <form method="post" action="{% url 'kayttajarekisteri_paivita' membership.user.username %}">
+    <form method="post" action="{% url 'register_update' membership.user.username %}">
         {% csrf_token %}
 
         <div class="form-group">

@@ -58,8 +58,8 @@ def halutaan(request):
     return render(request, 'halutaan.html')
 
 
-def laitteisto(request):
-    return render(request, 'laitteisto.html')
+def hardware(request):
+    return render(request, 'hardware.html')
 
 
 def services(request):

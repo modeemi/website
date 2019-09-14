@@ -30,7 +30,7 @@
                 <li class="{% active request '^/ry/' %}"><a class="navbar-item" href="{% url 'society' %}">Yhdistys</a></li>
                 <li class="{% active request '^/jaseneksi/' %}"><a class="navbar-item" href="{% url 'jaseneksi' %}">Jäseneksi</a></li>
                 <li class="{% active request '^/palvelut/' %}"><a class="navbar-item" href="{% url 'services' %}">Palvelut</a></li>
-                <li class="{% active request '^/laitteisto/' %}"><a class="navbar-item" href="{% url 'laitteisto' %}">Laitteisto</a></li>
+                <li class="{% active request '^/laitteisto/' %}"><a class="navbar-item" href="{% url 'hardware' %}">Laitteisto</a></li>
                 <li class="{% active request '^/palaute/' %}"><a class="navbar-item" href="{% url 'palaute' %}">Palaute</a></li>
                 {% if user.is_authenticated %}
                     <li class="{% active request '^/tili/tiedot/' %}"><a class="navbar-item" href="{% url 'kayttajatiedot' %}">Käyttäjätiedot</a></li>

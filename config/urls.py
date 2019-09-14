@@ -36,7 +36,7 @@ urlpatterns = [
     path('palvelut/backup/', views.backup, name='backup'),
     path('palvelut/password/', views.password, name='password'),
 
-    path('laitteisto/', views.laitteisto, name='laitteisto'),
+    path('laitteisto/', views.hardware, name='hardware'),
     path('laitteisto/halutaan/', views.halutaan, name='halutaan'),
 
     path('jaseneksi/', views.jaseneksi, name='jaseneksi'),

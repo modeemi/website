@@ -69,12 +69,11 @@ def palvelut(request):
 
 def uutiset(request, pk=None):
     if pk:
-        return render(request, 'uutiset.html', {
-            'news': News.objects.filter(pk=pk),
-        })
-    return render(request, 'uutiset.html', {
-        'news': News.objects.order_by('-id'),
-    })
+        news = News.objects.filter(pk=pk)
+    else:
+        news = News.objects.order_by('-id')
+
+    return render(request, 'uutiset.html', {'news': news})
 
 
 def palaute(request):
@@ -88,12 +87,15 @@ def palaute(request):
         }, status=400)
 
     feedback = feedback_form.save()
-    mailer.feedback_received(feedback)
-    success = True
+
+    try:
+        mailer.feedback_received(feedback)
+    except Exception as e:
+        logger.exception('Exception in sending feedback email', exc_info=e)
 
     return render(request, 'palaute.html', {
         'form': feedback_form,
-        'success': success,
+        'feedback_saved': True,
     })
 
 
@@ -101,7 +103,7 @@ def jaseneksi(request):
     if not request.POST:
         return render(request, 'jaseneksi.html', {'form': ApplicationForm()})
 
-    # Check form validity for password errors
+    # Check form validity aside from passwords.
     application_form = ApplicationForm(request.POST)
 
     if not application_form.is_valid():
@@ -111,8 +113,9 @@ def jaseneksi(request):
 
     # Password is not saved in the form, so we check it manually
     # and notify of errors in context the data, if there are any.
-    password_matches = \
+    password_matches = (
         request.POST.get('password') == request.POST.get('password_check')
+    )
 
     # If the form is else valid but the password doesn't match or is empty,
     # mark the form as invalid and display a custom password error message.
@@ -138,7 +141,7 @@ def jaseneksi(request):
 
     # Return info page for the application.
     return render(request, 'jaseneksi.html', {
-        'success': True,
+        'application_saved': True,
         'mailing_success': mailing_success,
     })
 
@@ -239,7 +242,7 @@ def kayttajarekisteri_jasenmaksut(request):
             memberships = Membership.objects.filter(user__username__in=usernames)
             membership_fee.membership_set.add(*memberships.values_list('pk', flat=True))
 
-            # Activate users that have paid their membership fees
+            # Activate users that have paid their membership fees.
             if year >= datetime.now().year:
                 activate(memberships)
 

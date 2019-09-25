@@ -6,7 +6,7 @@
 #
 astroid==2.2.5            # via prospector, pylint, pylint-celery, pylint-flask, requirements-detector
 atomicwrites==1.3.0       # via pytest
-attrs==19.1.0             # via packaging, pytest
+attrs==19.1.0             # via pytest
 backcall==0.1.0           # via ipython
 bleach==3.1.0             # via django-markdownify
 certifi==2019.9.11        # via requests
@@ -97,7 +97,7 @@ uritemplate==3.0.0        # via coreapi
 urllib3==1.25.5           # via requests
 wcwidth==0.1.7            # via prompt-toolkit, pytest
 webencodings==0.5.1       # via bleach
-whitenoise==4.1.3
+whitenoise==4.1.4
 wrapt==1.11.2             # via astroid
 zipp==0.6.0               # via importlib-metadata
 

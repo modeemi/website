@@ -6,7 +6,11 @@ from django.conf import settings
 from django.db import transaction
 from django.db.models import Q
 
-from modeemintternet.mailer import membership_remind, membership_deactivate, membership_activate
+from modeemintternet.mailer import (
+    membership_remind,
+    membership_deactivate,
+    membership_activate,
+)
 from modeemintternet.models import Membership, Passwd
 
 logger = getLogger(__name__)
@@ -31,15 +35,19 @@ def remind(memberships=None) -> List[str]:
     reminded = list(memberships.values_list("user__username", flat=True))
 
     if settings.MODE_DRY_RUN:
-        logger.info('Would remind: %s', reminded)
+        logger.info("Would remind: %s", reminded)
         return reminded
 
     for membership in memberships:
         try:
             membership_remind(membership)
-            logger.warning('Sent membership fee reminder email to %s', membership.user)
+            logger.warning("Sent membership fee reminder email to %s", membership.user)
         except Exception as e:
-            logger.exception('Sending membership fee reminder email to %s failed', membership.user, exc_info=e)
+            logger.exception(
+                "Sending membership fee reminder email to %s failed",
+                membership.user,
+                exc_info=e,
+            )
 
     return reminded
 
@@ -62,7 +70,7 @@ def deactivate(memberships=None) -> List[str]:
 
     deactivated = list(memberships.values_list("user__username", flat=True))
     if settings.MODE_DRY_RUN:
-        logger.info('Would deactivate: %s', deactivated)
+        logger.info("Would deactivate: %s", deactivated)
         return deactivated
 
     deactivated = list()
@@ -90,9 +98,13 @@ def deactivate(memberships=None) -> List[str]:
         deactivated.append(user.username)
         try:
             membership_deactivate(membership)
-            logger.warning('Sent membership deactivation email to %s', membership.user)
+            logger.warning("Sent membership deactivation email to %s", membership.user)
         except Exception as e:
-            logger.exception('Sending membership deactivation email to %s failed', membership.user, exc_info=e)
+            logger.exception(
+                "Sending membership deactivation email to %s failed",
+                membership.user,
+                exc_info=e,
+            )
 
     return deactivated
 
@@ -106,7 +118,9 @@ def activate(memberships=None) -> List[str]:
     """
 
     if memberships is None:
-        memberships = Membership.objects.filter(user__is_active=False, fee__year__gte=datetime.now().year)
+        memberships = Membership.objects.filter(
+            user__is_active=False, fee__year__gte=datetime.now().year
+        )
 
     activated = list()
     for membership in memberships:
@@ -122,7 +136,7 @@ def activate(memberships=None) -> List[str]:
             passwd = Passwd.objects.get(username__iexact=user.username)
             if passwd.shell == settings.MODEEMI_SHELL_INACTIVE:
                 inactive = True
-                passwd.shell = '/bin/bash'
+                passwd.shell = "/bin/bash"
             passwd.save()
         except Passwd.DoesNotExist:
             pass
@@ -133,8 +147,12 @@ def activate(memberships=None) -> List[str]:
         activated.append(user.username)
         try:
             membership_activate(membership)
-            logger.warning('Sent membership activation email to %s', membership.user)
+            logger.warning("Sent membership activation email to %s", membership.user)
         except Exception as e:
-            logger.exception('Sending membership activation email to %s failed', membership.user, exc_info=e)
+            logger.exception(
+                "Sending membership activation email to %s failed",
+                membership.user,
+                exc_info=e,
+            )
 
     return activated

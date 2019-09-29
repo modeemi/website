@@ -5,13 +5,8 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0017_format_shadowformat_usergroupmember'),
-    ]
+    dependencies = [("modeemintternet", "0017_format_shadowformat_usergroupmember")]
 
     operations = [
-        migrations.RemoveField(
-            model_name='application',
-            name='bank_reference',
-        ),
+        migrations.RemoveField(model_name="application", name="bank_reference")
     ]

@@ -7,99 +7,174 @@ import django.utils.timezone
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0031_application_municipality'),
-    ]
+    dependencies = [("modeemintternet", "0031_application_municipality")]
 
     operations = [
         migrations.CreateModel(
-            name='Format',
+            name="Format",
             fields=[
-                ('format', models.CharField(max_length=32, primary_key=True, serialize=False)),
-                ('description', models.TextField(default='')),
+                (
+                    "format",
+                    models.CharField(max_length=32, primary_key=True, serialize=False),
+                ),
+                ("description", models.TextField(default="")),
             ],
-            options={
-                'db_table': 'format',
-            },
+            options={"db_table": "format"},
         ),
         migrations.CreateModel(
-            name='Passwd',
+            name="Passwd",
             fields=[
-                ('username', models.CharField(max_length=64, primary_key=True, serialize=False)),
-                ('uid', models.IntegerField()),
-                ('gid', models.IntegerField()),
-                ('gecos', models.CharField(max_length=255)),
-                ('home', models.CharField(max_length=255)),
-                ('shell', models.CharField(choices=[('/bin/sh', '/bin/sh'), ('/bin/bash', '/bin/bash'), ('/bin/zsh', '/bin/zsh'), ('/bin/tcsh', '/bin/tcsh'), ('/bin/false', '/bin/false')], max_length=255)),
+                (
+                    "username",
+                    models.CharField(max_length=64, primary_key=True, serialize=False),
+                ),
+                ("uid", models.IntegerField()),
+                ("gid", models.IntegerField()),
+                ("gecos", models.CharField(max_length=255)),
+                ("home", models.CharField(max_length=255)),
+                (
+                    "shell",
+                    models.CharField(
+                        choices=[
+                            ("/bin/sh", "/bin/sh"),
+                            ("/bin/bash", "/bin/bash"),
+                            ("/bin/zsh", "/bin/zsh"),
+                            ("/bin/tcsh", "/bin/tcsh"),
+                            ("/bin/false", "/bin/false"),
+                        ],
+                        max_length=255,
+                    ),
+                ),
             ],
-            options={
-                'db_table': 'passwd',
-            },
+            options={"db_table": "passwd"},
         ),
         migrations.CreateModel(
-            name='ShadowFormat',
+            name="ShadowFormat",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('hash', models.CharField(max_length=1024)),
-                ('last_updated', models.DateTimeField(default=django.utils.timezone.now)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("hash", models.CharField(max_length=1024)),
+                (
+                    "last_updated",
+                    models.DateTimeField(default=django.utils.timezone.now),
+                ),
             ],
-            options={
-                'db_table': 'shadowformat',
-            },
+            options={"db_table": "shadowformat"},
         ),
         migrations.CreateModel(
-            name='UserGroup',
+            name="UserGroup",
             fields=[
-                ('groupname', models.CharField(max_length=64, primary_key=True, serialize=False)),
-                ('gid', models.IntegerField()),
+                (
+                    "groupname",
+                    models.CharField(max_length=64, primary_key=True, serialize=False),
+                ),
+                ("gid", models.IntegerField()),
             ],
-            options={
-                'db_table': 'usergroup',
-            },
+            options={"db_table": "usergroup"},
         ),
         migrations.CreateModel(
-            name='Shadow',
+            name="Shadow",
             fields=[
-                ('username', models.OneToOneField(db_column='username', db_constraint=False, db_index=False, on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to='modeemintternet.Passwd')),
-                ('lastchanged', models.IntegerField()),
-                ('min', models.IntegerField(default=0)),
-                ('max', models.IntegerField(blank=True, null=True)),
-                ('warn', models.IntegerField(blank=True, null=True)),
-                ('inact', models.IntegerField(blank=True, null=True)),
-                ('expire', models.IntegerField(blank=True, null=True)),
-                ('flags', models.IntegerField(blank=True, null=True)),
+                (
+                    "username",
+                    models.OneToOneField(
+                        db_column="username",
+                        db_constraint=False,
+                        db_index=False,
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        primary_key=True,
+                        serialize=False,
+                        to="modeemintternet.Passwd",
+                    ),
+                ),
+                ("lastchanged", models.IntegerField()),
+                ("min", models.IntegerField(default=0)),
+                ("max", models.IntegerField(blank=True, null=True)),
+                ("warn", models.IntegerField(blank=True, null=True)),
+                ("inact", models.IntegerField(blank=True, null=True)),
+                ("expire", models.IntegerField(blank=True, null=True)),
+                ("flags", models.IntegerField(blank=True, null=True)),
             ],
-            options={
-                'db_table': 'shadow',
-            },
+            options={"db_table": "shadow"},
         ),
         migrations.CreateModel(
-            name='UserGroupMember',
+            name="UserGroupMember",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('groupname', models.ForeignKey(blank=True, db_column='groupname', db_constraint=False, db_index=False, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='modeemintternet.UserGroup')),
-                ('username', models.ForeignKey(blank=True, db_column='username', db_constraint=False, db_index=False, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='modeemintternet.Passwd')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "groupname",
+                    models.ForeignKey(
+                        blank=True,
+                        db_column="groupname",
+                        db_constraint=False,
+                        db_index=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="modeemintternet.UserGroup",
+                    ),
+                ),
+                (
+                    "username",
+                    models.ForeignKey(
+                        blank=True,
+                        db_column="username",
+                        db_constraint=False,
+                        db_index=False,
+                        null=True,
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="modeemintternet.Passwd",
+                    ),
+                ),
             ],
-            options={
-                'db_table': 'usergroupmember',
-            },
+            options={"db_table": "usergroupmember"},
         ),
         migrations.AddConstraint(
-            model_name='usergroup',
-            constraint=models.UniqueConstraint(fields=('gid',), name='usergroup_gid_key'),
+            model_name="usergroup",
+            constraint=models.UniqueConstraint(
+                fields=("gid",), name="usergroup_gid_key"
+            ),
         ),
         migrations.AddField(
-            model_name='shadowformat',
-            name='format',
-            field=models.ForeignKey(db_column='format', db_constraint=False, db_index=False, on_delete=django.db.models.deletion.DO_NOTHING, to='modeemintternet.Format'),
+            model_name="shadowformat",
+            name="format",
+            field=models.ForeignKey(
+                db_column="format",
+                db_constraint=False,
+                db_index=False,
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                to="modeemintternet.Format",
+            ),
         ),
         migrations.AddField(
-            model_name='shadowformat',
-            name='username',
-            field=models.ForeignKey(db_column='username', db_constraint=False, db_index=False, on_delete=django.db.models.deletion.DO_NOTHING, to='modeemintternet.Passwd'),
+            model_name="shadowformat",
+            name="username",
+            field=models.ForeignKey(
+                db_column="username",
+                db_constraint=False,
+                db_index=False,
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                to="modeemintternet.Passwd",
+            ),
         ),
         migrations.AddConstraint(
-            model_name='shadowformat',
-            constraint=models.UniqueConstraint(fields=('username', 'format'), name='shadowformat_username_key'),
+            model_name="shadowformat",
+            constraint=models.UniqueConstraint(
+                fields=("username", "format"), name="shadowformat_username_key"
+            ),
         ),
     ]

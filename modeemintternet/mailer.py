@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 
 
-ORGANIZATION = 'Modeemi ry'
+ORGANIZATION = "Modeemi ry"
 ORGANIZATION_EMAIL = settings.DEFAULT_FROM_EMAIL
 
 
@@ -21,7 +21,7 @@ def application_created(application):
     """
 
     # Creation notifier for the board
-    subject = settings.EMAIL_SUBJECT_PREFIX + 'Uusi jäsenhakemus jätetty'
+    subject = settings.EMAIL_SUBJECT_PREFIX + "Uusi jäsenhakemus jätetty"
     body = f"""
 Hei,
 
@@ -37,7 +37,7 @@ Ystävällisin terveisin,
         application.first_name,
         application.last_name,
         application.username,
-        application.applied.strftime('%d.%m.%Y'),
+        application.applied.strftime("%d.%m.%Y"),
         application.id,
         ORGANIZATION,
     )
@@ -45,7 +45,7 @@ Ystävällisin terveisin,
     send_mail(subject, body, ORGANIZATION_EMAIL, [ORGANIZATION_EMAIL])
 
     # Notifier to the end user
-    subject = settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi lisätiedot'
+    subject = settings.EMAIL_SUBJECT_PREFIX + "Jäsenhakemuksesi lisätiedot"
     body = """
 Hei {0},
 
@@ -82,8 +82,8 @@ Ystävällisin terveisin,
         application.email,
         application.username,
         application.shell,
-        'Kyllä' if application.virtual_key_required else 'Ei',
-        application.applied.strftime('%d.%m.%Y'),
+        "Kyllä" if application.virtual_key_required else "Ei",
+        application.applied.strftime("%d.%m.%Y"),
         ORGANIZATION,
     )
 
@@ -98,7 +98,7 @@ def application_accepted(application):
     :param user: Django user object.
     """
 
-    subject = settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi on käsitelty'
+    subject = settings.EMAIL_SUBJECT_PREFIX + "Jäsenhakemuksesi on käsitelty"
     body = """
 Hei,
 
@@ -111,8 +111,7 @@ Tunnuksien jakelu jäsenkoneille tehdään öisin, joten kirjautuminen onnistuu 
 Ystävällisin terveisin,
 {0}n hallitus
 """.format(
-        ORGANIZATION,
-        application.username,
+        ORGANIZATION, application.username
     )
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
@@ -126,7 +125,7 @@ def application_rejected(application):
     :param application: modeemintternet Application object.
     """
 
-    subject = settings.EMAIL_SUBJECT_PREFIX + 'Jäsenhakemuksesi on käsitelty'
+    subject = settings.EMAIL_SUBJECT_PREFIX + "Jäsenhakemuksesi on käsitelty"
     body = """
 Hei,
 
@@ -137,8 +136,7 @@ Lisätietoja voit tulla tiedustelemaan kerhohuoneelta tai sähköpostitse osoitt
 Ystävällisin terveisin,
 {0}n hallitus
 """.format(
-        ORGANIZATION,
-        ORGANIZATION_EMAIL
+        ORGANIZATION, ORGANIZATION_EMAIL
     )
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
@@ -151,7 +149,7 @@ def feedback_received(feedback):
     :param feedback: modeemintternet Feedback object.
     """
 
-    subject = settings.EMAIL_SUBJECT_PREFIX + 'Palaute verkkosivujen kautta'
+    subject = settings.EMAIL_SUBJECT_PREFIX + "Palaute verkkosivujen kautta"
     body = """
 Hei,
 
@@ -166,10 +164,7 @@ Voit tarkastella palautetta myös osoitteessa
 Ystävällisin terveisin,
 {3}n hallitusautomaatiobotti
 """.format(
-        feedback.sender,
-        fill(feedback.message),
-        feedback.id,
-        ORGANIZATION,
+        feedback.sender, fill(feedback.message), feedback.id, ORGANIZATION
     )
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [ORGANIZATION_EMAIL])
@@ -182,7 +177,7 @@ def membership_remind(membership):
     :param membership: modeemintternet Membership object.
     """
 
-    subject = settings.EMAIL_SUBJECT_PREFIX + 'Tunnus sulkeutumassa'
+    subject = settings.EMAIL_SUBJECT_PREFIX + "Tunnus sulkeutumassa"
     body = f"""
 Hei {membership.user.username},
 
@@ -212,7 +207,7 @@ def membership_deactivate(membership):
     :param membership: modeemintternet Membership object.
     """
 
-    subject = settings.EMAIL_SUBJECT_PREFIX + 'Tunnus suljettu'
+    subject = settings.EMAIL_SUBJECT_PREFIX + "Tunnus suljettu"
     body = f"""
 Hei {membership.user.username},
 
@@ -232,7 +227,7 @@ def membership_activate(membership):
     :param membership: modeemintternet Membership object.
     """
 
-    subject = settings.EMAIL_SUBJECT_PREFIX + 'Tunnus avattu'
+    subject = settings.EMAIL_SUBJECT_PREFIX + "Tunnus avattu"
     body = f"""
 Hei {membership.user.username},
 

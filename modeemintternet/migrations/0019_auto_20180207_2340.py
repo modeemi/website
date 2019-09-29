@@ -5,34 +5,26 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0018_remove_application_bank_reference'),
-    ]
+    dependencies = [("modeemintternet", "0018_remove_application_bank_reference")]
 
     operations = [
         migrations.AddField(
-            model_name='news',
-            name='ends',
+            model_name="news",
+            name="ends",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='news',
-            name='lat',
-            field=models.FloatField(default=0.0),
+            model_name="news", name="lat", field=models.FloatField(default=0.0)
         ),
         migrations.AddField(
-            model_name='news',
-            name='location',
-            field=models.TextField(blank=True),
+            model_name="news", name="location", field=models.TextField(blank=True)
         ),
         migrations.AddField(
-            model_name='news',
-            name='lon',
-            field=models.FloatField(default=0.0),
+            model_name="news", name="lon", field=models.FloatField(default=0.0)
         ),
         migrations.AddField(
-            model_name='news',
-            name='starts',
+            model_name="news",
+            name="starts",
             field=models.DateTimeField(blank=True, null=True),
         ),
     ]

@@ -6,34 +6,64 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0033_auto_20190828_0015'),
-    ]
+    dependencies = [("modeemintternet", "0033_auto_20190828_0015")]
 
     operations = [
         migrations.AlterField(
-            model_name='shadow',
-            name='username',
-            field=models.OneToOneField(db_column='username', db_constraint=False, db_index=False, on_delete=django.db.models.deletion.PROTECT, primary_key=True, serialize=False, to='modeemintternet.Passwd'),
+            model_name="shadow",
+            name="username",
+            field=models.OneToOneField(
+                db_column="username",
+                db_constraint=False,
+                db_index=False,
+                on_delete=django.db.models.deletion.PROTECT,
+                primary_key=True,
+                serialize=False,
+                to="modeemintternet.Passwd",
+            ),
         ),
         migrations.AlterField(
-            model_name='shadowformat',
-            name='format',
-            field=models.ForeignKey(db_column='format', db_constraint=False, db_index=False, on_delete=django.db.models.deletion.PROTECT, to='modeemintternet.Format'),
+            model_name="shadowformat",
+            name="format",
+            field=models.ForeignKey(
+                db_column="format",
+                db_constraint=False,
+                db_index=False,
+                on_delete=django.db.models.deletion.PROTECT,
+                to="modeemintternet.Format",
+            ),
         ),
         migrations.AlterField(
-            model_name='shadowformat',
-            name='username',
-            field=models.ForeignKey(db_column='username', db_constraint=False, db_index=False, on_delete=django.db.models.deletion.PROTECT, to='modeemintternet.Passwd'),
+            model_name="shadowformat",
+            name="username",
+            field=models.ForeignKey(
+                db_column="username",
+                db_constraint=False,
+                db_index=False,
+                on_delete=django.db.models.deletion.PROTECT,
+                to="modeemintternet.Passwd",
+            ),
         ),
         migrations.AlterField(
-            model_name='usergroupmember',
-            name='groupname',
-            field=models.ForeignKey(db_column='groupname', db_constraint=False, db_index=False, on_delete=django.db.models.deletion.PROTECT, to='modeemintternet.UserGroup'),
+            model_name="usergroupmember",
+            name="groupname",
+            field=models.ForeignKey(
+                db_column="groupname",
+                db_constraint=False,
+                db_index=False,
+                on_delete=django.db.models.deletion.PROTECT,
+                to="modeemintternet.UserGroup",
+            ),
         ),
         migrations.AlterField(
-            model_name='usergroupmember',
-            name='username',
-            field=models.ForeignKey(db_column='username', db_constraint=False, db_index=False, on_delete=django.db.models.deletion.PROTECT, to='modeemintternet.Passwd'),
+            model_name="usergroupmember",
+            name="username",
+            field=models.ForeignKey(
+                db_column="username",
+                db_constraint=False,
+                db_index=False,
+                on_delete=django.db.models.deletion.PROTECT,
+                to="modeemintternet.Passwd",
+            ),
         ),
     ]

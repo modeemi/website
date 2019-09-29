@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0014_auto_20180127_1506'),
-    ]
+    dependencies = [("modeemintternet", "0014_auto_20180127_1506")]
 
     operations = [
         migrations.AddField(
-            model_name='application',
-            name='virtual_key_required',
+            model_name="application",
+            name="virtual_key_required",
             field=models.BooleanField(default=False),
-        ),
+        )
     ]

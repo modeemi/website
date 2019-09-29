@@ -5,15 +5,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0030_auto_20190827_2054'),
-    ]
+    dependencies = [("modeemintternet", "0030_auto_20190827_2054")]
 
     operations = [
         migrations.AddField(
-            model_name='application',
-            name='municipality',
-            field=models.CharField(default='', max_length=64),
+            model_name="application",
+            name="municipality",
+            field=models.CharField(default="", max_length=64),
             preserve_default=False,
-        ),
+        )
     ]

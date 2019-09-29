@@ -5,19 +5,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0013_auto_20180127_1503'),
-    ]
+    dependencies = [("modeemintternet", "0013_auto_20180127_1503")]
 
     operations = [
         migrations.AlterField(
-            model_name='event',
-            name='ends',
+            model_name="event",
+            name="ends",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='event',
-            name='starts',
+            model_name="event",
+            name="starts",
             field=models.DateTimeField(blank=True, null=True),
         ),
     ]

@@ -5,34 +5,32 @@ from django.db import models, migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0007_application_des_crypt'),
-    ]
+    dependencies = [("modeemintternet", "0007_application_des_crypt")]
 
     operations = [
         migrations.AlterField(
-            model_name='application',
-            name='email',
+            model_name="application",
+            name="email",
             field=models.EmailField(max_length=254),
         ),
         migrations.AlterField(
-            model_name='application',
-            name='modified',
+            model_name="application",
+            name="modified",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AlterField(
-            model_name='event',
-            name='modified',
+            model_name="event",
+            name="modified",
             field=models.DateTimeField(auto_now=True),
         ),
         migrations.AlterField(
-            model_name='feedback',
-            name='email',
+            model_name="feedback",
+            name="email",
             field=models.EmailField(max_length=254, blank=True),
         ),
         migrations.AlterField(
-            model_name='news',
-            name='modified',
+            model_name="news",
+            name="modified",
             field=models.DateTimeField(auto_now=True),
         ),
     ]

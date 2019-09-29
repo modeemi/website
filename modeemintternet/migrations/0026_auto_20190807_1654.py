@@ -5,13 +5,16 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0025_membership_membershipfee'),
-    ]
+    dependencies = [("modeemintternet", "0025_membership_membershipfee")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='membershipfee',
-            options={'get_latest_by': ['year'], 'ordering': ['-year'], 'verbose_name': 'Jäsenmaksu', 'verbose_name_plural': 'Jäsenmaksut'},
-        ),
+            name="membershipfee",
+            options={
+                "get_latest_by": ["year"],
+                "ordering": ["-year"],
+                "verbose_name": "Jäsenmaksu",
+                "verbose_name_plural": "Jäsenmaksut",
+            },
+        )
     ]

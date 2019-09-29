@@ -16,15 +16,14 @@ def check_password(username, password) -> bool:
     """
 
     hashers = {
-        'SHA512': sha512_crypt,
-        'SHA256': sha256_crypt,
-        'MD5': md5_crypt,
-        'DES': des_crypt,
+        "SHA512": sha512_crypt,
+        "SHA256": sha256_crypt,
+        "MD5": md5_crypt,
+        "DES": des_crypt,
     }
 
     shadow_formats = ShadowFormat.objects.filter(
-        username=username,
-        format__in=hashers.keys(),
+        username=username, format__in=hashers.keys()
     )
 
     for name, hasher in hashers.items():
@@ -51,7 +50,9 @@ class ModeemiUserDBBackend(ModelBackend):
             username = kwargs.get(UserModel.USERNAME_FIELD)
 
         try:
-            user = UserModel._default_manager.get_by_natural_key(username)  # pylint: disable=protected-access
+            user = UserModel._default_manager.get_by_natural_key(  # pylint: disable=protected-access
+                username
+            )
         except UserModel.DoesNotExist:
             # Run the default password hasher once to reduce the timing
             # difference between an existing and a nonexistent user (#20760).

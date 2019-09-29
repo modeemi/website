@@ -4,8 +4,8 @@ from django.db import migrations
 
 
 def merge_news_and_events(apps, schema_editor):
-    News = apps.get_model('modeemintternet', 'News')
-    Event = apps.get_model('modeemintternet', 'Event')
+    News = apps.get_model("modeemintternet", "News")
+    Event = apps.get_model("modeemintternet", "Event")
 
     for event in Event.objects.all():
         News.objects.create(
@@ -24,9 +24,6 @@ def merge_news_and_events(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0019_auto_20180207_2340'),
-    ]
+    dependencies = [("modeemintternet", "0019_auto_20180207_2340")]
 
-    operations = [
-    ]
+    operations = []

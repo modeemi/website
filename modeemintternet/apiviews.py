@@ -5,5 +5,5 @@ from modeemintternet.serializers import NewsSerializer
 
 
 class NewsViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = News.objects.order_by('-posted')
+    queryset = News.objects.order_by("-posted")
     serializer_class = NewsSerializer

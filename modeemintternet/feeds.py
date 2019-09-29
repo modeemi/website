@@ -10,7 +10,7 @@ class NewsRSSFeed(Feed):
     link = "/uutiset/"
 
     def items(self):
-        return News.objects.order_by('-posted')
+        return News.objects.order_by("-posted")
 
     def item_title(self, item):
         return item.title
@@ -24,12 +24,12 @@ class NewsICalFeed(ICalFeed):
     Modeemi news iCal feed.
     """
 
-    product_id = '-//Modeemi ry//Uutiset//FI'
-    timezone = 'UTC'
-    file_name = 'uutiset.ics'
+    product_id = "-//Modeemi ry//Uutiset//FI"
+    timezone = "UTC"
+    file_name = "uutiset.ics"
 
     def items(self):
-        return News.objects.all().order_by('-starts')
+        return News.objects.all().order_by("-starts")
 
     def item_title(self, item):
         return item.title

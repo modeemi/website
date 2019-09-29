@@ -5,13 +5,8 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0022_auto_20180211_1501'),
-    ]
+    dependencies = [("modeemintternet", "0022_auto_20180211_1501")]
 
     operations = [
-        migrations.RemoveField(
-            model_name='application',
-            name='pbkdf2_sha256',
-        ),
+        migrations.RemoveField(model_name="application", name="pbkdf2_sha256")
     ]

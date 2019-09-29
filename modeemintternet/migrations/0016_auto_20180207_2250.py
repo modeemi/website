@@ -5,21 +5,19 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0015_application_virtual_key_required'),
-    ]
+    dependencies = [("modeemintternet", "0015_application_virtual_key_required")]
 
     operations = [
         migrations.AddField(
-            model_name='application',
-            name='md5_crypt',
-            field=models.CharField(default='', max_length=128),
+            model_name="application",
+            name="md5_crypt",
+            field=models.CharField(default="", max_length=128),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='application',
-            name='sha256_crypt',
-            field=models.CharField(default='', max_length=128),
+            model_name="application",
+            name="sha256_crypt",
+            field=models.CharField(default="", max_length=128),
             preserve_default=False,
         ),
     ]

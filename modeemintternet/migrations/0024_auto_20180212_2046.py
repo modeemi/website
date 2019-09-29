@@ -6,14 +6,14 @@ import modeemintternet.models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0023_remove_application_pbkdf2_sha256'),
-    ]
+    dependencies = [("modeemintternet", "0023_remove_application_pbkdf2_sha256")]
 
     operations = [
         migrations.AlterField(
-            model_name='application',
-            name='username',
-            field=models.CharField(max_length=32, validators=[modeemintternet.models.validate_username]),
-        ),
+            model_name="application",
+            name="username",
+            field=models.CharField(
+                max_length=32, validators=[modeemintternet.models.validate_username]
+            ),
+        )
     ]

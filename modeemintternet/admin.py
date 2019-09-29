@@ -26,20 +26,21 @@ class SodaAdmin(admin.ModelAdmin):
     def deactivate(self, request, queryset):  # pylint: disable=unused-argument
         queryset.update(active=False)
 
-    list_display = ['name', 'price', 'active']
+    list_display = ["name", "price", "active"]
     actions = (activate, deactivate)
 
 
 class MembershipAdmin(admin.ModelAdmin):
     def username(self, membership) -> str:
         return membership.user.username
-    username.short_description = 'Käyttäjätunnus'  # type: ignore
 
-    list_display = ['username', 'municipality', 'get_keys', 'get_fee']
+    username.short_description = "Käyttäjätunnus"  # type: ignore
+
+    list_display = ["username", "municipality", "get_keys", "get_fee"]
 
 
 class MembershipFeeAdmin(admin.ModelAdmin):
-    list_display = ['year']
+    list_display = ["year"]
 
 
 class ApplicationAdmin(admin.ModelAdmin):
@@ -57,7 +58,7 @@ class ApplicationAdmin(admin.ModelAdmin):
             try:
                 mailer.application_accepted(application)
             except Exception as e:
-                log.exception('Sending application rejected mail failed', exc_info=e)
+                log.exception("Sending application rejected mail failed", exc_info=e)
 
     def reject(self, request, queryset):  # pylint: disable=unused-argument
         for application in queryset:
@@ -67,55 +68,67 @@ class ApplicationAdmin(admin.ModelAdmin):
             try:
                 mailer.application_rejected(application)
             except Exception as e:
-                log.exception('Sending application accepted mail failed', exc_info=e)
+                log.exception("Sending application accepted mail failed", exc_info=e)
 
-    list_display = ['first_name', 'last_name', 'username', 'applied', 'application_processed', 'application_accepted']
-    readonly_fields = ['application_processed', 'application_accepted', 'application_rejected']
-    actions = ['accept', 'reject']
-    exclude = ['sha512_crypt', 'sha256_crypt', 'des_crypt', 'md5_crypt']
+    list_display = [
+        "first_name",
+        "last_name",
+        "username",
+        "applied",
+        "application_processed",
+        "application_accepted",
+    ]
+    readonly_fields = [
+        "application_processed",
+        "application_accepted",
+        "application_rejected",
+    ]
+    actions = ["accept", "reject"]
+    exclude = ["sha512_crypt", "sha256_crypt", "des_crypt", "md5_crypt"]
 
 
 class FeedbackAdmin(admin.ModelAdmin):
     def message_column(self, obj):
         return obj.message[:25]
-    message_column.short_description = 'message'  # type: ignore
 
-    list_display = ['sender', 'email', 'sent', 'message_column']
+    message_column.short_description = "message"  # type: ignore
+
+    list_display = ["sender", "email", "sent", "message_column"]
 
 
 class FormatAdmin(admin.ModelAdmin):
-    list_display = ['format', 'description']
-    readonly_fields = ['format']
+    list_display = ["format", "description"]
+    readonly_fields = ["format"]
 
 
 class PasswdAdmin(admin.ModelAdmin):
-    list_display = ['username', 'uid', 'gid', 'gecos', 'home', 'shell']
-    readonly_fields = ['uid', 'gid', 'home']
+    list_display = ["username", "uid", "gid", "gecos", "home", "shell"]
+    readonly_fields = ["uid", "gid", "home"]
     search_fields = list_display
 
 
 class ShadowAdmin(admin.ModelAdmin):
-    list_display = ['username', 'lastchanged']
-    readonly_fields = ['username', 'lastchanged']
+    list_display = ["username", "lastchanged"]
+    readonly_fields = ["username", "lastchanged"]
     search_fields = list_display
 
 
 class ShadowFormatAdmin(admin.ModelAdmin):
-    list_display = ['username', 'format', 'last_updated']
-    exclude = ['hash']
-    readonly_fields = ['id', 'username', 'format', 'last_updated']
+    list_display = ["username", "format", "last_updated"]
+    exclude = ["hash"]
+    readonly_fields = ["id", "username", "format", "last_updated"]
     search_fields = list_display
 
 
 class UserGroupAdmin(admin.ModelAdmin):
-    list_display = ['groupname', 'gid']
-    readonly_fields = ['groupname', 'gid']
+    list_display = ["groupname", "gid"]
+    readonly_fields = ["groupname", "gid"]
     search_fields = list_display
 
 
 class UserGroupMemberAdmin(admin.ModelAdmin):
-    list_display = ['groupname', 'username']
-    readonly_fields = ['groupname', 'username']
+    list_display = ["groupname", "username"]
+    readonly_fields = ["groupname", "username"]
     search_fields = list_display
 
 

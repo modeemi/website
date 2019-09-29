@@ -7,23 +7,18 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('modeemintternet', '0027_auto_20190807_1808'),
-    ]
+    dependencies = [("modeemintternet", "0027_auto_20190807_1808")]
 
     operations = [
-        migrations.RemoveField(
-            model_name='application',
-            name='secondary_nick',
-        ),
+        migrations.RemoveField(model_name="application", name="secondary_nick"),
         migrations.AlterField(
-            model_name='news',
-            name='poster',
-            field=models.ForeignKey(editable=False, on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL),
+            model_name="news",
+            name="poster",
+            field=models.ForeignKey(
+                editable=False,
+                on_delete=django.db.models.deletion.PROTECT,
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
-        migrations.AlterField(
-            model_name='news',
-            name='text',
-            field=models.TextField(),
-        ),
+        migrations.AlterField(model_name="news", name="text", field=models.TextField()),
     ]

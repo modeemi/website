@@ -35,7 +35,7 @@ django==2.2.5
 djangorestframework==3.10.3
 dodgy==0.1.9              # via prospector
 future==0.17.1
-gitdb2==2.0.5             # via gitpython
+gitdb2==2.0.6             # via gitpython
 gitpython==3.0.2
 gunicorn==19.9.0
 icalendar==4.0.3

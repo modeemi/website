@@ -93,7 +93,7 @@ smmap2==2.0.5             # via gitdb2
 snowballstemmer==2.0.0    # via pydocstyle
 sqlparse==0.3.0           # via django, django-debug-toolbar
 toml==0.10.0              # via black
-traitlets==4.3.2          # via ipython
+traitlets==4.3.3          # via ipython
 typed-ast==1.4.0          # via astroid, mypy
 typing-extensions==3.7.4  # via mypy
 uritemplate==3.0.0        # via coreapi

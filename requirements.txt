@@ -69,7 +69,7 @@ ptyprocess==0.6.0         # via pexpect
 py==1.8.0                 # via pytest
 pycodestyle==2.5.0        # via prospector
 pydocstyle==4.0.1         # via prospector
-pyflakes==1.6.0           # via prospector
+pyflakes==2.1.1           # via prospector
 pygments==2.4.2           # via ipython
 pylint-celery==0.3        # via prospector
 pylint-django==2.0.10     # via prospector

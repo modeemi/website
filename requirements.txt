@@ -77,7 +77,7 @@ pylint-flask==0.6         # via prospector
 pylint-plugin-utils==0.6  # via prospector, pylint-celery, pylint-django, pylint-flask
 pylint==2.3.1             # via prospector, pylint-celery, pylint-django, pylint-flask, pylint-plugin-utils
 pyparsing==2.4.2          # via packaging
-pytest-cov==2.7.1
+pytest-cov==2.8.1
 pytest-django==3.5.1
 pytest-subtests==0.2.1
 pytest==5.2.0
@@ -105,4 +105,4 @@ wrapt==1.11.2             # via astroid
 zipp==0.6.0               # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==41.2.0        # via ipython, markdown
+# setuptools==41.4.0        # via ipython, markdown

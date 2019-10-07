@@ -1,4 +1,4 @@
 from .production import *  # noqa
 
 
-STATIC_ROOT = '/app/static'
+STATIC_ROOT = "/app/static"

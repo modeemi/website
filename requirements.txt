@@ -60,7 +60,7 @@ passlib==1.7.1
 pep8-naming==0.8.2        # via prospector
 pexpect==4.7.0            # via ipython
 pickleshare==0.7.5        # via ipython
-pip-tools==4.1.0
+pip-tools==4.2.0
 pluggy==0.13.0            # via pytest
 prompt-toolkit==2.0.10     # via ipython
 prospector==1.1.7

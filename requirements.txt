@@ -33,7 +33,7 @@ django-rest-swagger==2.2.0
 django==2.2.6
 djangorestframework==3.10.3
 dodgy==0.1.9              # via prospector
-future==0.18.0
+future==0.18.1
 gitdb2==2.0.6             # via gitpython
 gitpython==3.0.3
 gunicorn==19.9.0

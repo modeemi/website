@@ -35,7 +35,7 @@ djangorestframework==3.10.3
 dodgy==0.1.9              # via prospector
 future==0.18.1
 gitdb2==2.0.6             # via gitpython
-gitpython==3.0.3
+gitpython==3.0.4
 gunicorn==19.9.0
 icalendar==4.0.3
 idna==2.8                 # via requests

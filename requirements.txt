@@ -46,7 +46,7 @@ isort==4.3.21             # via pylint
 itypes==1.1.0             # via coreapi
 jedi==0.15.1              # via ipython
 jinja2==2.10.3            # via coreschema
-lazy-object-proxy==1.4.2  # via astroid
+lazy-object-proxy==1.4.3  # via astroid
 markdown==3.1.1           # via django-markdownify
 markupsafe==1.1.1         # via jinja2
 mccabe==0.6.1             # via prospector, pylint

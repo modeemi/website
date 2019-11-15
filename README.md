@@ -38,6 +38,8 @@ If you modify the views, remember to run `python manage.py makemigrations` befor
 The web service Docker container is automatically built by a Dockerhub job
 from the `master` branch and a new version is deployed onto the web server periodically.
 
+https://hub.docker.com/u/modeemi
+
 To update the project you can
 
 - Go get a soda and wait for 15 minutes for a cronjob to update the site.

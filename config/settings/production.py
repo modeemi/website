@@ -35,5 +35,5 @@ STATIC_ROOT = "/var/www/modeemintternet/static"
 MEDIA_ROOT = "/var/www/modeemintternet/media"
 
 sentry_sdk.init(
-    env("SENTRY_SDN", cast=str, default=""), integrations=[DjangoIntegration()]
+    env("SENTRY_DSN", cast=str, default=""), integrations=[DjangoIntegration()]
 )

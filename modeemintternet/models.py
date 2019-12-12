@@ -42,7 +42,7 @@ class News(models.Model):
     posted = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     poster = models.ForeignKey(
-        settings.AUTH_USER_MODEL, editable=False, on_delete=models.PROTECT
+        settings.AUTH_USER_MODEL, editable=False, null=True, on_delete=models.PROTECT
     )
 
     class Meta:

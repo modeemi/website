@@ -204,14 +204,6 @@ class Application(models.Model):
                 "Application {} has already been accepted".format(self.username)
             )
 
-        def get_hash(method):
-            return {
-                "SHA512": self.sha512_crypt,
-                "SHA256": self.sha256_crypt,
-                "MD5": self.md5_crypt,
-                "DES": self.des_crypt,
-            }.get(method, None)
-
         User = get_user_model()
         user = User.objects.create(
             username=self.username,
@@ -233,26 +225,26 @@ class Application(models.Model):
             shell=self.shell,
         )
 
-        UserGroupMember.objects.create(
-            username=passwd.username, groupname=group.groupname
-        )
+        UserGroupMember.objects.create(username=passwd, groupname=group)
 
-        Shadow.objects.create(
-            username=passwd.username, lastchanged=int(time()) // 86400, min=0
-        )
+        Shadow.objects.create(username=passwd, lastchanged=int(time()) // 86400, min=0)
 
-        for f in Format.objects.values_list("format", flat=True):
-            h = get_hash(f)
+        for f in Format.objects.all():
+            h = {
+                "SHA512": self.sha512_crypt,
+                "SHA256": self.sha256_crypt,
+                "MD5": self.md5_crypt,
+                "DES": self.des_crypt,
+            }.get(f.format, None)
+
             if h:
                 ShadowFormat.objects.create(
-                    username=passwd.username, format=f, hash=h, last_updated=now()
+                    username=passwd, format=f, hash=h, last_updated=now()
                 )
 
         if self.virtual_key_required:
             group = UserGroup.objects.get(groupname="ovi")
-            UserGroupMember.objects.create(
-                username=passwd.username, groupname=group.groupname
-            )
+            UserGroupMember.objects.create(username=passwd, groupname=group)
 
         self.application_accepted = True
         self.application_processed = True

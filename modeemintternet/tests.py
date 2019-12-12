@@ -14,11 +14,14 @@ from django.utils import timezone
 
 from modeemintternet.models import (
     Application,
+    Feedback,
+    Format,
     Membership,
     MembershipFee,
-    Feedback,
     News,
+    Passwd,
     Soda,
+    UserGroup,
 )
 from modeemintternet.mailer import application_accepted, application_rejected
 from modeemintternet.tasks import remind, deactivate, activate
@@ -202,6 +205,15 @@ class ApplicationMethodTest(TestCase):
     """
 
     def setUp(self):
+        UserGroup.objects.get_or_create(groupname="root", gid=1)
+        Passwd.objects.get_or_create(
+            username="root", uid=1, gid=1, gecos="", home="/root", shell="/bin/bash"
+        )
+
+        UserGroup.objects.get_or_create(groupname="modeemi", gid=2)
+        UserGroup.objects.get_or_create(groupname="ovi", gid=3)
+        Format.objects.get_or_create(format="SHA512")
+
         self.application = Application(
             first_name="Pekka",
             last_name="Sauron",
@@ -209,6 +221,7 @@ class ApplicationMethodTest(TestCase):
             username="pekkas",
             shell=Application.Shell.BASH,
             funet_rules_accepted=True,
+            virtual_key_required=True,
         )
 
         self.application.save()
@@ -217,7 +230,13 @@ class ApplicationMethodTest(TestCase):
     def test_application_to_unicode(self):
         self.application.__str__()
 
-    def test_application_accepted(self):
+    def test_application_accept(self):
+        self.application.accept()
+
+    def test_application_reject(self):
+        self.application.reject()
+
+    def test_application_accepted_mailer(self):
         application_accepted(self.application)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(
@@ -225,7 +244,7 @@ class ApplicationMethodTest(TestCase):
             settings.EMAIL_SUBJECT_PREFIX + "Jäsenhakemuksesi on käsitelty",
         )
 
-    def test_application_rejected(self):
+    def test_application_rejected_mailer(self):
         application_rejected(self.application)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(

@@ -2,8 +2,7 @@ RELEASE := $$(git show -s --format=%H)
 IMAGE := modeemi/website
 
 test:
-	@echo "Running tests and linters"
-	python manage.py test
+	tox
 
 build:
 	docker build --build-arg RELEASE=${RELEASE} -t ${IMAGE} .

@@ -9,11 +9,6 @@ from .base import *  # noqa
 
 log = getLogger(__name__)
 
-with warnings.catch_warnings():
-    warnings.simplefilter("ignore")
-    env.read_env(".env")
-    env.read_env("/etc/modeemintternet/env")
-
 DEBUG = False
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
@@ -33,6 +28,9 @@ STATICFILES_STORAGE = env(
 
 STATIC_ROOT = "/var/www/modeemintternet/static"
 MEDIA_ROOT = "/var/www/modeemintternet/media"
+
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
 
 sentry_sdk.init(
     env("SENTRY_DSN", cast=str, default=""), integrations=[DjangoIntegration()]

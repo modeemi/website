@@ -18,7 +18,6 @@ env = environ.Env()
 with warnings.catch_warnings():
     warnings.simplefilter("ignore")
     env.read_env(".env")
-    env.read_env("/etc/modeemintternet/env")
 
 # Custom flags for feature toggles
 MODE_TESTING = env("DJANGO_MODE_TESTING", cast=bool, default=False)

@@ -12,13 +12,12 @@ Built on top of Python, Django and PostgreSQL.
 
 This guide assumes you have some experience in Django development.
 
-Development environment can be easily provisioned with Vagrant:
+Development environment can be easily provisioned with virtualenv:
 
-    vagrant up
-    vagrant ssh
-    cd /vagrant
-    source ./virtualenv/bin/activate
-    pytest
+    python3 -m venv ~/.virtualenvs/modeemi
+    source ~/.virtualenvs/modeemi/bin/activate
+    pip install -r requirements.txt
+    tox
     python manage.py migrate --noinput
     python manage.py collectstatic --noinput
     python manage.py runserver
@@ -43,4 +42,4 @@ https://hub.docker.com/u/modeemi
 To update the project you can
 
 - Go get a soda and wait for 15 minutes for a cronjob to update the site.
-- Manually run `webupdate` on the web server as `root`.
+- Manually run `sudo webupdate` on the web server.

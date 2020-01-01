@@ -36,7 +36,7 @@ future==0.18.2
 gitdb2==2.0.6             # via gitpython
 gitpython==3.0.5
 gunicorn==19.9.0
-icalendar==4.0.3
+icalendar==4.0.4
 idna==2.8                 # via requests
 ipython-genutils==0.2.0   # via traitlets
 ipython==7.9.0

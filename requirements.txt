@@ -5,7 +5,6 @@
 #    pip-compile
 #
 appdirs==1.4.3            # via black
-appnope==0.1.0            # via ipython
 astroid==2.2.5            # via prospector, pylint, pylint-celery, pylint-flask, requirements-detector
 atomicwrites==1.3.0       # via pytest
 attrs==19.3.0             # via black, pytest
@@ -40,7 +39,6 @@ gitpython==3.0.4
 gunicorn==19.9.0
 icalendar==4.0.3
 idna==2.8                 # via requests
-importlib-metadata==1.3.0  # via pluggy, pytest
 ipython-genutils==0.2.0   # via traitlets
 ipython==7.9.0
 isort==4.3.21             # via pylint
@@ -51,9 +49,9 @@ lazy-object-proxy==1.4.3  # via astroid
 markdown==3.1.1           # via django-markdownify
 markupsafe==1.1.1         # via jinja2
 mccabe==0.6.1             # via prospector, pylint
-more-itertools==7.2.0     # via pytest, zipp
+more-itertools==7.2.0     # via pytest
 mypy-extensions==0.4.3    # via mypy
-mypy==0.740
+mypy==0.761
 openapi-codec==1.3.2      # via django-rest-swagger
 packaging==19.2           # via pytest
 parso==0.5.1              # via jedi
@@ -106,7 +104,6 @@ wcwidth==0.1.7            # via prompt-toolkit, pytest
 webencodings==0.5.1       # via bleach
 whitenoise==4.1.4
 wrapt==1.11.2             # via astroid
-zipp==0.6.0               # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==42.0.2        # via ipython, markdown
+# setuptools

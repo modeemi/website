@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/modeemi/website.svg?branch=master)](https://travis-ci.org/modeemi/website)
 [![Coverage Status](https://codecov.io/gh/modeemi/website/branch/master/graph/badge.svg)](https://codecov.io/gh/imodeemi/website)
-[![Updates](https://pyup.io/repos/github/modeemi/website/shield.svg)](https://pyup.io/repos/github/modeemi/website/)
 
 Modeemi ry website for the Finnish IT club based on Tampere, Finland.
 

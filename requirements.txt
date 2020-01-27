@@ -87,7 +87,7 @@ pyyaml==5.1.2             # via prospector
 regex==2019.11.1          # via black
 requests==2.22.0          # via coreapi, django-recaptcha2
 requirements-detector==0.6  # via prospector
-sentry-sdk==0.14.0
+sentry-sdk==0.14.1
 setoptconf==0.2.0         # via prospector
 simplejson==3.16.0        # via django-rest-swagger
 six==1.12.0               # via astroid, bleach, django-appconf, packaging, pip-tools, prompt-toolkit, python-dateutil, traitlets

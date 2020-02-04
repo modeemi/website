@@ -62,7 +62,7 @@ pexpect==4.7.0            # via ipython
 pickleshare==0.7.5        # via ipython
 pip-tools==4.4.0
 pluggy==0.13.1            # via pytest
-prompt-toolkit==2.0.10    # via ipython
+prompt-toolkit==3.0.3     # via ipython
 prospector==1.2.0
 psycopg2-binary==2.8.4
 ptyprocess==0.6.0         # via pexpect
@@ -90,7 +90,7 @@ requirements-detector==0.6  # via prospector
 sentry-sdk==0.14.1
 setoptconf==0.2.0         # via prospector
 simplejson==3.16.0        # via django-rest-swagger
-six==1.12.0               # via astroid, bleach, django-appconf, packaging, pip-tools, prompt-toolkit, python-dateutil, traitlets
+six==1.12.0               # via astroid, bleach, django-appconf, packaging, pip-tools, python-dateutil, traitlets
 smmap2==2.0.5             # via gitdb2
 snowballstemmer==2.0.0    # via pydocstyle
 sqlparse==0.3.0           # via django, django-debug-toolbar

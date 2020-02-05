@@ -43,7 +43,7 @@ ipython-genutils==0.2.0   # via traitlets
 ipython==7.12.0
 isort==4.3.21             # via pylint
 itypes==1.1.0             # via coreapi
-jedi==0.15.1              # via ipython
+jedi==0.16.0              # via ipython
 jinja2==2.11.1            # via coreschema
 lazy-object-proxy==1.4.3  # via astroid
 markdown==3.1.1           # via django-markdownify

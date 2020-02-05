@@ -96,7 +96,7 @@ snowballstemmer==2.0.0    # via pydocstyle
 sqlparse==0.3.0           # via django, django-debug-toolbar
 toml==0.10.0              # via black
 traitlets==4.3.3          # via ipython
-typed-ast==1.4.0          # via black, mypy
+typed-ast==1.4.1          # via black, mypy
 typing-extensions==3.7.4.1  # via mypy
 uritemplate==3.0.1        # via coreapi
 urllib3==1.25.8           # via requests, sentry-sdk

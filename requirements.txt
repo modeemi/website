@@ -46,7 +46,7 @@ itypes==1.1.0             # via coreapi
 jedi==0.16.0              # via ipython
 jinja2==2.11.1            # via coreschema
 lazy-object-proxy==1.4.3  # via astroid
-markdown==3.1.1           # via django-markdownify
+markdown==3.2             # via django-markdownify
 markupsafe==1.1.1         # via jinja2
 mccabe==0.6.1             # via prospector, pylint
 more-itertools==7.2.0     # via pytest

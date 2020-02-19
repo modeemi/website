@@ -84,7 +84,7 @@ pytest==5.3.5
 python-dateutil==2.8.1    # via django-recurrence, icalendar
 pytz==2019.3
 pyyaml==5.3               # via prospector
-regex==2020.1.8           # via black
+regex==2020.2.18          # via black
 requests==2.22.0          # via coreapi, django-recaptcha2
 requirements-detector==0.6  # via prospector
 sentry-sdk==0.14.1

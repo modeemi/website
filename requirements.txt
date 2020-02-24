@@ -34,8 +34,8 @@ django==3.0.3
 djangorestframework==3.11.0
 dodgy==0.2.1              # via prospector
 future==0.18.2
-gitdb2==3.0.2             # via gitpython
-gitpython==3.0.8
+gitdb==4.0.1              # via gitpython
+gitpython==3.1.0
 gunicorn==20.0.4
 icalendar==4.0.4
 idna==2.9                 # via requests
@@ -91,7 +91,7 @@ sentry-sdk==0.14.1
 setoptconf==0.2.0         # via prospector
 simplejson==3.17.0        # via django-rest-swagger
 six==1.14.0               # via astroid, bleach, django-appconf, packaging, pip-tools, python-dateutil, traitlets
-smmap2==2.0.5             # via gitdb2
+smmap==3.0.1              # via gitdb
 snowballstemmer==2.0.0    # via pydocstyle
 sqlparse==0.3.0           # via django, django-debug-toolbar
 toml==0.10.0              # via black

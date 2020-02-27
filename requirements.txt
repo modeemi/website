@@ -60,7 +60,7 @@ pathspec==0.7.0           # via black
 pep8-naming==0.4.1        # via prospector
 pexpect==4.8.0            # via ipython
 pickleshare==0.7.5        # via ipython
-pip-tools==4.5.0
+pip-tools==4.5.1
 pluggy==0.13.1            # via pytest
 prompt-toolkit==3.0.3     # via ipython
 prospector==1.2.0

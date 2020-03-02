@@ -20,7 +20,7 @@ coverage==5.0.3           # via -r requirements.in (line 2), pytest-cov
 decorator==4.4.2          # via ipython, traitlets
 django-appconf==1.0.3     # via django-axes
 django-axes==5.2.2        # via -r requirements.in (line 4)
-django-crispy-forms==1.8.1  # via -r requirements.in (line 5)
+django-crispy-forms==1.9.0  # via -r requirements.in (line 5)
 django-debug-toolbar==2.2  # via -r requirements.in (line 6)
 django-environ==0.4.5     # via -r requirements.in (line 7)
 django-guardian==2.2.0    # via -r requirements.in (line 8)

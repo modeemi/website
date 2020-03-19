@@ -83,7 +83,7 @@ pytest-subtests==0.3.0    # via -r requirements.in
 pytest==5.4.1             # via -r requirements.in, pytest-cov, pytest-django, pytest-subtests
 python-dateutil==2.8.1    # via django-recurrence, icalendar
 pytz==2019.3              # via -r requirements.in, django, django-recurrence, icalendar
-pyyaml==5.3               # via prospector
+pyyaml==5.3.1             # via prospector
 regex==2020.2.20          # via black
 requests==2.23.0          # via coreapi, django-recaptcha2
 requirements-detector==0.6  # via prospector

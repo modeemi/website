@@ -5,7 +5,7 @@
 #    pip-compile
 #
 appdirs==1.4.3            # via black
-asgiref==3.2.6            # via django
+asgiref==3.2.7            # via django
 astroid==2.3.3            # via prospector, pylint, pylint-celery, pylint-flask, requirements-detector
 attrs==19.3.0             # via black, pytest
 backcall==0.1.0           # via ipython

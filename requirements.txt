@@ -64,7 +64,7 @@ pip-tools==4.5.1          # via -r requirements.in
 pluggy==0.13.1            # via pytest
 prompt-toolkit==3.0.5     # via ipython
 prospector==1.2.0         # via -r requirements.in
-psycopg2-binary==2.8.4    # via -r requirements.in
+psycopg2-binary==2.8.5    # via -r requirements.in
 ptyprocess==0.6.0         # via pexpect
 py==1.8.1                 # via pytest
 pycodestyle==2.4.0        # via prospector

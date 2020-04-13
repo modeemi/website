@@ -91,7 +91,7 @@ sentry-sdk==0.14.3        # via -r requirements.in
 setoptconf==0.2.0         # via prospector
 simplejson==3.17.0        # via django-rest-swagger
 six==1.14.0               # via astroid, bleach, packaging, pip-tools, python-dateutil, traitlets
-smmap==3.0.1              # via gitdb
+smmap==3.0.2              # via gitdb
 snowballstemmer==2.0.0    # via pydocstyle
 sqlparse==0.3.1           # via django, django-debug-toolbar
 toml==0.10.0              # via black

@@ -34,7 +34,7 @@ django==3.0.5             # via -r requirements.in, django-appconf, django-axes,
 djangorestframework==3.11.0  # via -r requirements.in, django-rest-swagger
 dodgy==0.2.1              # via prospector
 future==0.18.2            # via -r requirements.in
-gitdb==4.0.2              # via gitpython
+gitdb==4.0.4              # via gitpython
 gitpython==3.1.1          # via -r requirements.in
 gunicorn==20.0.4          # via -r requirements.in
 icalendar==4.0.5          # via -r requirements.in, django-ical

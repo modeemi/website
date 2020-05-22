@@ -90,7 +90,7 @@ requirements-detector==0.6  # via prospector
 sentry-sdk==0.14.4        # via -r requirements.in
 setoptconf==0.2.0         # via prospector
 simplejson==3.17.0        # via django-rest-swagger
-six==1.14.0               # via astroid, bleach, packaging, pip-tools, python-dateutil, traitlets
+six==1.15.0               # via astroid, bleach, packaging, pip-tools, python-dateutil, traitlets
 smmap==3.0.4              # via gitdb
 snowballstemmer==2.0.0    # via pydocstyle
 sqlparse==0.3.1           # via django, django-debug-toolbar

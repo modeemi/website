@@ -30,7 +30,7 @@ django-markdownify==0.8.0  # via -r requirements.in
 django-recaptcha2==1.4.1  # via -r requirements.in
 django-recurrence==1.10.3  # via django-ical
 django-rest-swagger==2.2.0  # via -r requirements.in
-django==3.0.6             # via -r requirements.in, django-appconf, django-axes, django-debug-toolbar, django-guardian, django-ical, django-markdownify, django-recurrence, djangorestframework
+django==3.0.7             # via -r requirements.in, django-appconf, django-axes, django-debug-toolbar, django-guardian, django-ical, django-markdownify, django-recurrence, djangorestframework
 djangorestframework==3.11.0  # via -r requirements.in, django-rest-swagger
 dodgy==0.2.1              # via prospector
 future==0.18.2            # via -r requirements.in

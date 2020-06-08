@@ -23,7 +23,7 @@ django-axes==5.3.2        # via -r requirements.in
 django-crispy-forms==1.9.1  # via -r requirements.in
 django-debug-toolbar==2.2  # via -r requirements.in
 django-environ==0.4.5     # via -r requirements.in
-django-guardian==2.2.0    # via -r requirements.in
+django-guardian==2.3.0    # via -r requirements.in
 django-ical==1.7.0        # via -r requirements.in
 django-ipware==2.1.0      # via django-axes
 django-markdownify==0.8.0  # via -r requirements.in

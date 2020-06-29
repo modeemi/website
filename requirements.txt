@@ -40,7 +40,7 @@ gunicorn==20.0.4          # via -r requirements.in
 icalendar==4.0.6          # via -r requirements.in, django-ical
 idna==2.9                 # via requests
 ipython-genutils==0.2.0   # via traitlets
-ipython==7.15.0           # via -r requirements.in
+ipython==7.16.1           # via -r requirements.in
 isort==4.3.21             # via pylint
 itypes==1.2.0             # via coreapi
 jedi==0.17.1              # via ipython

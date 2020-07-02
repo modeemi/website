@@ -105,7 +105,7 @@ urllib3==1.25.9           # via requests, sentry-sdk
 wcwidth==0.2.5            # via prompt-toolkit, pytest
 webencodings==0.5.1       # via bleach
 whitenoise==5.1.0         # via -r requirements.in
-wrapt==1.11.2             # via astroid
+wrapt==1.12.1             # via astroid
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip

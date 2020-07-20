@@ -26,7 +26,7 @@ django-environ==0.4.5     # via -r requirements.in
 django-guardian==2.3.0    # via -r requirements.in
 django-ical==1.7.1        # via -r requirements.in
 django-ipware==3.0.0      # via django-axes
-django-markdownify==0.8.0  # via -r requirements.in
+django-markdownify==0.8.1  # via -r requirements.in
 django-recaptcha2==1.4.1  # via -r requirements.in
 django-recurrence==1.10.3  # via django-ical
 django-rest-swagger==2.2.0  # via -r requirements.in

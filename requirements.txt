@@ -101,7 +101,7 @@ traitlets==4.3.3          # via ipython
 typed-ast==1.4.1          # via black, mypy
 typing-extensions==3.7.4.2  # via mypy
 uritemplate==3.0.1        # via coreapi
-urllib3==1.25.9           # via requests, sentry-sdk
+urllib3==1.25.10          # via requests, sentry-sdk
 wcwidth==0.2.5            # via prompt-toolkit, pytest
 webencodings==0.5.1       # via bleach
 whitenoise==5.1.0         # via -r requirements.in

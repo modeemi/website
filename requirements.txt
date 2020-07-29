@@ -41,6 +41,7 @@ gitpython==3.1.7          # via -r requirements.in
 gunicorn==20.0.4          # via -r requirements.in
 icalendar==4.0.6          # via -r requirements.in, django-ical
 idna==2.10                # via requests
+iniconfig==1.0.0          # via pytest
 ipython-genutils==0.2.0   # via traitlets
 ipython==7.16.1           # via -r requirements.in
 isort==4.3.21             # via pylint
@@ -82,7 +83,7 @@ pyparsing==2.4.7          # via packaging
 pytest-cov==2.10.0        # via -r requirements.in
 pytest-django==3.9.0      # via -r requirements.in
 pytest-subtests==0.3.1    # via -r requirements.in
-pytest==5.4.3             # via -r requirements.in, pytest-cov, pytest-django, pytest-subtests
+pytest==6.0.0             # via -r requirements.in, pytest-cov, pytest-django, pytest-subtests
 python-dateutil==2.8.1    # via django-recurrence, icalendar
 pytz==2020.1              # via -r requirements.in, django, django-recurrence, icalendar
 pyyaml==5.3.1             # via prospector
@@ -96,13 +97,13 @@ six==1.15.0               # via astroid, bleach, packaging, pip-tools, python-da
 smmap==3.0.4              # via gitdb
 snowballstemmer==2.0.0    # via pydocstyle
 sqlparse==0.3.1           # via django, django-debug-toolbar
-toml==0.10.1              # via black, pylint
+toml==0.10.1              # via black, pylint, pytest
 traitlets==4.3.3          # via ipython
 typed-ast==1.4.1          # via black, mypy
 typing-extensions==3.7.4.2  # via mypy
 uritemplate==3.0.1        # via coreapi
 urllib3==1.25.10          # via requests, sentry-sdk
-wcwidth==0.2.5            # via prompt-toolkit, pytest
+wcwidth==0.2.5            # via prompt-toolkit
 webencodings==0.5.1       # via bleach
 whitenoise==5.1.0         # via -r requirements.in
 wrapt==1.12.1             # via astroid

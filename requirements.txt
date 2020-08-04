@@ -105,7 +105,7 @@ uritemplate==3.0.1        # via coreapi
 urllib3==1.25.10          # via requests, sentry-sdk
 wcwidth==0.2.5            # via prompt-toolkit
 webencodings==0.5.1       # via bleach
-whitenoise==5.1.0         # via -r requirements.in
+whitenoise==5.2.0         # via -r requirements.in
 wrapt==1.12.1             # via astroid
 
 # The following packages are considered to be unsafe in a requirements file:

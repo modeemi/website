@@ -18,8 +18,7 @@ coreapi==2.3.3            # via django-rest-swagger, openapi-codec
 coreschema==0.0.4         # via coreapi
 coverage==5.3             # via -r requirements.in, pytest-cov
 decorator==4.4.2          # via ipython
-django-appconf==1.0.4     # via django-axes
-django-axes==5.5.2        # via -r requirements.in
+django-axes==5.6.0        # via -r requirements.in
 django-crispy-forms==1.9.2  # via -r requirements.in
 django-debug-toolbar==2.2  # via -r requirements.in
 django-environ==0.4.5     # via -r requirements.in
@@ -30,7 +29,7 @@ django-markdownify==0.8.1  # via -r requirements.in
 django-recaptcha2==1.4.1  # via -r requirements.in
 django-recurrence==1.10.3  # via django-ical
 django-rest-swagger==2.2.0  # via -r requirements.in
-django==3.1.1             # via -r requirements.in, django-appconf, django-axes, django-debug-toolbar, django-guardian, django-ical, django-markdownify, django-recurrence, djangorestframework
+django==3.1.1             # via -r requirements.in, django-axes, django-debug-toolbar, django-guardian, django-ical, django-markdownify, django-recurrence, djangorestframework
 djangorestframework==3.11.1  # via -r requirements.in, django-rest-swagger
 dodgy==0.2.1              # via prospector
 flake8-polyfill==1.0.2    # via pep8-naming

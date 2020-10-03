@@ -33,7 +33,7 @@ django==3.1.2             # via -r requirements.in, django-axes, django-debug-to
 djangorestframework==3.12.1  # via -r requirements.in, django-rest-swagger
 dodgy==0.2.1              # via prospector
 flake8-polyfill==1.0.2    # via pep8-naming
-flake8==3.8.3             # via flake8-polyfill
+flake8==3.8.4             # via flake8-polyfill
 future==0.18.2            # via -r requirements.in
 gitdb==4.0.5              # via gitpython
 gitpython==3.1.9          # via -r requirements.in

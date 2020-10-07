@@ -94,7 +94,7 @@ simplejson==3.17.2        # via django-rest-swagger
 six==1.15.0               # via astroid, bleach, packaging, pip-tools, python-dateutil
 smmap==3.0.4              # via gitdb
 snowballstemmer==2.0.0    # via pydocstyle
-sqlparse==0.3.1           # via django, django-debug-toolbar
+sqlparse==0.4.0           # via django, django-debug-toolbar
 toml==0.10.1              # via black, pylint, pytest
 traitlets==5.0.4          # via ipython
 typed-ast==1.4.1          # via black, mypy

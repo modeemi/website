@@ -52,7 +52,7 @@ markdown==3.3             # via django-markdownify
 markupsafe==1.1.1         # via jinja2
 mccabe==0.6.1             # via flake8, prospector, pylint
 mypy-extensions==0.4.3    # via black, mypy
-mypy==0.782               # via -r requirements.in
+mypy==0.790               # via -r requirements.in
 openapi-codec==1.3.2      # via django-rest-swagger
 packaging==20.4           # via bleach, pytest
 parso==0.7.1              # via jedi

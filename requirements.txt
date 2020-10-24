@@ -36,7 +36,7 @@ flake8-polyfill==1.0.2    # via pep8-naming
 flake8==3.8.4             # via flake8-polyfill
 future==0.18.2            # via -r requirements.in
 gitdb==4.0.5              # via gitpython
-gitpython==3.1.9          # via -r requirements.in
+gitpython==3.1.11         # via -r requirements.in
 gunicorn==20.0.4          # via -r requirements.in
 icalendar==4.0.7          # via -r requirements.in, django-ical
 idna==2.10                # via requests

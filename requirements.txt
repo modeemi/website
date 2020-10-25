@@ -71,7 +71,7 @@ py==1.9.0                 # via pytest
 pycodestyle==2.6.0        # via flake8, prospector
 pydocstyle==5.1.1         # via prospector
 pyflakes==2.2.0           # via flake8, prospector
-pygments==2.7.1           # via ipython
+pygments==2.7.2           # via ipython
 pylint-celery==0.3        # via prospector
 pylint-django==2.1.0      # via prospector
 pylint-flask==0.6         # via prospector

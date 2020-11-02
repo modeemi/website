@@ -95,7 +95,7 @@ six==1.15.0               # via astroid, bleach, packaging, pip-tools, python-da
 smmap==3.0.4              # via gitdb
 snowballstemmer==2.0.0    # via pydocstyle
 sqlparse==0.4.1           # via django, django-debug-toolbar
-toml==0.10.1              # via black, pylint, pytest
+toml==0.10.2              # via black, pylint, pytest
 traitlets==5.0.5          # via ipython
 typed-ast==1.4.1          # via black, mypy
 typing-extensions==3.7.4.3  # via black, mypy

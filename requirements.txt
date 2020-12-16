@@ -81,7 +81,7 @@ pyparsing==2.4.7          # via packaging
 pytest-cov==2.10.1        # via -r requirements.in
 pytest-django==4.1.0      # via -r requirements.in
 pytest-subtests==0.4.0    # via -r requirements.in
-pytest==6.2.0             # via -r requirements.in, pytest-cov, pytest-django, pytest-subtests
+pytest==6.2.1             # via -r requirements.in, pytest-cov, pytest-django, pytest-subtests
 python-dateutil==2.8.1    # via django-recurrence, icalendar
 pytz==2020.4              # via -r requirements.in, django, django-recurrence, icalendar
 pyyaml==5.3.1             # via prospector

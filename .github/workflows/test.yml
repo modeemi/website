@@ -39,7 +39,7 @@ jobs:
       run: |
         tox -v
       env:
-        DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+        DATABASE_URL: "postgres://postgres:postgres@postgres:5432/postgres"
 
     - name: Upload coverage
       uses: codecov/codecov-action@v1

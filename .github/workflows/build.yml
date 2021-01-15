@@ -1,9 +1,9 @@
-name: Website
+name: Build
 
 on: [push, pull_request]
 
 jobs:
-  tox:
+  test:
     runs-on: ubuntu-latest
 
     # https://docs.github.com/en/free-pro-team@latest/actions/guides/creating-postgresql-service-containers
@@ -36,7 +36,7 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install --upgrade tox tox-gh-actions
 
-    - name: Tox tests
+    - name: Run tox quality gates
       run: |
         tox -v
 

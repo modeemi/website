@@ -5,5 +5,5 @@ register = template.Library()
 
 
 @register.simple_tag
-def version(*args, **kwargs):
+def version():
     return settings.VERSION

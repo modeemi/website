@@ -32,9 +32,7 @@ certifi==2020.12.5
 chardet==4.0.0
     # via requests
 click==7.1.2
-    # via
-    #   black
-    #   pip-tools
+    # via black
 coreapi==2.3.3
     # via
     #   django-rest-swagger
@@ -152,8 +150,6 @@ pexpect==4.8.0
     # via ipython
 pickleshare==0.7.5
     # via ipython
-pip-tools==5.5.0
-    # via -r requirements.in
 pluggy==0.13.1
     # via pytest
 prompt-toolkit==3.0.10
@@ -281,5 +277,4 @@ wrapt==1.12.1
     # via astroid
 
 # The following packages are considered to be unsafe in a requirements file:
-# pip
 # setuptools

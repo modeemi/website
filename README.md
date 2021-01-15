@@ -15,6 +15,8 @@ Development environment can be easily provisioned with virtualenv:
 
     python3 -m venv ~/.virtualenvs/modeemi
     source ~/.virtualenvs/modeemi/bin/activate
+    pip install --ugprade pip
+    pip install --upgrade pip-tools
     pip install -r requirements.txt
     tox
     python manage.py migrate --noinput

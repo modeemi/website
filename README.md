@@ -13,7 +13,7 @@ This guide assumes you have some experience in Django development.
 
 Development environment can be easily provisioned with virtualenv:
 
-    python3 -m venv ~/.virtualenvs/modeemi
+    python -m venv ~/.virtualenvs/modeemi
     source ~/.virtualenvs/modeemi/bin/activate
     pip install --ugprade pip
     pip install --upgrade pip-tools

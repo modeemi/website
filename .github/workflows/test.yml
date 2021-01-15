@@ -1,4 +1,4 @@
-name: Website CI
+name: Website
 
 on: [push, pull_request]
 
@@ -7,12 +7,13 @@ jobs:
     runs-on: ubuntu-latest
 
     # https://docs.github.com/en/free-pro-team@latest/actions/guides/creating-postgresql-service-containers
-    container: python:3.8
     services:
       postgres:
         image: postgres
         env:
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: modeemintternet
+          POSTGRES_PASSWORD: modeemintternet
+          POSTGRES_DB: modeemiuserdb
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -38,8 +39,6 @@ jobs:
     - name: Tox tests
       run: |
         tox -v
-      env:
-        DATABASE_URL: "postgres://postgres:postgres@postgres:5432/postgres"
 
     - name: Upload coverage
       uses: codecov/codecov-action@v1

@@ -9,7 +9,10 @@ ARG DATABASE_URL="postgres://not@neededforbuilds"
 ARG RECAPTCHA_PUBLIC_KEY="notneededforbuilds"
 ARG RECAPTCHA_PRIVATE_KEY="notneededforbuilds"
 
-ARG SOURCE_COMMIT
+ARG DOCKER_TAG="latest"
+ENV DOCKER_TAG=$DOCKER_TAG
+
+ARG SOURCE_COMMIT="HEAD"
 ENV SOURCE_COMMIT=$SOURCE_COMMIT
 
 COPY scripts/entrypoint /usr/local/bin/entrypoint

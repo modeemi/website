@@ -45,6 +45,7 @@ If you modify the views, remember to run `python manage.py makemigrations` befor
 Python version can be upgraded by changing the Python version tag in the following locations:
 
 - `Dockerfile`
+- `mypy.ini`
 - `pyproject.toml`
 - `.github/workflows/build.yml`
 

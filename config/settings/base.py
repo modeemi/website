@@ -49,6 +49,7 @@ SECURE_PROXY_SSL_HEADER = env(
 )
 
 # Mailer settings
+ADMINS = [("Velhot", "root@modeemi.fi")]
 EMAIL_HOST = "mail.modeemi.fi"
 EMAIL_SUBJECT_PREFIX = "[Modeemi] "
 DEFAULT_FROM_EMAIL = "Modeemi ryn hallitus <hallitus@modeemi.fi>"

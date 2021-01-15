@@ -15,10 +15,12 @@ Development environment can be easily provisioned with virtualenv:
 
     python -m venv .venv/
     source .venv/bin/activate
-    pip install --ugprade pip
-    pip install --upgrade pip-tools
-    pip install -r requirements.txt
-    tox
+
+    python -m pip install --ugprade pip
+    python -m pip install --upgrade pip-tools
+    python -m pip install -r requirements.txt
+    python -m tox
+
     python manage.py migrate --noinput
     python manage.py collectstatic --noinput
     python manage.py runserver

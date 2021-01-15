@@ -1,11 +1,12 @@
-RELEASE := $$(git show -s --format=%H)
-IMAGE := modeemi/website
+SOURCE_COMMIT := $$(git rev-parse --short HEAD)
+IMAGE_NAME := modeemi/website:latest
+DOCKER_TAG := latest
 
 test:
 	tox
 
 build:
-	docker build --build-arg RELEASE=${RELEASE} -t ${IMAGE} .
+	docker build -t "${IMAGE_NAME}" --build-arg "SOURCE_COMMIT=${SOURCE_COMMIT}" --build-arg "DOCKER_TAG=${DOCKER_TAG}" .
 
 run:
 	docker run ${IMAGE}

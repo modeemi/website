@@ -28,6 +28,8 @@ MODEEMI_SHELL_INACTIVE = env(
     "MODEEMI_SHELL_INACTIVE", cast=str, default="/home/adm/bin/maksa"
 )
 
+VERSION = env("SOURCE_COMMIT", cast=str, default="")
+
 DEBUG = env("DJANGO_DEBUG", cast=bool, default=False)
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"

@@ -12,7 +12,6 @@ django-recaptcha2
 django-rest-swagger
 djangorestframework
 future
-gitpython
 gunicorn
 icalendar
 ipython

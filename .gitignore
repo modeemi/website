@@ -16,3 +16,4 @@ mediafiles
 *.egg-info/
 .eggs/
 db.sqlite3
+coverage.xml

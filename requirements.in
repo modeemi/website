@@ -18,7 +18,6 @@ icalendar
 ipython
 mypy
 passlib
-pip-tools
 prospector
 psycopg2-binary
 pytest

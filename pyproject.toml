@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=30.3.0", "wheel", "setuptools_scm"]
+
+[tool.pytest.ini_options]
+testpaths = "modeemintternet"
+addopts = "--cov modeemintternet --cov-append --cov-branch --cov-report term-missing --cov-report xml"
+python_files = "test*.py tests*.py *test.py *tests.py"
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+skipsdist = True
+envlist =
+    py38
+
+[gh-actions]
+python =
+    3.8: py38
+
+# Normal test environment runs pytest which orchestrates other tools
+[testenv]
+usedevelop = true
+deps =
+    -r requirements.txt
+commands =
+    pytest
+    prospector
+    mypy modeemintternet
+    black --check --diff -t py38 modeemintternet
+setenv =
+    PYTHONDONTWRITEBYTECODE=1
+"""

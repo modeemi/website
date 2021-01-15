@@ -1,9 +1,9 @@
-name: Test
+name: Website CI
 
 on: [push, pull_request]
 
 jobs:
-  build:
+  tox:
     runs-on: ubuntu-latest
 
     # https://docs.github.com/en/free-pro-team@latest/actions/guides/creating-postgresql-service-containers

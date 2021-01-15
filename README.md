@@ -5,7 +5,7 @@
 
 Modeemi ry website for the Finnish IT club based on Tampere, Finland.
 
-Built on top of Python, Django and PostgreSQL.
+Built on top of Python 3.8+, Django 3.1+ and PostgreSQL.
 
 ### Developing
 

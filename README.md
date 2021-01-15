@@ -31,6 +31,22 @@ If you have implemented new views or functionality, implement tests for those as
 
 If you modify the views, remember to run `python manage.py makemigrations` before committing.
 
+### Updating versions
+
+Python version can be upgraded by changing the Python version tag in the following locations:
+
+- `Dockerfile`
+- `pyproject.toml`
+- `.github/workflows/build.yml`
+
+You can update all Python package versions by updating `requirements.in` and then running:
+
+    pip-compile -U
+
+This compiles a new `requirements.txt` file with versions pinned, locking the development as well as production runtime environments.
+
+Afterwards commit the changes and a new image will be built.
+
 ### Updating the running web service
 
 The web service Docker container is automatically built by a Dockerhub job

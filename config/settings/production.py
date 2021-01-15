@@ -2,9 +2,6 @@ from logging import getLogger
 
 from django.core.exceptions import ImproperlyConfigured
 
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
 from .base import *  # noqa
 
 log = getLogger(__name__)
@@ -31,7 +28,3 @@ MEDIA_ROOT = "/var/www/modeemintternet/media"
 
 USE_X_FORWARDED_HOST = True
 USE_X_FORWARDED_PORT = True
-
-sentry_sdk.init(
-    env("SENTRY_DSN", cast=str, default=""), integrations=[DjangoIntegration()]
-)

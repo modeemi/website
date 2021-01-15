@@ -24,5 +24,4 @@ pytest-cov
 pytest-django
 pytest-subtests
 pytz
-sentry-sdk
 whitenoise

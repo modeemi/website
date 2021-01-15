@@ -1,7 +1,7 @@
 # [Modeemi ry website](https://www.modeemi.fi)
 
-[![Build Status](https://travis-ci.org/modeemi/website.svg?branch=master)](https://travis-ci.org/modeemi/website)
-[![Coverage Status](https://codecov.io/gh/modeemi/website/branch/master/graph/badge.svg)](https://codecov.io/gh/imodeemi/website)
+[![Build](https://github.com/modeemi/website/workflows/Build/badge.svg)](https://github.com/modeemi/website/actions)
+[![Coverage](https://codecov.io/gh/modeemi/website/branch/master/graph/badge.svg)](https://codecov.io/gh/imodeemi/website)
 
 Modeemi ry website for the Finnish IT club based on Tampere, Finland.
 

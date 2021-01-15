@@ -13,14 +13,19 @@ This guide assumes you have some experience in Django development.
 
 Development environment can be easily provisioned with virtualenv:
 
+    # Provision a virtualenv
     python -m venv .venv/
     source .venv/bin/activate
 
+    # Install development requirements
     python -m pip install --ugprade pip
     python -m pip install --upgrade pip-tools
     python -m pip install -r requirements.txt
+
+    # Run tox QA test setup
     python -m tox
 
+    # Prepare and run the development server
     python manage.py migrate --noinput
     python manage.py collectstatic --noinput
     python manage.py runserver
@@ -29,7 +34,7 @@ Development environment can be easily provisioned with virtualenv:
 
 Please run test suite before committing your changes:
 
-    tox
+    python -m tox
 
 If you have implemented new views or functionality, implement tests for those as well.
 

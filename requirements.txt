@@ -209,7 +209,7 @@ pytz==2020.5
     #   django
     #   django-recurrence
     #   icalendar
-pyyaml==5.4
+pyyaml==5.4.1
     # via prospector
 regex==2020.11.13
     # via black

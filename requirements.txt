@@ -228,7 +228,7 @@ six==1.15.0
     #   astroid
     #   bleach
     #   python-dateutil
-snowballstemmer==2.0.0
+snowballstemmer==2.1.0
     # via pydocstyle
 sqlparse==0.4.1
     # via

@@ -164,7 +164,7 @@ pyflakes==2.2.0
     # via
     #   flake8
     #   prospector
-pygments==2.7.4
+pygments==2.8.0
     # via ipython
 pylint-celery==0.3
     # via prospector

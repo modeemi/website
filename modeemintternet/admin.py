@@ -90,7 +90,7 @@ class ApplicationAdmin(admin.ModelAdmin):
         "application_rejected",
     ]
     actions = ["accept", "reject"]
-    exclude = ["sha512_crypt", "sha256_crypt", "des_crypt", "md5_crypt"]
+    exclude = ["sha512_crypt", "sha256_crypt"]
 
 
 class FeedbackAdmin(admin.ModelAdmin):

@@ -3,7 +3,7 @@ from secrets import token_hex
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
 
-from passlib.hash import des_crypt, md5_crypt, sha256_crypt, sha512_crypt
+from passlib.hash import sha256_crypt, sha512_crypt
 
 from modeemintternet.models import ShadowFormat
 
@@ -18,8 +18,6 @@ def check_password(username, password) -> bool:
     hashers = {
         "SHA512": sha512_crypt,
         "SHA256": sha256_crypt,
-        "MD5": md5_crypt,
-        "DES": des_crypt,
     }
 
     shadow_formats = ShadowFormat.objects.filter(

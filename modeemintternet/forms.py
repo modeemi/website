@@ -27,6 +27,21 @@ class MembershipFeeForm(Form):
     usernames = CharField(max_length=4096, required=True)
 
 
+class PasswordForm(Form):
+    password = CharField(
+        min_length=8, max_length=128, label="Vanha salasana", widget=PasswordInput()
+    )
+    new_password = CharField(
+        min_length=8, max_length=128, label="Uusi salasana", widget=PasswordInput()
+    )
+    new_password_check = CharField(
+        min_length=8,
+        max_length=128,
+        label="Uusi salasana uudelleen",
+        widget=PasswordInput(),
+    )
+
+
 class ApplicationForm(ModelForm):
     password = CharField(
         min_length=8, max_length=128, label="Salasana", widget=PasswordInput()

@@ -5,12 +5,14 @@ Unit tests for modeemintternet app.
 from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.models import Permission
 from django.core import mail, management
 from django.test import Client, TestCase
 from django.urls import reverse
 from django.utils import timezone
+
+from passlib.hash import sha256_crypt, sha512_crypt
 
 from modeemintternet.models import (
     Application,
@@ -20,11 +22,14 @@ from modeemintternet.models import (
     MembershipFee,
     News,
     Passwd,
+    Shadow,
+    ShadowFormat,
     Soda,
     UserGroup,
 )
 from modeemintternet.mailer import application_accepted, application_rejected
 from modeemintternet.tasks import remind, deactivate, activate
+from modeemintternet.auth import check_password
 
 User = get_user_model()
 
@@ -251,6 +256,112 @@ class ApplicationMethodTest(TestCase):
             mail.outbox[0].subject,
             settings.EMAIL_SUBJECT_PREFIX + "Jäsenhakemuksesi on käsitelty",
         )
+
+
+class PasswordUpdateViewTest(TestCase):
+    def setUp(self):
+        self.last_updated = timezone.now()
+        self.username = "ahto"
+        self.password = "ahdonsalasana"
+        self.user = User.objects.create(
+            username=self.username, email="ahto.simakuutio@example.com"
+        )
+
+        UserGroup.objects.get_or_create(groupname="modeemi", gid=1000)
+        passwd, _ = Passwd.objects.get_or_create(
+            username="ahto",
+            uid=1000,
+            gid=1000,
+            gecos="",
+            home="/home/ahto",
+            shell="/bin/bash",
+        )
+        shadow = Shadow.objects.create(
+            username=passwd,
+            lastchanged=int(self.last_updated.timestamp()) // 86400,
+            min=0,
+        )
+
+        Format.objects.get_or_create(format="SHA256")
+        Format.objects.get_or_create(format="SHA512")
+
+        for format_ in Format.objects.all():
+            hash_ = {
+                "SHA512": sha512_crypt.hash(self.password),
+                "SHA256": sha256_crypt.hash(self.password),
+            }.get(format_.format, None)
+
+            if hash_:
+                ShadowFormat.objects.create(
+                    username=passwd,
+                    format=format_,
+                    hash=hash_,
+                    last_updated=self.last_updated,
+                )
+
+    def test_password_update_unauthenticated_get(self):
+        response = self.client.get(reverse("password_update"))
+        self.assertRedirects(response, f"{reverse('login')}?next={reverse('password_update')}")
+
+    def test_password_update_authenticated_get(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse("password_update"))
+        self.assertEqual(200, response.status_code)
+
+    def test_password_update_authenticated_invalid_old_password_post(self):
+        self.client.force_login(self.user)
+        new_password = "ahtonuusisalasana"
+        response = self.client.post(
+            reverse("password_update"),
+            {
+                "password": "vääräahtonvanhasalasana",
+                "new_password": "ahtonuusisalasana",
+                "new_password_check": "ahtonuusisalasana",
+            },
+        )
+        self.assertContains(response, "Vanha salasana ei ole oikein.", status_code=400)
+
+    def test_password_update_authenticated_invalid_new_password_check_post(self):
+        self.client.force_login(self.user)
+        response = self.client.post(
+            reverse("password_update"),
+            {
+                "password": self.password,
+                "new_password": "ahtonuusisalasana",
+                "new_password_check": "ahtonuusisalsasana",
+            },
+        )
+        self.assertContains(
+            response, "Salasana ja tarkiste eivät täsmää.", status_code=400
+        )
+
+    def test_password_update_submit_authenticated_successful_post(self):
+        self.client.force_login(self.user)
+        new_password = "ahtonuusisalasana"
+        response = self.client.post(
+            reverse("password_update"),
+            {
+                "password": self.password,
+                "new_password": new_password,
+                "new_password_check": new_password,
+            },
+        )
+        self.assertRedirects(
+            response,
+            reverse("account_read"),
+            status_code=302,
+            target_status_code=200,
+            fetch_redirect_response=True,
+        )
+        # self.assertEqual(302, response.status_code)
+
+        # Old password is gone
+        old_password_ok = check_password(username=self.username, password=new_password)
+        self.assertFalse(old_password_ok)
+
+        # New password works
+        new_password_ok = check_password(username=self.username, password=self.password)
+        self.assertTrue(new_password_ok)
 
 
 class MembershipTest(TestCase):

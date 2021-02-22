@@ -2,22 +2,36 @@ from datetime import datetime
 from logging import getLogger
 from re import split
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.utils.timezone import now
+
+from passlib.hash import sha256_crypt, sha512_crypt
 
 from modeemintternet import mailer
-from modeemintternet.models import News, Soda, Membership, MembershipFee
+from modeemintternet.models import (
+    Format,
+    News,
+    Soda,
+    Membership,
+    MembershipFee,
+    Passwd,
+    Shadow,
+    ShadowFormat,
+)
 from modeemintternet.forms import (
     ApplicationForm,
     FeedbackForm,
     MembershipForm,
     MembershipFeeForm,
+    PasswordForm,
 )
 from modeemintternet.tasks import activate
+
 
 logger = getLogger(__name__)
 
@@ -178,6 +192,70 @@ def account_update(request):
         form = MembershipForm()
 
     return render(request, "account/update.html", {"form": form})
+
+
+@login_required
+@transaction.atomic
+def password_update(request):
+    if not request.POST:
+        return render(request, "account/password.html", {"form": PasswordForm()})
+
+    # Check form validity aside from passwords.
+    form = PasswordForm(request.POST)
+    if not form.is_valid():
+        return render(request, "account/password.html", {"form": form}, status=400)
+
+    # Check password validity for old password.
+    username = request.user.username
+    password = form.cleaned_data["password"]
+    user = authenticate(request=request, username=username, password=password)
+    if not user:
+        error_msg = "Vanha salasana ei ole oikein."
+        form.add_error("password", error_msg)
+
+        return render(request, "account/password.html", {"form": form}, status=400)
+
+    # Check password validity for new password and its check value.
+    password_matches = (
+        form.cleaned_data["new_password"] == form.cleaned_data["new_password_check"]
+    )
+    if not password_matches:
+        error_msg = "Salasana ja tarkiste eivät täsmää."
+        form.add_error("new_password", "")
+        form.add_error("new_password_check", error_msg)
+
+        return render(request, "account/password.html", {"form": form}, status=400)
+
+    # If everything was OK update hash entries in the user database.
+    last_updated = now()
+    passwd = Passwd.objects.get(username=username)
+    shadow = Shadow.objects.get(username=passwd)
+    shadow.lastchanged = int(last_updated.timestamp()) // 86400
+    shadow.save()
+
+    for format_ in Format.objects.all():
+        hash_ = {
+            "SHA512": sha512_crypt.hash(password),
+            "SHA256": sha256_crypt.hash(password),
+        }.get(format_.format, None)
+
+        if hash_:
+            try:
+                shadow_format = ShadowFormat.objects.get(
+                    username=passwd, format=format_
+                )
+                shadow_format.hash = hash_
+                shadow_format.last_updated = last_updated
+
+            except ShadowFormat.DoesNotExist:
+                ShadowFormat.objects.create(
+                    username=passwd,
+                    format=format_,
+                    hash=hash_,
+                    last_updated=last_updated,
+                )
+
+    return HttpResponseRedirect(reverse("account_read"))
 
 
 @login_required

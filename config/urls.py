@@ -44,6 +44,7 @@ urlpatterns = [
     path("tili/ulos/", auth_views.LogoutView.as_view(), name="logout"),
     path("tili/tiedot/", views.account_read, name="account_read"),
     path("tili/paivita/", views.account_update, name="account_update"),
+    path("tili/salasana/", views.password_update, name="password_update"),
     path("tili/rekisteri/", views.register_read, name="register_read"),
     path("tili/rekisteri/listat/", views.register_emails, name="register_emails"),
     path("tili/rekisteri/jasenmaksut/", views.register_fees, name="register_fees"),

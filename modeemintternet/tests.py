@@ -301,7 +301,9 @@ class PasswordUpdateViewTest(TestCase):
 
     def test_password_update_unauthenticated_get(self):
         response = self.client.get(reverse("password_update"))
-        self.assertRedirects(response, f"{reverse('login')}?next={reverse('password_update')}")
+        self.assertRedirects(
+            response, f"{reverse('login')}?next={reverse('password_update')}"
+        )
 
     def test_password_update_authenticated_get(self):
         self.client.force_login(self.user)

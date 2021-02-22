@@ -7,16 +7,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('modeemintternet', '0035_auto_20191212_1852'),
+        ("modeemintternet", "0035_auto_20191212_1852"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='application',
-            name='des_crypt',
+            model_name="application",
+            name="des_crypt",
         ),
         migrations.RemoveField(
-            model_name='application',
-            name='md5_crypt',
+            model_name="application",
+            name="md5_crypt",
         ),
     ]

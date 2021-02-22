@@ -7,13 +7,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('modeemintternet', '0036_auto_20210222_2111'),
+        ("modeemintternet", "0036_auto_20210222_2111"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='membershipfee',
-            name='year',
-            field=models.PositiveIntegerField(primary_key=True, serialize=False, unique=True, validators=[django.core.validators.MinValueValidator(1975), django.core.validators.MaxValueValidator(2022)], verbose_name='Vuosi'),
+            model_name="membershipfee",
+            name="year",
+            field=models.PositiveIntegerField(
+                primary_key=True,
+                serialize=False,
+                unique=True,
+                validators=[
+                    django.core.validators.MinValueValidator(1975),
+                    django.core.validators.MaxValueValidator(2022),
+                ],
+                verbose_name="Vuosi",
+            ),
         ),
     ]

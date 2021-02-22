@@ -246,7 +246,7 @@ def password_update(request):
                 )
                 shadow_format.hash = hash_
                 shadow_format.last_updated = last_updated
-
+                shadow_format.save()
             except ShadowFormat.DoesNotExist:
                 ShadowFormat.objects.create(
                     username=passwd,

@@ -41,7 +41,7 @@ coverage==5.4
     #   pytest-cov
 decorator==4.4.2
     # via ipython
-django-axes==5.13.0
+django-axes==5.13.1
     # via -r requirements.in
 django-crispy-forms==1.11.1
     # via -r requirements.in

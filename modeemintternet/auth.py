@@ -3,7 +3,7 @@ from secrets import token_hex
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
 
-from passlib.hash import sha256_crypt, sha512_crypt
+from passlib.hash import des_crypt, md5_crypt, sha256_crypt, sha512_crypt
 
 from modeemintternet.models import ShadowFormat
 
@@ -18,6 +18,14 @@ def check_password(username, password) -> bool:
     hashers = {
         "SHA512": sha512_crypt,
         "SHA256": sha256_crypt,
+        "MD5": md5_crypt,
+        # DES is included only for backwards compatibility; DES hashes are deprecating legacy values
+        "DES": des_crypt,
+        # Support authentication from old imported hash values
+        "OLD_SHA512": sha512_crypt,
+        "OLD_SHA256": sha256_crypt,
+        "OLD_MD5": md5_crypt,
+        "OLD_DES": des_crypt,
     }
 
     shadow_formats = ShadowFormat.objects.filter(

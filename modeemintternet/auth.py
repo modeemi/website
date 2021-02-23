@@ -19,9 +19,7 @@ def check_password(username, password) -> bool:
         "SHA512": sha512_crypt,
         "SHA256": sha256_crypt,
         "MD5": md5_crypt,
-        # DES is included only for backwards compatibility; DES hashes are deprecating legacy values
-        "DES": des_crypt,
-        # Support authentication from old imported hash values
+        # Support authentication from old imported legacy hash values
         "OLD_SHA512": sha512_crypt,
         "OLD_SHA256": sha256_crypt,
         "OLD_MD5": md5_crypt,

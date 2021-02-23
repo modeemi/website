@@ -207,18 +207,18 @@ def password_update(request):
 
     # Check password validity for old password.
     username = request.user.username
-    password = form.cleaned_data["password"]
-    user = authenticate(request=request, username=username, password=password)
+    old_password = form.cleaned_data["password"]
+    user = authenticate(request=request, username=username, password=old_password)
     if not user:
         error_msg = "Vanha salasana ei ole oikein."
         form.add_error("password", error_msg)
 
         return render(request, "account/password.html", {"form": form}, status=400)
 
+    new_password = form.cleaned_data["new_password"]
+    new_password_check = form.cleaned_data["new_password_check"]
     # Check password validity for new password and its check value.
-    password_matches = (
-        form.cleaned_data["new_password"] == form.cleaned_data["new_password_check"]
-    )
+    password_matches = new_password == new_password_check
     if not password_matches:
         error_msg = "Salasana ja tarkiste eivät täsmää."
         form.add_error("new_password", "")
@@ -242,9 +242,9 @@ def password_update(request):
         # These are the currently updated hasher values
         # database formats table can have extra values but they are not processed
         h = {
-            "SHA512": sha512_crypt.hash(password),
-            "SHA256": sha256_crypt.hash(password),
-            "MD5": md5_crypt.hash(password),
+            "SHA512": sha512_crypt.hash(new_password),
+            "SHA256": sha256_crypt.hash(new_password),
+            "MD5": md5_crypt.hash(new_password),
             "DES": "*LK*",  # ergo locked account https://en.wikipedia.org/wiki/Passwd
         }.get(f.format, None)
 

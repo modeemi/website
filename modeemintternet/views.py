@@ -249,12 +249,13 @@ def password_update(request):
         }.get(f.format, None)
 
         # Write new hashes for supported formats
-        ShadowFormat.objects.create(
-            username=passwd,
-            format=f,
-            hash=h,
-            last_updated=last_updated,
-        )
+        if h:
+            ShadowFormat.objects.create(
+                username=passwd,
+                format=f,
+                hash=h,
+                last_updated=last_updated,
+            )
 
     return HttpResponseRedirect(reverse("account_read"))
 

@@ -34,11 +34,14 @@ class PasswordForm(Form):
         widget=PasswordInput(),
     )
     new_password = CharField(
-        min_length=8, max_length=128, label="Uusi salasana", widget=PasswordInput()
+        min_length=12,
+        max_length=256,
+        label="Uusi salasana",
+        widget=PasswordInput(),
     )
     new_password_check = CharField(
-        min_length=8,
-        max_length=128,
+        min_length=12,
+        max_length=256,
         label="Uusi salasana uudelleen",
         widget=PasswordInput(),
     )
@@ -46,10 +49,16 @@ class PasswordForm(Form):
 
 class ApplicationForm(ModelForm):
     password = CharField(
-        min_length=8, max_length=128, label="Salasana", widget=PasswordInput()
+        min_length=12,
+        max_length=256,
+        label="Salasana",
+        widget=PasswordInput(),
     )
     password_check = CharField(
-        min_length=8, max_length=128, label="Salasana uudelleen", widget=PasswordInput()
+        min_length=12,
+        max_length=256,
+        label="Salasana uudelleen",
+        widget=PasswordInput(),
     )
     captcha = ReCaptchaField(widget=ReCaptchaWidget())
 

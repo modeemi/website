@@ -358,11 +358,11 @@ class PasswordUpdateViewTest(TestCase):
         # self.assertEqual(302, response.status_code)
 
         # Old password is gone
-        old_password_ok = check_password(username=self.username, password=new_password)
+        old_password_ok = check_password(username=self.username, password=self.password)
         self.assertFalse(old_password_ok)
 
         # New password works
-        new_password_ok = check_password(username=self.username, password=self.password)
+        new_password_ok = check_password(username=self.username, password=new_password)
         self.assertTrue(new_password_ok)
 
 

@@ -233,28 +233,27 @@ def password_update(request):
     shadow.lastchanged = int(last_updated.timestamp()) // 86400
     shadow.save()
 
-    for format_ in Format.objects.all():
-        hash_ = {
+    # Delete all old hashes from the database
+    # since this view is run inside a single atomic transaction
+    # there is no risk of leaving the database to a defunct state
+    ShadowFormat.objects.filter(username=passwd).delete()
+
+    for f in Format.objects.all():
+        # These are the currently updated hasher values
+        # database formats table can have extra values but they are not processed
+        h = {
             "SHA512": sha512_crypt.hash(password),
             "SHA256": sha256_crypt.hash(password),
             "MD5": md5_crypt.hash(password),
-        }.get(format_.format, None)
+        }.get(f.format, None)
 
-        if hash_:
-            try:
-                shadow_format = ShadowFormat.objects.get(
-                    username=passwd, format=format_
-                )
-                shadow_format.hash = hash_
-                shadow_format.last_updated = last_updated
-                shadow_format.save()
-            except ShadowFormat.DoesNotExist:
-                ShadowFormat.objects.create(
-                    username=passwd,
-                    format=format_,
-                    hash=hash_,
-                    last_updated=last_updated,
-                )
+        # Write new hashes for supported formats
+        ShadowFormat.objects.create(
+            username=passwd,
+            format=f,
+            hash=h,
+            last_updated=last_updated,
+        )
 
     return HttpResponseRedirect(reverse("account_read"))
 

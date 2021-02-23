@@ -2,7 +2,7 @@ from datetime import datetime
 from logging import getLogger
 from re import split
 
-from django.contrib.auth import authenticate, get_user_model
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db import transaction
 from django.http import HttpResponseRedirect
@@ -13,6 +13,7 @@ from django.utils.timezone import now
 from passlib.hash import md5_crypt, sha256_crypt, sha512_crypt
 
 from modeemintternet import mailer
+from modeemintternet.auth import check_password
 from modeemintternet.models import (
     Format,
     News,
@@ -208,8 +209,8 @@ def password_update(request):
     # Check password validity for old password.
     username = request.user.username
     old_password = form.cleaned_data["password"]
-    user = authenticate(request=request, username=username, password=old_password)
-    if not user:
+    old_password_ok = check_password(username=username, password=old_password)
+    if not old_password_ok:
         error_msg = "Vanha salasana ei ole oikein."
         form.add_error("password", error_msg)
 

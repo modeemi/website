@@ -245,6 +245,7 @@ def password_update(request):
             "SHA512": sha512_crypt.hash(password),
             "SHA256": sha256_crypt.hash(password),
             "MD5": md5_crypt.hash(password),
+            "DES": "*LK*",  # ergo locked account https://en.wikipedia.org/wiki/Passwd
         }.get(f.format, None)
 
         # Write new hashes for supported formats

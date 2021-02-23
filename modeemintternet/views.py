@@ -10,7 +10,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.utils.timezone import now
 
-from passlib.hash import sha256_crypt, sha512_crypt
+from passlib.hash import md5_crypt, sha256_crypt, sha512_crypt
 
 from modeemintternet import mailer
 from modeemintternet.models import (
@@ -237,6 +237,7 @@ def password_update(request):
         hash_ = {
             "SHA512": sha512_crypt.hash(password),
             "SHA256": sha256_crypt.hash(password),
+            "MD5": md5_crypt.hash(password),
         }.get(format_.format, None)
 
         if hash_:

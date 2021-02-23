@@ -10,7 +10,7 @@ from django.db import models, transaction
 from django.urls import reverse
 from django.utils.timezone import now
 
-from passlib.hash import sha256_crypt, sha512_crypt
+from passlib.hash import md5_crypt, sha256_crypt, sha512_crypt
 
 log = getLogger(__name__)
 
@@ -168,6 +168,7 @@ class Application(models.Model):
     # Password hashes
     sha512_crypt = models.CharField(max_length=128)
     sha256_crypt = models.CharField(max_length=128)
+    md5_crypt = models.CharField(max_length=128)
 
     # Processing status
     application_accepted = models.BooleanField(default=False)
@@ -190,6 +191,7 @@ class Application(models.Model):
 
         self.sha512_crypt = sha512_crypt.hash(password)
         self.sha256_crypt = sha256_crypt.hash(password)
+        self.md5_crypt = md5_crypt.hash(password)
 
         self.save()
 
@@ -229,6 +231,7 @@ class Application(models.Model):
             h = {
                 "SHA512": self.sha512_crypt,
                 "SHA256": self.sha256_crypt,
+                "MD5": self.md5_crypt,
             }.get(f.format, None)
 
             if h:

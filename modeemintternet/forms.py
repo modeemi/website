@@ -29,7 +29,9 @@ class MembershipFeeForm(Form):
 
 class PasswordForm(Form):
     password = CharField(
-        min_length=8, max_length=128, label="Vanha salasana", widget=PasswordInput()
+        max_length=256,
+        label="Vanha salasana",
+        widget=PasswordInput(),
     )
     new_password = CharField(
         min_length=8, max_length=128, label="Uusi salasana", widget=PasswordInput()

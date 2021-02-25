@@ -19,6 +19,7 @@ def check_password(username, password) -> bool:
         "SHA512": sha512_crypt,
         "SHA256": sha256_crypt,
         "MD5": md5_crypt,
+        # "DES": should always be locked i.e. "*LK*" nowadays
         # Support authentication from old imported legacy hash values
         "OLD_SHA512": sha512_crypt,
         "OLD_SHA256": sha256_crypt,
@@ -26,14 +27,23 @@ def check_password(username, password) -> bool:
         "OLD_DES": des_crypt,
     }
 
-    shadow_formats = ShadowFormat.objects.filter(
-        username=username, format__in=hashers.keys()
-    )
+    # Values that can not be processed by passlib hasher but are valid in *nix passwd
+    # https://en.wikipedia.org/wiki/Passwd
+    skip = [
+        "",  # no entry
+        "!",  # password locked
+        "*",  # password locked
+        "*LK*",  # account locked
+        "*NP*",  # password not set
+        "!!",  # password not set
+    ]
 
+    shadow_format_hashes = ShadowFormat.objects.filter(username=username)
     for name, hasher in hashers.items():
         try:
-            shadow_format_hash = shadow_formats.get(format=name).hash
-            return hasher.verify(password, shadow_format_hash)
+            shadow_format_hash = shadow_format_hashes.get(format=name).hash
+            if shadow_format_hash not in skip:
+                return hasher.verify(password, shadow_format_hash)
         except ShadowFormat.DoesNotExist:
             continue
 

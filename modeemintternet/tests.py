@@ -12,7 +12,7 @@ from django.test import Client, TestCase
 from django.urls import reverse
 from django.utils import timezone
 
-from passlib.hash import sha256_crypt, sha512_crypt
+from passlib.hash import des_crypt, md5_crypt, sha256_crypt, sha512_crypt
 
 from modeemintternet.models import (
     Application,
@@ -258,17 +258,19 @@ class ApplicationMethodTest(TestCase):
         )
 
 
-class PasswordUpdateViewTest(TestCase):
+class PasswordUpdateTest(TestCase):
+    """Base case for password updates"""
+
     def setUp(self):
         self.last_updated = timezone.now()
         self.username = "ahto"
-        self.password = "ahdonsalasana"
+        self.password = "ahtonsalasana"
         self.user = User.objects.create(
             username=self.username, email="ahto.simakuutio@example.com"
         )
 
         UserGroup.objects.get_or_create(groupname="modeemi", gid=1000)
-        passwd, _ = Passwd.objects.get_or_create(
+        self.passwd, _ = Passwd.objects.get_or_create(
             username="ahto",
             uid=1000,
             gid=1000,
@@ -276,24 +278,42 @@ class PasswordUpdateViewTest(TestCase):
             home="/home/ahto",
             shell="/bin/bash",
         )
-        shadow = Shadow.objects.create(
-            username=passwd,
+        self.shadow = Shadow.objects.create(
+            username=self.passwd,
             lastchanged=int(self.last_updated.timestamp()) // 86400,
             min=0,
         )
 
-        Format.objects.get_or_create(format="SHA256")
-        Format.objects.get_or_create(format="SHA512")
+        formats = [
+            "SHA512",
+            "SHA256",
+            "MD5",
+            "DES",
+            "OLD_SHA512",
+            "OLD_SHA256",
+            "OLD_MD5",
+            "OLD_DES",
+        ]
 
+        Format.objects.bulk_create([Format(format=format) for format in formats])
+
+
+class PasswordUpdateUserTest(PasswordUpdateTest):
+    """Modern hash formats pre-existing in the database"""
+
+    def setUp(self):
+        super().setUp()
         for format_ in Format.objects.all():
             hash_ = {
                 "SHA512": sha512_crypt.hash(self.password),
                 "SHA256": sha256_crypt.hash(self.password),
+                "MD5": md5_crypt.hash(self.password),
+                "DES": "*LK*",
             }.get(format_.format, None)
 
             if hash_:
                 ShadowFormat.objects.create(
-                    username=passwd,
+                    username=self.passwd,
                     format=format_,
                     hash=hash_,
                     last_updated=self.last_updated,
@@ -355,7 +375,6 @@ class PasswordUpdateViewTest(TestCase):
             target_status_code=200,
             fetch_redirect_response=True,
         )
-        # self.assertEqual(302, response.status_code)
 
         # Old password is gone
         old_password_ok = check_password(username=self.username, password=self.password)
@@ -364,6 +383,72 @@ class PasswordUpdateViewTest(TestCase):
         # New password works
         new_password_ok = check_password(username=self.username, password=new_password)
         self.assertTrue(new_password_ok)
+
+
+class PasswordUpdateOldDESUserTest(PasswordUpdateTest):
+    """Only legacy hash format available"""
+
+    def setUp(self):
+        super().setUp()
+        locked = "*LK*"
+        for format_ in Format.objects.all():
+            hash_ = {
+                "OLD_SHA512": locked,
+                "OLD_SHA256": locked,
+                "OLD_MD5": locked,
+                "OLD_DES": des_crypt.hash(self.password),
+            }.get(format_.format, None)
+
+            if hash_:
+                ShadowFormat.objects.create(
+                    username=self.passwd,
+                    format=format_,
+                    hash=hash_,
+                    last_updated=self.last_updated,
+                )
+
+    def test_check_password_locked(self):
+        self.assertTrue(check_password(self.username, self.password))
+
+    def test_password_update_works_with_locked_hash_formats(self):
+        self.client.force_login(self.user)
+        new_password = "ahtonuusisalasana"
+        response = self.client.post(
+            reverse("password_update"),
+            {
+                "password": self.password,
+                "new_password": new_password,
+                "new_password_check": new_password,
+            },
+        )
+        self.assertRedirects(
+            response,
+            reverse("account_read"),
+            status_code=302,
+            target_status_code=200,
+            fetch_redirect_response=True,
+        )
+
+        # Old password is gone
+        old_password_ok = check_password(username=self.username, password=self.password)
+        self.assertFalse(old_password_ok)
+
+        # New password works
+        new_password_ok = check_password(username=self.username, password=new_password)
+        self.assertTrue(new_password_ok)
+
+        # Only modern password formats are in the database
+        new_shadow_formats = {"SHA512", "SHA256", "MD5", "DES"}
+        self.assertEqual(
+            new_shadow_formats,
+            set(
+                shadow_format.format.format  # naming is confusing but correct
+                for shadow_format in ShadowFormat.objects.filter(username=self.passwd)
+            ),
+        )
+
+        # DES password is locked
+        self.assertEqual("*LK*", ShadowFormat.objects.get(format__format="DES").hash)
 
 
 class MembershipTest(TestCase):

@@ -11,12 +11,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name="application",
-            name="des_crypt",
-        ),
-        migrations.RemoveField(
-            model_name="application",
-            name="md5_crypt",
-        ),
+        migrations.RemoveField(model_name="application", name="des_crypt",),
+        migrations.RemoveField(model_name="application", name="md5_crypt",),
     ]

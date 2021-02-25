@@ -8,21 +8,14 @@ from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from django.utils.timezone import now
-
-from passlib.hash import md5_crypt, sha256_crypt, sha512_crypt
 
 from modeemintternet import mailer
-from modeemintternet.auth import check_password
+from modeemintternet.auth import check_password, update_password
 from modeemintternet.models import (
-    Format,
     News,
     Soda,
     Membership,
     MembershipFee,
-    Passwd,
-    Shadow,
-    ShadowFormat,
 )
 from modeemintternet.forms import (
     ApplicationForm,
@@ -227,36 +220,7 @@ def password_update(request):
 
         return render(request, "account/password.html", {"form": form}, status=400)
 
-    # If everything was OK update hash entries in the user database.
-    last_updated = now()
-    passwd = Passwd.objects.get(username=username)
-    shadow = Shadow.objects.get(username=passwd)
-    shadow.lastchanged = int(last_updated.timestamp()) // 86400
-    shadow.save()
-
-    # Delete all old hashes from the database
-    # since this view is run inside a single atomic transaction
-    # there is no risk of leaving the database to a defunct state
-    ShadowFormat.objects.filter(username=passwd).delete()
-
-    for f in Format.objects.all():
-        # These are the currently updated hasher values
-        # database formats table can have extra values but they are not processed
-        h = {
-            "SHA512": sha512_crypt.hash(new_password),
-            "SHA256": sha256_crypt.hash(new_password),
-            "MD5": md5_crypt.hash(new_password),
-            "DES": "*LK*",  # ergo locked account https://en.wikipedia.org/wiki/Passwd
-        }.get(f.format, None)
-
-        # Write new hashes for supported formats
-        if h:
-            ShadowFormat.objects.create(
-                username=passwd,
-                format=f,
-                hash=h,
-                last_updated=last_updated,
-            )
+    update_password(username, new_password)
 
     return HttpResponseRedirect(reverse("account_read"))
 

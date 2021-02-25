@@ -29,15 +29,10 @@ class MembershipFeeForm(Form):
 
 class PasswordForm(Form):
     password = CharField(
-        max_length=256,
-        label="Vanha salasana",
-        widget=PasswordInput(),
+        max_length=256, label="Vanha salasana", widget=PasswordInput(),
     )
     new_password = CharField(
-        min_length=12,
-        max_length=256,
-        label="Uusi salasana",
-        widget=PasswordInput(),
+        min_length=12, max_length=256, label="Uusi salasana", widget=PasswordInput(),
     )
     new_password_check = CharField(
         min_length=12,
@@ -49,10 +44,7 @@ class PasswordForm(Form):
 
 class ApplicationForm(ModelForm):
     password = CharField(
-        min_length=12,
-        max_length=256,
-        label="Salasana",
-        widget=PasswordInput(),
+        min_length=12, max_length=256, label="Salasana", widget=PasswordInput(),
     )
     password_check = CharField(
         min_length=12,

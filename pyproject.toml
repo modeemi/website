@@ -8,10 +8,22 @@ python_files = "test*.py tests*.py *test.py *tests.py"
 DJANGO_SETTINGS_MODULE = "config.settings.test"
 
 [tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
 exclude = '''
-/(
-  | migrations
-)/
+(
+  /(
+      \.eggs
+    | \.git
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | build
+    | dist
+    | migrations
+  )/
+)
 '''
 
 [tool.tox]
@@ -34,7 +46,7 @@ commands =
     pytest
     prospector
     mypy modeemintternet
-    black --check --diff -t py38 modeemintternet
+    black --check --diff .
 setenv =
     PYTHONDONTWRITEBYTECODE=1
 """

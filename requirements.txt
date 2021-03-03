@@ -55,7 +55,7 @@ django-ical==1.7.1
     # via -r requirements.in
 django-ipware==3.0.2
     # via django-axes
-django-markdownify==0.8.2
+django-markdownify==0.9.0
     # via -r requirements.in
 django-recaptcha2==1.4.1
     # via -r requirements.in

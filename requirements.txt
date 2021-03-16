@@ -251,7 +251,7 @@ typing-extensions==3.7.4.3
     #   mypy
 uritemplate==3.0.1
     # via coreapi
-urllib3==1.26.3
+urllib3==1.26.4
     # via requests
 wcwidth==0.2.5
     # via prompt-toolkit

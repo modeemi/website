@@ -211,7 +211,7 @@ pytz==2021.1
     #   icalendar
 pyyaml==5.4.1
     # via prospector
-regex==2020.11.13
+regex==2021.3.17
     # via black
 requests==2.25.1
     # via

@@ -130,7 +130,7 @@ packaging==20.9
     # via
     #   bleach
     #   pytest
-parso==0.8.1
+parso==0.8.2
     # via jedi
 passlib==1.7.4
     # via -r requirements.in

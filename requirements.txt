@@ -189,7 +189,7 @@ pyparsing==2.4.7
     # via packaging
 pytest-cov==2.11.1
     # via -r requirements.in
-pytest-django==4.1.0
+pytest-django==4.2.0
     # via -r requirements.in
 pytest-subtests==0.4.0
     # via -r requirements.in

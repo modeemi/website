@@ -19,7 +19,7 @@ attrs==20.3.0
     # via pytest
 backcall==0.2.0
     # via ipython
-black==20.8b1
+black==21.4b0
     # via -r requirements.in
 bleach==3.3.0
     # via django-markdownify
@@ -242,13 +242,9 @@ toml==0.10.2
 traitlets==5.0.5
     # via ipython
 typed-ast==1.4.3
-    # via
-    #   black
-    #   mypy
+    # via mypy
 typing-extensions==3.7.4.3
-    # via
-    #   black
-    #   mypy
+    # via mypy
 uritemplate==3.0.1
     # via coreapi
 urllib3==1.26.4

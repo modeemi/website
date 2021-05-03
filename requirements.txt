@@ -97,7 +97,7 @@ iniconfig==1.1.1
     # via pytest
 ipython-genutils==0.2.0
     # via traitlets
-ipython==7.22.0
+ipython==7.23.0
     # via -r requirements.in
 isort==4.3.21
     # via pylint
@@ -113,6 +113,8 @@ markdown==3.3.4
     # via django-markdownify
 markupsafe==1.1.1
     # via jinja2
+matplotlib-inline==0.1.2
+    # via ipython
 mccabe==0.6.1
     # via
     #   flake8
@@ -240,7 +242,9 @@ toml==0.10.2
     #   pylint
     #   pytest
 traitlets==5.0.5
-    # via ipython
+    # via
+    #   ipython
+    #   matplotlib-inline
 typed-ast==1.4.3
     # via mypy
 typing-extensions==3.10.0.0

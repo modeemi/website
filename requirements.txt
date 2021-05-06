@@ -15,7 +15,7 @@ astroid==2.4.1
     #   pylint-celery
     #   pylint-flask
     #   requirements-detector
-attrs==20.3.0
+attrs==21.1.0
     # via pytest
 backcall==0.2.0
     # via ipython

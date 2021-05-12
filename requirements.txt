@@ -111,7 +111,7 @@ lazy-object-proxy==1.4.3
     # via astroid
 markdown==3.3.4
     # via django-markdownify
-markupsafe==1.1.1
+markupsafe==2.0.0
     # via jinja2
 matplotlib-inline==0.1.2
     # via ipython

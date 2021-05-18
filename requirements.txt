@@ -160,7 +160,7 @@ pycodestyle==2.6.0
     # via
     #   flake8
     #   prospector
-pydocstyle==6.0.0
+pydocstyle==6.1.1
     # via prospector
 pyflakes==2.2.0
     # via

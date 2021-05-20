@@ -27,7 +27,7 @@ certifi==2020.12.5
     # via requests
 chardet==4.0.0
     # via requests
-click==8.0.0
+click==8.0.1
     # via black
 coreapi==2.3.3
     # via

@@ -49,7 +49,7 @@ django-debug-toolbar==3.2.1
     # via -r requirements.in
 django-environ==0.4.5
     # via -r requirements.in
-django-guardian==2.3.0
+django-guardian==2.4.0
     # via -r requirements.in
 django-ical==1.7.3
     # via -r requirements.in

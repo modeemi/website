@@ -51,7 +51,7 @@ django-environ==0.4.5
     # via -r requirements.in
 django-guardian==2.4.0
     # via -r requirements.in
-django-ical==1.7.3
+django-ical==1.8.0
     # via -r requirements.in
 django-ipware==3.0.2
     # via django-axes

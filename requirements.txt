@@ -63,7 +63,7 @@ django-recurrence==1.10.3
     # via django-ical
 django-rest-swagger==2.2.0
     # via -r requirements.in
-django==3.2.3
+django==3.2.4
     # via
     #   -r requirements.in
     #   django-axes

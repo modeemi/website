@@ -124,7 +124,7 @@ mypy-extensions==0.4.3
     # via
     #   black
     #   mypy
-mypy==0.812
+mypy==0.901
     # via -r requirements.in
 openapi-codec==1.3.2
     # via django-rest-swagger
@@ -239,6 +239,7 @@ sqlparse==0.4.1
 toml==0.10.2
     # via
     #   black
+    #   mypy
     #   pylint
     #   pytest
     #   pytest-cov
@@ -246,8 +247,6 @@ traitlets==5.0.5
     # via
     #   ipython
     #   matplotlib-inline
-typed-ast==1.4.3
-    # via mypy
 typing-extensions==3.10.0.0
     # via mypy
 uritemplate==3.0.1

@@ -25,7 +25,7 @@ bleach==3.3.0
     # via django-markdownify
 certifi==2021.5.30
     # via requests
-charset-normalizer==2.0.1
+charset-normalizer==2.0.2
     # via requests
 click==8.0.1
     # via black

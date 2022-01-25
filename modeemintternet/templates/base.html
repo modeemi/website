@@ -1,6 +1,5 @@
 {% load cache %}
 {% load static %}
-{% load recaptcha2 %}
 {% load version %}
 
 <!DOCTYPE html>
@@ -42,7 +41,6 @@
 
         <link type="text/css" rel="stylesheet"  href="{% static "css/modeemi.css" %}" />
     {% endblock link %}
-    {% recaptcha_init %}
 </head>
 
 <body>

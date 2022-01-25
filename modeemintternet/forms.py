@@ -9,8 +9,6 @@ from django.forms import (
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from snowpenguin.django.recaptcha2.fields import ReCaptchaField
-from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
 
 from modeemintternet.models import Application, Feedback
 
@@ -60,7 +58,6 @@ class ApplicationForm(ModelForm):
         label="Salasana uudelleen",
         widget=PasswordInput(),
     )
-    captcha = ReCaptchaField(widget=ReCaptchaWidget())
 
     class Meta:
         model = Application
@@ -99,8 +96,6 @@ class ApplicationForm(ModelForm):
 
 
 class FeedbackForm(ModelForm):
-    captcha = ReCaptchaField(widget=ReCaptchaWidget())
-
     class Meta:
         model = Feedback
         exclude = ()

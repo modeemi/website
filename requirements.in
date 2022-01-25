@@ -1,6 +1,6 @@
 black
 coverage
-django>=3.1,<3.3
+django>=4.0,<4.1
 django-axes
 django-crispy-forms
 django-debug-toolbar
@@ -8,20 +8,19 @@ django-environ
 django-guardian
 django-ical
 django-markdownify
-django-recaptcha2
 django-rest-swagger
 djangorestframework
-future
 gunicorn
 icalendar
 ipython
 mypy
 passlib
-prospector
+# Change to just "prospector" once they fix flake8 dependencies
+https://github.com/PyCQA/prospector/archive/c31bb80d61d49d37a1fe67635aae22f5896111ed.zip
 psycopg2-binary
+pyflakes
 pytest
 pytest-cov
 pytest-django
 pytest-subtests
-pytz
 whitenoise

@@ -110,7 +110,6 @@ INSTALLED_APPS = (
     "crispy_forms",
     "markdownify",
     "rest_framework",
-    "snowpenguin.django.recaptcha2",
     "modeemintternet",
 )
 

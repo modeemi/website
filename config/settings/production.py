@@ -8,8 +8,6 @@ log = getLogger(__name__)
 
 DEBUG = False
 SECRET_KEY = env("DJANGO_SECRET_KEY")
-RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
-RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 
 if len(SECRET_KEY) < 18:
     raise ImproperlyConfigured(

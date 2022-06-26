@@ -18,7 +18,7 @@ Development environment can be easily provisioned with virtualenv:
     source .venv/bin/activate
 
     # Install development requirements
-    python -m pip install --ugprade pip
+    python -m pip install --upgrade pip
     python -m pip install --upgrade pip-tools
     python -m pip install -r requirements.txt
 

@@ -28,7 +28,7 @@ certifi==2021.10.8
     # via requests
 charset-normalizer==2.0.10
     # via requests
-click==8.0.3
+click==8.1.3
     # via black
 coreapi==2.3.3
     # via

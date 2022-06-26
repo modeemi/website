@@ -11,7 +11,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 if len(SECRET_KEY) < 18:
     raise ImproperlyConfigured(
-        "Django SECRET_KEY is too short, length is {}".format(len(SECRET_KEY))
+        f"Django SECRET_KEY is too short, length is {len(SECRET_KEY)}"
     )
 
 DATABASES = {"default": env.db()}

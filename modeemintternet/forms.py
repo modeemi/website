@@ -73,7 +73,7 @@ class ApplicationForm(ModelForm):
         )
 
     def __init__(self, *args, **kwargs):
-        super(ApplicationForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
         self.helper.form_id = "application-form"
@@ -101,7 +101,7 @@ class FeedbackForm(ModelForm):
         exclude = ()
 
     def __init__(self, *args, **kwargs):
-        super(FeedbackForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.helper = FormHelper(self)
         self.helper.form_id = "feedback-form"

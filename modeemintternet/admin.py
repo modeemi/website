@@ -14,7 +14,7 @@ class NewsAdmin(admin.ModelAdmin):
 
     def save_model(
         self, request, news, form, change
-    ):  # pylint: disable=arguments-differ
+    ):  # pylint: disable=arguments-renamed
         news.poster = request.user
         news.save()
 

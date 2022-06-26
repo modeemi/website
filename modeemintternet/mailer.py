@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 
 ORGANIZATION = "Modeemi ry"
 ORGANIZATION_EMAIL = settings.DEFAULT_FROM_EMAIL
+ORGANIZATION_WEBSHOP = "https://holvi.com/shop/modeemi/"
 
 
 def application_created(application):
@@ -25,35 +26,31 @@ def application_created(application):
     body = f"""
 Hei,
 
-henkilö {0} {1} ({2}) on jättänyt uuden jäsenhakemuksen {3}.
+henkilö {application.first_name} {application.last_name} ({application.username})
+on jättänyt uuden jäsenhakemuksen {application.applied.strftime}.
 
 Voit tarkastella jäsenhakemusta osoitteessa:
 
-    https://www.modeemi.fi/admin/modeemintternet/application/{4}/
+    https://www.modeemi.fi/admin/modeemintternet/application/{application.id}/
 
 Ystävällisin terveisin,
-{5}n hallitusautomaatiobotti
-""".format(
-        application.first_name,
-        application.last_name,
-        application.username,
-        application.applied.strftime("%d.%m.%Y"),
-        application.id,
-        ORGANIZATION,
-    )
+{ORGANIZATION}n hallitusautomaatiobotti
+"""
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [ORGANIZATION_EMAIL])
 
     # Notifier to the end user
+    key_needed = "Kyllä" if application.virtual_key_required else "Ei"
+    application_time = application.applied.strftime("%d.%m.%Y")
     subject = settings.EMAIL_SUBJECT_PREFIX + "Jäsenhakemuksesi lisätiedot"
-    body = """
-Hei {0},
+    body = f"""
+Hei {application.first_name},
 
 ja kiitos jäsenhakemuksestasi!
 
-Käy maksamassa {7}n jäsenmaksu Holvin kaupassa, jos et ole vielä sitä ehtinyt tekemään:
+Käy maksamassa {ORGANIZATION}n jäsenmaksu Holvin kaupassa, jos et ole vielä sitä ehtinyt tekemään:
 
-    https://holvi.com/shop/modeemi/
+    {ORGANIZATION_WEBSHOP}
 
 Jos laskun maksaminen ei onnistu Holvissa niin:
 
@@ -66,26 +63,17 @@ Mikäli sinulla on kova kiire hakemuksen kanssa, voit olla hallitukseen yhteydes
 
 Ohessa hakemuksesi tiedot:
 
-    Etunimi: {0}
-    Sukunimi: {1}
-    Sähköpostiosoite: {2}
-    Tunnus: {3}
-    Komentokehoite: {4}
-    Virtuaaliavain: {5}
-    Hakemus jätetty: {6}
+    Etunimi: {application.first_name}
+    Sukunimi: {application.last_name}
+    Sähköpostiosoite: {application.email}
+    Tunnus: {application.username}
+    Komentokehoite: {application.shell}
+    Virtuaaliavain: {key_needed}
+    Hakemus jätetty: {application_time}
 
 Ystävällisin terveisin,
-{7}n hallitus
-""".format(
-        application.first_name,
-        application.last_name,
-        application.email,
-        application.username,
-        application.shell,
-        "Kyllä" if application.virtual_key_required else "Ei",
-        application.applied.strftime("%d.%m.%Y"),
-        ORGANIZATION,
-    )
+{ORGANIZATION}n hallitus
+"""
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 
@@ -99,20 +87,18 @@ def application_accepted(application):
     """
 
     subject = settings.EMAIL_SUBJECT_PREFIX + "Jäsenhakemuksesi on käsitelty"
-    body = """
+    body = f"""
 Hei,
 
-{0}n hallitus on käsitellyt ja hyväksynyt jäsenhakemuksesi.
+{ORGANIZATION}n hallitus on käsitellyt ja hyväksynyt jäsenhakemuksesi.
 
-Sinulle on luotu tunnus {1}.
+Sinulle on luotu tunnus {application.username}.
 
 Tunnuksien jakelu jäsenkoneille tehdään öisin, joten kirjautuminen onnistuu vasta seuraavana päivänä.
 
 Ystävällisin terveisin,
-{0}n hallitus
-""".format(
-        ORGANIZATION, application.username
-    )
+{ORGANIZATION}n hallitus
+"""
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 
@@ -129,15 +115,13 @@ def application_rejected(application):
     body = """
 Hei,
 
-{0}n hallitus on käsitellyt ja ikävä kyllä hylännyt jäsenhakemuksesi.
+{ORGANIZATION}n hallitus on käsitellyt ja ikävä kyllä hylännyt jäsenhakemuksesi.
 
-Lisätietoja voit tulla tiedustelemaan kerhohuoneelta tai sähköpostitse osoitteesta {1}.
+Lisätietoja voit tulla tiedustelemaan kerhohuoneelta tai sähköpostitse osoitteesta {ORGANIZATION_EMAIL}.
 
 Ystävällisin terveisin,
-{0}n hallitus
-""".format(
-        ORGANIZATION, ORGANIZATION_EMAIL
-    )
+{ORGANIZATION}n hallitus
+"""
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [application.email])
 
@@ -150,22 +134,20 @@ def feedback_received(feedback):
     """
 
     subject = settings.EMAIL_SUBJECT_PREFIX + "Palaute verkkosivujen kautta"
-    body = """
+    body = f"""
 Hei,
 
-henkilö {0} on jättänyt seuraavan palautteen hallitukselle verkkosivujen välityksellä:
+henkilö {feedback.sender} on jättänyt seuraavan palautteen hallitukselle verkkosivujen välityksellä:
 
-{1}
+{fill(feedback.message)}
 
 Voit tarkastella palautetta myös osoitteessa
 
-    https://www.modeemi.fi/admin/modeemintternet/feedback/{2}/
+    https://www.modeemi.fi/admin/modeemintternet/feedback/{feedback.id}/
 
 Ystävällisin terveisin,
-{3}n hallitusautomaatiobotti
-""".format(
-        feedback.sender, fill(feedback.message), feedback.id, ORGANIZATION
-    )
+{ORGANIZATION}n hallitusautomaatiobotti
+"""
 
     send_mail(subject, body, ORGANIZATION_EMAIL, [ORGANIZATION_EMAIL])
 

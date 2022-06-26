@@ -1,7 +1,7 @@
 ignore-patterns:
   - .*migrations
 
-pep8:
+pycodestyle:
   options:
     max-line-length: 119
 

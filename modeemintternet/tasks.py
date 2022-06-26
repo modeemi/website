@@ -73,7 +73,7 @@ def deactivate(memberships=None) -> List[str]:
         logger.info("Would deactivate: %s", deactivated)
         return deactivated
 
-    deactivated = list()
+    deactivated = []
     for membership in memberships:
         active = False
 
@@ -122,7 +122,7 @@ def activate(memberships=None) -> List[str]:
             user__is_active=False, fee__year__gte=datetime.now().year
         )
 
-    activated = list()
+    activated = []
     for membership in memberships:
         inactive = False
 

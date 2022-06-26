@@ -50,7 +50,7 @@ class News(models.Model):
         verbose_name_plural = "Uutiset"
 
     def __str__(self):
-        return "{0} (luotu {1} UTC)".format(self.title, self.posted)
+        return f"{self.title} (luotu {self.posted} UTC)"
 
     def get_absolute_url(self):
         return reverse("news", args=[self.id])
@@ -66,7 +66,7 @@ class Soda(models.Model):
         verbose_name_plural = "Limut"
 
     def __str__(self):
-        return "{0}".format(self.name)
+        return f"{self.name}"
 
 
 class MembershipFee(models.Model):
@@ -180,7 +180,7 @@ class Application(models.Model):
         verbose_name_plural = "Hakemukset"
 
     def __str__(self):
-        return "{0} {1} ({2})".format(self.first_name, self.last_name, self.applied)
+        return f"{self.first_name} {self.last_name} ({self.applied})"
 
     def generate_password_hashes(self, password):
         """
@@ -199,7 +199,7 @@ class Application(models.Model):
     def accept(self):
         if self.application_processed:
             raise ValidationError(
-                "Application {} has already been accepted".format(self.username)
+                f"Application {self.username} has already been accepted"
             )
 
         User = get_user_model()
@@ -218,8 +218,8 @@ class Application(models.Model):
             username=self.username,
             uid=Passwd.get_free_uid(),
             gid=group.gid,
-            gecos="{} {}".format(self.first_name, self.last_name),
-            home="/home/{}".format(self.username),
+            gecos=f"{self.first_name} {self.last_name}",
+            home=f"/home/{self.username}",
             shell=self.shell,
         )
 
@@ -251,7 +251,7 @@ class Application(models.Model):
     def reject(self):
         if self.application_processed:
             raise ValidationError(
-                "Application {} has already been rejected".format(self.username)
+                f"Application {self.username} has already been rejected"
             )
 
         self.application_rejected = True
@@ -270,9 +270,7 @@ class Feedback(models.Model):
         verbose_name_plural = "Palautteet"
 
     def __str__(self):
-        return "{0} ({1})".format(
-            self.message[:25], self.sent  # pylint: disable=unsubscriptable-object
-        )
+        return f"{self.message[:25]} ({self.sent})"  # pylint: disable=unsubscriptable-object
 
 
 # Existing modeemiuserdb models that have been created manually and previously handled by the custom database router.

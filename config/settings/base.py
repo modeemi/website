@@ -59,7 +59,7 @@ SITE_ID = 1
 
 INTERNAL_IPS = ("127.0.0.1", "localhost")
 
-ALLOWED_HOSTS = (
+ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     "modeemi.fi",
@@ -68,7 +68,11 @@ ALLOWED_HOSTS = (
     "cherry.modeemi.fi",
     "modeemi.cs.tut.fi",
     "www.modeemi.cs.tut.fi",
-)
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://modeemi.fi"
+]
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

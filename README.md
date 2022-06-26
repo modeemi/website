@@ -5,7 +5,7 @@
 
 Modeemi ry website for the Finnish IT club based on Tampere, Finland.
 
-Built on top of Python 3.8, Django 3.1 and PostgreSQL.
+Built on top of Python 3.10, Django 4.0 and PostgreSQL.
 
 ### Developing
 
@@ -59,12 +59,12 @@ Afterwards commit the changes and a new image will be built.
 
 ### Updating the running web service
 
-The web service Docker container is automatically built by a Dockerhub job
-from the `master` branch and a new version is deployed onto the web server periodically.
+The web service Docker container is automatically built from the `master` branch. Newest release of the container is hosted with GitHub Packages.
 
-https://hub.docker.com/u/modeemi
+https://github.com/modeemi/website/pkgs/container/website
 
-To update the project you can
+After code is pushed, a CI job will automatically run tests and linters and build the containter. To pull the container into production you can:
 
-- Go get a soda and wait for 15 minutes for a cronjob to update the site.
+- Go get a soda and wait for 15 minutes for a cronjob to update the site OR
 - Manually run `sudo webupdate` on the web server.
+

@@ -38,7 +38,7 @@ jobs:
 
     - name: Run tox quality gates
       run: |
-        tox -v -X
+        tox -v
 
     - name: Upload coverage
       uses: codecov/codecov-action@v1

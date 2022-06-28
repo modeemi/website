@@ -156,7 +156,7 @@ pluggy==1.0.0
     # via
     #   pytest
     #   tox
-prompt-toolkit==3.0.29
+prompt-toolkit==3.0.30
     # via ipython
 prospector==1.7.7
     # via -r requirements.in

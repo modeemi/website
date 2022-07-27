@@ -240,7 +240,6 @@ six==1.16.0
     #   bleach
     #   python-dateutil
     #   tox
-    #   virtualenv
 snowballstemmer==2.2.0
     # via pydocstyle
 sqlparse==0.4.2
@@ -276,7 +275,7 @@ uritemplate==4.1.1
     # via coreapi
 urllib3==1.26.9
     # via requests
-virtualenv==20.15.0
+virtualenv==20.16.1
     # via tox
 wcwidth==0.2.5
     # via prompt-toolkit

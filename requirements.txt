@@ -18,7 +18,7 @@ attrs==21.4.0
     # via pytest
 backcall==0.2.0
     # via ipython
-black==22.3.0
+black==22.8.0
     # via -r requirements.in
 bleach[css]==5.0.0
     # via django-markdownify

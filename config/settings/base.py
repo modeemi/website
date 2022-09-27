@@ -70,7 +70,7 @@ ALLOWED_HOSTS = [
     "www.modeemi.cs.tut.fi",
 ]
 
-CSRF_TRUSTED_ORIGINS = ["https://modeemi.fi"]
+CSRF_TRUSTED_ORIGINS = ["https://modeemi.fi", "https://www.modeemi.fi"]
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

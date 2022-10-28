@@ -18,7 +18,7 @@ attrs==21.4.0
     # via pytest
 backcall==0.2.0
     # via ipython
-black==22.3.0
+black==22.10.0
     # via -r requirements.in
 bleach[css]==5.0.0
     # via django-markdownify
@@ -44,7 +44,7 @@ dill==0.3.5.1
     # via pylint
 distlib==0.3.4
     # via virtualenv
-django==4.0.5
+django==4.1.2
     # via
     #   -r requirements.in
     #   django-axes
@@ -156,7 +156,7 @@ pluggy==1.0.0
     # via
     #   pytest
     #   tox
-prompt-toolkit==3.0.29
+prompt-toolkit==3.0.31
     # via ipython
 prospector==1.7.7
     # via -r requirements.in
@@ -183,7 +183,7 @@ pyflakes==2.4.0
     #   prospector
 pygments==2.12.0
     # via ipython
-pylint==2.14.3
+pylint==2.14.5
     # via
     #   prospector
     #   pylint-celery
@@ -226,7 +226,7 @@ pytz==2022.1
     #   icalendar
 pyyaml==6.0
     # via prospector
-requests==2.28.0
+requests==2.28.1
     # via coreapi
 requirements-detector==0.7
     # via prospector
@@ -240,7 +240,6 @@ six==1.16.0
     #   bleach
     #   python-dateutil
     #   tox
-    #   virtualenv
 snowballstemmer==2.2.0
     # via pydocstyle
 sqlparse==0.4.2
@@ -261,7 +260,7 @@ tomli==2.0.1
     #   pylint
     #   pytest
     #   tox
-tomlkit==0.11.0
+tomlkit==0.11.6
     # via pylint
 tox==3.27.0
     # via -r requirements.in
@@ -269,13 +268,13 @@ traitlets==5.3.0
     # via
     #   ipython
     #   matplotlib-inline
-typing-extensions==4.2.0
+typing-extensions==4.4.0
     # via mypy
 uritemplate==4.1.1
     # via coreapi
-urllib3==1.26.9
+urllib3==1.26.12
     # via requests
-virtualenv==20.15.0
+virtualenv==20.16.2
     # via tox
 wcwidth==0.2.5
     # via prompt-toolkit

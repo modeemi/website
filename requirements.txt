@@ -273,7 +273,7 @@ typing-extensions==4.2.0
     # via mypy
 uritemplate==4.1.1
     # via coreapi
-urllib3==1.26.9
+urllib3==1.26.12
     # via requests
 virtualenv==20.16.2
     # via tox

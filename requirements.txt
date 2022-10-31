@@ -14,7 +14,7 @@ astroid==2.11.6
     #   requirements-detector
 asttokens==2.0.5
     # via stack-data
-attrs==21.4.0
+attrs==22.1.0
     # via pytest
 backcall==0.2.0
     # via ipython

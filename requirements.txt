@@ -246,7 +246,7 @@ sqlparse==0.4.2
     # via
     #   django
     #   django-debug-toolbar
-stack-data==0.3.0
+stack-data==0.5.1
     # via ipython
 tinycss2==1.1.1
     # via bleach

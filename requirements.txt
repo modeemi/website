@@ -123,7 +123,7 @@ mccabe==0.6.1
     #   flake8
     #   prospector
     #   pylint
-mypy==0.961
+mypy==0.991
     # via -r requirements.in
 mypy-extensions==0.4.3
     # via

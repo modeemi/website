@@ -12,7 +12,7 @@ astroid==2.11.6
     #   pylint-celery
     #   pylint-flask
     #   requirements-detector
-asttokens==2.0.5
+asttokens==2.1.0
     # via stack-data
 attrs==22.1.0
     # via pytest

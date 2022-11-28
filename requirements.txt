@@ -22,7 +22,7 @@ black==22.10.0
     # via -r requirements.in
 bleach[css]==5.0.0
     # via django-markdownify
-certifi==2022.6.15
+certifi==2022.9.24
     # via requests
 charset-normalizer==2.1.1
     # via requests

@@ -248,7 +248,7 @@ sqlparse==0.4.3
     #   django-debug-toolbar
 stack-data==0.5.1
     # via ipython
-tinycss2==1.1.1
+tinycss2==1.2.1
     # via bleach
 toml==0.10.2
     # via prospector

@@ -242,7 +242,7 @@ six==1.16.0
     #   tox
 snowballstemmer==2.2.0
     # via pydocstyle
-sqlparse==0.4.2
+sqlparse==0.4.3
     # via
     #   django
     #   django-debug-toolbar

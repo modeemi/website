@@ -102,7 +102,7 @@ iniconfig==1.1.1
     # via pytest
 ipython==8.4.0
     # via -r requirements.in
-isort==5.10.1
+isort==5.11.4
     # via pylint
 itypes==1.2.0
     # via coreapi

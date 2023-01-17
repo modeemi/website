@@ -220,7 +220,7 @@ python-dateutil==2.8.2
     # via
     #   django-recurrence
     #   icalendar
-pytz==2022.1
+pytz==2022.7.1
     # via
     #   djangorestframework
     #   icalendar

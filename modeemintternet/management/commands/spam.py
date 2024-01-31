@@ -42,7 +42,7 @@ def spam(subject, message, memberships=None):
 
 
 class Command(BaseCommand):
-    help = "Remind user accounts that have unpaid membership fees"
+    help = "Send email to all users"
 
     def handle(self, *args, **options):  # pylint: disable=unused-argument
         print("Subject:")

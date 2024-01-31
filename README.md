@@ -11,6 +11,12 @@ Built on top of Python 3.10, Django 4.0 and PostgreSQL.
 
 This guide assumes you have some experience in Django development.
 
+Setting up postgresql:
+
+    # Create dev environment user and database
+    CREATE USER modeemintternet PASSWORD 'modeemintternet' CREATEDB;
+    CREATE DATABASE modeemiuserdb WITH OWNER = modeemintternet;
+
 Development environment can be easily provisioned with virtualenv:
 
     # Provision a virtualenv

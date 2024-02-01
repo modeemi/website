@@ -111,3 +111,5 @@ class FeedbackForm(ModelForm):
         self.fields["sender"].label = "Lähettäjä (vapaaehtoinen)"
         self.fields["email"].label = "Email (vapaaehtoinen)"
         self.fields["message"].label = "Palaute"
+        self.fields["validation"].label = "Mikä on tämän kerhon nimi?"
+        self.fields["validation"].required = True

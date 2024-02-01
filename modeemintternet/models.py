@@ -29,6 +29,11 @@ def validate_username(username):
         log.exception("Error in querying passwd objects", exc_info=e)
 
 
+def validate_antibot_question(answer):
+    if not match(r"(?i)modeemi", answer):
+        raise ValidationError("Yritäppä uudelleen")
+
+
 class News(models.Model):
     title = models.TextField(blank=False)
     text = models.TextField()
@@ -263,6 +268,9 @@ class Feedback(models.Model):
     sender = models.CharField(blank=True, max_length=64)
     email = models.EmailField(blank=True)
     message = models.TextField(blank=False)
+    validation = models.CharField(
+        blank=False, default="", max_length=16, validators=[validate_antibot_question]
+    )
     sent = models.DateTimeField(auto_now_add=True)
 
     class Meta:

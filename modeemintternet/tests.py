@@ -116,6 +116,7 @@ class FeedbackTest(TestCase):
             "sender": "Jumal Velho",
             "email": "jumal.velho@example.org",
             "message": "Moi\nTäs Jumal Velho",
+            "validation": "Modeemi",
         }
 
     def test_feedback_to_unicode(self):

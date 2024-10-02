@@ -253,7 +253,13 @@ tinycss2==1.1.1
 toml==0.10.2
     # via prospector
 tomli==2.0.1
-    # via pytest
+    # via
+    #   black
+    #   coverage
+    #   mypy
+    #   pylint
+    #   pytest
+    #   tox
 tomlkit==0.11.6
     # via pylint
 tox==3.27.1
@@ -262,7 +268,7 @@ traitlets==5.5.0
     # via
     #   ipython
     #   matplotlib-inline
-typing-extensions==4.4.0
+typing-extensions==4.12.2
     # via mypy
 uritemplate==4.1.1
     # via coreapi

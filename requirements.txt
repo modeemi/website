@@ -152,7 +152,7 @@ platformdirs==2.6.0
     #   black
     #   pylint
     #   virtualenv
-pluggy==1.0.0
+pluggy==1.5.0
     # via
     #   pytest
     #   tox
@@ -253,7 +253,13 @@ tinycss2==1.1.1
 toml==0.10.2
     # via prospector
 tomli==2.0.1
-    # via pytest
+    # via
+    #   black
+    #   coverage
+    #   mypy
+    #   pylint
+    #   pytest
+    #   tox
 tomlkit==0.11.6
     # via pylint
 tox==3.27.1

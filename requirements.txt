@@ -4,7 +4,7 @@
 #
 #    pip-compile
 #
-asgiref==3.5.2
+asgiref==3.8.1
     # via django
 astroid==2.11.6
     # via
@@ -44,7 +44,7 @@ dill==0.3.5.1
     # via pylint
 distlib==0.3.4
     # via virtualenv
-django==4.1.4
+django==5.1.2
     # via
     #   -r requirements.in
     #   django-axes
@@ -253,7 +253,13 @@ tinycss2==1.1.1
 toml==0.10.2
     # via prospector
 tomli==2.0.1
-    # via pytest
+    # via
+    #   black
+    #   coverage
+    #   mypy
+    #   pylint
+    #   pytest
+    #   tox
 tomlkit==0.11.6
     # via pylint
 tox==3.27.1
@@ -263,7 +269,9 @@ traitlets==5.5.0
     #   ipython
     #   matplotlib-inline
 typing-extensions==4.4.0
-    # via mypy
+    # via
+    #   asgiref
+    #   mypy
 uritemplate==4.1.1
     # via coreapi
 urllib3==1.26.12

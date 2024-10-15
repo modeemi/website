@@ -7,6 +7,10 @@ addopts = "--cov modeemintternet --cov-append --cov-branch --cov-report term-mis
 python_files = "test*.py tests*.py *test.py *tests.py"
 DJANGO_SETTINGS_MODULE = "config.settings.test"
 
+[tool.pylint.MAIN]
+load-plugins = "pylint_django"
+django-settings-module = "config.settings.local"
+
 [tool.black]
 line-length = 88
 target-version = ['py312']

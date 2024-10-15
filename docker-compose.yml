@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres:15
+    ports:
+      - 65432:5432
+    environment:
+      - POSTGRES_PASSWORD=modeemintternet
+      - POSTGRES_USER=modeemintternet
+      - POSTGRES_DB=modeemiuserdb

@@ -4,6 +4,7 @@ MODE_TESTING = True
 
 SECRET_KEY = env("DJANGO_SECRETKEY", default="thisisthedummydjangosecretkey")
 
+
 # http://www.eatsomecode.com/faster-django-tests
 
 DEBUG = False

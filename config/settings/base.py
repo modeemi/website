@@ -206,8 +206,10 @@ CRISPY_TEMPLATE_PACK = "bootstrap3"
 
 MARKDOWNIFY = {
     "default": {
-        "LINKIFY_TEXT": True,
-        "LINKIFY_EMAIL": True,
+        "LINKIFY_TEXT": {
+            "PARSE_URLS": True,
+            "PARSE_EMAIL": True,
+        },
         "SKIP_TAGS": ["pre", "code"],
         "MARKDOWN_EXTENSIONS": ["extra", "nl2br"],
         "WHITELIST_TAGS": [

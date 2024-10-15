@@ -3,6 +3,7 @@ IMAGE_NAME := modeemi/website:latest
 DOCKER_TAG := latest
 
 test:
+	docker-compose up -d
 	tox
 
 build:

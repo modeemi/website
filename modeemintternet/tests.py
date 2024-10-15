@@ -5,7 +5,7 @@ Unit tests for modeemintternet app.
 from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.contrib.auth import authenticate, get_user_model
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.core import mail, management
 from django.test import Client, TestCase
@@ -80,8 +80,8 @@ class ViewGetTest(TestCase):
         Just not having an exception is good 'nuf.
         """
 
-        self.news.__str__()
-        self.soda.__str__()
+        str(self.news)
+        str(self.soda)
 
     def test_get_urls(self):
         c = Client()
@@ -101,7 +101,7 @@ class ViewGetTest(TestCase):
     def test_get_single_news(self):
         c = Client()
 
-        response = c.get("/uutiset/{}/".format(self.news.id))
+        response = c.get(f"/uutiset/{self.news.id}/")
         self.assertContains(response, "Testiuutinen")
         self.assertContains(response, "Uutisetkin pitää testata")
 
@@ -122,7 +122,7 @@ class FeedbackTest(TestCase):
     def test_feedback_to_unicode(self):
         feedback = Feedback(**self.feedback)
         feedback.save()
-        feedback.__str__()
+        str(feedback)
 
     def test_invalid_feedback(self):
         del self.feedback["message"]
@@ -234,7 +234,7 @@ class ApplicationMethodTest(TestCase):
         self.application.generate_password_hashes(password="pekkaonparas:D")
 
     def test_application_to_unicode(self):
-        self.application.__str__()
+        str(self.application)
 
     def test_application_accept(self):
         self.application.accept()
@@ -333,7 +333,6 @@ class PasswordUpdateUserTest(PasswordUpdateTest):
 
     def test_password_update_authenticated_invalid_old_password_post(self):
         self.client.force_login(self.user)
-        new_password = "ahtonuusisalasana"
         response = self.client.post(
             reverse("password_update"),
             {

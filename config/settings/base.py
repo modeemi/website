@@ -231,6 +231,6 @@ MARKDOWNIFY = {
             "th",
             "tr",
             "ul",
-        ]
+        ],
     }
 }

@@ -110,6 +110,7 @@ INSTALLED_APPS = (
     "django.contrib.staticfiles",
     "axes",
     "crispy_forms",
+    "crispy_bootstrap3",
     "markdownify",
     "rest_framework",
     "modeemintternet",
@@ -200,6 +201,7 @@ AXES_COOLOFF_TIME = datetime.timedelta(minutes=5)
 AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
 AXES_META_PRECEDENCE_ORDER = ["HTTP_X_FORWARDED_FOR", "REMOTE_ADDR"]
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap3"
 CRISPY_TEMPLATE_PACK = "bootstrap3"
 
 MARKDOWNIFY_LINKIFY_TEXT = True

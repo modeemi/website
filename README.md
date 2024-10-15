@@ -5,7 +5,7 @@
 
 Modeemi ry website for the Finnish IT club based on Tampere, Finland.
 
-Built on top of Python 3.10, Django 4.0 and PostgreSQL.
+Built on top of Python 3.12, Django 4.2 and PostgreSQL.
 
 ### Developing
 
@@ -73,4 +73,3 @@ After code is pushed, a CI job will automatically run tests and linters and buil
 
 - Go get a soda and wait for 15 minutes for a cronjob to update the site OR
 - Manually run `sudo webupdate` on the web server.
-

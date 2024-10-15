@@ -98,7 +98,12 @@ class ApplicationForm(ModelForm):
 class FeedbackForm(ModelForm):
     class Meta:
         model = Feedback
-        exclude = ()
+        fields = (
+            "sender",
+            "email",
+            "message",
+            "validation",
+        )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

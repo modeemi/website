@@ -33,7 +33,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: "3.10"
+        python-version: "3.12"
 
     - name: Install dependencies
       run: |
@@ -69,4 +69,3 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         build-args: SOURCE_COMMIT=${{ github.sha }}
-

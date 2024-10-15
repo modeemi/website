@@ -204,29 +204,33 @@ AXES_META_PRECEDENCE_ORDER = ["HTTP_X_FORWARDED_FOR", "REMOTE_ADDR"]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap3"
 CRISPY_TEMPLATE_PACK = "bootstrap3"
 
-MARKDOWNIFY_LINKIFY_TEXT = True
-MARKDOWNIFY_LINKIFY_PARSE_EMAIL = True
-MARKDOWNIFY_LINKIFY_SKIP_TAGS = ["pre", "code"]
-MARKDOWNIFY_MARKDOWN_EXTENSIONS = ["extra", "nl2br"]
-MARKDOWNIFY_WHITELIST_TAGS = [
-    "a",
-    "abbr",
-    "acronym",
-    "b",
-    "blockquote",
-    "br",
-    "code",
-    "em",
-    "i",
-    "li",
-    "ol",
-    "p",
-    "pre",
-    "strong",
-    "table",
-    "tbody",
-    "td",
-    "th",
-    "tr",
-    "ul",
-]
+MARKDOWNIFY = {
+    "default": {
+        "LINKITY_TEXT": True,
+        "LINKIFY_EMAIL": True,
+        "SKIP_TAGS": ["pre", "code"],
+        "MARKDOWN_EXTENSIONS": ["extra", "nl2br"],
+        "WHITELIST_TAGS": [
+            "a",
+            "abbr",
+            "acronym",
+            "b",
+            "blockquote",
+            "br",
+            "code",
+            "em",
+            "i",
+            "li",
+            "ol",
+            "p",
+            "pre",
+            "strong",
+            "table",
+            "tbody",
+            "td",
+            "th",
+            "tr",
+            "ul",
+        ]
+    }
+}

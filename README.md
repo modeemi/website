@@ -13,34 +13,32 @@ This guide assumes you have some experience in Django development.
 
 Setting up postgresql:
 
-    # Create dev environment user and database
-    CREATE USER modeemintternet PASSWORD 'modeemintternet' CREATEDB;
-    CREATE DATABASE modeemiuserdb WITH OWNER = modeemintternet;
+    docker-compose up -d
 
 Development environment can be easily provisioned with virtualenv:
 
     # Provision a virtualenv
-    python -m venv .venv/
+    python3 -m venv .venv/
     source .venv/bin/activate
 
     # Install development requirements
-    python -m pip install --upgrade pip
-    python -m pip install --upgrade pip-tools
-    python -m pip install -r requirements.txt
+    python3 -m pip install --upgrade pip
+    python3 -m pip install --upgrade pip-tools
+    python3 -m pip install -r requirements.txt
 
     # Run tox QA test setup
-    python -m tox
+    python3 -m tox
 
     # Prepare and run the development server
-    python manage.py migrate --noinput
-    python manage.py collectstatic --noinput
-    python manage.py runserver
+    python3 manage.py migrate --noinput
+    python3 manage.py collectstatic --noinput
+    python3 manage.py runserver
 
 ### Committing
 
 Please run test suite before committing your changes:
 
-    python -m tox
+    python3 -m tox
 
 If you have implemented new views or functionality, implement tests for those as well.
 

@@ -1,7 +1,7 @@
 # [Modeemi ry website](https://www.modeemi.fi)
 
 [![Build](https://github.com/modeemi/website/workflows/Build/badge.svg)](https://github.com/modeemi/website/actions)
-[![Coverage](https://codecov.io/gh/modeemi/website/branch/master/graph/badge.svg)](https://codecov.io/gh/imodeemi/website)
+[![Coverage](https://codecov.io/gh/modeemi/website/branch/master/graph/badge.svg)](https://app.codecov.io/gh/modeemi/website)
 
 Modeemi ry website for the Finnish IT club based on Tampere, Finland.
 

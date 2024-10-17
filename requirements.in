@@ -16,8 +16,6 @@ icalendar
 ipython
 mypy
 passlib
-# Change to just "prospector" once they fix flake8 dependencies
-#https://github.com/PyCQA/prospector/archive/c31bb80d61d49d37a1fe67635aae22f5896111ed.zip
 prospector
 psycopg2-binary
 pyflakes

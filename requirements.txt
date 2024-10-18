@@ -282,7 +282,7 @@ uritemplate==4.1.1
     # via coreapi
 urllib3==2.2.3
     # via requests
-virtualenv==20.26.6
+virtualenv==20.27.0
     # via tox
 wcwidth==0.2.13
     # via prompt-toolkit

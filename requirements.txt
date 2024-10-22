@@ -268,7 +268,7 @@ toml==0.10.2
     #   requirements-detector
 tomlkit==0.13.2
     # via pylint
-tox==4.23.0
+tox==4.23.1
     # via -r requirements.in
 traitlets==5.14.3
     # via

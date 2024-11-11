@@ -122,7 +122,7 @@ isort==5.13.2
     # via pylint
 itypes==1.2.0
     # via coreapi
-jedi==0.19.1
+jedi==0.19.2
     # via ipython
 jinja2==3.1.4
     # via coreschema

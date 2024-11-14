@@ -254,7 +254,7 @@ smmap==5.0.1
     # via gitdb
 snowballstemmer==2.2.0
     # via pydocstyle
-sqlparse==0.5.1
+sqlparse==0.5.2
     # via
     #   django
     #   django-debug-toolbar

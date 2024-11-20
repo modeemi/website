@@ -97,9 +97,7 @@ filelock==3.16.1
     #   tox
     #   virtualenv
 flake8==7.1.1
-    # via
-    #   flake8-polyfill
-    #   prospector
+    # via flake8-polyfill
 flake8-polyfill==1.0.2
     # via pep8-naming
 gitdb==4.0.11
@@ -176,7 +174,7 @@ pluggy==1.5.0
     #   tox
 prompt-toolkit==3.0.48
     # via ipython
-prospector==1.12.1
+prospector==1.13.3
     # via -r requirements.in
 psycopg2-binary==2.9.10
     # via -r requirements.in

@@ -215,7 +215,7 @@ pylint-plugin-utils==0.8.2
     #   pylint-flask
 pyproject-api==1.8.0
     # via tox
-pytest==8.3.3
+pytest==8.3.4
     # via
     #   -r requirements.in
     #   pytest-cov

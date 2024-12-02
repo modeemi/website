@@ -14,7 +14,7 @@ astroid==3.3.5
     #   pylint-celery
     #   pylint-flask
     #   requirements-detector
-asttokens==2.4.1
+asttokens==3.0.0
     # via stack-data
 attrs==24.2.0
     # via pytest-subtests
@@ -245,7 +245,6 @@ simplejson==3.19.3
     # via django-rest-swagger
 six==1.16.0
     # via
-    #   asttokens
     #   bleach
     #   python-dateutil
 smmap==5.0.1

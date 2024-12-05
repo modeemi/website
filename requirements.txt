@@ -243,7 +243,7 @@ setoptconf-tmp==0.3.1
     # via prospector
 simplejson==3.19.3
     # via django-rest-swagger
-six==1.16.0
+six==1.17.0
     # via
     #   bleach
     #   python-dateutil

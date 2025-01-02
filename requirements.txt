@@ -102,7 +102,7 @@ flake8-polyfill==1.0.2
     # via pep8-naming
 gitdb==4.0.11
     # via gitpython
-gitpython==3.1.43
+gitpython==3.1.44
     # via prospector
 gunicorn==23.0.0
     # via -r requirements.in

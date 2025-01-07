@@ -193,7 +193,7 @@ pyflakes==3.2.0
     #   -r requirements.in
     #   flake8
     #   prospector
-pygments==2.19.0
+pygments==2.19.1
     # via ipython
 pylint==3.3.3
     # via

@@ -213,7 +213,7 @@ pylint-plugin-utils==0.8.2
     #   pylint-celery
     #   pylint-django
     #   pylint-flask
-pyproject-api==1.8.0
+pyproject-api==1.9.0
     # via tox
 pytest==8.3.4
     # via

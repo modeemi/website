@@ -92,7 +92,7 @@ dodgy==0.2.1
     # via prospector
 executing==2.1.0
     # via stack-data
-filelock==3.16.1
+filelock==3.17.0
     # via
     #   tox
     #   virtualenv

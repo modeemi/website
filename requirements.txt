@@ -263,7 +263,7 @@ toml==0.10.2
     # via prospector
 tomlkit==0.13.2
     # via pylint
-tox==4.23.2
+tox==4.24.1
     # via -r requirements.in
 traitlets==5.14.3
     # via

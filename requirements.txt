@@ -90,7 +90,7 @@ djangorestframework==3.15.2
     #   django-rest-swagger
 dodgy==0.2.1
     # via prospector
-executing==2.1.0
+executing==2.2.0
     # via stack-data
 filelock==3.17.0
     # via

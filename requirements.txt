@@ -18,7 +18,7 @@ asttokens==3.0.0
     # via stack-data
 attrs==25.1.0
     # via pytest-subtests
-black==24.10.0
+black==25.1.0
     # via -r requirements.in
 bleach[css]==6.1.0
     # via django-markdownify

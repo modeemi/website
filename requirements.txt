@@ -195,7 +195,7 @@ pyflakes==3.2.0
     #   prospector
 pygments==2.19.1
     # via ipython
-pylint==3.3.3
+pylint==3.3.4
     # via
     #   prospector
     #   pylint-celery

@@ -285,5 +285,5 @@ webencodings==0.5.1
     # via
     #   bleach
     #   tinycss2
-whitenoise==6.8.2
+whitenoise==6.9.0
     # via -r requirements.in

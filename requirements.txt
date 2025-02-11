@@ -223,7 +223,7 @@ pytest==8.3.4
     #   pytest-subtests
 pytest-cov==6.0.0
     # via -r requirements.in
-pytest-django==4.9.0
+pytest-django==4.10.0
     # via -r requirements.in
 pytest-subtests==0.14.1
     # via -r requirements.in

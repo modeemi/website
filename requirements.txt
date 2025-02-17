@@ -96,7 +96,7 @@ filelock==3.17.0
     # via
     #   tox
     #   virtualenv
-flake8==7.1.1
+flake8==7.1.2
     # via flake8-polyfill
 flake8-polyfill==1.0.2
     # via pep8-naming

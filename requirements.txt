@@ -116,7 +116,7 @@ iniconfig==2.0.0
     # via pytest
 ipython==8.32.0
     # via -r requirements.in
-isort==6.0.0
+isort==6.0.1
     # via pylint
 itypes==1.2.0
     # via coreapi

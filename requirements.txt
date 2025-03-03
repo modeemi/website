@@ -114,8 +114,10 @@ idna==3.10
     # via requests
 iniconfig==2.0.0
     # via pytest
-ipython==8.33.0
+ipython==9.0.1
     # via -r requirements.in
+ipython-pygments-lexers==1.1.1
+    # via ipython
 isort==6.0.1
     # via pylint
 itypes==1.2.0
@@ -194,7 +196,9 @@ pyflakes==3.2.0
     #   flake8
     #   prospector
 pygments==2.19.1
-    # via ipython
+    # via
+    #   ipython
+    #   ipython-pygments-lexers
 pylint==3.3.4
     # via
     #   prospector

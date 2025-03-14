@@ -16,7 +16,7 @@ astroid==3.3.9
     #   requirements-detector
 asttokens==3.0.0
     # via stack-data
-attrs==25.2.0
+attrs==25.3.0
     # via pytest-subtests
 black==25.1.0
     # via -r requirements.in

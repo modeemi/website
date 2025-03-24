@@ -275,7 +275,7 @@ traitlets==5.14.3
     #   matplotlib-inline
 typing-extensions==4.12.2
     # via mypy
-tzdata==2025.1
+tzdata==2025.2
     # via icalendar
 uritemplate==4.1.1
     # via coreapi

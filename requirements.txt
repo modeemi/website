@@ -12,7 +12,6 @@ astroid==3.3.9
     # via
     #   pylint
     #   pylint-celery
-    #   pylint-flask
     #   requirements-detector
 asttokens==3.0.0
     # via stack-data
@@ -176,7 +175,7 @@ pluggy==1.5.0
     #   tox
 prompt-toolkit==3.0.50
     # via ipython
-prospector==1.15.3
+prospector==1.16.0
     # via -r requirements.in
 psycopg2-binary==2.9.10
     # via -r requirements.in
@@ -204,19 +203,15 @@ pylint==3.3.6
     #   prospector
     #   pylint-celery
     #   pylint-django
-    #   pylint-flask
     #   pylint-plugin-utils
 pylint-celery==0.3
     # via prospector
 pylint-django==2.6.1
     # via prospector
-pylint-flask==0.6
-    # via prospector
 pylint-plugin-utils==0.8.2
     # via
     #   pylint-celery
     #   pylint-django
-    #   pylint-flask
 pyproject-api==1.9.0
     # via tox
 pytest==8.3.5

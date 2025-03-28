@@ -175,7 +175,7 @@ pluggy==1.5.0
     #   tox
 prompt-toolkit==3.0.50
     # via ipython
-prospector==1.16.0
+prospector==1.16.1
     # via -r requirements.in
 psycopg2-binary==2.9.10
     # via -r requirements.in

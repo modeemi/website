@@ -95,7 +95,7 @@ filelock==3.18.0
     # via
     #   tox
     #   virtualenv
-flake8==7.1.2
+flake8==7.2.0
     # via flake8-polyfill
 flake8-polyfill==1.0.2
     # via pep8-naming
@@ -183,13 +183,13 @@ ptyprocess==0.7.0
     # via pexpect
 pure-eval==0.2.3
     # via stack-data
-pycodestyle==2.12.1
+pycodestyle==2.13.0
     # via
     #   flake8
     #   prospector
 pydocstyle==6.3.0
     # via prospector
-pyflakes==3.2.0
+pyflakes==3.3.1
     # via
     #   -r requirements.in
     #   flake8

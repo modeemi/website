@@ -83,7 +83,7 @@ django-recurrence==1.11.1
     # via django-ical
 django-rest-swagger==2.2.0
     # via -r requirements.in
-djangorestframework==3.15.2
+djangorestframework==3.16.0
     # via
     #   -r requirements.in
     #   django-rest-swagger

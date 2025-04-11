@@ -268,7 +268,7 @@ traitlets==5.14.3
     # via
     #   ipython
     #   matplotlib-inline
-typing-extensions==4.13.1
+typing-extensions==4.13.2
     # via mypy
 tzdata==2025.2
     # via icalendar

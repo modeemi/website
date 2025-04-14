@@ -65,7 +65,7 @@ django==5.1.8
     #   djangorestframework
 django-axes==7.0.2
     # via -r requirements.in
-django-crispy-forms==2.3
+django-crispy-forms==2.4
     # via
     #   -r requirements.in
     #   crispy-bootstrap3

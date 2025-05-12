@@ -63,7 +63,7 @@ django==5.1.9
     #   django-markdownify
     #   django-recurrence
     #   djangorestframework
-django-axes==7.1.0
+django-axes==8.0.0
     # via -r requirements.in
 django-crispy-forms==2.4
     # via

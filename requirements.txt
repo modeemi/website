@@ -105,7 +105,7 @@ gitpython==3.1.44
     # via prospector
 gunicorn==23.0.0
     # via -r requirements.in
-icalendar==6.3.0
+icalendar==6.3.1
     # via
     #   -r requirements.in
     #   django-ical

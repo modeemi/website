@@ -136,7 +136,7 @@ mccabe==0.7.0
     #   flake8
     #   prospector
     #   pylint
-mypy==1.15.0
+mypy==1.16.0
     # via -r requirements.in
 mypy-extensions==1.1.0
     # via
@@ -158,7 +158,9 @@ parso==0.8.4
 passlib==1.7.4
     # via -r requirements.in
 pathspec==0.12.1
-    # via black
+    # via
+    #   black
+    #   mypy
 pep8-naming==0.10.0
     # via prospector
 pexpect==4.9.0

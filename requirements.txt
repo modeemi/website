@@ -272,7 +272,7 @@ typing-extensions==4.13.2
     # via mypy
 tzdata==2025.2
     # via icalendar
-uritemplate==4.1.1
+uritemplate==4.2.0
     # via coreapi
 urllib3==2.4.0
     # via requests

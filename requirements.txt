@@ -261,7 +261,7 @@ tinycss2==1.4.0
     # via bleach
 toml==0.10.2
     # via prospector
-tomlkit==0.13.2
+tomlkit==0.13.3
     # via pylint
 tox==4.26.0
     # via -r requirements.in

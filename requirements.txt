@@ -228,7 +228,7 @@ pytest-cov==6.2.1
     # via -r requirements.in
 pytest-django==4.11.1
     # via -r requirements.in
-pytest-subtests==0.14.1
+pytest-subtests==0.14.2
     # via -r requirements.in
 python-dateutil==2.9.0.post0
     # via

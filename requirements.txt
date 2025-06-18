@@ -218,7 +218,7 @@ pylint-plugin-utils==0.8.2
     #   pylint-django
 pyproject-api==1.9.1
     # via tox
-pytest==8.4.0
+pytest==8.4.1
     # via
     #   -r requirements.in
     #   pytest-cov

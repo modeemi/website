@@ -276,7 +276,7 @@ tzdata==2025.2
     # via icalendar
 uritemplate==4.2.0
     # via coreapi
-urllib3==2.4.0
+urllib3==2.5.0
     # via requests
 virtualenv==20.31.2
     # via tox

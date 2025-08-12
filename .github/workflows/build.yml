@@ -18,7 +18,7 @@ jobs:
     # https://docs.github.com/en/free-pro-team@latest/actions/guides/creating-postgresql-service-containers
     services:
       postgres:
-        image: postgres
+        image: postgres:13
         env:
           POSTGRES_USER: modeemintternet
           POSTGRES_PASSWORD: modeemintternet

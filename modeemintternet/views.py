@@ -59,10 +59,6 @@ def contact(request):
     return render(request, "contact.html")
 
 
-def backup(request):
-    return render(request, "backup.html")
-
-
 def password(request):
     return render(request, "password.html")
 

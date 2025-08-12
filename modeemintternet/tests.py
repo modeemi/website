@@ -50,7 +50,6 @@ class ViewGetTest(TestCase):
             "/ry/rekisteriseloste/",
             "/ry/hallitus/",
             "/ry/yhteystiedot/",
-            "/palvelut/backup/",
             "/palvelut/password/",
             "/laitteisto/halutaan/",
             "/feed/uutiset.rss",

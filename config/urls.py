@@ -28,7 +28,6 @@ urlpatterns = [
     path("ry/hallitus/", views.board, name="board"),
     path("ry/yhteystiedot/", views.contact, name="contact"),
     path("palvelut/", views.services, name="services"),
-    path("palvelut/backup/", views.backup, name="backup"),
     path("palvelut/password/", views.password, name="password"),
     path("laitteisto/", views.hardware, name="hardware"),
     path("laitteisto/halutaan/", views.wishlist, name="wishlist"),

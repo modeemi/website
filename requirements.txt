@@ -99,10 +99,6 @@ flake8==7.3.0
     # via flake8-polyfill
 flake8-polyfill==1.0.2
     # via pep8-naming
-gitdb==4.0.12
-    # via gitpython
-gitpython==3.1.45
-    # via prospector
 gunicorn==23.0.0
     # via -r requirements.in
 icalendar==6.3.1
@@ -178,7 +174,7 @@ pluggy==1.6.0
     #   tox
 prompt-toolkit==3.0.51
     # via ipython
-prospector==1.17.2
+prospector==1.17.3
     # via -r requirements.in
 psycopg2-binary==2.9.10
     # via -r requirements.in
@@ -248,8 +244,6 @@ simplejson==3.20.1
     # via django-rest-swagger
 six==1.17.0
     # via python-dateutil
-smmap==5.0.2
-    # via gitdb
 snowballstemmer==3.0.1
     # via pydocstyle
 sqlparse==0.5.3

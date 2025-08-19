@@ -232,7 +232,7 @@ python-dateutil==2.9.0.post0
     #   icalendar
 pyyaml==6.0.2
     # via prospector
-requests==2.32.4
+requests==2.32.5
     # via coreapi
 requirements-detector==1.4.0
     # via prospector

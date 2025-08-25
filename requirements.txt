@@ -149,7 +149,7 @@ packaging==25.0
     #   pytest
     #   requirements-detector
     #   tox
-parso==0.8.4
+parso==0.8.5
     # via jedi
 passlib==1.7.4
     # via -r requirements.in

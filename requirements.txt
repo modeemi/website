@@ -121,7 +121,7 @@ jedi==0.19.2
     # via ipython
 jinja2==3.1.6
     # via coreschema
-markdown==3.8.2
+markdown==3.9
     # via django-markdownify
 markupsafe==3.0.2
     # via jinja2

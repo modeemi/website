@@ -39,7 +39,7 @@ coreapi==2.3.3
     #   openapi-codec
 coreschema==0.0.4
     # via coreapi
-coverage[toml]==7.10.3
+coverage[toml]==7.10.6
     # via
     #   -r requirements.in
     #   pytest-cov
@@ -220,7 +220,7 @@ pytest==8.4.2
     #   pytest-cov
     #   pytest-django
     #   pytest-subtests
-pytest-cov==6.3.0
+pytest-cov==7.0.0
     # via -r requirements.in
 pytest-django==4.11.1
     # via -r requirements.in

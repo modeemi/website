@@ -132,7 +132,7 @@ mccabe==0.7.0
     #   flake8
     #   prospector
     #   pylint
-mypy==1.17.1
+mypy==1.18.1
     # via -r requirements.in
 mypy-extensions==1.1.0
     # via

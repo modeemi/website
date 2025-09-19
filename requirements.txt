@@ -29,7 +29,7 @@ chardet==5.2.0
     # via tox
 charset-normalizer==3.4.3
     # via requests
-click==8.2.1
+click==8.3.0
     # via black
 colorama==0.4.6
     # via tox

@@ -17,7 +17,7 @@ asttokens==3.0.0
     # via stack-data
 attrs==25.3.0
     # via pytest-subtests
-black==25.1.0
+black==25.9.0
     # via -r requirements.in
 bleach[css]==6.2.0
     # via django-markdownify
@@ -230,6 +230,8 @@ python-dateutil==2.9.0.post0
     # via
     #   django-recurrence
     #   icalendar
+pytokens==0.1.10
+    # via black
 pyyaml==6.0.2
     # via prospector
 requests==2.32.5

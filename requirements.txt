@@ -232,7 +232,7 @@ python-dateutil==2.9.0.post0
     #   icalendar
 pytokens==0.1.10
     # via black
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via prospector
 requests==2.32.5
     # via coreapi

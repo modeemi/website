@@ -242,7 +242,7 @@ semver==3.0.4
     # via requirements-detector
 setoptconf-tmp==0.3.1
     # via prospector
-simplejson==3.20.1
+simplejson==3.20.2
     # via django-rest-swagger
 six==1.17.0
     # via python-dateutil

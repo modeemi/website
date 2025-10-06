@@ -198,7 +198,7 @@ pygments==2.19.2
     #   ipython
     #   ipython-pygments-lexers
     #   pytest
-pylint==3.3.8
+pylint==3.3.9
     # via
     #   prospector
     #   pylint-celery

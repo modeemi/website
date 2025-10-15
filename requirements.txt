@@ -230,7 +230,7 @@ python-dateutil==2.9.0.post0
     # via
     #   django-recurrence
     #   icalendar
-pytokens==0.1.10
+pytokens==0.2.0
     # via black
 pyyaml==6.0.3
     # via prospector

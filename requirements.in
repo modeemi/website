@@ -1,7 +1,7 @@
 black
 coverage
 crispy-bootstrap3
-django>=4.2,<5.2
+django>=4.2,<5.3
 django-axes
 django-crispy-forms
 django-debug-toolbar

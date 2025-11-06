@@ -107,7 +107,7 @@ icalendar==6.3.2
     #   django-ical
 idna==3.11
     # via requests
-iniconfig==2.1.0
+iniconfig==2.3.0
     # via pytest
 ipython==9.7.0
     # via -r requirements.in

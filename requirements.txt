@@ -23,7 +23,7 @@ bleach[css]==6.2.0
     # via django-markdownify
 cachetools==6.2.0
     # via tox
-certifi==2025.10.5
+certifi==2025.11.12
     # via requests
 chardet==5.2.0
     # via tox

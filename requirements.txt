@@ -21,7 +21,7 @@ black==25.11.0
     # via -r requirements.in
 bleach[css]==6.2.0
     # via django-markdownify
-cachetools==6.2.0
+cachetools==6.2.2
     # via tox
 certifi==2025.11.12
     # via requests

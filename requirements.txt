@@ -13,7 +13,7 @@ astroid==3.3.11
     #   pylint
     #   pylint-celery
     #   requirements-detector
-asttokens==3.0.0
+asttokens==3.0.1
     # via stack-data
 attrs==25.4.0
     # via pytest-subtests

@@ -248,7 +248,7 @@ six==1.17.0
     # via python-dateutil
 snowballstemmer==3.0.1
     # via pydocstyle
-sqlparse==0.5.3
+sqlparse==0.5.4
     # via
     #   django
     #   django-debug-toolbar

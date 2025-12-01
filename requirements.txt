@@ -121,6 +121,8 @@ jedi==0.19.2
     # via ipython
 jinja2==3.1.6
     # via coreschema
+librt==0.6.3
+    # via mypy
 markdown==3.10
     # via django-markdownify
 markupsafe==3.0.3
@@ -132,7 +134,7 @@ mccabe==0.7.0
     #   flake8
     #   prospector
     #   pylint
-mypy==1.18.2
+mypy==1.19.0
     # via -r requirements.in
 mypy-extensions==1.1.0
     # via

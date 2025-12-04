@@ -51,7 +51,7 @@ dill==0.4.0
     # via pylint
 distlib==0.4.0
     # via virtualenv
-django==5.1.11
+django==6.0
     # via
     #   -r requirements.in
     #   crispy-bootstrap3

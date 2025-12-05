@@ -24,6 +24,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("ry/", views.society, name="society"),
     path("ry/saannot/", views.rules, name="rules"),
+    path("ry/saannot/en/", views.rules_en, name="rules_en"),
     path("ry/rekisteriseloste/", views.policy, name="policy"),
     path("ry/hallitus/", views.board, name="board"),
     path("ry/yhteystiedot/", views.contact, name="contact"),

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=30.3.0", "wheel", "setuptools_scm"]
+requires = ["setuptools>=30.3.0<81", "wheel", "setuptools_scm"]
 
 [tool.pytest.ini_options]
 testpaths = "modeemintternet"
@@ -13,7 +13,7 @@ django-settings-module = "config.settings.local"
 
 [tool.black]
 line-length = 88
-target-version = ['py312']
+target-version = ['py313']
 include = '\.pyi?$'
 exclude = '''
 (
@@ -35,11 +35,11 @@ legacy_tox_ini = """
 [tox]
 skipsdist = True
 envlist =
-    py312
+    py313
 
 [gh-actions]
 python =
-    3.12: py312
+    3.13: py313
 
 # Normal test environment runs pytest which orchestrates other tools
 [testenv]

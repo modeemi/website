@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load markdownify %}
 {% block content %}
 
 <h1>Säännöt</h1>
@@ -7,112 +6,152 @@
 <p>Voimassaolon alku: 09.12.2024 07:59:02</p>
 
 <br />
-{% markdownify %}
-1. Yhdistyksen nimi ja kotipaikka  
-   1. Yhdistyksen nimi on Modeemi ry. Yhdistyksen kotipaikka on Tampere.  
-2. Yhdistyksen tarkoitus ja toiminnan laatu  
-   1. Yhdistyksen tarkoituksena on toimia tietotekniikasta kiinnostuneiden henkilöiden yhdyssiteenä.  
-   2. Yhdistyksen tarkoituksena ei ole tuottaa jäsenistölle taloudellista etua, eikä sen toiminta muutenkaan saa muodostua pääasiallisesti taloudelliseksi.  
-   3. Tarkoituksensa toteuttamiseksi yhdistys:  
-      1. julkaisee ja välittää alan materiaalia,  
-      2. järjestää kokouksia, koulutus- ja neuvottelutilaisuuksia sekä tutustumismatkoja jäsenilleen ja  
-      3. toimii muilla vastaavilla tavoilla.  
-   4. Yhdistyksen toimikausi on kalenterivuosi.  
-3. Jäsenet  
-   1. Yhdistyksen jäseniä ovat varsinaiset jäsenet, ainaisjäsenet ja kunniajäsenet.  
-   2. Yhdistyksen jäseneksi voi liittyä jokainen, joka hyväksyy yhdistyksen tarkoituksen ja säännöt.  
-   3. Varsinaiset jäsenet ja ainaisjäsenet hyväksyy yhdistyksen hallitus. Kunniajäsenet hyväksyy yhdistyksen kokous.  
-   4. Kunniajäseneksi yhdistys voi kutsua yhdistyksen pyrkimyksiä ansiokkaasti edistäneen henkilön, jos ainakin kolme neljäsosaa (3/4) yhdistyksen kokouksessa läsnäolevista yhdistyksen jäsenistä kannattaa hallituksen tekemää kunniajäsenehdotusta.  
-   5. Ainaisjäsen on yhdistyksen jäseneksi hyväksytty henkilö, joka on suorittanut ainaisjäsenyytensä hyväksymistoimikaudelle määritellyn ainaisjäsenmaksun. Ainaisjäsen säilyttää jäsenyytensä yhdistyksen purkautumiseen tai lakkauttamiseen asti ellei hallitus päätöksellään erota kyseistä jäsentä tai jäsen itse eroa.  
-   6. Yhdistyksen kaikilla kuluvan toimikauden jäsenmaksun maksaneilla jäsenillä sekä ainaisjäsenillä on yhtäläinen äänioikeus. Kaikki äänioiketetut ovat vaalikelpoisia.  
-4. Jäsenen eroaminen ja erottaminen  
-   1. Jäsenellä on oikeus erota yhdistyksestä ilmoittamalla siitä kirjallisesti yhdistyksen hallitukselle tai sen puheenjohtajalle tai pyytämällä eroamisen merkittäväksi pöytäkirjaan yhdistyksen kokouksessa.  
-   2. Hallitus voi erottaa jäsenen yhdistyksestä, jos jäsen on jättänyt täyttämättä ne velvoitukset, joihin hän on yhdistykseen liittymällä sitoutunut tai on menettelyllään yhdistyksessä tai sen ulkopuolella huomattavasti vahingoittanut yhdistystä tai ei enää täytä laissa taikka yhdistyksen säännöissä mainittuja jäsenyyden ehtoja. Hallitus voi myös käyttää pienemmistä rikkeistä lievempiä kurinpitotoimia (varoitus, jäsenpalveluiden evääminen, porttikielto yhdistyksen tapahtumiin).  
-   3. Varsinaisen jäsenen katsotaan eronneen yhdistyksestä jos hän on jättänyt edellisen toimikauden jäsenmaksunsa maksamatta kuluvan toimikauden vuosikokoukseen mennessä.  
-5. Jäsenmaksut  
-   1. Varsinaisilta jäseniltä perittävän jäsenmaksun sekä ainaisjäsenmaksun suuruudesta päättää vaalikokous.  
-   2. Varsinainen jäsenmaksu maksetaan toimikaudeksi.  
-   3. Ainaisjäsenmaksu on kertaluontoinen.  
-6. Hallitus  
-   1. Yhdistyksen asioita hoitaa hallitus, johon kuuluu yhdistyksen vaalikokouksessa valitut puheenjohtaja ja 3-6 muuta varsinaista jäsentä.  
-   2. Hallitus valitsee keskuudestaan:  
-      1. varapuheenjohtajan  
-      2. sihteerin  
-      3. rahastonhoitajan  
-      4. muita tarvittavia hallituksen jäseniä  
-   3. Hallituksen tehtäviin kuuluvat:  
-      1. yhdistyksen päätösten toimeenpano ja toiminnan johtaminen  
-      2. yhdistyksen kokouksissa käsiteltävien asioiden valmistelu ja esittely  
-      3. yhdistyksen talouden hoitaminen  
-      4. yhdistyksen talousarvion ja toimintasuunnitelman laadinta  
-      5. yhdistyksen edustuksesta päättäminen  
-      6. toimikuntien ja toimihenkilöiden toiminnan valvominen  
-      7. toimikuntien toimintasuunnitelmien ja \-kertomusten hyväksyminen  
-      8. yhdistyksen toimintakertomuksen laatiminen  
-      9. yhdistyksen jäsenten hyväksyminen  
-      10. yhdistyksen jäsenluettelon ylläpitäminen  
-      11. yhdistyksen toiminnan kehittäminen  
-   4. Hallituksen toimikausi on kalenterivuosi.  
-   5. Hallitus kokoontuu puheenjohtajan \- tai hänen estyneenä ollessaan varapuheenjohtajan \- kutsusta, kun he katsovat siihen olevan aihetta tai kun vähintään kaksi (2) hallituksen jäsenistä sitä vaatii.  
-   6. Hallituksen kokous on päätösvaltainen, jos kaikille sen jäsenille on kokouksesta ilmoitettu ja vähintään puolet (1/2) hallituksen jäsenistä puheenjohtaja tai varapuheenjohtaja mukaanluettuna on läsnä. Päätökset tehdään yksinkertaisella ääntenenemmistöllä. Äänten mennessä tasan ratkaisee puheenjohtajan mielipide, vaaleissa kuitenkin arpa.  
-   7. Hallituksen kokouksista pidetään pöytäkirjaa, jonka kaksi (2) hallituksen jäsentä tai hallituksen kokous tarkastaa.  
-7. Oltermanni, toimikunnat ja muut toimihenkilöt  
-   1. Yhdistyksen vaalikokous valitsee yhdistyksen neuvonantajaksi oltermannin yhdeksi (1) toimikaudeksi kerrallaan.  
-   2. Oltermannilla on yhdistyksen hallituksen kokouksissa läsnäolo- ja puheoikeus.  
-   3. Tarpeen vaatiessa voi hallitus tai yhdistyksen kokous valita hallituksen avuksi toimihenkilöitä ja toimikuntia. Hallitus voi antaa tehtäviä jäsenille näiden suostumuksella.  
-   4. Toimihenkilöt ja toimikunnat valitaan toimikaudeksi kerrallaan, ellei tehtävä liity jonkin määrätyn suunnitelman hoitamiseen tai toteuttamiseen, jolloin toimihenkilöä tai toimikuntaa valittaessa voidaan päättää toisin.  
-   5. Yhdistyksen kokous tai hallitus voi vapauttaa nimittämänsä toimihenkilön kesken toimikautta. Hänen tilalleen voidaan valita uusi toimihenkilö jäljelläolevaksi toimikaudeksi. Jos kysymyksessä on hallituksen jäsen, on asia mainittava kokouskutsussa.  
-8. Yhdistyksen nimen kirjoittaminen  
-   1. Yhdistyksen nimen kirjoittaa hallituksen puheenjohtaja, varapuheenjohtaja, sihteeri tai rahastonhoitaja, kaksi yhdessä.  
-   2. Yhdistyksen hallitus voi antaa päätöksellään yhdistyksen nimenkirjoitusoikeuden yhdelle (1) hallituksen jäsenelle.  
-9. Talous, tilikausi ja toiminnantarkastus  
-   1. Yhdistyksen tilikausi on kalenterivuosi.  
-   2. Tilinpäätös tarvittavine asiakirjoineen ja hallituksen vuosikertomus on annettava toiminnantarkastajille viimeistään kolme viikkoa ennen vuosikokousta. Toiminnantarkastajien tulee antaa kirjallinen lausuntonsa viimeistään viikkoa ennen vuosikokousta hallitukselle. Kirjanpito ja hallituksen pöytäkirjat on luovutettava muulloinkin toiminnantarkastajien niitä vaatiessa.  
-   3. Yhdistyksen taloudenhoitoa valvovat toiminnantarkastajat.  
-10. Yhdistyksen kokoukset  
-    1. Yhdistyksen kokoukset kutsuu koolle hallitus. Kokouksen aika, paikka ja käsiteltävät asiat on ilmoitettava vähintään seitsemän (7) vuorokautta ennen kokousta jäsenistölle yhdistyksen verkkosivuilla.  
-    2. Yhdistys pitää vuosittain kaksi varsinaista kokousta.  
-    3. Yhdistyksen vuosikokous pidetään maaliskuussa ja vaalikokous lokakuussa.  
-    4. Ylimääräinen kokous pidetään, kun yhdistyksen kokous niin päättää, kun hallitus katsoo siihen olevan aihetta tai kun vähintään yksi kymmenesosa (1/10) yhdistyksen äänioikeutetuista jäsenistä tai vähintään kymmenen (10) yhdistyksen äänioikeutettua jäsentä sitä ilmoittamansa asian käsittelyä varten kirjallisesti vaatii. Kokous tulee pitää kahdenkymmenenyhden (21) vuorokauden kuluessa siitä, kun vaatimus on hallitukselle esitetty.  
-    5. Yhdistyksen kokouksissa on jokaisella äänioikeutetulla yhdistyksen jäsenellä yksi (1) ääni. Äänioikeutta ei voi käyttää asiamiehen välityksellä.  
-    6. Yhdistyksen kokous on päätösvaltainen, jos koollekutsuminen on tapahtunut sääntöjen mukaisesti.  
-    7. Päätökset tehdään, ellei näissä säännöissä toisin määrätä, yksinkertaisella äänten enemmistöllä. Äänten mennessä tasan ratkaisee kokouksen puheenjohtajan mielipide, vaaleissa kuitenkin arpa.  
-    8. Yhdistyksen kokouksessa tehty päätös voidaan purkaa vähintään kolmen neljäsosan (3/4) enemmistöllä annetuista äänistä. Päätöksen purkamisasia on ilmoitettava kokouskutsussa.  
-    9. Yhdistyksen kokouksissa on läsnäolo- ja puheoikeus kaikilla yhdistyksen jäsenillä. Kokous voi tarvittaessa myöntää läsnäolo- ja puheoikeuden yhdistykseen kuulumattomalle henkilölle.  
-    10. Yhdistyksen kokouksen pöytäkirjan tarkastavat kaksi (2) kokouksessa valittua pöytäkirjantarkastajaa kahden (2) viikon kuluessa kokouksesta. Tarpeen vaatiessa voidaan pöytäkirjan tarkastus suorittaa itse kokouksessa.  
-    11. Mikäli yhdistyksen jäsen haluaa saada jonkin asian yhdistyksen kokouksen käsiteltäväksi, on hänen siitä kirjallisesti ilmoitettava hallitukselle niin hyvissä ajoin, että asia voidaan sisällyttää kokouskutsuun.  
-11. Varsinaiset kokoukset  
-    1. Yhdistyksen vuosikokouksessa käsitellään seuraavat asiat:  
-       1. kokouksen avaus  
-       2. valitaan kokouksen  
-          * puheenjohtaja,  
-          * sihteeri,  
-          * kaksi (2) pöytäkirjantarkastajaa ja  
-          * kaksi (2) ääntenlaskijaa  
-       3. todetaan kokouksen laillisuus ja päätösvaltaisuus  
-       4. hyväksytään kokouksen työjärjestys  
-       5. esitellään tilinpäätös, vuosikertomus ja toiminnantarkastajien lausunto  
-       6. päätetään tilinpäätöksen vahvistamisesta ja tili- ja vastuuvapauden myöntämisestä hallitukselle ja muille tili- ja vastuuvelvollisille  
-       7. käsitellään muut kokouskutsussa mainitut asiat  
-    2. Yhdistyksen vaalikokouksessa käsitellään seuraavat asiat:  
-       1. kokouksen avaus  
-       2. valitaan kokouksen  
-          * puheenjohtaja,  
-          * sihteeri,  
-          * kaksi (2) pöytäkirjantarkastajaa ja  
-          * kaksi (2) ääntenlaskijaa  
-       3. todetaan kokouksen laillisuus ja päätösvaltaisuus  
-       4. hyväksytään kokouksen työjärjestys  
-       5. valitaan tulevan toimikauden hallituksen puheenjohtaja ja 3-6 hallituksen jäsentä  
-       6. valitaan tulevan toimikauden oltermanni ja muut toimihenkilöt  
-       7. valitaan tulevalle toimikaudelle yksi (1) toiminnantarkastaja ja hänelle yksi (1) varahenkilö  
-       8. päätetään seuraavan toimikauden jäsenmaksun ja ainaisjäsenmaksun suuruudesta  
-       9. esitetään seuraavan toimikauden toimintasuunnitelma ja talousarvio  
-       10. esitetään tilannekatsaus kuluvan toimikauden toimintasuunnitelman ja talousarvion toteutumisesta  
-       11. käsitellään muut kokouskutsussa mainitut asiat  
-12. Sääntöjen muuttaminen ja yhdistyksen purkaminen  
-    1. Päätös sääntöjen muuttamisesta tai yhdistyksen purkamisesta on tehtävä yhdistyksen kokouksessa vähintään kolmen neljäsosan (3/4) enemmistöllä annetuista äänistä. Kokouskutsussa on mainittava sääntöjen muuttamisesta tai yhdistyksen purkamisesta.  
-    2. Mikäli yhdistyksen kokous päättää yhdistyksen purkamisesta, tulee purkaminen hyväksyä vielä toisessa yhdistyksen kokouksessa kolmen neljäsosan (3/4) enemmistöllä annetuista äänistä. Toinen kokous täytyy järjestää vähintään kolme (3) kuukautta ja enintään kuusi (6) kuukautta sen kokouksen jälkeen jossa yhdistyksen purkaminen on ensimmäisen kerran hyväksytty. Mikäli toista kokousta ei pidetä tässä ajassa, alustava purkamisen päätös peruuntuu. Tämän toisen äänestyksen jälkeen yhdistys todetaan puretuksi. Kokouskutsussa on mainittava yhdistyksen lopullisesta purkamisesta.  
-    3. Yhdistyksen purkautuessa käytetään yhdistyksen varat yhdistyksen tarkoituksen edistämiseen purkamisesta päättävän kokouksen määrittelemällä tavalla. Yhdistyksen tullessa lakkautetuksi käytetään varat samaan tarkoitukseen.
-{% endmarkdownify %}
+
+<ol>
+<li>Yhdistyksen nimi ja kotipaikka  <ol>
+<li>Yhdistyksen nimi on Modeemi ry. Yhdistyksen kotipaikka on Tampere.  </li>
+</ol>
+</li>
+<li>Yhdistyksen tarkoitus ja toiminnan laatu  <ol>
+<li>Yhdistyksen tarkoituksena on toimia tietotekniikasta kiinnostuneiden henkilöiden yhdyssiteenä.  </li>
+<li>Yhdistyksen tarkoituksena ei ole tuottaa jäsenistölle taloudellista etua, eikä sen toiminta muutenkaan saa muodostua pääasiallisesti taloudelliseksi.  </li>
+<li>Tarkoituksensa toteuttamiseksi yhdistys:  <ol>
+<li>julkaisee ja välittää alan materiaalia,  </li>
+<li>järjestää kokouksia, koulutus- ja neuvottelutilaisuuksia sekä tutustumismatkoja jäsenilleen ja  </li>
+<li>toimii muilla vastaavilla tavoilla.  </li>
+</ol>
+</li>
+<li>Yhdistyksen toimikausi on kalenterivuosi.  </li>
+</ol>
+</li>
+<li>Jäsenet  <ol>
+<li>Yhdistyksen jäseniä ovat varsinaiset jäsenet, ainaisjäsenet ja kunniajäsenet.  </li>
+<li>Yhdistyksen jäseneksi voi liittyä jokainen, joka hyväksyy yhdistyksen tarkoituksen ja säännöt.  </li>
+<li>Varsinaiset jäsenet ja ainaisjäsenet hyväksyy yhdistyksen hallitus. Kunniajäsenet hyväksyy yhdistyksen kokous.  </li>
+<li>Kunniajäseneksi yhdistys voi kutsua yhdistyksen pyrkimyksiä ansiokkaasti edistäneen henkilön, jos ainakin kolme neljäsosaa (3/4) yhdistyksen kokouksessa läsnäolevista yhdistyksen jäsenistä kannattaa hallituksen tekemää kunniajäsenehdotusta.  </li>
+<li>Ainaisjäsen on yhdistyksen jäseneksi hyväksytty henkilö, joka on suorittanut ainaisjäsenyytensä hyväksymistoimikaudelle määritellyn ainaisjäsenmaksun. Ainaisjäsen säilyttää jäsenyytensä yhdistyksen purkautumiseen tai lakkauttamiseen asti ellei hallitus päätöksellään erota kyseistä jäsentä tai jäsen itse eroa.  </li>
+<li>Yhdistyksen kaikilla kuluvan toimikauden jäsenmaksun maksaneilla jäsenillä sekä ainaisjäsenillä on yhtäläinen äänioikeus. Kaikki äänioiketetut ovat vaalikelpoisia.  </li>
+</ol>
+</li>
+<li>Jäsenen eroaminen ja erottaminen  <ol>
+<li>Jäsenellä on oikeus erota yhdistyksestä ilmoittamalla siitä kirjallisesti yhdistyksen hallitukselle tai sen puheenjohtajalle tai pyytämällä eroamisen merkittäväksi pöytäkirjaan yhdistyksen kokouksessa.  </li>
+<li>Hallitus voi erottaa jäsenen yhdistyksestä, jos jäsen on jättänyt täyttämättä ne velvoitukset, joihin hän on yhdistykseen liittymällä sitoutunut tai on menettelyllään yhdistyksessä tai sen ulkopuolella huomattavasti vahingoittanut yhdistystä tai ei enää täytä laissa taikka yhdistyksen säännöissä mainittuja jäsenyyden ehtoja. Hallitus voi myös käyttää pienemmistä rikkeistä lievempiä kurinpitotoimia (varoitus, jäsenpalveluiden evääminen, porttikielto yhdistyksen tapahtumiin).  </li>
+<li>Varsinaisen jäsenen katsotaan eronneen yhdistyksestä jos hän on jättänyt edellisen toimikauden jäsenmaksunsa maksamatta kuluvan toimikauden vuosikokoukseen mennessä.  </li>
+</ol>
+</li>
+<li>Jäsenmaksut  <ol>
+<li>Varsinaisilta jäseniltä perittävän jäsenmaksun sekä ainaisjäsenmaksun suuruudesta päättää vaalikokous.  </li>
+<li>Varsinainen jäsenmaksu maksetaan toimikaudeksi.  </li>
+<li>Ainaisjäsenmaksu on kertaluontoinen.  </li>
+</ol>
+</li>
+<li>Hallitus  <ol>
+<li>Yhdistyksen asioita hoitaa hallitus, johon kuuluu yhdistyksen vaalikokouksessa valitut puheenjohtaja ja 3-6 muuta varsinaista jäsentä.  </li>
+<li>Hallitus valitsee keskuudestaan:  <ol>
+<li>varapuheenjohtajan  </li>
+<li>sihteerin  </li>
+<li>rahastonhoitajan  </li>
+<li>muita tarvittavia hallituksen jäseniä  </li>
+</ol>
+</li>
+<li>Hallituksen tehtäviin kuuluvat:  <ol>
+<li>yhdistyksen päätösten toimeenpano ja toiminnan johtaminen  </li>
+<li>yhdistyksen kokouksissa käsiteltävien asioiden valmistelu ja esittely  </li>
+<li>yhdistyksen talouden hoitaminen  </li>
+<li>yhdistyksen talousarvion ja toimintasuunnitelman laadinta  </li>
+<li>yhdistyksen edustuksesta päättäminen  </li>
+<li>toimikuntien ja toimihenkilöiden toiminnan valvominen  </li>
+<li>toimikuntien toimintasuunnitelmien ja -kertomusten hyväksyminen  </li>
+<li>yhdistyksen toimintakertomuksen laatiminen  </li>
+<li>yhdistyksen jäsenten hyväksyminen  </li>
+<li>yhdistyksen jäsenluettelon ylläpitäminen  </li>
+<li>yhdistyksen toiminnan kehittäminen  </li>
+</ol>
+</li>
+<li>Hallituksen toimikausi on kalenterivuosi.  </li>
+<li>Hallitus kokoontuu puheenjohtajan - tai hänen estyneenä ollessaan varapuheenjohtajan - kutsusta, kun he katsovat siihen olevan aihetta tai kun vähintään kaksi (2) hallituksen jäsenistä sitä vaatii.  </li>
+<li>Hallituksen kokous on päätösvaltainen, jos kaikille sen jäsenille on kokouksesta ilmoitettu ja vähintään puolet (1/2) hallituksen jäsenistä puheenjohtaja tai varapuheenjohtaja mukaanluettuna on läsnä. Päätökset tehdään yksinkertaisella ääntenenemmistöllä. Äänten mennessä tasan ratkaisee puheenjohtajan mielipide, vaaleissa kuitenkin arpa.  </li>
+<li>Hallituksen kokouksista pidetään pöytäkirjaa, jonka kaksi (2) hallituksen jäsentä tai hallituksen kokous tarkastaa.  </li>
+</ol>
+</li>
+<li>Oltermanni, toimikunnat ja muut toimihenkilöt  <ol>
+<li>Yhdistyksen vaalikokous valitsee yhdistyksen neuvonantajaksi oltermannin yhdeksi (1) toimikaudeksi kerrallaan.  </li>
+<li>Oltermannilla on yhdistyksen hallituksen kokouksissa läsnäolo- ja puheoikeus.  </li>
+<li>Tarpeen vaatiessa voi hallitus tai yhdistyksen kokous valita hallituksen avuksi toimihenkilöitä ja toimikuntia. Hallitus voi antaa tehtäviä jäsenille näiden suostumuksella.  </li>
+<li>Toimihenkilöt ja toimikunnat valitaan toimikaudeksi kerrallaan, ellei tehtävä liity jonkin määrätyn suunnitelman hoitamiseen tai toteuttamiseen, jolloin toimihenkilöä tai toimikuntaa valittaessa voidaan päättää toisin.  </li>
+<li>Yhdistyksen kokous tai hallitus voi vapauttaa nimittämänsä toimihenkilön kesken toimikautta. Hänen tilalleen voidaan valita uusi toimihenkilö jäljelläolevaksi toimikaudeksi. Jos kysymyksessä on hallituksen jäsen, on asia mainittava kokouskutsussa.  </li>
+</ol>
+</li>
+<li>Yhdistyksen nimen kirjoittaminen  <ol>
+<li>Yhdistyksen nimen kirjoittaa hallituksen puheenjohtaja, varapuheenjohtaja, sihteeri tai rahastonhoitaja, kaksi yhdessä.  </li>
+<li>Yhdistyksen hallitus voi antaa päätöksellään yhdistyksen nimenkirjoitusoikeuden yhdelle (1) hallituksen jäsenelle.  </li>
+</ol>
+</li>
+<li>Talous, tilikausi ja toiminnantarkastus  <ol>
+<li>Yhdistyksen tilikausi on kalenterivuosi.  </li>
+<li>Tilinpäätös tarvittavine asiakirjoineen ja hallituksen vuosikertomus on annettava toiminnantarkastajille viimeistään kolme viikkoa ennen vuosikokousta. Toiminnantarkastajien tulee antaa kirjallinen lausuntonsa viimeistään viikkoa ennen vuosikokousta hallitukselle. Kirjanpito ja hallituksen pöytäkirjat on luovutettava muulloinkin toiminnantarkastajien niitä vaatiessa.  </li>
+<li>Yhdistyksen taloudenhoitoa valvovat toiminnantarkastajat.  </li>
+</ol>
+</li>
+<li>Yhdistyksen kokoukset  <ol>
+<li>Yhdistyksen kokoukset kutsuu koolle hallitus. Kokouksen aika, paikka ja käsiteltävät asiat on ilmoitettava vähintään seitsemän (7) vuorokautta ennen kokousta jäsenistölle yhdistyksen verkkosivuilla.  </li>
+<li>Yhdistys pitää vuosittain kaksi varsinaista kokousta.  </li>
+<li>Yhdistyksen vuosikokous pidetään maaliskuussa ja vaalikokous lokakuussa.  </li>
+<li>Ylimääräinen kokous pidetään, kun yhdistyksen kokous niin päättää, kun hallitus katsoo siihen olevan aihetta tai kun vähintään yksi kymmenesosa (1/10) yhdistyksen äänioikeutetuista jäsenistä tai vähintään kymmenen (10) yhdistyksen äänioikeutettua jäsentä sitä ilmoittamansa asian käsittelyä varten kirjallisesti vaatii. Kokous tulee pitää kahdenkymmenenyhden (21) vuorokauden kuluessa siitä, kun vaatimus on hallitukselle esitetty.  </li>
+<li>Yhdistyksen kokouksissa on jokaisella äänioikeutetulla yhdistyksen jäsenellä yksi (1) ääni. Äänioikeutta ei voi käyttää asiamiehen välityksellä.  </li>
+<li>Yhdistyksen kokous on päätösvaltainen, jos koollekutsuminen on tapahtunut sääntöjen mukaisesti.  </li>
+<li>Päätökset tehdään, ellei näissä säännöissä toisin määrätä, yksinkertaisella äänten enemmistöllä. Äänten mennessä tasan ratkaisee kokouksen puheenjohtajan mielipide, vaaleissa kuitenkin arpa.  </li>
+<li>Yhdistyksen kokouksessa tehty päätös voidaan purkaa vähintään kolmen neljäsosan (3/4) enemmistöllä annetuista äänistä. Päätöksen purkamisasia on ilmoitettava kokouskutsussa.  </li>
+<li>Yhdistyksen kokouksissa on läsnäolo- ja puheoikeus kaikilla yhdistyksen jäsenillä. Kokous voi tarvittaessa myöntää läsnäolo- ja puheoikeuden yhdistykseen kuulumattomalle henkilölle.  </li>
+<li>Yhdistyksen kokouksen pöytäkirjan tarkastavat kaksi (2) kokouksessa valittua pöytäkirjantarkastajaa kahden (2) viikon kuluessa kokouksesta. Tarpeen vaatiessa voidaan pöytäkirjan tarkastus suorittaa itse kokouksessa.  </li>
+<li>Mikäli yhdistyksen jäsen haluaa saada jonkin asian yhdistyksen kokouksen käsiteltäväksi, on hänen siitä kirjallisesti ilmoitettava hallitukselle niin hyvissä ajoin, että asia voidaan sisällyttää kokouskutsuun.  </li>
+</ol>
+</li>
+<li>Varsinaiset kokoukset  <ol>
+<li>Yhdistyksen vuosikokouksessa käsitellään seuraavat asiat:  <ol>
+<li>kokouksen avaus  </li>
+<li>valitaan kokouksen  <ul>
+<li>puheenjohtaja,  </li>
+<li>sihteeri,  </li>
+<li>kaksi (2) pöytäkirjantarkastajaa ja  </li>
+<li>kaksi (2) ääntenlaskijaa  </li>
+</ul>
+</li>
+<li>todetaan kokouksen laillisuus ja päätösvaltaisuus  </li>
+<li>hyväksytään kokouksen työjärjestys  </li>
+<li>esitellään tilinpäätös, vuosikertomus ja toiminnantarkastajien lausunto  </li>
+<li>päätetään tilinpäätöksen vahvistamisesta ja tili- ja vastuuvapauden myöntämisestä hallitukselle ja muille tili- ja vastuuvelvollisille  </li>
+<li>käsitellään muut kokouskutsussa mainitut asiat  </li>
+</ol>
+</li>
+<li>Yhdistyksen vaalikokouksessa käsitellään seuraavat asiat:  <ol>
+<li>kokouksen avaus  </li>
+<li>valitaan kokouksen  <ul>
+<li>puheenjohtaja,  </li>
+<li>sihteeri,  </li>
+<li>kaksi (2) pöytäkirjantarkastajaa ja  </li>
+<li>kaksi (2) ääntenlaskijaa  </li>
+</ul>
+</li>
+<li>todetaan kokouksen laillisuus ja päätösvaltaisuus  </li>
+<li>hyväksytään kokouksen työjärjestys  </li>
+<li>valitaan tulevan toimikauden hallituksen puheenjohtaja ja 3-6 hallituksen jäsentä  </li>
+<li>valitaan tulevan toimikauden oltermanni ja muut toimihenkilöt  </li>
+<li>valitaan tulevalle toimikaudelle yksi (1) toiminnantarkastaja ja hänelle yksi (1) varahenkilö  </li>
+<li>päätetään seuraavan toimikauden jäsenmaksun ja ainaisjäsenmaksun suuruudesta  </li>
+<li>esitetään seuraavan toimikauden toimintasuunnitelma ja talousarvio  </li>
+<li>esitetään tilannekatsaus kuluvan toimikauden toimintasuunnitelman ja talousarvion toteutumisesta  </li>
+<li>käsitellään muut kokouskutsussa mainitut asiat  </li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Sääntöjen muuttaminen ja yhdistyksen purkaminen  <ol>
+<li>Päätös sääntöjen muuttamisesta tai yhdistyksen purkamisesta on tehtävä yhdistyksen kokouksessa vähintään kolmen neljäsosan (3/4) enemmistöllä annetuista äänistä. Kokouskutsussa on mainittava sääntöjen muuttamisesta tai yhdistyksen purkamisesta.  </li>
+<li>Mikäli yhdistyksen kokous päättää yhdistyksen purkamisesta, tulee purkaminen hyväksyä vielä toisessa yhdistyksen kokouksessa kolmen neljäsosan (3/4) enemmistöllä annetuista äänistä. Toinen kokous täytyy järjestää vähintään kolme (3) kuukautta ja enintään kuusi (6) kuukautta sen kokouksen jälkeen jossa yhdistyksen purkaminen on ensimmäisen kerran hyväksytty. Mikäli toista kokousta ei pidetä tässä ajassa, alustava purkamisen päätös peruuntuu. Tämän toisen äänestyksen jälkeen yhdistys todetaan puretuksi. Kokouskutsussa on mainittava yhdistyksen lopullisesta purkamisesta.  </li>
+<li>Yhdistyksen purkautuessa käytetään yhdistyksen varat yhdistyksen tarkoituksen edistämiseen purkamisesta päättävän kokouksen määrittelemällä tavalla. Yhdistyksen tullessa lakkautetuksi käytetään varat samaan tarkoitukseen.</li>
+</ol>
+</li>
+</ol>
+
 {% endblock %}

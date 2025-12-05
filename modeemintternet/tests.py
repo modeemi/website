@@ -47,6 +47,7 @@ class ViewGetTest(TestCase):
             "/palaute/",
             "/uutiset/",
             "/ry/saannot/",
+            "/ry/saannot/en/",
             "/ry/rekisteriseloste/",
             "/ry/hallitus/",
             "/ry/yhteystiedot/",

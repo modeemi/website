@@ -47,6 +47,10 @@ def rules(request):
     return render(request, "rules.html")
 
 
+def rules_en(request):
+    return render(request, "rules_en.html")
+
+
 def policy(request):
     return render(request, "policy.html")
 

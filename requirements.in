@@ -4,7 +4,7 @@ crispy-bootstrap3
 django>=4.2,<5.2
 django-axes
 django-crispy-forms
-django-debug-toolbar
+django-debug-toolbar<6.0.0
 django-environ
 django-guardian
 django-ical

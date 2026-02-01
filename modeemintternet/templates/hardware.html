@@ -1,17 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Laitteisto</h1>
+<h1>Laitteisto / Hardware</h1>
 
 <p>Modeemi ry hallinnoi ja tarjoaa koneita Tampereen Yliopiston Hervannan kampuksen tiloissa jäsenistön käyttöön.</p>
 <p>Palvelinlaitteisto on tarkoitusta varten rakennetussa laitteistotilassa erillisilmastoituna. Sähkönsyötöstä ja varavirrasta vastaa suomalainen Fiskars UPS 8000, ja Internet-yhteyden nopeus on 1Gbps.</p>
 <p>Mikäli haluat tukea yhdistyksen toimintaa, <a href="{% url 'wishlist' %}">lahjoita rautaa, paranna palvelua!</a></p>
+<p> </p>
+<p>Modeemi ry manages and provides computers for use by it's members at Hervanta campus of Tampere University.</p>
+<p>Server machines are located nearby clubroom inside the machine room with proper air conditioning. We also have Finnish Fiskars UPS 8000, and 1Gbps internet uplink.</p>
+<p>If You would like to make our services better, please consider <a href="{% url 'wishlist' %}">donating a hardware!</a></p>
+
 
 <table class="table table-responsive">
     <thead>
     <tr>
         <th colspan="7" class="equipment-header">
-            <h3>Jäsenten käytössä</h3>
+            <h3>For members use</h3>
         </th>
     </tr>
     </thead>
@@ -79,7 +84,7 @@
     <thead>
     <tr>
         <th colspan="7" class="equipment-header">
-            <h3>Klubihuoneen ATK</h3>
+            <h3>Clubroom machines</h3>
         </th>
     </tr>
     </thead>
@@ -108,47 +113,20 @@
     <thead>
     <tr>
         <th colspan="7" class="equipment-header">
-            <h3>Erinäisten palveluiden pyörittäjiä</h3>
+            <h3>Virtual Machines</h3>
         </th>
     </tr>
     </thead>
 
     <tbody>
     <tr>
-        <td>water</td>
-        <td>HP DL380G5</td>
-        <td>2x Xeon L5240 3.0GHz</td>
-        <td>16GB</td>
-        <td>72G RAID1<br/>56x300G FC 8xRAIDZ2 = ~12TB</td>
-        <td>OmniOS</td>
-        <td>Levyjaot</td>
-    </tr>
-    <tr>
-        <td>sihi</td>
-        <td>HP DL380G4</td>
-        <td>2 x 3.4Ghz Xeon 32bit</td>
-        <td>8G</td>
-        <td>2x2x2T RAIDZ1</td>
-        <td>OpenSolaris</td>
-        <td>Sisäinen backup</td>
-    </tr>
-	<tr>
-		<td>screwdriver</td>
-		<td>Sun Enterprise T5440</td>
-		<td>4 x 1.4GHz UltraSPARC T2 Plus</td>
-		<td>256GB</td>
-		<td>72G ZFS mirror<br />146G ZFS mirror</td>
-		<td>Solaris 11</td>
-		<td>Global zone host</td>
-	</tr>
-    <tr>
-        <td>modeemi</td>
-        <td>Sun Enterprise T5440</td>
-        <td>256GB</td>
-        <td></td>
-        <td></td>
-        <td>Solaris zone on screwdriver</td>
-        <td>Hallinta, Email</td>
+        <td>cherry</td>
+        <td>VM</td>
+        <td>2 vCPU</td>
+        <td>4GB</td>
+        <td>10G</td>
+        <td>Debian 12</td>
+        <td>Web server</td>
     </tr>
     <tr>
         <td>votka</td>
@@ -160,13 +138,31 @@
         <td>DNS, OpenVPN</td>
     </tr>
     <tr>
-        <td>mgw</td>
-        <td>OpenIndiana zone</td>
-        <td>8 vCPU</td>
-        <td>16GB</td>
-        <td>268G</td>
-        <td>OpenIndiana Hipster 2025.06</td>
-        <td>Maailmalle lentävä sähköposti</td>
+        <td>grandi</td>
+        <td>VM</td>
+        <td>2 vCPU</td>
+        <td>4GB</td>
+        <td>8G</td>
+        <td>Debian 12</td>
+        <td>Netbox</td>
+    </tr>
+    <tr>
+        <td>doors</td>
+        <td>VM</td>
+        <td>2 vCPU</td>
+        <td>2GB</td>
+        <td>25G</td>
+        <td>Debian 13</td>
+        <td>doorbot project</td>
+    </tr>
+    <tr>
+        <td>modeemi</td>
+        <td>Sun Enterprise T5440</td>
+        <td>256GB</td>
+        <td></td>
+        <td></td>
+        <td>Solaris zone on screwdriver</td>
+        <td>Management, Email</td>
     </tr>
     <tr>
         <td>spam</td>
@@ -175,7 +171,7 @@
         <td>4GB</td>
         <td>10G</td>
         <td>Debian 12</td>
-        <td>Roskapostisuodin</td>
+        <td>Inbound mail filter</td>
     </tr>
     <tr>
         <td>junk</td>
@@ -184,16 +180,16 @@
         <td>4GB</td>
         <td>10G</td>
         <td>Debian 12</td>
-        <td>Roskapostisuodin</td>
+        <td>Inbound mail filter</td>
     </tr>
     <tr>
-        <td>cherry</td>
-        <td>VM</td>
-        <td>2 vCPU</td>
-        <td>4GB</td>
-        <td>10G</td>
-        <td>Debian 9</td>
-        <td>Intternet&shy;palvelin</td>
+        <td>mgw</td>
+        <td>OpenIndiana zone</td>
+        <td>8 vCPU</td>
+        <td>16GB</td>
+        <td>268G</td>
+        <td>OpenIndiana Hipster 2025.06</td>
+        <td>Outbound mail relay</td>
     </tr>
     <tr>
         <td>imperial</td>
@@ -204,57 +200,68 @@
         <td>Debian 9</td>
         <td>MUD-serveri</td>
     </tr>
-	<tr>
-		<td>gambina</td>
-		<td>VM</td>
-		<td>2 vCPU</td>
-		<td>1 GB</td>
-		<td>8G</td>
-		<td>Debian 10</td>
-		<td>Jitsi-serveri (tulossa)</td>
-	</tr>
-    <tr>
-        <td>matrix</td>
-        <td>VM</td>
-        <td>4 vCPU</td>
-        <td>8GB</td>
-        <td>20G + 100G</td>
-        <td>Debian 10</td>
-        <td>Matrix-serveri</td>
-    </tr>
-    <tr>
-        <td>grandi</td>
-        <td>VM</td>
-        <td>1 vCPU</td>
-        <td>4GB</td>
-        <td>8G</td>
-        <td>Debian 11</td>
-        <td>Netbox</td>
-    </tr>
-    <tr>
-        <td>can</td>
-        <td>Dell R710</td>
-        <td>2x Intel Xeon E5645 2,4GHz 6C/12T</td>
-        <td>64GB</td>
-        <td></td>
-        <td>VMware ESXi</td>
-        <td>Virtuaalialusta</td>
-    </tr>
-    <tr>
-        <td>cup</td>
-        <td>Dell R710</td>
-        <td>2x Intel Xeon E5645 2,4GHz 6C/12T</td>
-        <td>64GB</td>
-        <td></td>
-        <td>VMware ESXi</td>
-        <td>Virtuaalialusta</td>
-    </tr>
     </tbody>
 
     <thead>
     <tr>
         <th colspan="7" class="equipment-header">
-            <h3>Muuta</h3>
+            <h3>Role-specific machines</h3>
+        </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td>jug</td>
+        <td>ProLiant DL380p Gen8</td>
+        <td>Xeon E5-2695v2 2.40GHz</td>
+        <td>192G</td>
+        <td>2 x 230GB RAID1</td>
+        <td>Proxmox VE</td>
+        <td>First proxmox node</td>
+    </tr>
+    <tr>
+        <td>goblet</td>
+        <td>ProLiant DL380p Gen8</td>
+        <td>2 x Xeon E5-2620 2.00GHz</td>
+        <td>64GB(CPU1) + 64GB(CPU2)</td>
+        <td>2 x 200GB RAID1</td>
+        <td>Proxmox VE</td>
+        <td>Second proxmox node</td>
+    </tr>
+    <tr>
+        <td>bottle</td>
+        <td>ProLiant DL380p Gen8</td>
+        <td>2 x Xeon E5-2640v2 2.00GHz </td>
+        <td>128GB(CPU1) + 128GB(CPU2)</td>
+        <td>200 GB + 480 GB</td>
+        <td>Proxmox VE</td>
+        <td>Third proxmox node</td>
+    </tr>
+    <tr>
+        <td>vichy</td>
+        <td>ProLiant DL380 Gen10</td>
+        <td>2 x Xeon Gold 6144 3.50GHz </td>
+        <td>128GB(CPU1) + 128GB(CPU2)</td>
+        <td>6 x 7.68TB (RAIDZ2)</td>
+        <td>Ubuntu Server 24.04</td>
+        <td>Network File System</td>
+    </tr>
+	<tr>
+		<td>screwdriver</td>
+		<td>Sun Enterprise T5440</td>
+		<td>4 x 1.4GHz UltraSPARC T2 Plus</td>
+		<td>256GB</td>
+		<td>72G ZFS mirror<br />146G ZFS mirror</td>
+		<td>Solaris 11</td>
+		<td>Global zone host</td>
+	</tr>
+    </tbody>
+
+    <thead>
+    <tr>
+        <th colspan="7" class="equipment-header">
+            <h3>Network equipment and miscellaneous appliances</h3>
         </th>
     </tr>
     </thead>
@@ -262,12 +269,21 @@
     <tbody>
     <tr>
         <td>modeemi-gw</td>
+        <td>Mikrotik CCR2004-16G-2S+</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>RouterOS</td>
+        <td>Gateway and Firewall</td>
+    </tr>
+    <tr>
+        <td>modeemi-sw0</td>
         <td>Cisco 6503</td>
         <td></td>
         <td></td>
         <td></td>
         <td>Cisco IOS</td>
-        <td>Gateway</td>
+        <td>Aggregation Switch</td>
     </tr>
     <tr>
         <td>modeemi-sw1</td>
@@ -276,7 +292,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>TOR-kytkin</td>
+        <td>TOR-switch</td>
     </tr>
     </tbody>
 </table>

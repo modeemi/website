@@ -49,13 +49,13 @@ class ApplicationForm(ModelForm):
     password = CharField(
         min_length=12,
         max_length=256,
-        label="Salasana",
+        label="Salasana / Password",
         widget=PasswordInput(),
     )
     password_check = CharField(
         min_length=12,
         max_length=256,
-        label="Salasana uudelleen",
+        label="Salasana uudelleen / Password again",
         widget=PasswordInput(),
     )
 
@@ -79,19 +79,19 @@ class ApplicationForm(ModelForm):
         self.helper.form_id = "application-form"
         self.helper.form_method = "POST"
         self.helper.form_action = "/jaseneksi/"
-        self.helper.add_input(Submit("submit", "Lähetä hakemus"))
+        self.helper.add_input(Submit("submit", "Lähetä hakemus / Submit"))
 
-        self.fields["first_name"].label = "Etunimi"
-        self.fields["last_name"].label = "Sukunimi"
-        self.fields["email"].label = "Sähköpostiosoite"
-        self.fields["municipality"].label = "Kotipaikka"
+        self.fields["first_name"].label = "Etunimi / First Name"
+        self.fields["last_name"].label = "Sukunimi / Surname"
+        self.fields["email"].label = "Sähköpostiosoite / Email"
+        self.fields["municipality"].label = "Kotipaikka / Place of residence (e.g. Tampere)"
 
-        self.fields["username"].label = "Käyttäjätunnus"
-        self.fields["shell"].label = "Komentokehoite kerhon *nix -ympäristössä"
-        self.fields["funet_rules_accepted"].label = "Hyväksyn Funet-verkon käyttöehdot"
+        self.fields["username"].label = "Käyttäjätunnus / Username"
+        self.fields["shell"].label = "Komentokehoite kerhon *nix -ympäristössä / Shell"
+        self.fields["funet_rules_accepted"].label = "Hyväksyn Funet-verkon käyttöehdot / I accept the terms of service of the Funet network"
         self.fields["funet_rules_accepted"].required = True
         self.fields["virtual_key_required"].label = (
-            "Tarvitsen virtuaaliavaimen kerhohuoneelle"
+            "Tarvitsen virtuaaliavaimen kerhohuoneelle / I need a virtual key to the clubroom"
         )
 
 

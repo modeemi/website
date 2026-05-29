@@ -88,7 +88,9 @@ class ApplicationForm(ModelForm):
 
         self.fields["username"].label = "Käyttäjätunnus / Username"
         self.fields["shell"].label = "Komentokehoite kerhon *nix -ympäristössä / Shell"
-        self.fields["funet_rules_accepted"].label = "Hyväksyn Funet-verkon käyttöehdot / I accept the terms of service of the Funet network"
+        self.fields["funet_rules_accepted"].label = (
+            "Hyväksyn Funet-verkon käyttöehdot / I accept the terms of service of the Funet network"
+        )
         self.fields["funet_rules_accepted"].required = True
         self.fields["virtual_key_required"].label = (
             "Tarvitsen virtuaaliavaimen kerhohuoneelle / I need a virtual key to the clubroom"

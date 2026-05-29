@@ -84,7 +84,9 @@ class ApplicationForm(ModelForm):
         self.fields["first_name"].label = "Etunimi / First Name"
         self.fields["last_name"].label = "Sukunimi / Surname"
         self.fields["email"].label = "Sähköpostiosoite / Email"
-        self.fields["municipality"].label = "Kotipaikka / Place of residence (e.g. Tampere)"
+        self.fields["municipality"].label = (
+            "Kotipaikka / Place of residence (e.g. Tampere)"
+        )
 
         self.fields["username"].label = "Käyttäjätunnus / Username"
         self.fields["shell"].label = "Komentokehoite kerhon *nix -ympäristössä / Shell"

@@ -223,6 +223,7 @@ MARKDOWNIFY = {
             "code",
             "em",
             "i",
+            "img",
             "li",
             "ol",
             "p",

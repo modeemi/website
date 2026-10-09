@@ -211,7 +211,7 @@ MARKDOWNIFY = {
             "PARSE_EMAIL": True,
         },
         "SKIP_TAGS": ["pre", "code"],
-        "MARKDOWN_EXTENSIONS": ["extra", "nl2br"],
+        "MARKDOWN_EXTENSIONS": ["extra", "nl2br", "attr_list"],
         "WHITELIST_ATTRS": ["href", "src", "alt"],
         "WHITELIST_TAGS": [
             "a",

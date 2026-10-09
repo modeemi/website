@@ -212,7 +212,7 @@ MARKDOWNIFY = {
         },
         "SKIP_TAGS": ["pre", "code"],
         "MARKDOWN_EXTENSIONS": ["extra", "nl2br", "attr_list"],
-        "WHITELIST_ATTRS": ["href", "src", "alt"],
+        "WHITELIST_ATTRS": ["href", "src", "alt", "width", "height", "style"],
         "WHITELIST_TAGS": [
             "a",
             "abbr",
